@@ -1,0 +1,49 @@
+[WebServer] (node:38193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:38205) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/mode-loading.spec.mjs:6:1 › home_requests_no_3d (10.5s)
+
+
+  1) [chromium] › tests/e2e/mode-loading.spec.mjs:6:1 › home_requests_no_3d ────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'ゲームをはじめる', exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'ゲームをはじめる', exact: true }) with timeout 10000ms
+      - waiting for getByRole('button', { name: 'ゲームをはじめる', exact: true })
+
+
+       5 | async function home(page){await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','HOME');await expect(page.locator('canvas')).toHaveCount(0);}
+       6 | test('home_requests_no_3d',async({page},info)=>{
+    >  7 |  const d=await prepare(page);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();
+         |                                                                                                                       ^
+       8 |  expect(d.requests.filter(url=>/three|assets\/js\/simulator|modes\/(driving|simulation)|legacy-adapter/.test(url))).toEqual([]);
+       9 |  await expect(page.getByRole('button',{name:'シミュレーターをはじめる',exact:true})).toBeVisible();await expect(page.locator('canvas')).toHaveCount(0);expect((await diagnostics(page)).initialized).toEqual({driving:0,simulation:0});
+      10 |  await info.attach('home.png',{body:await page.screenshot(),contentType:'image/png'});expect(d.errors).toEqual([]);
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:7:119
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-home-requests-no-3d-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-home-requests-no-3d-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-home-requests-no-3d-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-home-requests-no-3d-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/mode-loading.spec.mjs:6:1 › home_requests_no_3d ─────────────────────────
