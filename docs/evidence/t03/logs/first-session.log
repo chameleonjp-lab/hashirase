@@ -1,0 +1,106 @@
+✖ driving_import_has_no_side_effect (5.644213ms)
+✔ two_driving_sessions_do_not_share_state (2.950184ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (6.314022ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.508115ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.914848ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.875839ms)
+✔ driving_brake_does_not_become_reverse_drive (1.058935ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.224248ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.944963
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:31:1
+✖ driving_import_has_no_side_effect (5.644213ms)
+  AssertionError [ERR_ASSERTION]: Import must not allocate browser state, a loop, or a global registry
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      AbortController: {
+        configurable: true,
+        enumerable: false,
+        value: [class AbortController],
+  ...
+      },
+  +   Symbol(undici.globalDispatcher.1): {
+  +     configurable: false,
+  +     enumerable: false,
+  +     value: Agent {
+  +       Symbol(clients): Map(0) {},
+  +       Symbol(closed): false,
+  +       Symbol(factory): [Function: defaultFactory],
+  +       Symbol(kCapture): false,
+  +       Symbol(nodejs.stream.destroyed): false,
+  +       Symbol(onClosed): null,
+  +       Symbol(onConnect): [Function (anonymous)],
+  +       Symbol(onConnectionError): [Function (anonymous)],
+  +       Symbol(onDestroyed): null,
+  +       Symbol(onDisconnect): [Function (anonymous)],
+  +       Symbol(onDrain): [Function (anonymous)],
+  +       Symbol(options): {
+  +         connect: undefined,
+  +         maxOrigins: Infinity
+  +       },
+  +       Symbol(origins): Set(0) {},
+  +       Symbol(shapeMode): false,
+  +       Symbol(webSocketOptions): {},
+  +       _events: [Object: null prototype] {},
+  +       _eventsCount: 0,
+  +       _maxListeners: undefined
+  +     },
+  +     writable: true
+  +   },
+  +   Symbol(undici.globalDispatcher.2): {
+  +     configurable: false,
+  +     enumerable: false,
+  +     value: Agent {
+  +       Symbol(clients): Map(0) {},
+  +       Symbol(closed): false,
+  +       Symbol(factory): [Function: defaultFactory],
+  +       Symbol(kCapture): false,
+  +       Symbol(nodejs.stream.destroyed): false,
+  +       Symbol(onClosed): null,
+  +       Symbol(onConnect): [Function (anonymous)],
+  +       Symbol(onConnectionError): [Function (anonymous)],
+  +       Symbol(onDestroyed): null,
+  +       Symbol(onDisconnect): [Function (anonymous)],
+  +       Symbol(onDrain): [Function (anonymous)],
+  +       Symbol(options): {
+  +         connect: undefined,
+  +         maxOrigins: Infinity
+  +       },
+  +       Symbol(origins): Set(0) {},
+  +       Symbol(shapeMode): false,
+  +       Symbol(webSocketOptions): {},
+  +       _events: [Object: null prototype] {},
+  +       _eventsCount: 0,
+  +       _maxListeners: undefined
+  +     },
+  +     writable: true
+  +   },
+      Symbol: {
+        configurable: true,
+        enumerable: false,
+        value: [Function: Symbol],
+        writable: true
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:33:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

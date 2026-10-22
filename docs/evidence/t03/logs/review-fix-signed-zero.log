@@ -1,0 +1,62 @@
+✔ driving_import_has_no_side_effect (24.679978ms)
+✔ two_driving_sessions_do_not_share_state (2.78961ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (6.723828ms)
+✔ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (0.320914ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.488728ms)
+✔ driving_disposal_continues_when_one_owned_service_fails (0.387875ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.597963ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.863593ms)
+✖ driving_brake_does_not_become_reverse_drive (1.253182ms)
+✔ explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion (4.688676ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.284179ms)
+✔ driving_build_has_a_real_mode_entry_without_simulation_or_Three (106.098039ms)
+✔ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (24.929964ms)
+✔ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (18.977842ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 278.099332
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:142:1
+✖ driving_brake_does_not_become_reverse_drive (1.253182ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + -0
+  - 0
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:145:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: -0,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+[WebServer] (node:17602) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:17615) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.6s)
+  ✓  2 [chromium] › tests/integration/driving-lifecycle.spec.mjs:51:1 › driving_fixed_tick_trace_matches_pre_extraction_game (4.7s)
+  ✓  3 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (800ms)
+  ✓  4 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick (2.5s)
+  ✓  5 [chromium] › tests/integration/driving-lifecycle.spec.mjs:109:1 › driving_police_and_siren_survive_audio_extraction (1.5s)
+  ✓  6 [chromium] › tests/integration/driving-lifecycle.spec.mjs:120:1 › driving_external_input_blocks_legacy_keyboard_actions (1.2s)
+
+  6 passed (14.3s)

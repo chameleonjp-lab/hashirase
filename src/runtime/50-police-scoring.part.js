@@ -1,20 +1,7 @@
 // ==========================================
 // POLICE PURSUIT & 2-HIT GAME OVER SYSTEM
 // ==========================================
-const policePursuitState = {
-  propertyDamageHits: 0, // 物損 (壁・信号・電柱)
-  carHits: 0,            // 器物損壊 (一般車両・駐車車両)
-  policeHits: 0,         // 公務執行妨害 (パトカー)
-  active: false,
-  gameOver: false,
-  chaseElapsedSec: 0,
-  nextSpawnTimer: 30.0,
-  propHitCooldown: 0,
-  carHitCooldown: 0,
-  policeHitCooldown: 0,
-  sirenPhase: 0,
-  lastDamageCause: ''
-};
+const policePursuitState = createPursuitState();
 
 // ============================================================================
 // GAME-BALANCED SPEED-BASED DAMAGE & OFFENSE SCORING ENGINE (MAX HP = 1000)
@@ -23,41 +10,9 @@ const policePursuitState = {
 // - Property Damage (物損: 壁・信号・電柱): moderate speed-scaled structural damage
 // - Game Over ONLY when HP reaches 0 (car totaled / unable to reach destination)
 // ============================================================================
-function calculateBalancedCollisionDamage(category, impactSpeedMs) {
-  const impactKmh = Math.max(12.0, impactSpeedMs * 3.6);
-  // Normalized speed factor: 0.5 at 60 km/h, 1.0 at 120 km/h, 2.0 at 240 km/h
-  const spdFactor = Math.max(0.16, Math.min(2.6, impactKmh / 120.0));
+function calculateBalancedCollisionDamage(category, impactSpeedMs) { return calculateCollisionDamage(category, impactSpeedMs); }
 
-  // Base Civilian Car collision damage formula (器物損壊):
-  // ~28 HP at 30 km/h, ~42 HP at 60 km/h, ~70 HP at 120 km/h, ~126 HP at 240 km/h
-  const civilianBaseDamage = Math.round(14 + 56 * spdFactor);
-
-  if (category === 'CIVILIAN_CAR') {
-    return { hpLoss: civilianBaseDamage, impactKmh: Math.round(impactKmh), offenseName: '器物損壊', penaltyPt: 350 };
-  }
-  if (category === 'POLICE_CAR') {
-    // Strictly 2x the damage of a civilian car at the same collision speed!
-    return { hpLoss: civilianBaseDamage * 2, impactKmh: Math.round(impactKmh), offenseName: '公務執行妨害', penaltyPt: 700 };
-  }
-  if (category === 'WALL') {
-    // Building wall impact (物損): ~29 HP at 60 km/h, ~48 HP at 120 km/h
-    const wallDmg = Math.round(10 + 38 * spdFactor);
-    return { hpLoss: wallDmg, impactKmh: Math.round(impactKmh), offenseName: '物損(壁)', penaltyPt: 150 };
-  }
-  // Utility pole or Traffic signal impact (物損: 信号・電柱): ~21 HP at 60 km/h, ~34 HP at 120 km/h
-  const poleDmg = Math.round(8 + 26 * spdFactor);
-  return { hpLoss: poleDmg, impactKmh: Math.round(impactKmh), offenseName: category === 'SIGNAL' ? '物損(信号)' : '物損(電柱)', penaltyPt: 150 };
-}
-
-function recalculatePlayerScore() {
-  const distScore = Math.round(carState.totalDistanceTraveled * 3.0);
-  const penalties =
-    policePursuitState.propertyDamageHits * 150 +
-    policePursuitState.carHits * 350 +
-    policePursuitState.policeHits * 700;
-  carState.score = distScore + (carState.goalBonusScore || 0) - penalties;
-  return carState.score;
-}
+function recalculatePlayerScore() { return scoreDrivingState(carState, policePursuitState); }
 
 function applyCollisionDamageAndOffense(category, impactSpeedMs, detailLabel = '') {
   if (policePursuitState.gameOver) {
@@ -161,25 +116,7 @@ function createPoliceCruiserMesh() {
   return { pGroup, bodyParts, redLight, blueLight };
 }
 
-function playSirenBurstSound() {
-  if (!audioCtx || !soundEnabled) return;
-  try {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const now = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(680, now);
-    osc.frequency.linearRampToValueAtTime(1180, now + 0.28);
-    osc.frequency.linearRampToValueAtTime(680, now + 0.55);
-    gain.gain.setValueAtTime(0.14, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.58);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 0.60);
-  } catch (e) {}
-}
+function playSirenBurstSound() { audioService.siren(); }
 
 function updatePursuitHudUI() {
   recalculatePlayerScore();
@@ -477,4 +414,3 @@ function resetPolicePursuitState() {
   }
   updatePursuitHudUI();
 }
-

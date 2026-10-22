@@ -1,0 +1,89 @@
+
+> hashirase@0.1.0 check
+> npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm run check:boundaries && npm test
+
+
+> hashirase@0.1.0 build:check
+> node tools/build.mjs --check
+
+Bundle matches all 11 source parts.
+
+> hashirase@0.1.0 check:boundaries
+> node scripts/check-boundaries.mjs
+
+Boundary check: 17 ESM modules, 29 imports; 11 legacy fragments explicitly excluded.
+
+> hashirase@0.1.0 test
+> node tests/smoke.mjs && npm run test:unit && npm run test:integration
+
+Smoke test passed: 117 unique IDs and expected asset order.
+
+> hashirase@0.1.0 test:unit
+> node --test tests/baseline/original.test.mjs tests/unit/*.test.mjs
+
+✔ original_manifest_identifies_immutable_baseline_sources (43.892315ms)
+✔ original_screen_controls_and_asset_order_are_preserved (0.791603ms)
+✔ original_courses_trims_constants_and_core_features_are_preserved (0.706616ms)
+✔ clock_is_render_rate_independent (3.277801ms)
+✔ clock_remains_render_rate_independent_over_ten_minutes (20.271846ms)
+✔ clock_marks_overload_without_dropping_unprocessed_time (0.455507ms)
+✔ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.097898ms)
+✔ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.141834ms)
+✔ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.342246ms)
+✔ random_is_repeatable_and_visual_draws_do_not_change_physics (0.705994ms)
+✔ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.128965ms)
+✔ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (1.422284ms)
+✔ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.246742ms)
+✔ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (0.291309ms)
+✔ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (0.649889ms)
+✔ session_contract_preserves_named_ports_and_has_no_render_loop (0.300913ms)
+✔ events_reject_invalid_session (0.283337ms)
+✔ events_are_readonly_deduplicated_and_isolated_per_session (0.628958ms)
+✔ driving_import_has_no_side_effect (26.130653ms)
+✔ two_driving_sessions_do_not_share_state (3.631154ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (7.347464ms)
+✔ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (0.336757ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.642579ms)
+✔ driving_disposal_continues_when_one_owned_service_fails (0.405792ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.76253ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.805784ms)
+✔ driving_brake_does_not_become_reverse_drive (1.104735ms)
+✔ explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion (5.12784ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.229596ms)
+✔ driving_build_has_a_real_mode_entry_without_simulation_or_Three (121.129173ms)
+✔ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (24.829346ms)
+✔ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (18.66222ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 340.122471
+
+> hashirase@0.1.0 test:integration
+> node --test tests/integration/*.test.mjs
+
+✔ imports_do_not_cross_modes (9.438046ms)
+✔ common_code_and_static_home_imports_cannot_pull_in_a_mode (8.558411ms)
+✔ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (3.252413ms)
+✔ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (2.666249ms)
+✔ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (2.659199ms)
+✔ physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper (2.815965ms)
+✔ modes_cannot_hide_an_independent_render_loop_in_a_shared_helper (2.148298ms)
+✔ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (25.879209ms)
+✔ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (1.865392ms)
+✔ build_fails_when_a_common_entry_statically_includes_a_mode (7.036235ms)
+✔ asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes (13.125845ms)
+✔ build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets (17.28266ms)
+✔ build_rejects_CSS_imports_including_cross_mode_dependencies (14.930094ms)
+✔ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.19901ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 160.440709
