@@ -18,8 +18,11 @@ function stepPhysics(dt) {
 const effects=stepVehicleState(carState,dt,inputs,{trim:currentTrim,course:currentCourse,ramp:RAMP,rampPoint:rampProfile.point,subsystems:playerSubsystems,gripMultiplier:weatherState.gripMultiplier},{collide:()=>resolveBuildingCollisionForBody(carState,true),legacyBrakeReverse:typeof __legacyBrakeReverse==='boolean'?__legacyBrakeReverse:true});
 if(effects.trim)selectTrim(effects.trim);
 advanceDistance(carState,policePursuitState,timeAttackState,dt);
-applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,random:Math.random},carState,dt,effects);
+applyCurrentDrivingVisuals(dt,effects);
 updateAudio(effects.fireDownwardLift,effects.anyRcs,effects.usingBoost);
+}
+function applyCurrentDrivingVisuals(dt,effects={}) {
+applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,random:Math.random},carState,dt,effects);
 }
 const smoothCamPos = new THREE.Vector3(0, 3.2, 45);
 const smoothLookAt = new THREE.Vector3(0, 1.0, 15);

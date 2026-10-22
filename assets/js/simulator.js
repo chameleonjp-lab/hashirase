@@ -364,7 +364,9 @@ var drivingPorts = (() => {
       if (inputs.accel) longAcc += currentTrim.accelBase * inputs.accel;
       if (inputs.boost && usingBoost) longAcc += currentTrim.thrustBoost;
       if (inputs.brake) {
-        if (vLong > 0.6) {
+        if (!hooks.legacyBrakeReverse) {
+          longAcc -= Math.sign(vLong) * (carState.suctionEnabled ? 46 : 34) * inputs.brake;
+        } else if (vLong > 0.6) {
           longAcc -= (carState.suctionEnabled ? 46 : 34) * inputs.brake;
         } else {
           if (hooks.legacyBrakeReverse) longAcc -= 24 * inputs.brake;
@@ -378,7 +380,6 @@ var drivingPorts = (() => {
       const effPowerScale = playerSubsystems ? playerSubsystems.enginePowerScale * Math.max(0.68, 1 - playerSubsystems.tirePunctures * 0.08) : 1;
       vLong += netLongAcc * effPowerScale * dt;
       if (inputs.brake && !hooks.legacyBrakeReverse && beforeDrive * vLong <= 0) vLong = 0;
-      if (inputs.brake && !hooks.legacyBrakeReverse && Math.abs(beforeDrive) <= 0.6) vLong = beforeDrive * Math.max(0, 1 - 46 * dt);
       vLong = Math.max(-26, Math.min(currentTrim.maxSpeed * effPowerScale, vLong));
       if (!inputs.accel && !inputs.brake && !inputs.boost && Math.abs(vLong) < 0.08) {
         vLong = 0;
@@ -418,6 +419,7 @@ var drivingPorts = (() => {
       vLat = updatedVLat + latGripDelta;
       carState.vx = newFwdX * vLong + newRightX * vLat;
       carState.vz = newFwdZ * vLong + newRightZ * vLat;
+      if (!hooks.legacyBrakeReverse && inputs.brake && vLong === 0 && vLat === 0) carState.vx = carState.vz = 0;
       carState.speed = vLong;
       const prevZ = carState.z;
       carState.x += carState.vx * dt;
@@ -530,7 +532,8 @@ var drivingPorts = (() => {
       let airForwardThrust = 0;
       if (inputs.accel) airForwardThrust += currentTrim.accelBase * 0.95;
       if (inputs.boost && usingBoost) airForwardThrust += currentTrim.thrustBoost * 0.9;
-      if (inputs.brake) airForwardThrust -= 32;
+      if (inputs.brake && hooks.legacyBrakeReverse) airForwardThrust -= 32;
+      if (inputs.reverseThrottle) airForwardThrust -= 32 * inputs.reverseThrottle;
       if (inputs.hover && !inputs.accel && !inputs.brake && !inputs.boost && Math.abs(rawSteer) > 0.05 && hasGas) {
         airForwardThrust += 14.5;
       }
@@ -538,9 +541,15 @@ var drivingPorts = (() => {
         carState.vx += fwdX * airForwardThrust * dt;
         carState.vz += fwdZ * airForwardThrust * dt;
       }
+      if (inputs.brake && !hooks.legacyBrakeReverse && hasGas) {
+        const longitudinal = carState.vx * fwdX + carState.vz * fwdZ;
+        const brakingDelta = Math.sign(longitudinal) * Math.min(Math.abs(longitudinal), 32 * inputs.brake * dt);
+        carState.vx -= fwdX * brakingDelta;
+        carState.vz -= fwdZ * brakingDelta;
+      }
       const vLongAir = carState.vx * fwdX + carState.vz * fwdZ;
       const vLatAir = carState.vx * rightX + carState.vz * rightZ;
-      const isActivelyThrusting = hasGas && (inputs.hover || inputs.accel || inputs.boost || inputs.brake || Math.abs(rawSteer) > 0.05);
+      const isActivelyThrusting = hasGas && (inputs.hover || inputs.accel || inputs.reverseThrottle || inputs.boost || inputs.brake || Math.abs(rawSteer) > 0.05);
       const latDampRate = isActivelyThrusting ? inputs.hover ? 4.2 : 2.8 : 0.35;
       const newVLatAir = vLatAir * Math.exp(-latDampRate * dt);
       const airHorizSpd = Math.hypot(vLongAir, newVLatAir);
@@ -5954,8 +5963,11 @@ function stepPhysics(dt) {
 const effects=stepVehicleState(carState,dt,inputs,{trim:currentTrim,course:currentCourse,ramp:RAMP,rampPoint:rampProfile.point,subsystems:playerSubsystems,gripMultiplier:weatherState.gripMultiplier},{collide:()=>resolveBuildingCollisionForBody(carState,true),legacyBrakeReverse:typeof __legacyBrakeReverse==='boolean'?__legacyBrakeReverse:true});
 if(effects.trim)selectTrim(effects.trim);
 advanceDistance(carState,policePursuitState,timeAttackState,dt);
-applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,random:Math.random},carState,dt,effects);
+applyCurrentDrivingVisuals(dt,effects);
 updateAudio(effects.fireDownwardLift,effects.anyRcs,effects.usingBoost);
+}
+function applyCurrentDrivingVisuals(dt,effects={}) {
+applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,random:Math.random},carState,dt,effects);
 }
 const smoothCamPos = new THREE.Vector3(0, 3.2, 45);
 const smoothLookAt = new THREE.Vector3(0, 1.0, 15);

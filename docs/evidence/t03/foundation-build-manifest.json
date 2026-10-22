@@ -5,11 +5,6 @@
   "splitting": true,
   "esbuildVersion": "0.28.2",
   "entryPoints": {
-    "src/contracts/session.js": "dist/contracts/session.js",
-    "src/contracts/vehicle.js": "dist/contracts/vehicle.js",
-    "src/contracts/events.js": "dist/contracts/events.js",
-    "src/platform/clock.js": "dist/platform/clock.js",
-    "src/platform/random.js": "dist/platform/random.js",
     "src/modes/driving/index.js": "dist/modes/driving/index.js",
     "src/modes/driving/screen-assets.js": "dist/chunks/screen-assets-AQWDDUGU.js"
   },
@@ -21,10 +16,6 @@
     {
       "path": "src/assets/driving/screen.html",
       "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f"
-    },
-    {
-      "path": "src/contracts/events.js",
-      "sha256": "a2209be5d5e59591be07f0b5baa42affe00766a424c73da9e2340918549c8b32"
     },
     {
       "path": "src/contracts/session.js",
@@ -44,11 +35,11 @@
     },
     {
       "path": "src/modes/driving/legacy-adapter.js",
-      "sha256": "0504894ac223c427ff15fc3eca93f8ac85537680980cb2bd076f85a500c38bae"
+      "sha256": "da3e3c5fde21fa3d868a5cbc59a82fd2b47d15c3255384335eec95d9abef9352"
     },
     {
       "path": "src/modes/driving/physics.js",
-      "sha256": "dbbf9a406f036db5f5787539ea0d9750291cc97cdbf811997e5a7edd085e06e5"
+      "sha256": "170acbf9335f5764c263934abc29d3570b2a9e68d9e4f9ab539c34bf8d1a5c09"
     },
     {
       "path": "src/modes/driving/rules.js",
@@ -69,10 +60,6 @@
     {
       "path": "src/platform/audio.js",
       "sha256": "d32d3e7470129f3e9a8d8cd3eeb767846d109f25a4ada743c735393b5755a9da"
-    },
-    {
-      "path": "src/platform/clock.js",
-      "sha256": "8e2fef5c7a5f4b4b4be343aca8885e52c7a4346783469ec0a6284328d80cd0cf"
     },
     {
       "path": "src/platform/random.js",
@@ -97,53 +84,6 @@
       "imports": []
     },
     {
-      "path": "dist/chunks/chunk-INSMGBLP.js",
-      "sha256": "63267384478ffd01d8e3f4cfc5b82932b71e4c003e932535f61a33aed47672d7",
-      "inputs": [
-        "src/platform/random.js"
-      ],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
-      "path": "dist/chunks/chunk-K2P3NXBS.js",
-      "sha256": "77833809c335aa72fcad9ef54ad8232ffbd10f9ddae365160357ac110ff8c712",
-      "inputs": [
-        "src/contracts/session.js"
-      ],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
-      "path": "dist/chunks/chunk-S6VTBFRY.js",
-      "sha256": "443756291d8a433fcd912bebf692457cb2fe1df661c4a72e67f2cd983b625c93",
-      "inputs": [
-        "src/contracts/validation.js"
-      ],
-      "imports": []
-    },
-    {
-      "path": "dist/chunks/chunk-YHDLSDEI.js",
-      "sha256": "f2c43df46e285871fa8fe310e1f4662dbf9ef9b84c2cacebb6ac7a46cb60e45f",
-      "inputs": [
-        "src/contracts/vehicle.js"
-      ],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
       "path": "dist/chunks/screen-assets-AQWDDUGU.js",
       "sha256": "21b6801ef8b8259f822ab4277dc8401f011766a915d8578666c8d77368988fae",
       "inputs": [
@@ -163,108 +103,25 @@
       ]
     },
     {
-      "path": "dist/contracts/events.js",
-      "sha256": "36ecbddd91748e31cada9a12010930eb1120736a3a80cc4140054d8425b9354e",
-      "inputs": [
-        "src/contracts/events.js"
-      ],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
-      "path": "dist/contracts/session.js",
-      "sha256": "4cc1befa5b339c92e15bec9ce95f1a47cc9e9ea527b0dc102cd197fd3402c1c8",
-      "inputs": [],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-K2P3NXBS.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
-      "path": "dist/contracts/vehicle.js",
-      "sha256": "aa4f6b5641e3d31ff460b169d2d7fd87ace883312991e27f5c9d4ad515d08317",
-      "inputs": [],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-YHDLSDEI.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
       "path": "dist/modes/driving/index.js",
-      "sha256": "500c228d8049c300fc1fd01f36ad742bf8c31a78f13942f95824b18e89a91e8f",
+      "sha256": "b34eb41eaa386360e0cf5c44043099b4f69630c83081513202d646e2f879979a",
       "inputs": [
+        "src/contracts/session.js",
+        "src/contracts/validation.js",
+        "src/contracts/vehicle.js",
         "src/modes/driving/index.js",
         "src/modes/driving/legacy-adapter.js",
         "src/modes/driving/physics.js",
         "src/modes/driving/rules.js",
         "src/modes/driving/session.js",
         "src/modes/driving/state.js",
-        "src/platform/audio.js"
+        "src/platform/audio.js",
+        "src/platform/random.js"
       ],
       "imports": [
-        {
-          "path": "dist/chunks/chunk-K2P3NXBS.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-YHDLSDEI.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-INSMGBLP.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        },
         {
           "path": "dist/chunks/screen-assets-AQWDDUGU.js",
           "kind": "dynamic-import"
-        }
-      ]
-    },
-    {
-      "path": "dist/platform/clock.js",
-      "sha256": "a7b1c4aa51ac2259a72606500ed0fd64964c7091b7595ddae59ef3bf19cfebde",
-      "inputs": [
-        "src/platform/clock.js"
-      ],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    {
-      "path": "dist/platform/random.js",
-      "sha256": "84d9644125ce100a0fd1faea75801645eb468f047138b2ed39af19abf101ab1c",
-      "inputs": [],
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-INSMGBLP.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
         }
       ]
     }

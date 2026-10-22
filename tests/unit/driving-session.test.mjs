@@ -147,6 +147,27 @@ test('driving_brake_does_not_become_reverse_drive', () => {
   assert(model.snapshot().velocity.z > 0);
 });
 
+test('explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion',()=>{
+  const create=api(physics,'createVehicleModel');
+  const braking=create({course:'NYC'}),coasting=create({course:'NYC'});
+  for(let i=0;i<120;i++)for(const model of [braking,coasting])model.step(1/120,createInputFrame({reverseThrottle:1}),{});
+  const before=braking.snapshot().velocity.z;assert(before>10);
+  for(let i=0;i<120;i++){
+    braking.step(1/120,createInputFrame({brake:1}),{});
+    coasting.step(1/120,createInputFrame(),{});
+    assert(braking.snapshot().velocity.z>=0,'Brake must not propel through rest');
+  }
+  assert(braking.snapshot().velocity.z<coasting.snapshot().velocity.z);
+  const hovering=create({course:'NYC'});
+  for(let i=0;i<121;i++)hovering.step(1/120,createInputFrame({hover:true,brake:1}),{});
+  assert.equal(hovering.snapshot().velocity.z,0,'Air brake must not provide reverse thrust at rest');
+  hovering.reset();
+  for(let i=0;i<120;i++)hovering.step(1/120,createInputFrame({hover:true,reverseThrottle:1}),{});
+  const reverseSpeed=hovering.snapshot().velocity.z;assert(reverseSpeed>10,'Explicit reverse works in air');
+  for(let i=0;i<120;i++)hovering.step(1/120,createInputFrame({hover:true,brake:1}),{});
+  assert(hovering.snapshot().velocity.z>=0);assert(hovering.snapshot().velocity.z<reverseSpeed*0.1);
+});
+
 test('audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent', async () => {
   let allocations = 0;
   const service = api(audioModule, 'createAudioService')({ createContext() { allocations++; throw new Error('no audio device'); } });

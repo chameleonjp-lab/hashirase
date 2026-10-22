@@ -199,7 +199,9 @@ export function stepVehicleState(carState,dt,inputs,environment={},hooks={}) {
     if (inputs.accel) longAcc += currentTrim.accelBase * inputs.accel;
     if (inputs.boost && usingBoost) longAcc += currentTrim.thrustBoost;
     if (inputs.brake) {
-      if (vLong > 0.6) {
+      if (!hooks.legacyBrakeReverse) {
+        longAcc -= Math.sign(vLong) * (carState.suctionEnabled ? 46.0 : 34.0) * inputs.brake;
+      } else if (vLong > 0.6) {
         longAcc -= (carState.suctionEnabled ? 46.0 : 34.0) * inputs.brake; // Carbon-ceramic + active aero braking
       } else {
         if (hooks.legacyBrakeReverse) longAcc -= 24.0 * inputs.brake; // Legacy keyboard compatibility only
@@ -216,7 +218,6 @@ export function stepVehicleState(carState,dt,inputs,environment={},hooks={}) {
     const effPowerScale = playerSubsystems ? playerSubsystems.enginePowerScale * Math.max(0.68, 1.0 - playerSubsystems.tirePunctures * 0.08) : 1.0;
     vLong += netLongAcc * effPowerScale * dt;
     if (inputs.brake && !hooks.legacyBrakeReverse && beforeDrive * vLong <= 0) vLong = 0;
-    if (inputs.brake && !hooks.legacyBrakeReverse && Math.abs(beforeDrive) <= 0.6) vLong = beforeDrive * Math.max(0, 1 - 46 * dt);
     vLong = Math.max(-26, Math.min(currentTrim.maxSpeed * effPowerScale, vLong));
     if (!inputs.accel && !inputs.brake && !inputs.boost && Math.abs(vLong) < 0.08) {
       vLong = 0;
@@ -269,6 +270,7 @@ export function stepVehicleState(carState,dt,inputs,environment={},hooks={}) {
     // Reconstruct world velocity vector (vx, vz) from longitudinal + lateral slip components
     carState.vx = newFwdX * vLong + newRightX * vLat;
     carState.vz = newFwdZ * vLong + newRightZ * vLat;
+    if (!hooks.legacyBrakeReverse && inputs.brake && vLong === 0 && vLat === 0) carState.vx = carState.vz = 0;
     carState.speed = vLong;
 
     const prevZ = carState.z;
@@ -411,7 +413,8 @@ export function stepVehicleState(carState,dt,inputs,environment={},hooks={}) {
     let airForwardThrust = 0;
     if (inputs.accel) airForwardThrust += currentTrim.accelBase * 0.95;
     if (inputs.boost && usingBoost) airForwardThrust += currentTrim.thrustBoost * 0.90;
-    if (inputs.brake) airForwardThrust -= 32.0; // Retro-thrusters brake & fly backward in mid-air!
+    if (inputs.brake && hooks.legacyBrakeReverse) airForwardThrust -= 32.0; // Old keyboard retro-thrust.
+    if (inputs.reverseThrottle) airForwardThrust -= 32.0 * inputs.reverseThrottle;
     // When holding HOVER and steering without pressing ACCEL/BRAKE, provide gentle vectored hover-glide thrust so the car can move & turn while hovering!
     if (inputs.hover && !inputs.accel && !inputs.brake && !inputs.boost && Math.abs(rawSteer) > 0.05 && hasGas) {
       airForwardThrust += 14.5;
@@ -421,6 +424,12 @@ export function stepVehicleState(carState,dt,inputs,environment={},hooks={}) {
       carState.vx += fwdX * airForwardThrust * dt;
       carState.vz += fwdZ * airForwardThrust * dt;
     }
+    if (inputs.brake && !hooks.legacyBrakeReverse && hasGas) {
+      const longitudinal = carState.vx * fwdX + carState.vz * fwdZ;
+      const brakingDelta = Math.sign(longitudinal) * Math.min(Math.abs(longitudinal), 32.0 * inputs.brake * dt);
+      carState.vx -= fwdX * brakingDelta;
+      carState.vz -= fwdZ * brakingDelta;
+    }
 
     // Realistic Airborne Inertia:
     // Momentum (vx, vz) is naturally conserved in mid-air!
@@ -429,7 +438,7 @@ export function stepVehicleState(carState,dt,inputs,environment={},hooks={}) {
     const vLongAir = carState.vx * fwdX + carState.vz * fwdZ;
     const vLatAir = carState.vx * rightX + carState.vz * rightZ;
 
-    const isActivelyThrusting = hasGas && (inputs.hover || inputs.accel || inputs.boost || inputs.brake || Math.abs(rawSteer) > 0.05);
+    const isActivelyThrusting = hasGas && (inputs.hover || inputs.accel || inputs.reverseThrottle || inputs.boost || inputs.brake || Math.abs(rawSteer) > 0.05);
     const latDampRate = isActivelyThrusting ? (inputs.hover ? 4.2 : 2.8) : 0.35;
     const newVLatAir = vLatAir * Math.exp(-latDampRate * dt);
 

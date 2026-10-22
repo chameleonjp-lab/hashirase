@@ -92,6 +92,20 @@ test('driving_legacy_surface_honours_initial_course_trim_and_position',async({pa
   await page.evaluate(()=>window.harness.dispose());
 });
 
+test('driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick',async({page},testInfo)=>{
+  await prepareBaseline(page,{observe:false});await page.goto('/tests/fixtures/driving-session.html');
+  await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);
+  await page.evaluate(async()=>{await window.harness.create({course:'NYC'});window.harness.start();window.harness.tick(120,{throttle:1});window.harness.pause();});
+  expect(Number(await page.locator('#val-speed').textContent())).toBeGreaterThan(0);
+  const reset=await page.evaluate(()=>window.harness.reset({position:{x:3,y:7,z:40}}));
+  expect(reset.status).toBe('PAUSED');
+  await expect(page.locator('#val-speed')).toHaveText('0');
+  expect(reset.vehicle.position).toEqual({x:3,y:7,z:40});await expect(page.locator('#val-alt-ft')).toHaveText('23.0');
+  expect(await page.evaluate(()=>window.harness.tick(1,{}))).toEqual(reset);
+  await testInfo.attach('driving-paused-reset.png',{body:await page.screenshot(),contentType:'image/png'});
+  await page.evaluate(()=>window.harness.dispose());
+});
+
 test('driving_police_and_siren_survive_audio_extraction',async({page})=>{
   const diagnostics=await prepareBaseline(page,{observe:false});await page.goto('/tests/fixtures/driving-session.html');
   await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);

@@ -49,6 +49,7 @@ ${body}
 if(options.trim)selectTrim(options.trim);
 if(options.course==='NYC')changeCourse();
 if(options.initial?.position){resetVehicle(options.initial.position.x,options.initial.position.z);carState.y=options.initial.position.y;}
+applyCurrentDrivingVisuals(0);
 hostWindow.__hideLoadingScreen();
 const extractedRules=createDrivingRules(carState,policePursuitState,timeAttackState);
 let pendingRenderTime=0,previousKick=false,disposed=false;
@@ -61,7 +62,7 @@ step(dt,frame,environment={}){
   simulationTime+=dt;extractedRules.step(0,environment);stepPhysics(dt);pendingRenderTime+=dt;
 },
 snapshot(metadata){return drivingSnapshot(carState,policePursuitState,timeAttackState,{...metadata,course:currentCourse,trim:currentTrim.id,score:carState.score});},
-reset(initial={}){clearInputs();stopAutoDemo();resetVehicle(initial.position?.x??0,initial.position?.z??(currentCourse==='NYC'?0:36));previousKick=false;pendingRenderTime=0;simulationTime=0;extractedRules.reset();},
+reset(initial={}){clearInputs();stopAutoDemo();resetVehicle(initial.position?.x??0,initial.position?.z??(currentCourse==='NYC'?0:36));carState.y=initial.position?.y??0;previousKick=false;pendingRenderTime=0;simulationTime=0;extractedRules.reset();applyCurrentDrivingVisuals(0);},
 pause(){clearInputs();},
 render(){if(disposed)return;updateSmoke(pendingRenderTime);updateCamera(pendingRenderTime);renderer.render(scene,camera);pendingRenderTime=0;},
 dispose(){if(disposed)return;disposed=true;clearInputs();surface.detach();}

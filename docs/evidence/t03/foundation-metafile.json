@@ -27,39 +27,6 @@
       ],
       "format": "esm"
     },
-    "src/contracts/events.js": {
-      "bytes": 2065,
-      "imports": [
-        {
-          "path": "src/contracts/validation.js",
-          "kind": "import-statement",
-          "original": "./validation.js"
-        }
-      ],
-      "format": "esm"
-    },
-    "src/platform/clock.js": {
-      "bytes": 2971,
-      "imports": [
-        {
-          "path": "src/contracts/validation.js",
-          "kind": "import-statement",
-          "original": "../contracts/validation.js"
-        }
-      ],
-      "format": "esm"
-    },
-    "src/platform/random.js": {
-      "bytes": 1219,
-      "imports": [
-        {
-          "path": "src/contracts/validation.js",
-          "kind": "import-statement",
-          "original": "../contracts/validation.js"
-        }
-      ],
-      "format": "esm"
-    },
     "src/modes/driving/state.js": {
       "bytes": 3806,
       "imports": [
@@ -72,7 +39,7 @@
       "format": "esm"
     },
     "src/modes/driving/physics.js": {
-      "bytes": 23174,
+      "bytes": 23743,
       "imports": [
         {
           "path": "src/contracts/validation.js",
@@ -108,8 +75,19 @@
       "imports": [],
       "format": "esm"
     },
+    "src/platform/random.js": {
+      "bytes": 1219,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "../contracts/validation.js"
+        }
+      ],
+      "format": "esm"
+    },
     "src/modes/driving/legacy-adapter.js": {
-      "bytes": 202346,
+      "bytes": 202536,
       "imports": [
         {
           "path": "src/modes/driving/state.js",
@@ -244,123 +222,8 @@
     }
   },
   "outputs": {
-    "dist/contracts/session.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-K2P3NXBS.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "assertModeContext",
-        "assertModeSession"
-      ],
-      "entryPoint": "src/contracts/session.js",
-      "inputs": {},
-      "bytes": 179
-    },
-    "dist/contracts/vehicle.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-YHDLSDEI.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "WHEEL_IDS",
-        "assertInputFrame",
-        "assertSwipeFrame",
-        "assertVehicleSnapshot",
-        "createInputFrame",
-        "createSwipeFrame",
-        "createVehicleSnapshot"
-      ],
-      "entryPoint": "src/contracts/vehicle.js",
-      "inputs": {},
-      "bytes": 381
-    },
-    "dist/contracts/events.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "assertEvent",
-        "createEvent",
-        "createEventChannel"
-      ],
-      "entryPoint": "src/contracts/events.js",
-      "inputs": {
-        "src/contracts/events.js": {
-          "bytesInOutput": 1566
-        }
-      },
-      "bytes": 1765
-    },
-    "dist/platform/clock.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "createFixedClock"
-      ],
-      "entryPoint": "src/platform/clock.js",
-      "inputs": {
-        "src/platform/clock.js": {
-          "bytesInOutput": 2496
-        }
-      },
-      "bytes": 2634
-    },
-    "dist/platform/random.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-INSMGBLP.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "createRandom"
-      ],
-      "entryPoint": "src/platform/random.js",
-      "inputs": {},
-      "bytes": 127
-    },
     "dist/modes/driving/index.js": {
       "imports": [
-        {
-          "path": "dist/chunks/chunk-K2P3NXBS.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-YHDLSDEI.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-INSMGBLP.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        },
         {
           "path": "dist/chunks/screen-assets-AQWDDUGU.js",
           "kind": "dynamic-import"
@@ -372,11 +235,20 @@
       ],
       "entryPoint": "src/modes/driving/index.js",
       "inputs": {
+        "src/contracts/validation.js": {
+          "bytesInOutput": 2441
+        },
+        "src/contracts/session.js": {
+          "bytesInOutput": 1354
+        },
+        "src/contracts/vehicle.js": {
+          "bytesInOutput": 1406
+        },
         "src/modes/driving/state.js": {
           "bytesInOutput": 4185
         },
         "src/modes/driving/physics.js": {
-          "bytesInOutput": 18743
+          "bytesInOutput": 19326
         },
         "src/modes/driving/rules.js": {
           "bytesInOutput": 2738
@@ -384,8 +256,11 @@
         "src/platform/audio.js": {
           "bytesInOutput": 9252
         },
+        "src/platform/random.js": {
+          "bytesInOutput": 935
+        },
         "src/modes/driving/legacy-adapter.js": {
-          "bytesInOutput": 207084
+          "bytesInOutput": 207306
         },
         "src/modes/driving/session.js": {
           "bytesInOutput": 5517
@@ -394,83 +269,7 @@
           "bytesInOutput": 97
         }
       },
-      "bytes": 248199
-    },
-    "dist/chunks/chunk-K2P3NXBS.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "assertModeContext",
-        "assertModeSession"
-      ],
-      "inputs": {
-        "src/contracts/session.js": {
-          "bytesInOutput": 1630
-        }
-      },
-      "bytes": 1787
-    },
-    "dist/chunks/chunk-YHDLSDEI.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "WHEEL_IDS",
-        "assertInputFrame",
-        "assertSwipeFrame",
-        "assertVehicleSnapshot",
-        "createInputFrame",
-        "createSwipeFrame",
-        "createVehicleSnapshot"
-      ],
-      "inputs": {
-        "src/contracts/vehicle.js": {
-          "bytesInOutput": 4168
-        }
-      },
-      "bytes": 4460
-    },
-    "dist/chunks/chunk-INSMGBLP.js": {
-      "imports": [
-        {
-          "path": "dist/chunks/chunk-S6VTBFRY.js",
-          "kind": "import-statement"
-        }
-      ],
-      "exports": [
-        "createRandom"
-      ],
-      "inputs": {
-        "src/platform/random.js": {
-          "bytesInOutput": 935
-        }
-      },
-      "bytes": 1053
-    },
-    "dist/chunks/chunk-S6VTBFRY.js": {
-      "imports": [],
-      "exports": [
-        "boolean",
-        "finite",
-        "identifier",
-        "integer",
-        "keysOnly",
-        "readonlyCopy",
-        "record"
-      ],
-      "inputs": {
-        "src/contracts/validation.js": {
-          "bytesInOutput": 2441
-        }
-      },
-      "bytes": 2568
+      "bytes": 254943
     },
     "dist/assets/screen-FPNW7CA7.html": {
       "imports": [],
