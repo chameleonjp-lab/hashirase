@@ -1,0 +1,1009 @@
+﻿2026-10-22T14:19:18.0812951Z Current runner version: '2.338.0'
+2026-10-22T14:19:18.0831826Z ##[group]Runner Image Provisioner
+2026-10-22T14:19:18.0832446Z Hosted Compute Agent
+2026-10-22T14:19:18.0832804Z Version: 20261012.601
+2026-10-22T14:19:18.0833253Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-22T14:19:18.0833683Z Build Date: 2026-10-12T17:48:21Z
+2026-10-22T14:19:18.0834104Z Worker ID: {f8c6e68e-3337-4238-a5e9-d494d0cc777f}
+2026-10-22T14:19:18.0834565Z Region: centralus
+2026-10-22T14:19:18.0835041Z Cloud: Azure
+2026-10-22T14:19:18.0835390Z ##[endgroup]
+2026-10-22T14:19:18.0836392Z ##[group]Operating System
+2026-10-22T14:19:18.0836787Z Ubuntu
+2026-10-22T14:19:18.0837156Z 24.04.5
+2026-10-22T14:19:18.0837470Z LTS
+2026-10-22T14:19:18.0837831Z ##[endgroup]
+2026-10-22T14:19:18.0838176Z ##[group]Runner Image
+2026-10-22T14:19:18.0838583Z Image: ubuntu-24.04
+2026-10-22T14:19:18.0838959Z Version: 20261012.334.1
+2026-10-22T14:19:18.0839734Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-22T14:19:18.0840664Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-22T14:19:18.0841228Z ##[endgroup]
+2026-10-22T14:19:18.0841915Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T14:19:18.0843136Z Contents: read
+2026-10-22T14:19:18.0843531Z Metadata: read
+2026-10-22T14:19:18.0843895Z ##[endgroup]
+2026-10-22T14:19:18.0845379Z Secret source: Actions
+2026-10-22T14:19:18.0846007Z Cache mode: write
+2026-10-22T14:19:18.0846444Z Prepare workflow directory
+2026-10-22T14:19:18.2031372Z Prepare all required actions
+2026-10-22T14:19:18.2077040Z Getting action download info
+2026-10-22T14:19:18.4693484Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-22T14:19:18.5827380Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-22T14:19:18.8564066Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T14:19:19.3528020Z Complete job name: source-check
+2026-10-22T14:19:19.4628189Z ##[group]Run actions/checkout@v4
+2026-10-22T14:19:19.4628775Z with:
+2026-10-22T14:19:19.4629061Z   fetch-depth: 0
+2026-10-22T14:19:19.4629408Z   repository: chameleonjp-lab/hashirase
+2026-10-22T14:19:19.4634367Z   token: ***
+2026-10-22T14:19:19.4634662Z   ssh-strict: true
+2026-10-22T14:19:19.4635117Z   ssh-user: git
+2026-10-22T14:19:19.4635440Z   persist-credentials: true
+2026-10-22T14:19:19.4635800Z   clean: true
+2026-10-22T14:19:19.4636123Z   sparse-checkout-cone-mode: true
+2026-10-22T14:19:19.4636525Z   fetch-tags: false
+2026-10-22T14:19:19.4636843Z   show-progress: true
+2026-10-22T14:19:19.4637165Z   lfs: false
+2026-10-22T14:19:19.4637476Z   submodules: false
+2026-10-22T14:19:19.4637818Z   set-safe-directory: true
+2026-10-22T14:19:19.4638215Z   allow-unsafe-pr-checkout: false
+2026-10-22T14:19:19.4638694Z ##[endgroup]
+2026-10-22T14:19:19.5337330Z Syncing repository: chameleonjp-lab/hashirase
+2026-10-22T14:19:19.5339764Z ##[group]Getting Git version info
+2026-10-22T14:19:19.5340716Z Working directory is '/home/runner/work/hashirase/hashirase'
+2026-10-22T14:19:19.5341969Z [command]/usr/bin/git version
+2026-10-22T14:19:19.5388747Z git version 2.55.0
+2026-10-22T14:19:19.5412121Z ##[endgroup]
+2026-10-22T14:19:19.5419144Z Temporarily overriding HOME='/home/runner/work/_temp/b1fb5a2e-99c0-49fe-8eb1-fd182ebbf7b6' before making global git config changes
+2026-10-22T14:19:19.5421623Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T14:19:19.5423511Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hashirase/hashirase
+2026-10-22T14:19:19.5841932Z Deleting the contents of '/home/runner/work/hashirase/hashirase'
+2026-10-22T14:19:19.5845900Z ##[group]Initializing the repository
+2026-10-22T14:19:19.5849607Z [command]/usr/bin/git init /home/runner/work/hashirase/hashirase
+2026-10-22T14:19:19.6464463Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T14:19:19.6466419Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T14:19:19.6467550Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T14:19:19.6468561Z hint: call:
+2026-10-22T14:19:19.6468867Z hint:
+2026-10-22T14:19:19.6469311Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T14:19:19.6470039Z hint:
+2026-10-22T14:19:19.6470587Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T14:19:19.6471414Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T14:19:19.6472044Z hint:
+2026-10-22T14:19:19.6472330Z hint: 	git branch -m <name>
+2026-10-22T14:19:19.6472671Z hint:
+2026-10-22T14:19:19.6473361Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T14:19:19.6474435Z Initialized empty Git repository in /home/runner/work/hashirase/hashirase/.git/
+2026-10-22T14:19:19.6476518Z [command]/usr/bin/git remote add origin https://github.com/chameleonjp-lab/hashirase
+2026-10-22T14:19:19.7051061Z ##[endgroup]
+2026-10-22T14:19:19.7051905Z ##[group]Disabling automatic garbage collection
+2026-10-22T14:19:19.7054653Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T14:19:19.7638483Z ##[endgroup]
+2026-10-22T14:19:19.7639664Z ##[group]Setting up auth
+2026-10-22T14:19:19.7645420Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T14:19:19.7680048Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T14:19:19.7976970Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T14:19:19.8009436Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T14:19:19.8193735Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T14:19:19.8228129Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T14:19:19.8406798Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T14:19:19.9218501Z ##[endgroup]
+2026-10-22T14:19:19.9220600Z ##[group]Fetching the repository
+2026-10-22T14:19:19.9227506Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +85299459f88c09ad6f01ba929fd57486f99f75c9:refs/remotes/pull/9/merge
+2026-10-22T14:19:22.2148838Z From https://github.com/chameleonjp-lab/hashirase
+2026-10-22T14:19:22.2149536Z  * [new branch]      docs/hashirase-100point-plan-20261022    -> origin/docs/hashirase-100point-plan-20261022
+2026-10-22T14:19:22.2150272Z  * [new branch]      docs/tap-origin-swipe-control-20261022   -> origin/docs/tap-origin-swipe-control-20261022
+2026-10-22T14:19:22.2150779Z  * [new branch]      feat/t01                                 -> origin/feat/t01
+2026-10-22T14:19:22.2151196Z  * [new branch]      feat/t02                                 -> origin/feat/t02
+2026-10-22T14:19:22.2151602Z  * [new branch]      feat/t03                                 -> origin/feat/t03
+2026-10-22T14:19:22.2152018Z  * [new branch]      feat/t04                                 -> origin/feat/t04
+2026-10-22T14:19:22.2152420Z  * [new branch]      feat/t06                                 -> origin/feat/t06
+2026-10-22T14:19:22.2153079Z  * [new branch]      feature/mode-home-device-settings-police-five-20261021 -> origin/feature/mode-home-device-settings-police-five-20261021
+2026-10-22T14:19:22.2153928Z  * [new branch]      import/original-roadster-html-20261021   -> origin/import/original-roadster-html-20261021
+2026-10-22T14:19:22.2155075Z  * [new branch]      main                                     -> origin/main
+2026-10-22T14:19:22.2155698Z  * [new branch]      refactor/split-index-by-responsibility-20261022 -> origin/refactor/split-index-by-responsibility-20261022
+2026-10-22T14:19:22.2156350Z  * [new ref]         85299459f88c09ad6f01ba929fd57486f99f75c9 -> pull/9/merge
+2026-10-22T14:19:22.2157976Z ##[endgroup]
+2026-10-22T14:19:22.2158412Z ##[group]Determining the checkout info
+2026-10-22T14:19:22.2158914Z ##[endgroup]
+2026-10-22T14:19:22.2159969Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T14:19:22.2212275Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T14:19:22.2240949Z ##[group]Checking out the ref
+2026-10-22T14:19:22.2243817Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/9/merge
+2026-10-22T14:19:22.2627887Z Note: switching to 'refs/remotes/pull/9/merge'.
+2026-10-22T14:19:22.2628235Z 
+2026-10-22T14:19:22.2628450Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-22T14:19:22.2628933Z changes and commit them, and you can discard any commits you make in this
+2026-10-22T14:19:22.2629311Z state without impacting any branches by switching back to a branch.
+2026-10-22T14:19:22.2629485Z 
+2026-10-22T14:19:22.2629603Z If you want to create a new branch to retain commits you create, you may
+2026-10-22T14:19:22.2629906Z do so (now or later) by using -c with the switch command. Example:
+2026-10-22T14:19:22.2630059Z 
+2026-10-22T14:19:22.2630179Z   git switch -c <new-branch-name>
+2026-10-22T14:19:22.2630319Z 
+2026-10-22T14:19:22.2630402Z Or undo this operation with:
+2026-10-22T14:19:22.2630508Z 
+2026-10-22T14:19:22.2630579Z   git switch -
+2026-10-22T14:19:22.2630668Z 
+2026-10-22T14:19:22.2630799Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-22T14:19:22.2631031Z 
+2026-10-22T14:19:22.2631228Z HEAD is now at 8529945 Merge 3d1ffead507a9b4c67e753723b8c5ee689ebd7b3 into 48508af68580246c0f18bf6a064ba5d5db7768d1
+2026-10-22T14:19:22.2640063Z ##[endgroup]
+2026-10-22T14:19:22.2681174Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T14:19:22.2702822Z 85299459f88c09ad6f01ba929fd57486f99f75c9
+2026-10-22T14:19:22.2910034Z ##[group]Run actions/setup-node@v4
+2026-10-22T14:19:22.2910242Z with:
+2026-10-22T14:19:22.2910398Z   node-version: 22
+2026-10-22T14:19:22.2910547Z   always-auth: false
+2026-10-22T14:19:22.2910701Z   check-latest: false
+2026-10-22T14:19:22.2912138Z   token: ***
+2026-10-22T14:19:22.2912283Z ##[endgroup]
+2026-10-22T14:19:22.3835117Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-10-22T14:19:22.3838715Z (node:2095) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T14:19:22.3839262Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T14:19:22.3840490Z ##[group]Environment details
+2026-10-22T14:19:22.6825244Z node: v22.23.3
+2026-10-22T14:19:22.6825732Z npm: 10.9.9
+2026-10-22T14:19:22.6825890Z yarn: 1.22.22
+2026-10-22T14:19:22.6826644Z ##[endgroup]
+2026-10-22T14:19:22.6946374Z ##[group]Run npm ci
+2026-10-22T14:19:22.6946571Z [36;1mnpm ci[0m
+2026-10-22T14:19:22.7197919Z shell: /usr/bin/bash -e {0}
+2026-10-22T14:19:22.7198155Z ##[endgroup]
+2026-10-22T14:19:24.9475057Z 
+2026-10-22T14:19:24.9480713Z added 80 packages, and audited 81 packages in 2s
+2026-10-22T14:19:24.9480912Z 
+2026-10-22T14:19:24.9481037Z 19 packages are looking for funding
+2026-10-22T14:19:24.9481214Z   run `npm fund` for details
+2026-10-22T14:19:24.9693277Z 
+2026-10-22T14:19:24.9694339Z 7 vulnerabilities (2 moderate, 5 high)
+2026-10-22T14:19:24.9695107Z 
+2026-10-22T14:19:24.9695933Z To address issues that do not require attention, run:
+2026-10-22T14:19:24.9696241Z   npm audit fix
+2026-10-22T14:19:24.9696322Z 
+2026-10-22T14:19:24.9696455Z To address all issues (including breaking changes), run:
+2026-10-22T14:19:24.9696658Z   npm audit fix --force
+2026-10-22T14:19:24.9696747Z 
+2026-10-22T14:19:24.9696818Z Run `npm audit` for details.
+2026-10-22T14:19:25.0094485Z ##[group]Run npm run check
+2026-10-22T14:19:25.0094671Z [36;1mnpm run check[0m
+2026-10-22T14:19:25.0147293Z shell: /usr/bin/bash -e {0}
+2026-10-22T14:19:25.0147437Z ##[endgroup]
+2026-10-22T14:19:25.0812577Z 
+2026-10-22T14:19:25.0813049Z > hashirase@0.1.0 check
+2026-10-22T14:19:25.0813847Z > npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm run check:boundaries && npm test
+2026-10-22T14:19:25.0814356Z 
+2026-10-22T14:19:25.1471513Z 
+2026-10-22T14:19:25.1472248Z > hashirase@0.1.0 build:check
+2026-10-22T14:19:25.1472514Z > node tools/build.mjs --check
+2026-10-22T14:19:25.1472617Z 
+2026-10-22T14:19:25.3080369Z Bundle matches all 11 source parts.
+2026-10-22T14:19:25.4508483Z 
+2026-10-22T14:19:25.4509011Z > hashirase@0.1.0 check:boundaries
+2026-10-22T14:19:25.4509285Z > node scripts/check-boundaries.mjs
+2026-10-22T14:19:25.4509482Z 
+2026-10-22T14:19:25.5952115Z Boundary check: 26 ESM modules, 43 imports; 11 legacy fragments explicitly excluded.
+2026-10-22T14:19:25.6724445Z 
+2026-10-22T14:19:25.6725354Z > hashirase@0.1.0 test
+2026-10-22T14:19:25.6725806Z > node tests/smoke.mjs && npm run test:unit && npm run test:integration
+2026-10-22T14:19:25.6726031Z 
+2026-10-22T14:19:25.6960362Z Smoke test passed: 117 unique IDs and expected asset order.
+2026-10-22T14:19:25.7562690Z 
+2026-10-22T14:19:25.7563419Z > hashirase@0.1.0 test:unit
+2026-10-22T14:19:25.7563802Z > node --test tests/baseline/original.test.mjs tests/unit/*.test.mjs
+2026-10-22T14:19:25.7563965Z 
+2026-10-22T14:19:25.7918600Z TAP version 13
+2026-10-22T14:19:25.8991776Z # Subtest: original_manifest_identifies_immutable_baseline_sources
+2026-10-22T14:19:25.9016211Z ok 1 - original_manifest_identifies_immutable_baseline_sources
+2026-10-22T14:19:25.9016743Z   ---
+2026-10-22T14:19:25.9017130Z   duration_ms: 73.175587
+2026-10-22T14:19:25.9017527Z   type: 'test'
+2026-10-22T14:19:25.9017885Z   ...
+2026-10-22T14:19:25.9018383Z # Subtest: original_screen_controls_and_asset_order_are_preserved
+2026-10-22T14:19:25.9018921Z ok 2 - original_screen_controls_and_asset_order_are_preserved
+2026-10-22T14:19:25.9019338Z   ---
+2026-10-22T14:19:25.9019636Z   duration_ms: 1.026205
+2026-10-22T14:19:25.9019952Z   type: 'test'
+2026-10-22T14:19:25.9020250Z   ...
+2026-10-22T14:19:25.9020691Z # Subtest: original_courses_trims_constants_and_core_features_are_preserved
+2026-10-22T14:19:25.9021295Z ok 3 - original_courses_trims_constants_and_core_features_are_preserved
+2026-10-22T14:19:25.9021754Z   ---
+2026-10-22T14:19:25.9022073Z   duration_ms: 0.809118
+2026-10-22T14:19:25.9022399Z   type: 'test'
+2026-10-22T14:19:25.9022721Z   ...
+2026-10-22T14:19:25.9156057Z # Subtest: clock_is_render_rate_independent
+2026-10-22T14:19:25.9156994Z ok 4 - clock_is_render_rate_independent
+2026-10-22T14:19:25.9160364Z   ---
+2026-10-22T14:19:25.9160727Z   duration_ms: 5.7336
+2026-10-22T14:19:25.9161061Z   type: 'test'
+2026-10-22T14:19:25.9161408Z   ...
+2026-10-22T14:19:25.9161856Z # Subtest: clock_remains_render_rate_independent_over_ten_minutes
+2026-10-22T14:19:25.9162387Z ok 5 - clock_remains_render_rate_independent_over_ten_minutes
+2026-10-22T14:19:25.9162779Z   ---
+2026-10-22T14:19:25.9163069Z   duration_ms: 37.608785
+2026-10-22T14:19:25.9163391Z   type: 'test'
+2026-10-22T14:19:25.9163679Z   ...
+2026-10-22T14:19:25.9164087Z # Subtest: clock_marks_overload_without_dropping_unprocessed_time
+2026-10-22T14:19:25.9164613Z ok 6 - clock_marks_overload_without_dropping_unprocessed_time
+2026-10-22T14:19:25.9165154Z   ---
+2026-10-22T14:19:25.9165436Z   duration_ms: 0.704781
+2026-10-22T14:19:25.9165745Z   type: 'test'
+2026-10-22T14:19:25.9166026Z   ...
+2026-10-22T14:19:25.9166438Z # Subtest: clock_bounds_each_advance_and_can_drain_a_short_backlog
+2026-10-22T14:19:25.9166967Z ok 7 - clock_bounds_each_advance_and_can_drain_a_short_backlog
+2026-10-22T14:19:25.9167349Z   ---
+2026-10-22T14:19:25.9167631Z   duration_ms: 0.154853
+2026-10-22T14:19:25.9168593Z   type: 'test'
+2026-10-22T14:19:25.9168879Z   ...
+2026-10-22T14:19:25.9169319Z # Subtest: clock_pause_excludes_hidden_time_and_resume_does_not_catch_up
+2026-10-22T14:19:25.9169885Z ok 8 - clock_pause_excludes_hidden_time_and_resume_does_not_catch_up
+2026-10-22T14:19:25.9170317Z   ---
+2026-10-22T14:19:25.9170597Z   duration_ms: 0.30566
+2026-10-22T14:19:25.9170901Z   type: 'test'
+2026-10-22T14:19:25.9171251Z   ...
+2026-10-22T14:19:25.9171674Z # Subtest: clock_rejects_bad_values_and_does_not_replay_a_failed_step
+2026-10-22T14:19:25.9172209Z ok 9 - clock_rejects_bad_values_and_does_not_replay_a_failed_step
+2026-10-22T14:19:25.9172583Z   ---
+2026-10-22T14:19:25.9172851Z   duration_ms: 0.38562
+2026-10-22T14:19:25.9173140Z   type: 'test'
+2026-10-22T14:19:25.9173474Z   ...
+2026-10-22T14:19:25.9173877Z # Subtest: random_is_repeatable_and_visual_draws_do_not_change_physics
+2026-10-22T14:19:25.9174399Z ok 10 - random_is_repeatable_and_visual_draws_do_not_change_physics
+2026-10-22T14:19:25.9174942Z   ---
+2026-10-22T14:19:25.9175225Z   duration_ms: 1.280047
+2026-10-22T14:19:25.9175527Z   type: 'test'
+2026-10-22T14:19:25.9175804Z   ...
+2026-10-22T14:19:25.9176276Z # Subtest: clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes
+2026-10-22T14:19:25.9176919Z ok 11 - clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes
+2026-10-22T14:19:25.9177359Z   ---
+2026-10-22T14:19:25.9177629Z   duration_ms: 0.169735
+2026-10-22T14:19:25.9177919Z   type: 'test'
+2026-10-22T14:19:25.9178241Z   ...
+2026-10-22T14:19:25.9178680Z # Subtest: input_frame_rejects_invalid_values_and_defaults_reverse_throttle
+2026-10-22T14:19:25.9179255Z ok 12 - input_frame_rejects_invalid_values_and_defaults_reverse_throttle
+2026-10-22T14:19:25.9179668Z   ---
+2026-10-22T14:19:25.9179941Z   duration_ms: 2.110637
+2026-10-22T14:19:25.9180272Z   type: 'test'
+2026-10-22T14:19:25.9180551Z   ...
+2026-10-22T14:19:25.9181074Z # Subtest: input_frame_resolves_drive_conflicts_without_reverse_force_during_braking
+2026-10-22T14:19:25.9181721Z ok 13 - input_frame_resolves_drive_conflicts_without_reverse_force_during_braking
+2026-10-22T14:19:25.9182173Z   ---
+2026-10-22T14:19:25.9182455Z   duration_ms: 0.706413
+2026-10-22T14:19:25.9182752Z   type: 'test'
+2026-10-22T14:19:25.9183027Z   ...
+2026-10-22T14:19:25.9183489Z # Subtest: swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership
+2026-10-22T14:19:25.9184099Z ok 14 - swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership
+2026-10-22T14:19:25.9225239Z   ---
+2026-10-22T14:19:25.9231279Z   duration_ms: 0.499121
+2026-10-22T14:19:25.9254432Z   type: 'test'
+2026-10-22T14:19:25.9285235Z   ...
+2026-10-22T14:19:25.9315281Z # Subtest: vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots
+2026-10-22T14:19:25.9315823Z ok 15 - vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots
+2026-10-22T14:19:25.9345206Z   ---
+2026-10-22T14:19:25.9375154Z   duration_ms: 1.057391
+2026-10-22T14:19:25.9405049Z   type: 'test'
+2026-10-22T14:19:25.9405510Z   ...
+2026-10-22T14:19:25.9435295Z # Subtest: session_contract_preserves_named_ports_and_has_no_render_loop
+2026-10-22T14:19:25.9458678Z ok 16 - session_contract_preserves_named_ports_and_has_no_render_loop
+2026-10-22T14:19:25.9485410Z   ---
+2026-10-22T14:19:25.9514242Z   duration_ms: 0.412952
+2026-10-22T14:19:25.9525769Z   type: 'test'
+2026-10-22T14:19:25.9526038Z   ...
+2026-10-22T14:19:25.9526312Z # Subtest: events_reject_invalid_session
+2026-10-22T14:19:25.9526671Z ok 17 - events_reject_invalid_session
+2026-10-22T14:19:25.9526931Z   ---
+2026-10-22T14:19:25.9527106Z   duration_ms: 1.414159
+2026-10-22T14:19:25.9527373Z   type: 'test'
+2026-10-22T14:19:25.9527542Z   ...
+2026-10-22T14:19:25.9527858Z # Subtest: events_are_readonly_deduplicated_and_isolated_per_session
+2026-10-22T14:19:25.9528354Z ok 18 - events_are_readonly_deduplicated_and_isolated_per_session
+2026-10-22T14:19:25.9528680Z   ---
+2026-10-22T14:19:25.9528847Z   duration_ms: 0.414233
+2026-10-22T14:19:25.9529073Z   type: 'test'
+2026-10-22T14:19:25.9529880Z   ...
+2026-10-22T14:19:26.0448265Z # Subtest: driving_import_has_no_side_effect
+2026-10-22T14:19:26.0471049Z ok 19 - driving_import_has_no_side_effect
+2026-10-22T14:19:26.0473931Z   ---
+2026-10-22T14:19:26.0474116Z   duration_ms: 27.274735
+2026-10-22T14:19:26.0474308Z   type: 'test'
+2026-10-22T14:19:26.0474466Z   ...
+2026-10-22T14:19:26.0474878Z # Subtest: two_driving_sessions_do_not_share_state
+2026-10-22T14:19:26.0475201Z ok 20 - two_driving_sessions_do_not_share_state
+2026-10-22T14:19:26.0475470Z   ---
+2026-10-22T14:19:26.0475681Z   duration_ms: 3.237013
+2026-10-22T14:19:26.0475861Z   type: 'test'
+2026-10-22T14:19:26.0476023Z   ...
+2026-10-22T14:19:26.0476319Z # Subtest: driving_start_pause_resume_reset_and_dispose_are_independent
+2026-10-22T14:19:26.0476746Z ok 21 - driving_start_pause_resume_reset_and_dispose_are_independent
+2026-10-22T14:19:26.0477021Z   ---
+2026-10-22T14:19:26.0477180Z   duration_ms: 10.980618
+2026-10-22T14:19:26.0477367Z   type: 'test'
+2026-10-22T14:19:26.0477526Z   ...
+2026-10-22T14:19:26.0477896Z # Subtest: numeric_driving_session_uses_the_city_origin_when_NYC_is_selected
+2026-10-22T14:19:26.0478356Z ok 22 - numeric_driving_session_uses_the_city_origin_when_NYC_is_selected
+2026-10-22T14:19:26.0478643Z   ---
+2026-10-22T14:19:26.0478798Z   duration_ms: 0.61117
+2026-10-22T14:19:26.0478974Z   type: 'test'
+2026-10-22T14:19:26.0479133Z   ...
+2026-10-22T14:19:26.0479438Z # Subtest: driving_dispose_is_idempotent_and_abort_releases_owned_services
+2026-10-22T14:19:26.0479872Z ok 23 - driving_dispose_is_idempotent_and_abort_releases_owned_services
+2026-10-22T14:19:26.0480147Z   ---
+2026-10-22T14:19:26.0480300Z   duration_ms: 0.882208
+2026-10-22T14:19:26.0480429Z   type: 'test'
+2026-10-22T14:19:26.0480703Z   ...
+2026-10-22T14:19:26.0480978Z # Subtest: driving_disposal_continues_when_one_owned_service_fails
+2026-10-22T14:19:26.0481371Z ok 24 - driving_disposal_continues_when_one_owned_service_fails
+2026-10-22T14:19:26.0481637Z   ---
+2026-10-22T14:19:26.0481793Z   duration_ms: 0.604429
+2026-10-22T14:19:26.0482003Z   type: 'test'
+2026-10-22T14:19:26.0482158Z   ...
+2026-10-22T14:19:26.0482495Z # Subtest: driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice
+2026-10-22T14:19:26.0482979Z ok 25 - driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice
+2026-10-22T14:19:26.0483292Z   ---
+2026-10-22T14:19:26.0483451Z   duration_ms: 0.982629
+2026-10-22T14:19:26.0483641Z   type: 'test'
+2026-10-22T14:19:26.0483807Z   ...
+2026-10-22T14:19:26.0484164Z # Subtest: driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting
+2026-10-22T14:19:26.0484690Z ok 26 - driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting
+2026-10-22T14:19:26.0485140Z   ---
+2026-10-22T14:19:26.0485302Z   duration_ms: 1.227137
+2026-10-22T14:19:26.0485478Z   type: 'test'
+2026-10-22T14:19:26.0485627Z   ...
+2026-10-22T14:19:26.0485867Z # Subtest: driving_brake_does_not_become_reverse_drive
+2026-10-22T14:19:26.0486185Z ok 27 - driving_brake_does_not_become_reverse_drive
+2026-10-22T14:19:26.0486433Z   ---
+2026-10-22T14:19:26.0486587Z   duration_ms: 2.449177
+2026-10-22T14:19:26.0486755Z   type: 'test'
+2026-10-22T14:19:26.0486909Z   ...
+2026-10-22T14:19:26.0487257Z # Subtest: explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion
+2026-10-22T14:19:26.0488601Z ok 28 - explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion
+2026-10-22T14:19:26.0489026Z   ---
+2026-10-22T14:19:26.0489195Z   duration_ms: 5.509933
+2026-10-22T14:19:26.0489408Z   type: 'test'
+2026-10-22T14:19:26.0489572Z   ...
+2026-10-22T14:19:26.0489894Z # Subtest: audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent
+2026-10-22T14:19:26.0490372Z ok 29 - audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent
+2026-10-22T14:19:26.0490682Z   ---
+2026-10-22T14:19:26.0490844Z   duration_ms: 0.257868
+2026-10-22T14:19:26.0491031Z   type: 'test'
+2026-10-22T14:19:26.0491193Z   ...
+2026-10-22T14:19:26.2346387Z # Subtest: driving_build_has_a_real_mode_entry_without_simulation_or_Three
+2026-10-22T14:19:26.2347379Z ok 30 - driving_build_has_a_real_mode_entry_without_simulation_or_Three
+2026-10-22T14:19:26.2347818Z   ---
+2026-10-22T14:19:26.2348019Z   duration_ms: 198.243545
+2026-10-22T14:19:26.2348254Z   type: 'test'
+2026-10-22T14:19:26.2348419Z   ...
+2026-10-22T14:19:26.2689990Z # Subtest: legacy_smoke_rendering_does_not_consume_the_physics_random_stream
+2026-10-22T14:19:26.2690721Z ok 31 - legacy_smoke_rendering_does_not_consume_the_physics_random_stream
+2026-10-22T14:19:26.2691195Z   ---
+2026-10-22T14:19:26.2691373Z   duration_ms: 35.847489
+2026-10-22T14:19:26.2691563Z   type: 'test'
+2026-10-22T14:19:26.2691723Z   ...
+2026-10-22T14:19:26.2984949Z # Subtest: legacy_animation_uses_simulation_time_instead_of_sampling_wall_time
+2026-10-22T14:19:26.2985959Z ok 32 - legacy_animation_uses_simulation_time_instead_of_sampling_wall_time
+2026-10-22T14:19:26.2986311Z   ---
+2026-10-22T14:19:26.2986503Z   duration_ms: 29.928359
+2026-10-22T14:19:26.2986718Z   type: 'test'
+2026-10-22T14:19:26.2986954Z   ...
+2026-10-22T14:19:26.3110827Z # Subtest: touch_and_keyboard_do_not_overwrite
+2026-10-22T14:19:26.3111209Z ok 33 - touch_and_keyboard_do_not_overwrite
+2026-10-22T14:19:26.3125143Z   ---
+2026-10-22T14:19:26.3125382Z   duration_ms: 1.908092
+2026-10-22T14:19:26.3125594Z   type: 'test'
+2026-10-22T14:19:26.3125756Z   ...
+2026-10-22T14:19:26.3125993Z # Subtest: source_arbitration_brake_wins_and_simulation_specials_are_filtered
+2026-10-22T14:19:26.3126310Z ok 34 - source_arbitration_brake_wins_and_simulation_specials_are_filtered
+2026-10-22T14:19:26.3126504Z   ---
+2026-10-22T14:19:26.3126614Z   duration_ms: 0.410788
+2026-10-22T14:19:26.3126737Z   type: 'test'
+2026-10-22T14:19:26.3126846Z   ...
+2026-10-22T14:19:26.3127018Z # Subtest: blur_clears_all_and_disabled_sources_do_not_restart
+2026-10-22T14:19:26.3127256Z ok 35 - blur_clears_all_and_disabled_sources_do_not_restart
+2026-10-22T14:19:26.3127420Z   ---
+2026-10-22T14:19:26.3127518Z   duration_ms: 0.355335
+2026-10-22T14:19:26.3127634Z   type: 'test'
+2026-10-22T14:19:26.3127789Z   ...
+2026-10-22T14:19:26.3128006Z # Subtest: reverse_interlock_requires_continuous_stationary_time_and_resets_on_clear
+2026-10-22T14:19:26.3128502Z ok 36 - reverse_interlock_requires_continuous_stationary_time_and_resets_on_clear
+2026-10-22T14:19:26.3128724Z   ---
+2026-10-22T14:19:26.3128826Z   duration_ms: 2.169035
+2026-10-22T14:19:26.3128941Z   type: 'test'
+2026-10-22T14:19:26.3129066Z   ...
+2026-10-22T14:19:26.3129295Z # Subtest: settings_separate_by_profile_and_mode
+2026-10-22T14:19:26.3149644Z ok 37 - settings_separate_by_profile_and_mode
+2026-10-22T14:19:26.3150049Z   ---
+2026-10-22T14:19:26.3150215Z   duration_ms: 3.878348
+2026-10-22T14:19:26.3150435Z   type: 'test'
+2026-10-22T14:19:26.3150613Z   ...
+2026-10-22T14:19:26.3150885Z # Subtest: corrupt_storage_uses_defaults
+2026-10-22T14:19:26.3151185Z ok 38 - corrupt_storage_uses_defaults
+2026-10-22T14:19:26.3151402Z   ---
+2026-10-22T14:19:26.3151571Z   duration_ms: 0.919625
+2026-10-22T14:19:26.3151751Z   type: 'test'
+2026-10-22T14:19:26.3151957Z   ...
+2026-10-22T14:19:26.3152382Z # Subtest: settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies
+2026-10-22T14:19:26.3152933Z ok 39 - settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies
+2026-10-22T14:19:26.3153242Z   ---
+2026-10-22T14:19:26.3153397Z   duration_ms: 5.722934
+2026-10-22T14:19:26.3153580Z   type: 'test'
+2026-10-22T14:19:26.3153748Z   ...
+2026-10-22T14:19:26.3153984Z # Subtest: storage_denial_uses_memory_and_reports_status
+2026-10-22T14:19:26.3154366Z ok 40 - storage_denial_uses_memory_and_reports_status
+2026-10-22T14:19:26.3154602Z   ---
+2026-10-22T14:19:26.3154901Z   duration_ms: 0.682988
+2026-10-22T14:19:26.3155103Z   type: 'test'
+2026-10-22T14:19:26.3155270Z   ...
+2026-10-22T14:19:26.3155541Z # Subtest: any_storage_read_exception_is_reported_as_unavailable
+2026-10-22T14:19:26.3155963Z ok 41 - any_storage_read_exception_is_reported_as_unavailable
+2026-10-22T14:19:26.3156237Z   ---
+2026-10-22T14:19:26.3156836Z   duration_ms: 0.495536
+2026-10-22T14:19:26.3157197Z   type: 'test'
+2026-10-22T14:19:26.3157387Z   ...
+2026-10-22T14:19:26.3157723Z # Subtest: device_profile_uses_capabilities_and_allows_manual_override
+2026-10-22T14:19:26.3158179Z ok 42 - device_profile_uses_capabilities_and_allows_manual_override
+2026-10-22T14:19:26.3158464Z   ---
+2026-10-22T14:19:26.3158627Z   duration_ms: 2.731271
+2026-10-22T14:19:26.3158816Z   type: 'test'
+2026-10-22T14:19:26.3158990Z   ...
+2026-10-22T14:19:26.3159347Z # Subtest: reverse_release_between_ticks_discards_grace_without_clearing_other_holds
+2026-10-22T14:19:26.3159883Z ok 43 - reverse_release_between_ticks_discards_grace_without_clearing_other_holds
+2026-10-22T14:19:26.3160199Z   ---
+2026-10-22T14:19:26.3160364Z   duration_ms: 0.253261
+2026-10-22T14:19:26.3160556Z   type: 'test'
+2026-10-22T14:19:26.3160727Z   ...
+2026-10-22T14:19:26.3161070Z # Subtest: swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace
+2026-10-22T14:19:26.3161605Z ok 44 - swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace
+2026-10-22T14:19:26.3161956Z   ---
+2026-10-22T14:19:26.3162109Z   duration_ms: 0.228383
+2026-10-22T14:19:26.3162280Z   type: 'test'
+2026-10-22T14:19:26.3162459Z   ...
+2026-10-22T14:19:26.3162625Z # Subtest: touch_tap_is_zero
+2026-10-22T14:19:26.3162846Z ok 45 - touch_tap_is_zero
+2026-10-22T14:19:26.3163023Z   ---
+2026-10-22T14:19:26.3163173Z   duration_ms: 1.163091
+2026-10-22T14:19:26.3163350Z   type: 'test'
+2026-10-22T14:19:26.3163499Z   ...
+2026-10-22T14:19:26.3163688Z # Subtest: swipe_up_accelerates
+2026-10-22T14:19:26.3163908Z ok 46 - swipe_up_accelerates
+2026-10-22T14:19:26.3164100Z   ---
+2026-10-22T14:19:26.3164253Z   duration_ms: 0.357378
+2026-10-22T14:19:26.3164427Z   type: 'test'
+2026-10-22T14:19:26.3164612Z   ...
+2026-10-22T14:19:26.3165028Z # Subtest: swipe_down_brakes_then_reverses_only_after_stop
+2026-10-22T14:19:26.3165430Z ok 47 - swipe_down_brakes_then_reverses_only_after_stop
+2026-10-22T14:19:26.3165701Z   ---
+2026-10-22T14:19:26.3165898Z   duration_ms: 0.636438
+2026-10-22T14:19:26.3166086Z   type: 'test'
+2026-10-22T14:19:26.3166222Z   ...
+2026-10-22T14:19:26.3166356Z # Subtest: swipe_left_right_steers
+2026-10-22T14:19:26.3166515Z ok 48 - swipe_left_right_steers
+2026-10-22T14:19:26.3166641Z   ---
+2026-10-22T14:19:26.3166742Z   duration_ms: 0.119309
+2026-10-22T14:19:26.3166857Z   type: 'test'
+2026-10-22T14:19:26.3166958Z   ...
+2026-10-22T14:19:26.3167085Z # Subtest: diagonal_swipe_combines_axes
+2026-10-22T14:19:26.3167255Z ok 49 - diagonal_swipe_combines_axes
+2026-10-22T14:19:26.3167387Z   ---
+2026-10-22T14:19:26.3167487Z   duration_ms: 0.648607
+2026-10-22T14:19:26.3167599Z   type: 'test'
+2026-10-22T14:19:26.3167701Z   ...
+2026-10-22T14:19:26.3167834Z # Subtest: swipe_returns_to_origin_is_zero
+2026-10-22T14:19:26.3168005Z ok 50 - swipe_returns_to_origin_is_zero
+2026-10-22T14:19:26.3168137Z   ---
+2026-10-22T14:19:26.3168236Z   duration_ms: 0.07314
+2026-10-22T14:19:26.3168351Z   type: 'test'
+2026-10-22T14:19:26.3168453Z   ...
+2026-10-22T14:19:26.3168586Z # Subtest: pointer_cancel_clears
+2026-10-22T14:19:26.3168736Z ok 51 - pointer_cancel_clears
+2026-10-22T14:19:26.3168859Z   ---
+2026-10-22T14:19:26.3169032Z   duration_ms: 0.099209
+2026-10-22T14:19:26.3169152Z   type: 'test'
+2026-10-22T14:19:26.3169252Z   ...
+2026-10-22T14:19:26.3169428Z # Subtest: primary_pointer_is_not_stolen_or_automatically_promoted
+2026-10-22T14:19:26.3169681Z ok 52 - primary_pointer_is_not_stolen_or_automatically_promoted
+2026-10-22T14:19:26.3169852Z   ---
+2026-10-22T14:19:26.3169954Z   duration_ms: 0.055333
+2026-10-22T14:19:26.3170069Z   type: 'test'
+2026-10-22T14:19:26.3170171Z   ...
+2026-10-22T14:19:26.3170294Z # Subtest: second_finger_action_works
+2026-10-22T14:19:26.3170456Z ok 53 - second_finger_action_works
+2026-10-22T14:19:26.3170584Z   ---
+2026-10-22T14:19:26.3170684Z   duration_ms: 0.230327
+2026-10-22T14:19:26.3170798Z   type: 'test'
+2026-10-22T14:19:26.3170899Z   ...
+2026-10-22T14:19:26.3171090Z # Subtest: swipe_deadzone_linear_axes_clamping_and_edge_origin_are_stable
+2026-10-22T14:19:26.3171649Z ok 54 - swipe_deadzone_linear_axes_clamping_and_edge_origin_are_stable
+2026-10-22T14:19:26.3171829Z   ---
+2026-10-22T14:19:26.3171933Z   duration_ms: 0.287092
+2026-10-22T14:19:26.3172048Z   type: 'test'
+2026-10-22T14:19:26.3172149Z   ...
+2026-10-22T14:19:26.3172356Z # Subtest: changing_swipe_settings_releases_the_origin_and_rejects_invalid_values
+2026-10-22T14:19:26.3172656Z ok 55 - changing_swipe_settings_releases_the_origin_and_rejects_invalid_values
+2026-10-22T14:19:26.3172847Z   ---
+2026-10-22T14:19:26.3172950Z   duration_ms: 0.373021
+2026-10-22T14:19:26.3173066Z   type: 'test'
+2026-10-22T14:19:26.3173168Z   ...
+2026-10-22T14:19:26.3173264Z 1..55
+2026-10-22T14:19:26.3173360Z # tests 55
+2026-10-22T14:19:26.3173460Z # suites 0
+2026-10-22T14:19:26.3173560Z # pass 55
+2026-10-22T14:19:26.3173661Z # fail 0
+2026-10-22T14:19:26.3173760Z # cancelled 0
+2026-10-22T14:19:26.3173867Z # skipped 0
+2026-10-22T14:19:26.3173967Z # todo 0
+2026-10-22T14:19:26.3174075Z # duration_ms 532.77132
+2026-10-22T14:19:26.3834061Z 
+2026-10-22T14:19:26.3834969Z > hashirase@0.1.0 test:integration
+2026-10-22T14:19:26.3835429Z > node --test tests/integration/*.test.mjs
+2026-10-22T14:19:26.3835606Z 
+2026-10-22T14:19:26.4144072Z TAP version 13
+2026-10-22T14:19:26.4643193Z # Subtest: imports_do_not_cross_modes
+2026-10-22T14:19:26.4646774Z ok 1 - imports_do_not_cross_modes
+2026-10-22T14:19:26.4647283Z   ---
+2026-10-22T14:19:26.4647470Z   duration_ms: 11.125406
+2026-10-22T14:19:26.4647734Z   type: 'test'
+2026-10-22T14:19:26.4647911Z   ...
+2026-10-22T14:19:26.4701999Z # Subtest: common_code_and_static_home_imports_cannot_pull_in_a_mode
+2026-10-22T14:19:26.4703681Z ok 2 - common_code_and_static_home_imports_cannot_pull_in_a_mode
+2026-10-22T14:19:26.4704048Z   ---
+2026-10-22T14:19:26.4704232Z   duration_ms: 6.444987
+2026-10-22T14:19:26.4704501Z   type: 'test'
+2026-10-22T14:19:26.4704881Z   ...
+2026-10-22T14:19:26.4735909Z # Subtest: cycles_and_computed_imports_fail_and_comment_strings_are_not_imports
+2026-10-22T14:19:26.4736748Z ok 3 - cycles_and_computed_imports_fail_and_comment_strings_are_not_imports
+2026-10-22T14:19:26.4737632Z   ---
+2026-10-22T14:19:26.4737776Z   duration_ms: 3.395245
+2026-10-22T14:19:26.4737904Z   type: 'test'
+2026-10-22T14:19:26.4738054Z   ...
+2026-10-22T14:19:26.4773624Z # Subtest: physics_cannot_use_rendering_DOM_audio_storage_or_global_state
+2026-10-22T14:19:26.4775424Z ok 4 - physics_cannot_use_rendering_DOM_audio_storage_or_global_state
+2026-10-22T14:19:26.4775739Z   ---
+2026-10-22T14:19:26.4775916Z   duration_ms: 3.68741
+2026-10-22T14:19:26.4776103Z   type: 'test'
+2026-10-22T14:19:26.4776269Z   ...
+2026-10-22T14:19:26.4812645Z # Subtest: literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded
+2026-10-22T14:19:26.4813161Z ok 5 - literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded
+2026-10-22T14:19:26.4813382Z   ---
+2026-10-22T14:19:26.4813498Z   duration_ms: 3.943796
+2026-10-22T14:19:26.4813625Z   type: 'test'
+2026-10-22T14:19:26.4813734Z   ...
+2026-10-22T14:19:26.4835593Z # Subtest: physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper
+2026-10-22T14:19:26.4836525Z ok 6 - physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper
+2026-10-22T14:19:26.4836721Z   ---
+2026-10-22T14:19:26.4836886Z   duration_ms: 2.317714
+2026-10-22T14:19:26.4837034Z   type: 'test'
+2026-10-22T14:19:26.4837143Z   ...
+2026-10-22T14:19:26.4860589Z # Subtest: modes_cannot_hide_an_independent_render_loop_in_a_shared_helper
+2026-10-22T14:19:26.4861305Z ok 7 - modes_cannot_hide_an_independent_render_loop_in_a_shared_helper
+2026-10-22T14:19:26.4861520Z   ---
+2026-10-22T14:19:26.4861676Z   duration_ms: 2.396627
+2026-10-22T14:19:26.4861862Z   type: 'test'
+2026-10-22T14:19:26.4862026Z   ...
+2026-10-22T14:19:26.5186184Z # Subtest: split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph
+2026-10-22T14:19:26.5187314Z ok 8 - split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph
+2026-10-22T14:19:26.5215333Z   ---
+2026-10-22T14:19:26.5217173Z   duration_ms: 29.464285
+2026-10-22T14:19:26.5217807Z   type: 'test'
+2026-10-22T14:19:26.5218184Z   ...
+2026-10-22T14:19:26.5218826Z # Subtest: bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS
+2026-10-22T14:19:26.5219228Z ok 9 - bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS
+2026-10-22T14:19:26.5219432Z   ---
+2026-10-22T14:19:26.5219549Z   duration_ms: 2.96969
+2026-10-22T14:19:26.5219671Z   type: 'test'
+2026-10-22T14:19:26.5219777Z   ...
+2026-10-22T14:19:26.5262326Z # Subtest: build_fails_when_a_common_entry_statically_includes_a_mode
+2026-10-22T14:19:26.5263057Z ok 10 - build_fails_when_a_common_entry_statically_includes_a_mode
+2026-10-22T14:19:26.5263461Z   ---
+2026-10-22T14:19:26.5263764Z   duration_ms: 7.336713
+2026-10-22T14:19:26.5264143Z   type: 'test'
+2026-10-22T14:19:26.5264420Z   ...
+2026-10-22T14:19:26.5425418Z # Subtest: asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes
+2026-10-22T14:19:26.5426632Z ok 11 - asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes
+2026-10-22T14:19:26.5427176Z   ---
+2026-10-22T14:19:26.5427377Z   duration_ms: 15.82787
+2026-10-22T14:19:26.5427580Z   type: 'test'
+2026-10-22T14:19:26.5428025Z   ...
+2026-10-22T14:19:26.5588365Z # Subtest: build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets
+2026-10-22T14:19:26.5589099Z ok 12 - build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets
+2026-10-22T14:19:26.5589636Z   ---
+2026-10-22T14:19:26.5589919Z   duration_ms: 16.436986
+2026-10-22T14:19:26.5590372Z   type: 'test'
+2026-10-22T14:19:26.5590603Z   ...
+2026-10-22T14:19:26.5734033Z # Subtest: build_rejects_CSS_imports_including_cross_mode_dependencies
+2026-10-22T14:19:26.5734861Z ok 13 - build_rejects_CSS_imports_including_cross_mode_dependencies
+2026-10-22T14:19:26.5735487Z   ---
+2026-10-22T14:19:26.5736052Z   duration_ms: 14.490558
+2026-10-22T14:19:26.5736443Z   type: 'test'
+2026-10-22T14:19:26.5736753Z   ...
+2026-10-22T14:19:26.5737242Z # Subtest: bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk
+2026-10-22T14:19:26.5737813Z ok 14 - bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk
+2026-10-22T14:19:26.5738214Z   ---
+2026-10-22T14:19:26.5738522Z   duration_ms: 0.225229
+2026-10-22T14:19:26.5738853Z   type: 'test'
+2026-10-22T14:19:26.5739170Z   ...
+2026-10-22T14:19:26.5828916Z 1..14
+2026-10-22T14:19:26.5829137Z # tests 14
+2026-10-22T14:19:26.5829302Z # suites 0
+2026-10-22T14:19:26.5829468Z # pass 14
+2026-10-22T14:19:26.5829630Z # fail 0
+2026-10-22T14:19:26.5831932Z # cancelled 0
+2026-10-22T14:19:26.5832120Z # skipped 0
+2026-10-22T14:19:26.5832280Z # todo 0
+2026-10-22T14:19:26.5832465Z # duration_ms 175.993298
+2026-10-22T14:19:26.6051513Z ##[group]Run npm run build
+2026-10-22T14:19:26.6051684Z [36;1mnpm run build[0m
+2026-10-22T14:19:26.6102140Z shell: /usr/bin/bash -e {0}
+2026-10-22T14:19:26.6102281Z ##[endgroup]
+2026-10-22T14:19:26.6739786Z 
+2026-10-22T14:19:26.6740397Z > hashirase@0.1.0 build
+2026-10-22T14:19:26.6740725Z > node scripts/build.mjs
+2026-10-22T14:19:26.6740867Z 
+2026-10-22T14:19:26.8646474Z Regenerated assets/js/simulator.js.
+2026-10-22T14:19:27.0202124Z ESM foundation build: 16 inputs, 13 outputs; dist/build-manifest.json.
+2026-10-22T14:19:27.0353820Z ##[group]Run bash tools/install-ci-browser.sh
+2026-10-22T14:19:27.0354041Z [36;1mbash tools/install-ci-browser.sh[0m
+2026-10-22T14:19:27.0417360Z shell: /usr/bin/bash -e {0}
+2026-10-22T14:19:27.0417523Z ##[endgroup]
+2026-10-22T14:19:27.5175032Z Installing dependencies...
+2026-10-22T14:19:27.5256342Z Switching to root user to install dependencies...
+2026-10-22T14:19:27.6030187Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [139 B]
+2026-10-22T14:19:27.6553918Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-22T14:19:27.7021742Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [630 kB]
+2026-10-22T14:19:27.7195957Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.4 kB]
+2026-10-22T14:19:27.7236376Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [567 kB]
+2026-10-22T14:19:28.3685753Z Hit:2 https://archive.ubuntu.com/ubuntu noble InRelease
+2026-10-22T14:19:28.4953236Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-22T14:19:28.9409774Z Get:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-22T14:19:29.1984547Z Get:5 https://archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-22T14:19:29.3711707Z Get:10 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1400 kB]
+2026-10-22T14:19:29.9751796Z Get:11 https://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [310 kB]
+2026-10-22T14:19:30.1154892Z Get:12 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1706 kB]
+2026-10-22T14:19:30.4061392Z Get:13 https://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+2026-10-22T14:19:30.5375083Z Get:14 https://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1805 kB]
+2026-10-22T14:19:30.7305526Z Get:15 https://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [411 kB]
+2026-10-22T14:19:30.8631728Z Get:16 https://archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+2026-10-22T14:19:31.0236293Z Get:17 https://archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+2026-10-22T14:19:31.1495767Z Get:18 https://archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1222 kB]
+2026-10-22T14:19:31.3128812Z Get:19 https://archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+2026-10-22T14:19:31.6002419Z Get:20 https://archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1713 kB]
+2026-10-22T14:19:31.7817598Z Get:21 https://archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [392 kB]
+2026-10-22T14:19:36.3689972Z Fetched 12.5 MB in 4s (2921 kB/s)
+2026-10-22T14:19:37.0193340Z Reading package lists...
+2026-10-22T14:19:37.0385291Z Reading package lists...
+2026-10-22T14:19:37.2352427Z Building dependency tree...
+2026-10-22T14:19:37.2358259Z Reading state information...
+2026-10-22T14:19:37.3820473Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-10-22T14:19:37.3821126Z libasound2t64 set to manually installed.
+2026-10-22T14:19:37.3821650Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-22T14:19:37.3822189Z libatk-bridge2.0-0t64 set to manually installed.
+2026-10-22T14:19:37.3822701Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-22T14:19:37.3823181Z libatk1.0-0t64 set to manually installed.
+2026-10-22T14:19:37.3823680Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-22T14:19:37.3824171Z libatspi2.0-0t64 set to manually installed.
+2026-10-22T14:19:37.3824655Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-10-22T14:19:37.3825573Z libcairo2 set to manually installed.
+2026-10-22T14:19:37.3826085Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-10-22T14:19:37.3826587Z libcups2t64 set to manually installed.
+2026-10-22T14:19:37.3828031Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-10-22T14:19:37.3828486Z libdbus-1-3 set to manually installed.
+2026-10-22T14:19:37.3828936Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-10-22T14:19:37.3829373Z libdrm2 set to manually installed.
+2026-10-22T14:19:37.3829812Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-10-22T14:19:37.3830237Z libgbm1 set to manually installed.
+2026-10-22T14:19:37.3830662Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-10-22T14:19:37.3831075Z libnspr4 set to manually installed.
+2026-10-22T14:19:37.3831543Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-10-22T14:19:37.3832027Z libpango-1.0-0 set to manually installed.
+2026-10-22T14:19:37.3832482Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-10-22T14:19:37.3832824Z libx11-6 set to manually installed.
+2026-10-22T14:19:37.3833373Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-10-22T14:19:37.3833644Z libxcb1 set to manually installed.
+2026-10-22T14:19:37.3833962Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-10-22T14:19:37.3834227Z libxcomposite1 set to manually installed.
+2026-10-22T14:19:37.3834439Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-10-22T14:19:37.3834634Z libxdamage1 set to manually installed.
+2026-10-22T14:19:37.3835047Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-10-22T14:19:37.3835315Z libxext6 set to manually installed.
+2026-10-22T14:19:37.3835599Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-10-22T14:19:37.3835882Z libxfixes3 set to manually installed.
+2026-10-22T14:19:37.3836180Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-10-22T14:19:37.3836472Z libxkbcommon0 set to manually installed.
+2026-10-22T14:19:37.3836788Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-10-22T14:19:37.3837084Z libxrandr2 set to manually installed.
+2026-10-22T14:19:37.3837456Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-10-22T14:19:37.3837862Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-10-22T14:19:37.3838165Z libfontconfig1 set to manually installed.
+2026-10-22T14:19:37.3838489Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-10-22T14:19:37.3838757Z libfreetype6 set to manually installed.
+2026-10-22T14:19:37.3838969Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-10-22T14:19:37.3839176Z fonts-liberation set to manually installed.
+2026-10-22T14:19:37.3839385Z The following additional packages will be installed:
+2026-10-22T14:19:37.3839625Z   gir1.2-glib-2.0 libglib2.0-bin libglib2.0-data libnss3-tools
+2026-10-22T14:19:37.3839850Z   xfonts-encodings xfonts-utils xserver-common
+2026-10-22T14:19:37.3840019Z Suggested packages:
+2026-10-22T14:19:37.3840141Z   low-memory-monitor
+2026-10-22T14:19:37.3840272Z Recommended packages:
+2026-10-22T14:19:37.3840433Z   fonts-ipafont-mincho fonts-tlwg-loma xfonts-base
+2026-10-22T14:19:37.4043151Z The following NEW packages will be installed:
+2026-10-22T14:19:37.4043548Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-22T14:19:37.4049406Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-22T14:19:37.4049699Z   xfonts-utils
+2026-10-22T14:19:37.4053812Z The following packages will be upgraded:
+2026-10-22T14:19:37.4055325Z   gir1.2-glib-2.0 libglib2.0-0t64 libglib2.0-bin libglib2.0-data libnss3
+2026-10-22T14:19:37.4058778Z   libnss3-tools xserver-common xvfb
+2026-10-22T14:19:37.4197306Z 8 upgraded, 9 newly installed, 0 to remove and 89 not upgraded.
+2026-10-22T14:19:37.4197590Z Need to get 25.9 MB of archives.
+2026-10-22T14:19:37.4197822Z After this operation, 79.5 MB of additional disk space will be used.
+2026-10-22T14:19:37.4198091Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [139 B]
+2026-10-22T14:19:38.0683295Z Get:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-22T14:19:39.5268001Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-data all 2.80.0-6ubuntu3.10 [50.2 kB]
+2026-10-22T14:19:39.6484274Z Get:4 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-bin amd64 2.80.0-6ubuntu3.10 [97.9 kB]
+2026-10-22T14:19:39.7716149Z Get:5 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-glib-2.0 amd64 2.80.0-6ubuntu3.10 [183 kB]
+2026-10-22T14:19:39.8980762Z Get:6 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-0t64 amd64 2.80.0-6ubuntu3.10 [1548 kB]
+2026-10-22T14:19:40.0759323Z Get:7 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+2026-10-22T14:19:40.4448464Z Get:8 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-22T14:19:40.5661313Z Get:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+2026-10-22T14:19:40.7256170Z Get:10 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-22T14:19:40.9883743Z Get:11 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnss3 amd64 2:3.98-1ubuntu0.3 [1445 kB]
+2026-10-22T14:19:41.1195426Z Get:12 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnss3-tools amd64 2:3.98-1ubuntu0.3 [615 kB]
+2026-10-22T14:19:41.2441384Z Get:13 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-22T14:19:41.3933232Z Get:14 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+2026-10-22T14:19:41.5144355Z Get:15 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+2026-10-22T14:19:41.6639099Z Get:16 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+2026-10-22T14:19:41.9022864Z Get:17 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 xserver-common all 2:21.1.12-1ubuntu1.9 [35.0 kB]
+2026-10-22T14:19:42.0616626Z Get:18 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 xvfb amd64 2:21.1.12-1ubuntu1.9 [877 kB]
+2026-10-22T14:19:42.2832803Z Fetched 25.9 MB in 5s (5555 kB/s)
+2026-10-22T14:19:42.3820602Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-22T14:19:42.4080894Z (Reading database ... 
+2026-10-22T14:19:42.4081470Z (Reading database ... 5%
+2026-10-22T14:19:42.4081652Z (Reading database ... 10%
+2026-10-22T14:19:42.4081798Z (Reading database ... 15%
+2026-10-22T14:19:42.4081931Z (Reading database ... 20%
+2026-10-22T14:19:42.4082060Z (Reading database ... 25%
+2026-10-22T14:19:42.4082189Z (Reading database ... 30%
+2026-10-22T14:19:42.4082318Z (Reading database ... 35%
+2026-10-22T14:19:42.4082447Z (Reading database ... 40%
+2026-10-22T14:19:42.4082576Z (Reading database ... 45%
+2026-10-22T14:19:42.4082744Z (Reading database ... 50%
+2026-10-22T14:19:42.4121012Z (Reading database ... 55%
+2026-10-22T14:19:42.4962446Z (Reading database ... 60%
+2026-10-22T14:19:42.6977200Z (Reading database ... 65%
+2026-10-22T14:19:42.8813545Z (Reading database ... 70%
+2026-10-22T14:19:43.0479094Z (Reading database ... 75%
+2026-10-22T14:19:43.2288082Z (Reading database ... 80%
+2026-10-22T14:19:43.3948347Z (Reading database ... 85%
+2026-10-22T14:19:43.5834190Z (Reading database ... 90%
+2026-10-22T14:19:43.7460838Z (Reading database ... 95%
+2026-10-22T14:19:43.7461115Z (Reading database ... 100%
+2026-10-22T14:19:43.7461356Z (Reading database ... 203540 files and directories currently installed.)
+2026-10-22T14:19:43.7496756Z Preparing to unpack .../00-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-22T14:19:43.9323886Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-22T14:19:44.8935585Z Preparing to unpack .../01-libglib2.0-data_2.80.0-6ubuntu3.10_all.deb ...
+2026-10-22T14:19:45.3623456Z Unpacking libglib2.0-data (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-22T14:19:45.9718874Z Preparing to unpack .../02-libglib2.0-bin_2.80.0-6ubuntu3.10_amd64.deb ...
+2026-10-22T14:19:45.9737393Z Unpacking libglib2.0-bin (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-22T14:19:46.0139603Z Preparing to unpack .../03-gir1.2-glib-2.0_2.80.0-6ubuntu3.10_amd64.deb ...
+2026-10-22T14:19:46.0156141Z Unpacking gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-22T14:19:46.0545059Z Preparing to unpack .../04-libglib2.0-0t64_2.80.0-6ubuntu3.10_amd64.deb ...
+2026-10-22T14:19:46.0603812Z Unpacking libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.9) ...
+2026-10-22T14:19:46.1421532Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-22T14:19:46.1525474Z Preparing to unpack .../05-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+2026-10-22T14:19:46.1531940Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-22T14:19:46.2446359Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-22T14:19:46.2540985Z Preparing to unpack .../06-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-22T14:19:46.2547585Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-22T14:19:46.2903046Z Selecting previously unselected package fonts-unifont.
+2026-10-22T14:19:46.2999761Z Preparing to unpack .../07-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+2026-10-22T14:19:46.3006825Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+2026-10-22T14:19:46.5055050Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-22T14:19:46.5152278Z Preparing to unpack .../08-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-22T14:19:46.5233727Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-22T14:19:46.9568022Z Preparing to unpack .../09-libnss3_2%3a3.98-1ubuntu0.3_amd64.deb ...
+2026-10-22T14:19:46.9589184Z Unpacking libnss3:amd64 (2:3.98-1ubuntu0.3) over (2:3.98-1ubuntu0.2) ...
+2026-10-22T14:19:47.0275647Z Preparing to unpack .../10-libnss3-tools_2%3a3.98-1ubuntu0.3_amd64.deb ...
+2026-10-22T14:19:47.0295186Z Unpacking libnss3-tools (2:3.98-1ubuntu0.3) over (2:3.98-1ubuntu0.2) ...
+2026-10-22T14:19:47.0701713Z Selecting previously unselected package xfonts-encodings.
+2026-10-22T14:19:47.0801003Z Preparing to unpack .../11-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-22T14:19:47.0808788Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-22T14:19:47.1051758Z Selecting previously unselected package xfonts-utils.
+2026-10-22T14:19:47.1150292Z Preparing to unpack .../12-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+2026-10-22T14:19:47.1158203Z Unpacking xfonts-utils (1:7.7+6build3) ...
+2026-10-22T14:19:47.1419134Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-22T14:19:47.1515342Z Preparing to unpack .../13-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+2026-10-22T14:19:47.1522229Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-22T14:19:47.1995534Z Selecting previously unselected package xfonts-scalable.
+2026-10-22T14:19:47.2090309Z Preparing to unpack .../14-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+2026-10-22T14:19:47.2096421Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-22T14:19:47.2380206Z Preparing to unpack .../15-xserver-common_2%3a21.1.12-1ubuntu1.9_all.deb ...
+2026-10-22T14:19:47.2398063Z Unpacking xserver-common (2:21.1.12-1ubuntu1.9) over (2:21.1.12-1ubuntu1.8) ...
+2026-10-22T14:19:47.3956665Z Preparing to unpack .../16-xvfb_2%3a21.1.12-1ubuntu1.9_amd64.deb ...
+2026-10-22T14:19:47.4406246Z Unpacking xvfb (2:21.1.12-1ubuntu1.9) over (2:21.1.12-1ubuntu1.8) ...
+2026-10-22T14:19:47.8238268Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-22T14:19:48.5915176Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-22T14:19:48.6479596Z Setting up libnss3:amd64 (2:3.98-1ubuntu0.3) ...
+2026-10-22T14:19:48.6496539Z Setting up libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) ...
+2026-10-22T14:19:48.6593488Z Setting up libglib2.0-data (2.80.0-6ubuntu3.10) ...
+2026-10-22T14:19:48.6606915Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-22T14:19:48.6620640Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-22T14:19:48.6634554Z Setting up gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) ...
+2026-10-22T14:19:48.6649157Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-22T14:19:48.6704502Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-22T14:19:48.6717599Z Setting up xserver-common (2:21.1.12-1ubuntu1.9) ...
+2026-10-22T14:19:48.6732066Z Setting up libnss3-tools (2:3.98-1ubuntu0.3) ...
+2026-10-22T14:19:48.6746527Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+2026-10-22T14:19:48.6762535Z Setting up xvfb (2:21.1.12-1ubuntu1.9) ...
+2026-10-22T14:19:48.6776135Z Setting up libglib2.0-bin (2.80.0-6ubuntu3.10) ...
+2026-10-22T14:19:48.6790072Z Setting up xfonts-utils (1:7.7+6build3) ...
+2026-10-22T14:19:48.6822561Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-22T14:19:48.7051439Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-22T14:19:48.7259002Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-22T14:19:48.9125186Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-22T14:19:48.9145605Z Not building database; man-db/auto-update is not 'true'.
+2026-10-22T14:19:48.9157615Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+2026-10-22T14:19:49.3766149Z 
+2026-10-22T14:19:49.3766559Z Running kernel seems to be up-to-date.
+2026-10-22T14:19:49.3766777Z 
+2026-10-22T14:19:49.3766876Z Restarting services...
+2026-10-22T14:19:49.4096147Z  systemctl restart packagekit.service php8.3-fpm.service polkit.service udisks2.service
+2026-10-22T14:19:49.5210790Z 
+2026-10-22T14:19:49.5225807Z Service restarts being deferred:
+2026-10-22T14:19:49.5226196Z  systemctl restart ModemManager.service
+2026-10-22T14:19:49.5226426Z  systemctl restart networkd-dispatcher.service
+2026-10-22T14:19:49.5226600Z 
+2026-10-22T14:19:49.5226725Z No containers need to be restarted.
+2026-10-22T14:19:49.5226914Z 
+2026-10-22T14:19:49.5227064Z No user sessions are running outdated binaries.
+2026-10-22T14:19:49.5227232Z 
+2026-10-22T14:19:49.5227459Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-22T14:19:50.3775810Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip
+2026-10-22T14:19:50.7590468Z |                                                                                |   0% of 191.1 MiB
+2026-10-22T14:19:51.0961910Z |■■■■■■■■                                                                        |  10% of 191.1 MiB
+2026-10-22T14:19:51.1528434Z |■■■■■■■■■■■■■■■■                                                                |  20% of 191.1 MiB
+2026-10-22T14:19:51.1977381Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 191.1 MiB
+2026-10-22T14:19:51.2477698Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 191.1 MiB
+2026-10-22T14:19:51.2921646Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 191.1 MiB
+2026-10-22T14:19:51.3351145Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 191.1 MiB
+2026-10-22T14:19:51.3781872Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 191.1 MiB
+2026-10-22T14:19:51.4252860Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 191.1 MiB
+2026-10-22T14:19:51.4748845Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 191.1 MiB
+2026-10-22T14:19:51.5146304Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 191.1 MiB
+2026-10-22T14:19:53.2699786Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to /home/runner/.cache/ms-playwright/chromium-1248
+2026-10-22T14:19:53.2702548Z Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-linux.zip
+2026-10-22T14:19:53.5427877Z |                                                                                |   0% of 2.2 MiB
+2026-10-22T14:19:53.5681906Z |■■■■■■■■                                                                        |  10% of 2.2 MiB
+2026-10-22T14:19:53.5792231Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.2 MiB
+2026-10-22T14:19:53.5871906Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.2 MiB
+2026-10-22T14:19:53.5952411Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.2 MiB
+2026-10-22T14:19:53.6026227Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.2 MiB
+2026-10-22T14:19:53.6041516Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.2 MiB
+2026-10-22T14:19:53.6053060Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.2 MiB
+2026-10-22T14:19:53.6120600Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.2 MiB
+2026-10-22T14:19:53.6136043Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.2 MiB
+2026-10-22T14:19:53.6144334Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.2 MiB
+2026-10-22T14:19:53.6512838Z FFmpeg (playwright ffmpeg v1013) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1013
+2026-10-22T14:19:53.6515216Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-headless-shell-linux64.zip
+2026-10-22T14:19:53.9585133Z |                                                                                |   0% of 120 MiB
+2026-10-22T14:19:54.2293747Z |■■■■■■■■                                                                        |  10% of 120 MiB
+2026-10-22T14:19:54.2652853Z |■■■■■■■■■■■■■■■■                                                                |  20% of 120 MiB
+2026-10-22T14:19:54.3018578Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 120 MiB
+2026-10-22T14:19:54.3349234Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 120 MiB
+2026-10-22T14:19:54.3786132Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 120 MiB
+2026-10-22T14:19:54.4203246Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 120 MiB
+2026-10-22T14:19:54.4546392Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 120 MiB
+2026-10-22T14:19:54.4890928Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 120 MiB
+2026-10-22T14:19:54.5223635Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 120 MiB
+2026-10-22T14:19:54.5562148Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 120 MiB
+2026-10-22T14:19:55.8224119Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1248
+2026-10-22T14:19:55.8435285Z ##[group]Run npx playwright test
+2026-10-22T14:19:55.8435550Z [36;1mnpx playwright test[0m
+2026-10-22T14:19:55.8486555Z shell: /usr/bin/bash -e {0}
+2026-10-22T14:19:55.8486696Z ##[endgroup]
+2026-10-22T14:19:56.8839893Z 
+2026-10-22T14:19:56.8840759Z Running 35 tests using 1 worker
+2026-10-22T14:19:56.8841001Z 
+2026-10-22T14:20:02.1944185Z   ✓   1 [chromium] › tests/baseline/startup.spec.mjs:4:1 › startup_nyc_has_no_unbound_radius (4.6s)
+2026-10-22T14:20:03.0536887Z   ✓   2 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (timer) (848ms)
+2026-10-22T14:20:03.9000394Z   ✓   3 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (load) (838ms)
+2026-10-22T14:20:07.1132223Z   ✓   4 [chromium] › tests/baseline/startup.spec.mjs:60:1 › vehicle_reset_restores_part_positions (3.2s)
+2026-10-22T14:20:07.4464943Z   ✓   5 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_360x640 (308ms)
+2026-10-22T14:20:07.8669510Z   ✓   6 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_393x852 (413ms)
+2026-10-22T14:20:08.3120696Z   ✓   7 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_430x932 (437ms)
+2026-10-22T14:20:08.5991980Z   ✓   8 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_640x360 (278ms)
+2026-10-22T14:20:09.0094143Z   ✓   9 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_852x393 (402ms)
+2026-10-22T14:20:09.3552126Z   ✓  10 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_932x430 (334ms)
+2026-10-22T14:20:09.8095683Z   ✓  11 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_hybrid_1280x720 (443ms)
+2026-10-22T14:20:10.3581064Z   ✓  12 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_1920x1080 (541ms)
+2026-10-22T14:20:10.6816652Z   ✓  13 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_800x720 (314ms)
+2026-10-22T14:20:10.9569837Z   ✓  14 [chromium] › tests/e2e/device-layout.spec.mjs:17:1 › touch_ownership_second_finger_and_release_reach_InputFrame (268ms)
+2026-10-22T14:20:11.3201022Z   ✓  15 [chromium] › tests/e2e/device-layout.spec.mjs:27:1 › hybrid_keyboard_touch_mouse_repeat_and_focus_loss_are_independent (356ms)
+2026-10-22T14:20:11.9847174Z   ✓  16 [chromium] › tests/e2e/device-layout.spec.mjs:33:1 › settings_exclude_driving_swipe_and_mode_inappropriate_fields_and_restore_focus (657ms)
+2026-10-22T14:20:12.4058430Z   ✓  17 [chromium] › tests/e2e/device-layout.spec.mjs:40:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input (414ms)
+2026-10-22T14:20:12.8265442Z   ✓  18 [chromium] › tests/e2e/device-layout.spec.mjs:49:1 › settings_at_200_percent_and_manual_profile_switch_remain_usable (412ms)
+2026-10-22T14:20:13.1050560Z   ✓  19 [chromium] › tests/e2e/device-layout.spec.mjs:55:1 › actual_browser_touch_capture_continues_outside_surface_and_ends_neutral (271ms)
+2026-10-22T14:20:13.6460289Z   ✓  20 [chromium] › tests/e2e/device-layout.spec.mjs:61:1 › reconfiguring_and_disposing_UI_removes_all_owned_listeners (535ms)
+2026-10-22T14:20:13.8887381Z   ✓  21 [chromium] › tests/e2e/device-layout.spec.mjs:67:1 › edge_guide_origin_matches_actual_tap_without_spontaneous_input (233ms)
+2026-10-22T14:20:14.3707451Z   ✓  22 [chromium] › tests/e2e/device-layout.spec.mjs:73:1 › review_button_key_release_after_Tab_and_pointer_hold_have_separate_owners (474ms)
+2026-10-22T14:20:14.7375684Z   ✓  23 [chromium] › tests/e2e/device-layout.spec.mjs:78:1 › review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources (359ms)
+2026-10-22T14:20:15.1601447Z   ✓  24 [chromium] › tests/e2e/device-layout.spec.mjs:82:1 › review_real_mouse_capture_is_released_on_clear_and_dispose (414ms)
+2026-10-22T14:20:15.3868572Z   ✓  25 [chromium] › tests/e2e/device-layout.spec.mjs:86:1 › review_second_finger_camera_keeps_primary_swipe (219ms)
+2026-10-22T14:20:15.6951883Z   ✓  26 [chromium] › tests/e2e/device-layout.spec.mjs:90:1 › review_save_failure_warning_remains_visible_with_memory_value (300ms)
+2026-10-22T14:20:15.9767370Z   ✓  27 [chromium] › tests/e2e/device-layout.spec.mjs:95:1 › review_storage_acquisition_denial_still_starts_reference_UI (274ms)
+2026-10-22T14:20:16.2259887Z   ✓  28 [chromium] › tests/e2e/device-layout.spec.mjs:98:1 › review_form_whitespace_does_not_start_driving (242ms)
+2026-10-22T14:20:16.5737147Z   ✓  29 [chromium] › tests/e2e/device-layout.spec.mjs:101:1 › review_remapped_keys_update_visible_help (337ms)
+2026-10-22T14:20:19.3264673Z   ✓  30 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.7s)
+2026-10-22T14:20:24.3600198Z   ✓  31 [chromium] › tests/integration/driving-lifecycle.spec.mjs:51:1 › driving_fixed_tick_trace_matches_pre_extraction_game (5.0s)
+2026-10-22T14:20:25.1104440Z   ✓  32 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (743ms)
+2026-10-22T14:20:27.7822124Z   ✓  33 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick (2.7s)
+2026-10-22T14:20:29.4093610Z   ✓  34 [chromium] › tests/integration/driving-lifecycle.spec.mjs:109:1 › driving_police_and_siren_survive_audio_extraction (1.6s)
+2026-10-22T14:20:30.6432161Z   ✓  35 [chromium] › tests/integration/driving-lifecycle.spec.mjs:120:1 › driving_external_input_blocks_legacy_keyboard_actions (1.2s)
+2026-10-22T14:20:30.7178883Z 
+2026-10-22T14:20:30.7179517Z   35 passed (34.4s)
+2026-10-22T14:20:30.7888675Z ##[group]Run actions/upload-artifact@v4
+2026-10-22T14:20:30.7888865Z with:
+2026-10-22T14:20:30.7889034Z   name: baseline-browser-85299459f88c09ad6f01ba929fd57486f99f75c9
+2026-10-22T14:20:30.7889235Z   path: test-results/
+2026-10-22T14:20:30.7889362Z   retention-days: 14
+2026-10-22T14:20:30.7889487Z   if-no-files-found: warn
+2026-10-22T14:20:30.7889616Z   compression-level: 6
+2026-10-22T14:20:30.7889758Z   overwrite: false
+2026-10-22T14:20:30.7889879Z   include-hidden-files: false
+2026-10-22T14:20:30.7890017Z ##[endgroup]
+2026-10-22T14:20:30.8986753Z (node:3852) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T14:20:30.8987250Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T14:20:30.9065421Z With the provided path, there will be 1 file uploaded
+2026-10-22T14:20:30.9071687Z Artifact name is valid!
+2026-10-22T14:20:30.9076363Z Root directory input is valid!
+2026-10-22T14:20:31.1898067Z Beginning upload of artifact content to blob storage
+2026-10-22T14:20:31.3244269Z (node:3852) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T14:20:31.8318757Z Uploaded bytes 4389459
+2026-10-22T14:20:31.8735800Z Finished uploading artifact content to blob storage!
+2026-10-22T14:20:31.8736232Z SHA256 digest of uploaded artifact zip is fa7afddbcb6a162cf0b2c0005f4a5bccc36e85943eac796b42a94200577096b2
+2026-10-22T14:20:31.8736763Z Finalizing artifact upload
+2026-10-22T14:20:32.3208560Z Artifact baseline-browser-85299459f88c09ad6f01ba929fd57486f99f75c9.zip successfully finalized. Artifact ID 12432343092
+2026-10-22T14:20:32.3209564Z Artifact baseline-browser-85299459f88c09ad6f01ba929fd57486f99f75c9 has been successfully uploaded! Final size is 4389459 bytes. Artifact ID is 12432343092
+2026-10-22T14:20:32.3214274Z Artifact download URL: https://github.com/chameleonjp-lab/hashirase/actions/runs/39794646214/artifacts/12432343092
+2026-10-22T14:20:32.3354284Z ##[group]Run actions/upload-artifact@v4
+2026-10-22T14:20:32.3354448Z with:
+2026-10-22T14:20:32.3354617Z   name: foundation-build-85299459f88c09ad6f01ba929fd57486f99f75c9
+2026-10-22T14:20:32.3355083Z   path: dist/
+2026-10-22T14:20:32.3355224Z   retention-days: 14
+2026-10-22T14:20:32.3355353Z   if-no-files-found: warn
+2026-10-22T14:20:32.3355488Z   compression-level: 6
+2026-10-22T14:20:32.3355613Z   overwrite: false
+2026-10-22T14:20:32.3355737Z   include-hidden-files: false
+2026-10-22T14:20:32.3355875Z ##[endgroup]
+2026-10-22T14:20:32.4492066Z (node:3865) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T14:20:32.4492501Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T14:20:32.4571677Z With the provided path, there will be 15 files uploaded
+2026-10-22T14:20:32.4575223Z Artifact name is valid!
+2026-10-22T14:20:32.4575747Z Root directory input is valid!
+2026-10-22T14:20:32.7357478Z Beginning upload of artifact content to blob storage
+2026-10-22T14:20:32.7642327Z (node:3865) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T14:20:32.9962178Z Uploaded bytes 81184
+2026-10-22T14:20:33.0457783Z Finished uploading artifact content to blob storage!
+2026-10-22T14:20:33.0458378Z SHA256 digest of uploaded artifact zip is 990150c1cc94ba8bfcf813bd2f4a3306e36ad5040eead460373fa53e923005b7
+2026-10-22T14:20:33.0459060Z Finalizing artifact upload
+2026-10-22T14:20:33.5490155Z Artifact foundation-build-85299459f88c09ad6f01ba929fd57486f99f75c9.zip successfully finalized. Artifact ID 12433520765
+2026-10-22T14:20:33.5490778Z Artifact foundation-build-85299459f88c09ad6f01ba929fd57486f99f75c9 has been successfully uploaded! Final size is 81184 bytes. Artifact ID is 12433520765
+2026-10-22T14:20:33.5495636Z Artifact download URL: https://github.com/chameleonjp-lab/hashirase/actions/runs/39794646214/artifacts/12433520765
+2026-10-22T14:20:33.5668911Z Post job cleanup.
+2026-10-22T14:20:33.6474288Z (node:3878) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T14:20:33.6475136Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T14:20:33.6602113Z Post job cleanup.
+2026-10-22T14:20:33.7187310Z [command]/usr/bin/git version
+2026-10-22T14:20:33.7221034Z git version 2.55.0
+2026-10-22T14:20:33.7245244Z Temporarily overriding HOME='/home/runner/work/_temp/bfc5ad32-abbe-4fad-b094-57701ab43456' before making global git config changes
+2026-10-22T14:20:33.7246070Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T14:20:33.7248718Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hashirase/hashirase
+2026-10-22T14:20:33.7284241Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T14:20:33.7315061Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T14:20:33.7522908Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T14:20:33.7550443Z http.https://github.com/.extraheader
+2026-10-22T14:20:33.7557489Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T14:20:33.7588877Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T14:20:33.7831375Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T14:20:33.7864202Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T14:20:33.8173281Z Cleaning up orphan processes
+2026-10-22T14:20:33.8436095Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

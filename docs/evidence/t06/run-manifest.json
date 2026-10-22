@@ -1,0 +1,75 @@
+{
+  "taskId": "T06",
+  "originalBase": "f44bb235a8c84f3a6af8b5c7338ebdb2f54bc442",
+  "integrationBase": "c3419eb53d06ae5615c74b2b5f175d3c7be67119",
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "Chromium154.0.8037.57",
+    "platform": "managed Linux x86_64",
+    "devices": "emulated only; physical/VoiceOver/Safari NOT_RUN"
+  },
+  "commands": {
+    "target": "PASS23Node +25browser",
+    "npm run check": "PASS69Node (55unit+14integration),117IDs11fragments",
+    "npm run build": "PASS existing driving foundation; T05 app integration pending",
+    "npx playwright test": "PASS35 (T01 4+T03 6+T06 25)"
+  },
+  "browserStats": {
+    "startTime": "2026-10-22T14:12:00.099Z",
+    "duration": 34510.734,
+    "expected": 35,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "settingsKey": "hashirase:settings:v1:{profile}:{mode}",
+  "reverseInterlock": {
+    "speedThresholdMetresPerSecond": 0.15,
+    "stationaryTimeSeconds": 0.3,
+    "dt": "one fixed tick per sample(options); no timer on sample()"
+  },
+  "sourceSha256": {
+    "src/platform/device-profile.js": "db758b63d3775ee226714d3a57f2c9ec1cf70f21bd4d32ff00cc41a5b35d1de2",
+    "src/platform/input-service.js": "caa0d2c6e31c96dd35553acfb4e76dc13425af8c3b9d690df0fc3177e4bd22c6",
+    "src/platform/settings-store.js": "28ab669aa1e0de399c9641ddbfa11e355a9694339c7f390f379b01076dcc2039",
+    "src/platform/swipe-control.js": "602a4f7f7e088d1e27f1bdbc4d5b782a6b5f151d037b2f9ad8acab335f499e74",
+    "src/ui/keyboard-controls.js": "0bbd90980e447b2c1ae36600d7010ddbe114dc1b4115b620c4edf432def5b611",
+    "src/ui/listeners.js": "13177092818f9f6e913a285276dc00680a31e59329fcfdf759dd06ff7151bc9d",
+    "src/ui/settings.js": "ff2d19c0a10427c084e6d2628a8b1e2e2349a54d70e455707833c3283c32a4a1",
+    "src/ui/swipe-guide.js": "f2980bea103149d0807b0d202909af08a04a586cb40ab71adf95127b78e06db4",
+    "src/ui/touch-controls.js": "7a901f257f4cb5562db3c2b49e51021e5014c76906f4ed5fb58c8cd8f43e0ba4",
+    "styles/controls.css": "ac03c7de85f4a94a87d5863d212549a3edc763ce52c7c0ea55ee400bb3955038",
+    "tests/e2e/device-layout.spec.mjs": "7fd372b638bd2b34fdda640ea703071c825626acd659822a878ab73bb8d94254",
+    "tests/fixtures/device-controls.html": "c37945ae89e13b5e21ba2f6cf3b2cf699551afa2910c25641ef8758c51aaec7d",
+    "tests/unit/input-settings.test.mjs": "1d257d11a52aa02d0c7f099238cbcc27400c8d10aee09002970dc86a9435af50",
+    "tests/unit/swipe-control.test.mjs": "539e26538dfae70c1156964187920b312fb14fdc977c89d2907178ec7ebb9849"
+  },
+  "imagesInspected": [
+    "controls-desktop-1920x1080.png",
+    "controls-desktop-800x720.png",
+    "controls-hybrid-1280x720.png",
+    "controls-touch-360x640.png",
+    "controls-touch-393x852.png",
+    "controls-touch-430x932.png",
+    "controls-touch-640x360.png",
+    "controls-touch-852x393.png",
+    "controls-touch-932x430.png",
+    "settings-memory-warning.png",
+    "settings-touch-200-percent.png"
+  ],
+  "acceptance": "A01–A60 NOT_RUN; fixture is input/settings contract, not home/mode integration",
+  "review": "0Critical6Important3Minor; all9 fixed one TDD pass; see review.md",
+  "postT04": {
+    "npm run check": "PASS85 Node (61unit+14integration+10physics)",
+    "npm run build": "PASS both modes",
+    "npx playwright test": "PASS36 (T01+T03+T04+T06)",
+    "browserStats": {
+      "startTime": "2026-10-22T14:34:48.496Z",
+      "duration": 37482.420000000006,
+      "expected": 36,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  }
+}

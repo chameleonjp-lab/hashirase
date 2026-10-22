@@ -1,0 +1,5 @@
+/** Decorative guide stays inside the dedicated drive surface and never consumes input. */
+export function createSwipeGuide(surface){
+ const element=surface.ownerDocument.createElement('div');element.className='swipe-guide';element.setAttribute('aria-hidden','true');element.hidden=true;element.innerHTML='<span class="swipe-guide-center"></span><span class="swipe-guide-dot"></span>';surface.append(element);
+ return{update(frame,origin,settings){element.hidden=!frame.active||!settings.guideVisible;if(element.hidden)return;const rect=surface.getBoundingClientRect(),radius=Math.min(44,rect.width/2,rect.height/2);const x=Math.max(0,Math.min(rect.width,origin.x-rect.left)),y=Math.max(0,Math.min(rect.height,origin.y-rect.top));element.style.left=x+'px';element.style.top=y+'px';element.style.width=element.style.height=radius*2+'px';const dot=element.querySelector('.swipe-guide-dot');dot.style.transform=`translate(${frame.horizontal*radius*0.75}px,${-frame.vertical*radius*0.75}px)`;},clear(){element.hidden=true;},dispose(){element.remove();}};
+}

@@ -1,0 +1,25 @@
+[WebServer] (node:26281) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 16 tests using 1 worker
+
+(node:26293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_360x640 (424ms)
+  ✓   2 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_393x852 (446ms)
+  ✓   3 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_430x932 (464ms)
+  ✓   4 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_640x360 (447ms)
+  ✓   5 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_852x393 (420ms)
+  ✓   6 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_932x430 (417ms)
+  ✓   7 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_hybrid_1280x720 (525ms)
+  ✓   8 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_1920x1080 (575ms)
+  ✓   9 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_800x720 (444ms)
+  ✓  10 [chromium] › tests/e2e/device-layout.spec.mjs:17:1 › touch_ownership_second_finger_and_release_reach_InputFrame (374ms)
+  ✓  11 [chromium] › tests/e2e/device-layout.spec.mjs:27:1 › hybrid_keyboard_touch_mouse_repeat_and_focus_loss_are_independent (389ms)
+  ✓  12 [chromium] › tests/e2e/device-layout.spec.mjs:33:1 › settings_exclude_driving_swipe_and_mode_inappropriate_fields_and_restore_focus (767ms)
+  ✓  13 [chromium] › tests/e2e/device-layout.spec.mjs:40:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input (536ms)
+  ✓  14 [chromium] › tests/e2e/device-layout.spec.mjs:49:1 › settings_at_200_percent_and_manual_profile_switch_remain_usable (431ms)
+  ✓  15 [chromium] › tests/e2e/device-layout.spec.mjs:55:1 › actual_browser_touch_capture_continues_outside_surface_and_ends_neutral (450ms)
+  ✓  16 [chromium] › tests/e2e/device-layout.spec.mjs:61:1 › reconfiguring_and_disposing_UI_removes_all_owned_listeners (531ms)
+
+  16 passed (8.4s)

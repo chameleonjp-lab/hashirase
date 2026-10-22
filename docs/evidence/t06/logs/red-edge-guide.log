@@ -1,0 +1,42 @@
+[WebServer] (node:27023) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:27035) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/device-layout.spec.mjs:67:1 › edge_guide_origin_matches_actual_tap_without_spontaneous_input (404ms)
+
+
+  1) [chromium] › tests/e2e/device-layout.spec.mjs:67:1 › edge_guide_origin_matches_actual_tap_without_spontaneous_input 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 44
+
+      67 | test('edge_guide_origin_matches_actual_tap_without_spontaneous_input',async({page})=>{
+      68 |  await ready(page);const surface=page.locator('#surface'),box=await surface.boundingBox();await surface.dispatchEvent('pointerdown',pointer(1,box.x+3,box.y+3));
+    > 69 |  expect(await page.locator('.swipe-guide').evaluate(el=>parseFloat(el.style.left))).toBe(3);expect(await page.locator('.swipe-guide').evaluate(el=>parseFloat(el.style.top))).toBe(3);
+         |                                                                                     ^
+      70 |  expect((await sample(page)).throttle).toBe(0);expect((await sample(page)).steer).toBe(0);
+      71 | });
+      72 |
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:69:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-edge-gui-01bad-p-without-spontaneous-input-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-edge-gui-01bad-p-without-spontaneous-input-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-edge-gui-01bad-p-without-spontaneous-input-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-edge-gui-01bad-p-without-spontaneous-input-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/device-layout.spec.mjs:67:1 › edge_guide_origin_matches_actual_tap_without_spontaneous_input 

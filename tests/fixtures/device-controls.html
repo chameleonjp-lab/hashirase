@@ -1,0 +1,18 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>T06 入力契約fixture</title><link rel="stylesheet" href="/styles/controls.css">
+<body><main class="control-fixture"><header><span>HASHIRASE / INPUT</span><button id="settings-open">設定</button></header><h1 id="mode-label">運転操作</h1><p id="instructions">触れた場所から上に加速、下に制動・停止後に後退。左右は操舵。離すと惰性走行。</p><section id="surface" class="drive-surface" aria-label="スワイプ運転領域" tabindex="0"><span class="surface-label">ここでタップ → 上下・左右へスワイプ</span></section><output id="frame" aria-label="InputFrameの観測値">入力待機中</output><nav id="actions" aria-label="追加の運転操作"></nav><p id="profile-label"></p><div id="settings-container"></div></main>
+<script type="module">
+try{
+ const [{createInputService},{createSettingsStore},{mountTouchControls},{mountKeyboardControls,inputHelp},{mountSettings}]=await Promise.all([import('/src/platform/input-service.js'),import('/src/platform/settings-store.js'),import('/src/ui/touch-controls.js'),import('/src/ui/keyboard-controls.js'),import('/src/ui/settings.js')]);
+ const params=new URLSearchParams(location.search),mode=params.get('mode')==='simulation'?'simulation':'driving';let profile=['touch','hybrid','desktop'].includes(params.get('profile'))?params.get('profile'):'touch';
+ let storage;try{storage=localStorage;}catch{}const store=createSettingsStore(storage),surface=document.querySelector('#surface'),toolbar=document.querySelector('#actions');
+ let input,touch,keys,settings,camera=0,look=0;
+ const read=()=>store.read(profile,mode);
+ function setup(){input?.dispose();touch?.dispose();keys?.dispose();settings?.dispose();input=createInputService(profile,{mode});document.querySelector('#profile-label').textContent=profile+' / '+mode;document.querySelector('#mode-label').textContent=mode==='driving'?'ドライビングゲームの操作':'シミュレーターの操作';
+ const updateHelp=()=>{document.querySelector('#instructions').textContent=inputHelp(profile,mode,read());};updateHelp();surface.querySelector('.surface-label').textContent=profile==='desktop'?'キーボードで運転 / マウスで視点':'ここでタップ → 上下・左右へスワイプ';
+ touch=mountTouchControls(surface,{input,profile,mode,settings:read(),toolbar,onCamera(){camera++;}});
+ keys=mountKeyboardControls(surface,{input,profile,mode,settings:read(),onCamera(){camera++;},onLook(){look++;}});
+ settings=mountSettings(document.querySelector('#settings-container'),{store,profile,mode,input,onApply(){touch.configure(read());keys.configure(read());updateHelp();},onProfileChange(next){profile=next;setup();}});}
+ setup();document.querySelector('#settings-open').onclick=()=>settings.open();
+ window.harness={available:true,sample(options){const frame=input.sample(options);document.querySelector('#frame').textContent=JSON.stringify(frame);return frame;},clear(){input.clear();},metrics(){return{camera,look};},settings:()=>read(),profile:()=>profile,dispose(){touch.dispose();keys.dispose();settings.dispose();input.dispose();return input.sample();}};
+}catch(error){window.harness={available:false,error:String(error)};}
+</script></body></html>

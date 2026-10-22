@@ -1,0 +1,58 @@
+[WebServer] (node:23407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 14 tests using 1 worker
+
+(node:23419) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_touch_360x640 (489ms)
+  ✓   2 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_touch_393x852 (450ms)
+  ✓   3 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_touch_430x932 (420ms)
+  ✓   4 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_touch_640x360 (367ms)
+  ✓   5 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_touch_852x393 (386ms)
+  ✓   6 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_touch_932x430 (366ms)
+  ✓   7 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_hybrid_1280x720 (497ms)
+  ✓   8 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_desktop_1920x1080 (682ms)
+  ✓   9 [chromium] › tests/e2e/device-layout.spec.mjs:5:208 › device_layout_desktop_800x720 (409ms)
+  ✓  10 [chromium] › tests/e2e/device-layout.spec.mjs:15:1 › touch_ownership_second_finger_and_release_reach_InputFrame (357ms)
+  ✓  11 [chromium] › tests/e2e/device-layout.spec.mjs:25:1 › hybrid_keyboard_touch_mouse_repeat_and_focus_loss_are_independent (416ms)
+  ✓  12 [chromium] › tests/e2e/device-layout.spec.mjs:31:1 › settings_exclude_driving_swipe_and_mode_inappropriate_fields_and_restore_focus (572ms)
+  ✘  13 [chromium] › tests/e2e/device-layout.spec.mjs:38:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input (590ms)
+(node:23996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [chromium] › tests/e2e/device-layout.spec.mjs:47:1 › settings_at_200_percent_and_manual_profile_switch_remain_usable (467ms)
+
+
+  1) [chromium] › tests/e2e/device-layout.spec.mjs:38:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      42 |  await start();await page.locator('#settings-open').click();expect((await sample(page)).throttle).toBe(0);await s.dispatchEvent('pointerdown',pointer(4,180,280));await s.dispatchEvent('pointermove',pointer(4,200,190));expect((await sample(page)).throttle).toBe(0);
+      43 |  await page.getByLabel('代替の明示操作を表示').check();await page.getByRole('button',{name:'適用',exact:true}).click();await expect(page.locator('[data-alternative]')).toHaveCount(4);
+    > 44 |  await page.getByRole('button',{name:'前進',exact:true}).dispatchEvent('pointerdown',pointer(3,200,400));expect((await sample(page)).throttle).toBe(1);
+         |                                                                                                                                              ^
+      45 |  await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,value:'hidden'});document.dispatchEvent(new Event('visibilitychange'));});expect((await sample(page)).throttle).toBe(0);
+      46 | });
+      47 | test('settings_at_200_percent_and_manual_profile_switch_remain_usable',async({page},info)=>{
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:44:142
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-settings-d1e48-nd-alternatives-clear-input-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-settings-d1e48-nd-alternatives-clear-input-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-settings-d1e48-nd-alternatives-clear-input-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-settings-d1e48-nd-alternatives-clear-input-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/device-layout.spec.mjs:38:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input 
+  13 passed (7.7s)

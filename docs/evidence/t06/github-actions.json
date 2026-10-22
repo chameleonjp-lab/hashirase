@@ -1,0 +1,11 @@
+{
+ "taskId":"T06",
+ "pullRequest":"https://github.com/chameleonjp-lab/hashirase/pull/9",
+ "runs":[
+  {"id":39793923258,"headSHA":"4839239e38f4fc9f765b54649557d6e5e817a978","jobId":119876441823,"logVerified":"PASS69 Node,35 browser,build; cleanup completed at2026-10-22T14:20:50Z","log":"logs/github-actions-39793923258.log","lastReportedAPIStatus":"in_progress,conclusion:null despite complete successful log"},
+  {"id":39794646214,"headSHA":"3d1ffead507a9b4c67e753723b8c5ee689ebd7b3","jobId":119878813794,"logVerified":"PASS69 Node,35 browser,build; cleanup completed at2026-10-22T14:20:33Z","log":"logs/github-actions-39794646214.log","lastReportedAPIStatus":"queued,conclusion:null despite complete successful log"}
+ ],
+ "verification":"Exact checkout SHA and complete successful command logs verified. Connector and no-cache CLI status observations disagree with the completed logs; do not infer a final workflow conclusion from queued state.",
+ "cancellation":"An obsolete-run cancellation was attempted via CLI, which rejected it as already completed. No successful cancellation is claimed.",
+ "physicalDevices":"NOT_RUN"
+}
