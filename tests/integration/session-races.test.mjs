@@ -52,3 +52,12 @@ test('overload_pause_explains_why_and_can_be_reset',async()=>{const h=harness();
 test('finished_rules_stop_in_RESULT_and_reset_allows_a_new_run',async()=>{const flags={gameOver:false};const h=harness(flags);await h.host.selectMode('driving');h.flush(1000);flags.gameOver=true;h.flush(1020);assert.equal(h.host.snapshot().state,'RESULT');assert.equal(h.frames.size,0);flags.gameOver=false;h.host.reset();assert.equal(h.host.snapshot().state,'PAUSED');h.host.resume();assert.equal(h.host.snapshot().state,'RUNNING');await h.host.leaveMode();});
 
 test('pause_requested_while_loading_is_kept_until_explicit_resume',async()=>{const ready=deferred(),h=harness({loadMode:()=>ready.promise});const opening=h.host.selectMode('simulation');h.host.pause('hidden');ready.resolve(h.module('simulation'));await opening;assert.equal(h.host.snapshot().state,'PAUSED');assert.equal(h.frames.size,0);h.host.resume();assert.equal(h.host.snapshot().state,'RUNNING');await h.host.leaveMode();});
+
+for(const path of ['select-select','leave-leave-select'])test('review_cleanup_barrier_'+path,async()=>{
+ const closing=deferred();let h;h=harness({loadMode:async mode=>{const m=h.module(mode);return{async createMode(context){const session=await m.createMode(context);return mode==='driving'?{...session,dispose:()=>closing.promise.then(()=>session.dispose())}:session;}};}});
+ await h.host.selectMode('driving');let first,second,third;
+ if(path==='select-select'){first=h.host.selectMode('simulation');await turn();second=h.host.selectMode('simulation');}
+ else{first=h.host.leaveMode();await turn();second=h.host.leaveMode();third=h.host.selectMode('simulation');}
+ await turn();assert.equal(h.metrics.created.simulation,0,'Replacement must not prepare/start before prior disposal');assert.equal(h.host.snapshot().activeSession,1,'Pending disposal remains live in diagnostics');assert.equal(h.metrics.active,1);
+ closing.resolve();await Promise.all([first,second,third]);assert.equal(h.metrics.created.simulation,1);assert.equal(h.metrics.max,1);assert.equal(h.host.snapshot().maxActiveSession,1);await h.host.leaveMode();assert.equal(h.host.snapshot().activeSession,0);
+});
