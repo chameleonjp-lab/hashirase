@@ -97,3 +97,9 @@ test('parameter_metadata_is_bounded_versioned_and_detached',()=>{
   c.parameters.mass.value=99999;assert.deepEqual(model.snapshot(),before);
   assert.equal(before.telemetry.parameters.mass.origin,'estimated');
 });
+
+test('derived_speed_overflow_is_rejected_atomically_on_reset_and_step',()=>{
+ const model=api()(config({mass:1,dragCoefficient:0,rollingCoefficient:0})),before=model.snapshot();
+ assert.throws(()=>model.reset({velocity:{x:1.1e308,y:1.1e308,z:1.1e308}}),/speed|finite/);assert.deepEqual(model.snapshot(),before);
+ assert.throws(()=>model.step(1,neutral,{externalForce:{x:1.1e308,y:1.1e308,z:1.1e308}}),/speed|finite/);assert.deepEqual(model.snapshot(),before);
+});

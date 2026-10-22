@@ -52,3 +52,22 @@ test('simulation_build_and_import_graph_contain_no_driving_code_or_engine',async
   const sources=await Promise.all(manifest.inputFiles.filter(f=>f.path.endsWith('.js')).map(f=>readFile(new URL('../../'+f.path,import.meta.url),'utf8')));
   assert(!sources.some(s=>/Math\.random|requestAnimationFrame|setInterval|performance\.now/.test(s)));
 });
+
+test('simulation_cancellation_releases_supplied_services_immediately_and_late_world_once',async()=>{
+ const c=context();let resolveWorld,worldDisposals=0;const pending=new Promise(resolve=>{resolveWorld=resolve;});
+ c.services.world=()=>pending;const creating=factory()(c.services);c.controller.abort();
+ assert.deepEqual(c.disposed.sort(),['audio','input','renderer']);
+ resolveWorld({step(){},query:()=>({}),reset(){},dispose(){worldDisposals++;}});
+ await assert.rejects(creating,{name:'AbortError'});assert.equal(worldDisposals,1);assert.equal(c.disposed.length,3);
+});
+
+test('simulation_startup_errors_and_invalid_reset_cannot_leak_owned_services',async()=>{
+ for(const failure of ['world','config']){
+  const c=context();if(failure==='world')c.services.world=async()=>{throw Error('world failed');};
+  await assert.rejects(()=>factory()(c.services,failure==='config'?{config:{}}:{}));
+  assert.deepEqual(c.disposed.sort(),failure==='world'?['audio','input','renderer']:['audio','input','renderer','world']);
+ }
+ const c=context(),session=await factory()(c.services);const before=session.snapshot();
+ assert.throws(()=>session.reset({velocity:{x:1.1e308,y:1.1e308,z:1.1e308}}),/finite|speed/);assert.deepEqual(session.snapshot(),before);
+ assert.doesNotThrow(()=>session.dispose());assert.deepEqual(c.disposed.sort(),['audio','input','renderer','world']);
+});
