@@ -1,0 +1,45 @@
+[WebServer] (node:21305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:21317) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/device-layout.spec.mjs:15:1 › touch_ownership_second_finger_and_release_reach_InputFrame (10.1s)
+
+
+  1) [chromium] › tests/e2e/device-layout.spec.mjs:15:1 › touch_ownership_second_finger_and_release_reach_InputFrame 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      1 | import {test,expect} from '@playwright/test';
+    > 2 | async function ready(page,profile='touch',mode='driving'){await page.goto(`/tests/fixtures/device-controls.html?profile=${profile}&mode=${mode}`);await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);}
+        |                                                                                                                                                                                                                       ^
+      3 | const pointer=(id,x,y,type='touch')=>({pointerId:id,clientX:x,clientY:y,pointerType:type,button:0,bubbles:true});
+      4 | const sample=(page,options)=>page.evaluate(options=>window.harness.sample(options),options);
+      5 | for(const [width,height,profile]of [[360,640,'touch'],[393,852,'touch'],[430,932,'touch'],[640,360,'touch'],[852,393,'touch'],[932,430,'touch'],[1280,720,'hybrid'],[1920,1080,'desktop'],[800,720,'desktop']])test(`device_layout_${profile}_${width}x${height}`,async({page},info)=>{
+        at ready (/workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:2:215)
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:16:2
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-touch-ow-44794-nd-release-reach-InputFrame-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-touch-ow-44794-nd-release-reach-InputFrame-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-touch-ow-44794-nd-release-reach-InputFrame-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-touch-ow-44794-nd-release-reach-InputFrame-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/device-layout.spec.mjs:15:1 › touch_ownership_second_finger_and_release_reach_InputFrame 

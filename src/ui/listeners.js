@@ -1,0 +1,1 @@
+export function listenerScope(){const removers=[];return{on(target,type,handler,options){target.addEventListener(type,handler,options);removers.push(()=>target.removeEventListener(type,handler,options));},dispose(){for(const remove of removers.splice(0).reverse())remove();}};}
