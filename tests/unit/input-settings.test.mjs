@@ -13,3 +13,11 @@ test('settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies
 test('storage_denial_uses_memory_and_reports_status',()=>{const denied={getItem(){throw Error('denied');},setItem(){throw Error('quota');},removeItem(){throw Error('denied');}};const store=api(settings,'createSettingsStore')(denied);store.write('touch','driving',{volume:0.8});assert.equal(store.read('touch','driving').volume,0.8);assert.equal(store.status().persistent,false);assert.match(store.status().message,/保存/);});
 test('any_storage_read_exception_is_reported_as_unavailable',()=>{const store=api(settings,'createSettingsStore')({getItem(){throw new TypeError('storage unavailable');}});store.read('touch','driving');assert.equal(store.status().persistent,false);assert.match(store.status().message,/保存/);});
 test('device_profile_uses_capabilities_and_allows_manual_override',()=>{const detect=api(devices,'detectDeviceProfile');assert.equal(detect({maxTouchPoints:5,finePointer:false}),'touch');assert.equal(detect({maxTouchPoints:5,finePointer:true}),'hybrid');assert.equal(detect({maxTouchPoints:0,finePointer:true}),'desktop');assert.equal(detect({maxTouchPoints:0,finePointer:true,override:'touch'}),'touch');assert.throws(()=>detect({override:'phone'}),/profile|override/);});
+test('reverse_release_between_ticks_discards_grace_without_clearing_other_holds',()=>{
+ const i=api(inputs,'createInputService')('hybrid');i.setSource('r',{reverseThrottle:1});assert.equal(i.sample({dt:0.3,longitudinalSpeed:0}).reverseThrottle,1);
+ i.setSource('steer',{steer:1});i.removeSource('r');i.setSource('r',{reverseThrottle:1});assert.equal(i.sample().reverseThrottle,0);assert.equal(i.sample().steer,1);
+});
+test('swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace',()=>{
+ const i=api(inputs,'createInputService')('touch'),swipe=vertical=>({horizontal:0,vertical,active:true,pointerId:1});
+ for(const middle of [0,1]){i.clear();i.setSwipe(swipe(-1));assert.equal(i.sample({dt:0.3,longitudinalSpeed:0}).reverseThrottle,1);i.setSwipe(swipe(middle));i.setSwipe(swipe(-1));assert.equal(i.sample().reverseThrottle,0);}
+});

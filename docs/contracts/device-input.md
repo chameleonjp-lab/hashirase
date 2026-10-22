@@ -32,3 +32,6 @@ InputServiceはsetSource/removeSource、setSwipe、clear、setEnabled、isEnable
 保存は検証済みv1値だけ。不正JSON/版/範囲/大きさ/キー重複を拒否し対象設定に初期値を使う。API例外でもメモリで継続し、status.messageで保存不能を表示する。他モードや記録を削除しない。
 
 T06単体のfixtureはInputFrameまでを検査する。実際のモード/ホームとの結合と画質/fps/音の適用はT05、iPhone/Safari/VoiceOverや長時間応答測定はT17で確認する。
+
+レビュー後の明確化：後退猶予はsource/swipeの解除・中立/前進への変更時に即時破棄する。ボタンのpointer・キー・読み上げtoggleは別の所有者で、キー解放時にフォーカスが移っても押下元を解放する。異常capture消失は全解放、正常なpointerupに続くcapture解除は他の保持入力を維持する。マウスcaptureもclear/configure/disposeで解放する。2本目のカメラ操作は主指を解除しない。
+保存失敗時は適用値をメモリへ保持し、dialogを開いたまま通知する。hostはinputHelp(profile,mode,settings)を使い、キー割当適用後に説明も更新する。

@@ -1,0 +1,341 @@
+[WebServer] (node:30022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:30034) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/device-layout.spec.mjs:73:1 › review_button_key_release_after_Tab_and_pointer_hold_have_separate_owners (579ms)
+(node:30172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/e2e/device-layout.spec.mjs:78:1 › review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources (495ms)
+(node:30309) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/e2e/device-layout.spec.mjs:82:1 › review_real_mouse_capture_is_released_on_clear_and_dispose (495ms)
+(node:30447) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [chromium] › tests/e2e/device-layout.spec.mjs:86:1 › review_second_finger_camera_keeps_primary_swipe (412ms)
+(node:30579) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [chromium] › tests/e2e/device-layout.spec.mjs:90:1 › review_save_failure_warning_remains_visible_with_memory_value (10.4s)
+(node:30714) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 [chromium] › tests/e2e/device-layout.spec.mjs:94:1 › review_storage_acquisition_denial_still_starts_reference_UI (10.2s)
+(node:30853) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 [chromium] › tests/e2e/device-layout.spec.mjs:97:1 › review_form_whitespace_does_not_start_driving (438ms)
+(node:30985) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  8 [chromium] › tests/e2e/device-layout.spec.mjs:100:1 › review_remapped_keys_update_visible_help (10.5s)
+
+
+  1) [chromium] › tests/e2e/device-layout.spec.mjs:73:1 › review_button_key_release_after_Tab_and_pointer_hold_have_separate_owners 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      73 | test('review_button_key_release_after_Tab_and_pointer_hold_have_separate_owners',async({page})=>{
+      74 |  await ready(page);await page.locator('#settings-open').click();await page.getByLabel('代替の明示操作を表示').check();await page.getByRole('button',{name:'適用',exact:true}).click();
+    > 75 |  const forward=page.getByRole('button',{name:'前進',exact:true});await forward.focus();await page.keyboard.down('Space');expect((await sample(page)).throttle).toBe(1);await page.keyboard.press('Tab');await page.keyboard.up('Space');expect.soft((await sample(page)).throttle).toBe(0);
+         |                                                                                                                                                                                                                                                                                  ^
+      76 |  await page.evaluate(()=>window.harness.clear());const boost=page.getByRole('button',{name:'ロケット',exact:true});await boost.dispatchEvent('pointerdown',pointer(4,100,300));await boost.focus();await page.keyboard.down('Space');await page.keyboard.up('Space');expect.soft((await sample(page)).boost).toBe(true);await boost.dispatchEvent('pointerup',pointer(4,100,300));
+      77 | });
+      78 | test('review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources',async({page})=>{
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:75:274
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      74 |  await ready(page);await page.locator('#settings-open').click();await page.getByLabel('代替の明示操作を表示').check();await page.getByRole('button',{name:'適用',exact:true}).click();
+      75 |  const forward=page.getByRole('button',{name:'前進',exact:true});await forward.focus();await page.keyboard.down('Space');expect((await sample(page)).throttle).toBe(1);await page.keyboard.press('Tab');await page.keyboard.up('Space');expect.soft((await sample(page)).throttle).toBe(0);
+    > 76 |  await page.evaluate(()=>window.harness.clear());const boost=page.getByRole('button',{name:'ロケット',exact:true});await boost.dispatchEvent('pointerdown',pointer(4,100,300));await boost.focus();await page.keyboard.down('Space');await page.keyboard.up('Space');expect.soft((await sample(page)).boost).toBe(true);await boost.dispatchEvent('pointerup',pointer(4,100,300));
+         |                                                                                                                                                                                                                                                                                                          ^
+      77 | });
+      78 | test('review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources',async({page})=>{
+      79 |  await ready(page,'hybrid');const s=page.locator('#surface');await page.keyboard.down('KeyW');await s.dispatchEvent('pointerdown',pointer(7,200,300,'mouse'));await s.dispatchEvent('pointercancel',pointer(7,200,300,'mouse'));expect.soft((await sample(page)).throttle).toBe(0);await page.keyboard.up('KeyW');await page.evaluate(()=>window.harness.clear());
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:76:298
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-b-5ea29-r-hold-have-separate-owners-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-b-5ea29-r-hold-have-separate-owners-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-b-5ea29-r-hold-have-separate-owners-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-b-5ea29-r-hold-have-separate-owners-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/device-layout.spec.mjs:78:1 › review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      77 | });
+      78 | test('review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources',async({page})=>{
+    > 79 |  await ready(page,'hybrid');const s=page.locator('#surface');await page.keyboard.down('KeyW');await s.dispatchEvent('pointerdown',pointer(7,200,300,'mouse'));await s.dispatchEvent('pointercancel',pointer(7,200,300,'mouse'));expect.soft((await sample(page)).throttle).toBe(0);await page.keyboard.up('KeyW');await page.evaluate(()=>window.harness.clear());
+         |                                                                                                                                                                                                                                                                            ^
+      80 |  await s.dispatchEvent('pointerdown',pointer(1,180,300));await s.dispatchEvent('pointermove',pointer(1,180,200));const boost=page.getByRole('button',{name:'ロケット',exact:true});await boost.dispatchEvent('pointerdown',pointer(2,100,500));await boost.dispatchEvent('lostpointercapture',pointer(2,100,500));expect.soft((await sample(page)).throttle).toBe(0);
+      81 | });
+      82 | test('review_real_mouse_capture_is_released_on_clear_and_dispose',async({page})=>{
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:79:268
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      78 | test('review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources',async({page})=>{
+      79 |  await ready(page,'hybrid');const s=page.locator('#surface');await page.keyboard.down('KeyW');await s.dispatchEvent('pointerdown',pointer(7,200,300,'mouse'));await s.dispatchEvent('pointercancel',pointer(7,200,300,'mouse'));expect.soft((await sample(page)).throttle).toBe(0);await page.keyboard.up('KeyW');await page.evaluate(()=>window.harness.clear());
+    > 80 |  await s.dispatchEvent('pointerdown',pointer(1,180,300));await s.dispatchEvent('pointermove',pointer(1,180,200));const boost=page.getByRole('button',{name:'ロケット',exact:true});await boost.dispatchEvent('pointerdown',pointer(2,100,500));await boost.dispatchEvent('lostpointercapture',pointer(2,100,500));expect.soft((await sample(page)).throttle).toBe(0);
+         |                                                                                                                                                                                                                                                                                                                                                          ^
+      81 | });
+      82 | test('review_real_mouse_capture_is_released_on_clear_and_dispose',async({page})=>{
+      83 |  await ready(page,'hybrid');const s=page.locator('#surface'),box=await s.boundingBox();const down=async()=>{await page.mouse.move(box.x+180,box.y+120);await page.mouse.down();await page.mouse.move(box.x+190,box.y+130);expect(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(true);};
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:80:346
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-a-5539d-ellation-clears-all-sources-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-a-5539d-ellation-clears-all-sources-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-a-5539d-ellation-clears-all-sources-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-a-5539d-ellation-clears-all-sources-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/e2e/device-layout.spec.mjs:82:1 › review_real_mouse_capture_is_released_on_clear_and_dispose 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      82 | test('review_real_mouse_capture_is_released_on_clear_and_dispose',async({page})=>{
+      83 |  await ready(page,'hybrid');const s=page.locator('#surface'),box=await s.boundingBox();const down=async()=>{await page.mouse.move(box.x+180,box.y+120);await page.mouse.down();await page.mouse.move(box.x+190,box.y+130);expect(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(true);};
+    > 84 |  await down();await page.evaluate(()=>window.harness.clear());expect.soft(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(false);await page.mouse.up();await down();await page.evaluate(()=>window.harness.dispose());expect.soft(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(false);await page.mouse.up();
+         |                                                                                                                          ^
+      85 | });
+      86 | test('review_second_finger_camera_keeps_primary_swipe',async({page})=>{
+      87 |  await ready(page);const s=page.locator('#surface');await s.dispatchEvent('pointerdown',pointer(1,180,300));await s.dispatchEvent('pointermove',pointer(1,180,200));await page.getByRole('button',{name:'視点を切替',exact:true}).dispatchEvent('click',{detail:1});expect((await page.evaluate(()=>window.harness.metrics())).camera).toBe(1);expect((await sample(page)).throttle).toBe(1);
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:84:122
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      82 | test('review_real_mouse_capture_is_released_on_clear_and_dispose',async({page})=>{
+      83 |  await ready(page,'hybrid');const s=page.locator('#surface'),box=await s.boundingBox();const down=async()=>{await page.mouse.move(box.x+180,box.y+120);await page.mouse.down();await page.mouse.move(box.x+190,box.y+130);expect(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(true);};
+    > 84 |  await down();await page.evaluate(()=>window.harness.clear());expect.soft(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(false);await page.mouse.up();await down();await page.evaluate(()=>window.harness.dispose());expect.soft(await s.evaluate(el=>el.hasPointerCapture(1))).toBe(false);await page.mouse.up();
+         |                                                                                                                                                                                                                                                                                      ^
+      85 | });
+      86 | test('review_second_finger_camera_keeps_primary_swipe',async({page})=>{
+      87 |  await ready(page);const s=page.locator('#surface');await s.dispatchEvent('pointerdown',pointer(1,180,300));await s.dispatchEvent('pointermove',pointer(1,180,200));await page.getByRole('button',{name:'視点を切替',exact:true}).dispatchEvent('click',{detail:1});expect((await page.evaluate(()=>window.harness.metrics())).camera).toBe(1);expect((await sample(page)).throttle).toBe(1);
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:84:278
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-r-43abc-leased-on-clear-and-dispose-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-r-43abc-leased-on-clear-and-dispose-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-r-43abc-leased-on-clear-and-dispose-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-r-43abc-leased-on-clear-and-dispose-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/e2e/device-layout.spec.mjs:86:1 › review_second_finger_camera_keeps_primary_swipe 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      85 | });
+      86 | test('review_second_finger_camera_keeps_primary_swipe',async({page})=>{
+    > 87 |  await ready(page);const s=page.locator('#surface');await s.dispatchEvent('pointerdown',pointer(1,180,300));await s.dispatchEvent('pointermove',pointer(1,180,200));await page.getByRole('button',{name:'視点を切替',exact:true}).dispatchEvent('click',{detail:1});expect((await page.evaluate(()=>window.harness.metrics())).camera).toBe(1);expect((await sample(page)).throttle).toBe(1);
+         |                                                                                                                                                                                                                                                                                                                                                                                 ^
+      88 |  await s.dispatchEvent('pointermove',pointer(1,200,200));expect((await sample(page)).steer).toBeGreaterThan(0);
+      89 | });
+      90 | test('review_save_failure_warning_remains_visible_with_memory_value',async({page})=>{
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:87:369
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-s-0059d--camera-keeps-primary-swipe-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-s-0059d--camera-keeps-primary-swipe-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-s-0059d--camera-keeps-primary-swipe-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-s-0059d--camera-keeps-primary-swipe-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/e2e/device-layout.spec.mjs:90:1 › review_save_failure_warning_remains_visible_with_memory_value 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog') with timeout 10000ms
+      - waiting for getByRole('dialog')
+
+
+      90 | test('review_save_failure_warning_remains_visible_with_memory_value',async({page})=>{
+      91 |  await page.addInitScript(()=>{Storage.prototype.setItem=()=>{throw new DOMException('Quota exceeded','QuotaExceededError');};});await ready(page);await page.locator('#settings-open').click();await page.getByLabel('音量').fill('0.8');await page.getByRole('button',{name:'適用',exact:true}).click();
+    > 92 |  await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByText('この端末へ保存できません。今回の設定はメモリに保持します。',{exact:true})).toBeVisible();expect((await page.evaluate(()=>window.harness.settings())).volume).toBe(0.8);
+         |                                         ^
+      93 | });
+      94 | test('review_storage_acquisition_denial_still_starts_reference_UI',async({page})=>{
+      95 |  await page.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Denied','SecurityError');}}));await ready(page);await page.locator('#settings-open').click();await expect(page.getByText('この端末へ保存できません。今回の設定はメモリに保持します。',{exact:true})).toBeVisible();
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:92:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-s-9cf2d-s-visible-with-memory-value-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-s-9cf2d-s-visible-with-memory-value-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-s-9cf2d-s-visible-with-memory-value-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-s-9cf2d-s-visible-with-memory-value-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests/e2e/device-layout.spec.mjs:94:1 › review_storage_acquisition_denial_still_starts_reference_UI 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      2 | test.beforeEach(async({page})=>{const errors=[];page.on('pageerror',error=>errors.push(String(error)));page.controlErrors=errors;});
+      3 | test.afterEach(async({page})=>{expect(page.controlErrors).toEqual([]);});
+    > 4 | async function ready(page,profile='touch',mode='driving'){await page.goto(`/tests/fixtures/device-controls.html?profile=${profile}&mode=${mode}`);await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);}
+        |                                                                                                                                                                                                                       ^
+      5 | const pointer=(id,x,y,type='touch')=>({pointerId:id,clientX:x,clientY:y,pointerType:type,button:0,bubbles:true});
+      6 | const sample=(page,options)=>page.evaluate(options=>window.harness.sample(options),options);
+      7 | for(const [width,height,profile]of [[360,640,'touch'],[393,852,'touch'],[430,932,'touch'],[640,360,'touch'],[852,393,'touch'],[932,430,'touch'],[1280,720,'hybrid'],[1920,1080,'desktop'],[800,720,'desktop']])test(`device_layout_${profile}_${width}x${height}`,async({page},info)=>{
+        at ready (/workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:4:215)
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:95:136
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-s-4307f-l-still-starts-reference-UI-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-s-4307f-l-still-starts-reference-UI-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-s-4307f-l-still-starts-reference-UI-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-s-4307f-l-still-starts-reference-UI-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests/e2e/device-layout.spec.mjs:97:1 › review_form_whitespace_does_not_start_driving 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+       96 | });
+       97 | test('review_form_whitespace_does_not_start_driving',async({page})=>{
+    >  98 |  await ready(page);await page.locator('#surface').evaluate(el=>{const form=document.createElement('form');form.id='embedded-form';form.innerHTML='<p>フォームの余白</p>';el.append(form);});const form=page.locator('#embedded-form');await form.dispatchEvent('pointerdown',pointer(1,180,300));await form.dispatchEvent('pointermove',pointer(1,180,200));expect((await sample(page)).throttle).toBe(0);
+          |                                                                                                                                                                                                                                                                                                                                                                                            ^
+       99 | });
+      100 | test('review_remapped_keys_update_visible_help',async({page})=>{
+      101 |  await ready(page,'desktop');await page.locator('#settings-open').click();await page.getByLabel('キー割当: 前進').selectOption('KeyQ');await page.getByRole('button',{name:'適用',exact:true}).click();await expect(page.locator('#instructions')).toContainText('Q:前進');await page.locator('#surface').focus();await page.keyboard.down('KeyQ');expect((await sample(page)).throttle).toBe(1);await page.keyboard.up('KeyQ');
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:98:380
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-f-ce102-pace-does-not-start-driving-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-f-ce102-pace-does-not-start-driving-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-f-ce102-pace-does-not-start-driving-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-f-ce102-pace-does-not-start-driving-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › tests/e2e/device-layout.spec.mjs:100:1 › review_remapped_keys_update_visible_help 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#instructions')
+    Expected substring: "Q:前進"
+    Received string:    "W:前進 / S:制動 / R:停止後に後退 / A・D:操舵 / C:視点。マウスのドラッグで視点を操作。 Space:ロケット / H:浮上 / F:ジャンプ。"
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "toContainText" locator('#instructions') with timeout 10000ms
+      - waiting for locator('#instructions')
+        24 × locator resolved to <p id="instructions">W:前進 / S:制動 / R:停止後に後退 / A・D:操舵 / C:視点。マウスのドラッグで視…</p>
+           - unexpected value "W:前進 / S:制動 / R:停止後に後退 / A・D:操舵 / C:視点。マウスのドラッグで視点を操作。 Space:ロケット / H:浮上 / F:ジャンプ。"
+
+
+       99 | });
+      100 | test('review_remapped_keys_update_visible_help',async({page})=>{
+    > 101 |  await ready(page,'desktop');await page.locator('#settings-open').click();await page.getByLabel('キー割当: 前進').selectOption('KeyQ');await page.getByRole('button',{name:'適用',exact:true}).click();await expect(page.locator('#instructions')).toContainText('Q:前進');await page.locator('#surface').focus();await page.keyboard.down('KeyQ');expect((await sample(page)).throttle).toBe(1);await page.keyboard.up('KeyQ');
+          |                                                                                                                                                                                                                                            ^
+      102 | });
+      103 |
+        at /workspace/hashirase-t06/tests/e2e/device-layout.spec.mjs:101:236
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-remapped-keys-update-visible-help-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-device-layout-review-remapped-keys-update-visible-help-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-device-layout-review-remapped-keys-update-visible-help-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-device-layout-review-remapped-keys-update-visible-help-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8 failed
+    [chromium] › tests/e2e/device-layout.spec.mjs:73:1 › review_button_key_release_after_Tab_and_pointer_hold_have_separate_owners 
+    [chromium] › tests/e2e/device-layout.spec.mjs:78:1 › review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources 
+    [chromium] › tests/e2e/device-layout.spec.mjs:82:1 › review_real_mouse_capture_is_released_on_clear_and_dispose 
+    [chromium] › tests/e2e/device-layout.spec.mjs:86:1 › review_second_finger_camera_keeps_primary_swipe 
+    [chromium] › tests/e2e/device-layout.spec.mjs:90:1 › review_save_failure_warning_remains_visible_with_memory_value 
+    [chromium] › tests/e2e/device-layout.spec.mjs:94:1 › review_storage_acquisition_denial_still_starts_reference_UI 
+    [chromium] › tests/e2e/device-layout.spec.mjs:97:1 › review_form_whitespace_does_not_start_driving 
+    [chromium] › tests/e2e/device-layout.spec.mjs:100:1 › review_remapped_keys_update_visible_help ─

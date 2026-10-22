@@ -3,10 +3,16 @@ import {finite,identifier} from '../contracts/validation.js';import {createInput
 export function createInputService(profile,{mode='driving'}={}){
  if(!DEVICE_PROFILES.includes(profile)||!['driving','simulation'].includes(mode))throw new TypeError('Invalid input profile or mode');
  const sources=new Map(),clearListeners=new Set();let swipe=createSwipeFrame(),enabled=true,disposed=false,stoppedTime=0,reverseArmed=false;
+ function resetReverse(){stoppedTime=0;reverseArmed=false;}
+ function inputChanged(){
+  let reverse=swipe.vertical<0,forward=swipe.vertical>0,braking=false;
+  for(const source of sources.values()){reverse||=source.reverseThrottle>0;forward||=source.throttle>0;braking||=source.brake>0;}
+  if(!reverse||forward||braking)resetReverse();
+ }
  function clear(){sources.clear();swipe=createSwipeFrame();stoppedTime=0;reverseArmed=false;for(const listener of [...clearListeners])listener();}
  return Object.freeze({
-  setSource(id,value){identifier(id,'source');const frame=createInputFrame(value);if(enabled&&!disposed)sources.set(id,frame);},removeSource(id){sources.delete(id);},
-  setSwipe(frame){assertSwipeFrame(frame);if(enabled&&!disposed)swipe=createSwipeFrame(frame);},
+  setSource(id,value){identifier(id,'source');const frame=createInputFrame(value);if(enabled&&!disposed){sources.set(id,frame);inputChanged();}},removeSource(id){sources.delete(id);inputChanged();},
+  setSwipe(frame){assertSwipeFrame(frame);if(enabled&&!disposed){swipe=createSwipeFrame(frame);inputChanged();}},
   sample({dt=0,longitudinalSpeed=0}={}){
    finite(dt,'dt',0,1);finite(longitudinalSpeed,'longitudinalSpeed');if(!enabled||disposed)return createInputFrame();
    const raw={throttle:Math.max(0,swipe.vertical),brake:0,reverseThrottle:Math.max(0,-swipe.vertical),steer:swipe.horizontal,boost:false,hover:false,kickflip:false};
