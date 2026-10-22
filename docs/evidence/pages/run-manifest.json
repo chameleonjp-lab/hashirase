@@ -1,0 +1,96 @@
+{
+  "workId": "P01",
+  "baseMain": "1306887074e37ad08d66edab1ea4aac875071e37",
+  "implementationHead": "b2f16de096dcc61cba03a417c189fa64a9b5582d",
+  "pr": "https://github.com/chameleonjp-lab/hashirase/pull/11",
+  "checks": {
+    "node": {
+      "passed": 110,
+      "failed": 0
+    },
+    "browser": {
+      "passed": 62,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0
+    },
+    "build": "PASS",
+    "stagedRuntimeFiles": 25
+  },
+  "githubActions": [
+    {
+      "run": 39817024918,
+      "job": 119958065998,
+      "status": "success"
+    },
+    {
+      "run": 39817024874,
+      "job": 119958066213,
+      "status": "success"
+    }
+  ],
+  "implementationFiles": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "b09d379f8aacd0347738ec07316984d75262d9511f0ad10fa1fc41407e58937d"
+    },
+    {
+      "path": "scripts/stage-pages.mjs",
+      "sha256": "3747b1c9877f83fec25e9a8e10ab901965f40051c1ca8f2202e91947d2942435"
+    },
+    {
+      "path": "scripts/verify-deployment.mjs",
+      "sha256": "57455227a70f33a42fbe8bedf330be26a6abf836d9ae9f8dab53292434c65e6c"
+    },
+    {
+      "path": "scripts/release-target.mjs",
+      "sha256": "9557ccb31ffde94296fab5c2d05e07775d76e4f02db3a5765d783089eac51846"
+    },
+    {
+      "path": "tests/unit/pages-deployment.test.mjs",
+      "sha256": "ae99eec02db482306c20c4633d8f2acd3044173de614804734f360b008292832"
+    },
+    {
+      "path": "tests/e2e/pages-artifact.spec.mjs",
+      "sha256": "c083f6de481e6908f07f0a0e4c9e658e506368a78c1ec234d1453fa564c917ef"
+    },
+    {
+      "path": "tests/support/pages-server.mjs",
+      "sha256": "90a7b1b6f7e3a2e1b3cd4c4c53b6c797694a3e3c3902fb42955f3e9290e42c4f"
+    }
+  ],
+  "viewedImages": [
+    {
+      "path": "docs/evidence/pages/images/published-home.png",
+      "sha256": "ec81a4d9d93376436b5a95b04eb446bebbb1d92fe92a77f2f514da40592e95ed"
+    },
+    {
+      "path": "docs/evidence/pages/images/published-driving.png",
+      "sha256": "8fd906d1a5e7f7e11ba3dbde03f864f9ec45d7435dbd91f839b7da52e0efe3ee"
+    },
+    {
+      "path": "docs/evidence/pages/images/published-simulation.png",
+      "sha256": "9662d5b21b232585580469410ac8cdbd56331aabff7e1f3372987b567edebf2a"
+    }
+  ],
+  "deployment": {
+    "status": "WAITING_USER_MERGE",
+    "url": "https://chameleonjp-lab.github.io/hashirase/",
+    "deployedCommit": null,
+    "remoteVerification": "NOT_RUN",
+    "publicBrowser": "NOT_RUN",
+    "temporaryPermissionsAdded": 0,
+    "environmentAllowedBranches": [
+      "main"
+    ],
+    "bootstrapBranchPushed": false,
+    "blocker": "GitHub App 403 on environment branch policy; no main direct edit or automatic PR merge"
+  },
+  "notVerified": [
+    "T07-T18",
+    "A01-A60",
+    "real devices/Safari",
+    "real-car physics",
+    "rollback of published previous build"
+  ]
+}

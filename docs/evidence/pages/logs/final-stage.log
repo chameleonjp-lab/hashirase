@@ -1,0 +1,7 @@
+
+> hashirase@0.1.0 build
+> node scripts/build.mjs
+
+Regenerated assets/js/simulator.js.
+ESM application build: 45 inputs, 19 outputs; dist/build-manifest.json.
+Pages staged: 63e0d87767a4699bf7b5a74d6b9fafee37574f64, 25 runtime files

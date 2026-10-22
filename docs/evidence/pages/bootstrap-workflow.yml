@@ -1,0 +1,116 @@
+# NOT RUN: adding this branch to github-pages was rejected with HTTP 403.
+# Saved only as evidence of the abandoned bootstrap path; not installed in CI.
+name: Publish merged main once
+on:
+  push:
+    branches: [ops/bootstrap-pages-20261022]
+permissions:
+  contents: read
+jobs:
+  build-main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: app
+    outputs:
+      source-sha: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: app
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          path: publisher
+          sparse-checkout: scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record the actual merged main commit
+        id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: bash tools/install-ci-browser.sh
+      - run: npx playwright test
+      - name: Rebuild and stage only merged main runtime files
+        run: |
+          npm run build
+          node "$GITHUB_WORKSPACE/publisher/scripts/stage-pages.mjs" --root "$GITHUB_WORKSPACE/app" --out "$RUNNER_TEMP/hashirase-pages"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/hashirase-pages
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pages-expected-manifest
+          path: ${{ runner.temp }}/hashirase-pages/build-info.json
+          retention-days: 14
+      - name: Save main regression evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bootstrap-main-regressions
+          path: app/test-results/
+          retention-days: 14
+  release-target:
+    needs: build-main
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      publish: ${{ steps.target.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: target
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ needs.build-main.outputs.source-sha }}
+        run: node scripts/release-target.mjs --source-sha "$SOURCE_SHA"
+  deploy-pages:
+    needs: [build-main, release-target]
+    if: needs.release-target.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Refuse to publish an older main commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ needs.build-main.outputs.source-sha }}
+        run: |
+          current_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')
+          test "$current_sha" = "$SOURCE_SHA"
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: pages-expected-manifest
+          path: ${{ runner.temp }}/pages-expected
+      - name: Verify deployed main commit and all bytes
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+          SOURCE_SHA: ${{ needs.build-main.outputs.source-sha }}
+        run: node scripts/verify-deployment.mjs --url "$PAGES_URL" --expected-sha "$SOURCE_SHA" --manifest "$RUNNER_TEMP/pages-expected/build-info.json"

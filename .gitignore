@@ -3,3 +3,4 @@ test-results/
 playwright-report/
 .superpowers/
 dist/
+.pages-site/
