@@ -1,0 +1,45 @@
+[WebServer] (node:8616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:8628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:4:1 › driving_lifecycle_preserves_controls_and_releases_resources (10.2s)
+
+
+  1) [chromium] › tests/integration/driving-lifecycle.spec.mjs:4:1 › driving_lifecycle_preserves_controls_and_releases_resources 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: undefined
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+       5 |   const diagnostics = await prepareBaseline(page, { observe: false });
+       6 |   await page.goto('/tests/fixtures/driving-session.html');
+    >  7 |   await expect.poll(() => page.evaluate(() => window.harness?.available)).toBe(true);
+         |                                                                           ^
+       8 |   const initial = await page.evaluate(() => window.harness.create());
+       9 |   expect(initial.status).toBe('READY');
+      10 |   await expect(page.locator('#canvas-container canvas')).toHaveCount(1);
+        at /workspace/hashirase-t03/tests/integration/driving-lifecycle.spec.mjs:7:75
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/integration/driving-lifecycle.spec.mjs:4:1 › driving_lifecycle_preserves_controls_and_releases_resources 

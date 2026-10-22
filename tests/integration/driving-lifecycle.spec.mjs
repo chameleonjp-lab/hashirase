@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+import { prepareBaseline } from '../support/baseline-browser.mjs';
+
+test('driving_lifecycle_preserves_controls_and_releases_resources', async ({ page }, testInfo) => {
+  const diagnostics = await prepareBaseline(page, { observe: false });
+  await page.goto('/tests/fixtures/driving-session.html');
+  await expect.poll(() => page.evaluate(() => window.harness?.available)).toBe(true);
+  const initial = await page.evaluate(() => window.harness.create());
+  expect(initial.status).toBe('READY');
+  await expect(page.locator('#canvas-container canvas')).toHaveCount(1);
+  await page.evaluate(() => window.harness.start());
+  const moving = await page.evaluate(() => window.harness.tick(120, { throttle: 1 }));
+  expect(moving.vehicle.position.z).toBeLessThan(initial.vehicle.position.z);
+  const paused = await page.evaluate(() => window.harness.pause());
+  await page.keyboard.down('KeyW');
+  expect(await page.evaluate(() => window.harness.tick(120))).toEqual(paused);
+  await page.keyboard.up('KeyW');
+  await page.evaluate(() => window.harness.resume());
+  await page.locator('#btn-toggle-course').click();
+  expect((await page.evaluate(() => window.harness.tick())).course).toBe('NYC');
+  await page.locator('#btn-reset-car').click();
+  expect((await page.evaluate(() => window.harness.snapshot())).vehicle.damage.hp).toBe(1000);
+  await testInfo.attach('driving-nyc.png', { body: await page.screenshot(), contentType: 'image/png' });
+  await page.locator('#btn-toggle-course').click();
+  await page.locator('#btn-kickflip').click();
+  const air = await page.evaluate(() => window.harness.tick());
+  expect(air.vehicle.telemetry.mode).toBe('AIR');
+  expect(air.vehicle.velocity.y).toBeGreaterThan(0);
+  await testInfo.attach('driving-kickflip.png', { body: await page.screenshot(), contentType: 'image/png' });
+  const metrics = await page.evaluate(() => window.harness.dispose());
+  expect(metrics.listeners).toBe(0); expect(metrics.timers).toBe(0);
+  expect(metrics.liveResources).toBe(0); expect(metrics.disposedResources).toBeGreaterThan(0);
+  await expect(page.locator('canvas')).toHaveCount(0);
+  expect(diagnostics.errors).toEqual([]);
+  await testInfo.attach('driving-lifecycle.json', { body: JSON.stringify({ initial, moving, air, metrics, diagnostics }), contentType: 'application/json' });
+});
