@@ -1,0 +1,25 @@
+
+> hashirase@0.1.0 check
+> npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm test
+
+
+> hashirase@0.1.0 build:check
+> node tools/build.mjs --check
+
+Bundle matches all 11 source parts.
+
+> hashirase@0.1.0 test
+> node tests/smoke.mjs && node --test tests/baseline/original.test.mjs
+
+Smoke test passed: 117 unique IDs and expected asset order.
+✔ original_manifest_identifies_immutable_baseline_sources (39.52506ms)
+✔ original_screen_controls_and_asset_order_are_preserved (0.880105ms)
+✔ original_courses_trims_constants_and_core_features_are_preserved (0.485101ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.971872

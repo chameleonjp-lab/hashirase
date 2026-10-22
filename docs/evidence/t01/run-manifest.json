@@ -75,7 +75,14 @@
   ],
   "reviewer": {
     "images": "root agent visually inspected all 10 committed RED/GREEN images",
-    "independentCodeReview": "in progress"
+    "independentCodeReview": "PASS; docs/evidence/t01/review.md; 0 Critical/Important, 1 deferred Minor"
   },
-  "acceptance": "All A01–A60 remain NOT_RUN. T01 exercises subsets of A27/A51/A55/A56 only."
+  "acceptance": "All A01–A60 remain NOT_RUN. T01 exercises subsets of A27/A51/A55/A56 only.",
+  "integrationMainCommit": "6c3158c4963bff3720dda281eb0c049da1eae1ef",
+  "postMergeVerification": {
+    "codeCommit": "1a2b619569486caca01e4a8c05b0e00a4bb00255",
+    "targetLog": "docs/evidence/t01/logs/final-target.log",
+    "regressionLog": "docs/evidence/t01/logs/post-merge-check.log",
+    "results": "Node 3/3, browser 4/4, npm run check PASS"
+  }
 }
