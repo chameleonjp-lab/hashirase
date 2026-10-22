@@ -1,0 +1,16 @@
+✔ latest_selection_wins (4.124683ms)
+✔ leave_during_load_disposes_late_result (0.779053ms)
+✔ leave_during_prepare_disposes_late_context (0.926606ms)
+✔ host_owns_one_loop_and_pause_resume_excludes_hidden_time (0.722519ms)
+✔ startup_failure_and_retry_do_not_retain_session_or_loop (0.57774ms)
+✔ frame_failure_clears_input_and_releases_resources (0.758743ms)
+✔ resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners (0.633414ms)
+✔ unknown_mode_is_rejected_without_fetch_or_destroying_current_session (0.688788ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 50.254972
