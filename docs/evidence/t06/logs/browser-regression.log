@@ -1,0 +1,36 @@
+[WebServer] (node:27557) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 27 tests using 1 worker
+
+(node:27570) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/baseline/startup.spec.mjs:4:1 › startup_nyc_has_no_unbound_radius (4.4s)
+  ✓   2 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (timer) (903ms)
+  ✓   3 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (load) (909ms)
+  ✓   4 [chromium] › tests/baseline/startup.spec.mjs:60:1 › vehicle_reset_restores_part_positions (3.0s)
+  ✓   5 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_360x640 (364ms)
+  ✓   6 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_393x852 (375ms)
+  ✓   7 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_430x932 (487ms)
+  ✓   8 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_640x360 (337ms)
+  ✓   9 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_852x393 (353ms)
+  ✓  10 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_932x430 (427ms)
+  ✓  11 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_hybrid_1280x720 (498ms)
+  ✓  12 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_1920x1080 (598ms)
+  ✓  13 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_800x720 (404ms)
+  ✓  14 [chromium] › tests/e2e/device-layout.spec.mjs:17:1 › touch_ownership_second_finger_and_release_reach_InputFrame (371ms)
+  ✓  15 [chromium] › tests/e2e/device-layout.spec.mjs:27:1 › hybrid_keyboard_touch_mouse_repeat_and_focus_loss_are_independent (378ms)
+  ✓  16 [chromium] › tests/e2e/device-layout.spec.mjs:33:1 › settings_exclude_driving_swipe_and_mode_inappropriate_fields_and_restore_focus (603ms)
+  ✓  17 [chromium] › tests/e2e/device-layout.spec.mjs:40:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input (595ms)
+  ✓  18 [chromium] › tests/e2e/device-layout.spec.mjs:49:1 › settings_at_200_percent_and_manual_profile_switch_remain_usable (408ms)
+  ✓  19 [chromium] › tests/e2e/device-layout.spec.mjs:55:1 › actual_browser_touch_capture_continues_outside_surface_and_ends_neutral (384ms)
+  ✓  20 [chromium] › tests/e2e/device-layout.spec.mjs:61:1 › reconfiguring_and_disposing_UI_removes_all_owned_listeners (518ms)
+  ✓  21 [chromium] › tests/e2e/device-layout.spec.mjs:67:1 › edge_guide_origin_matches_actual_tap_without_spontaneous_input (331ms)
+  ✓  22 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.5s)
+  ✓  23 [chromium] › tests/integration/driving-lifecycle.spec.mjs:51:1 › driving_fixed_tick_trace_matches_pre_extraction_game (4.9s)
+  ✓  24 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (779ms)
+  ✓  25 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick (2.3s)
+  ✓  26 [chromium] › tests/integration/driving-lifecycle.spec.mjs:109:1 › driving_police_and_siren_survive_audio_extraction (1.7s)
+  ✓  27 [chromium] › tests/integration/driving-lifecycle.spec.mjs:120:1 › driving_external_input_blocks_legacy_keyboard_actions (1.4s)
+
+  27 passed (31.6s)

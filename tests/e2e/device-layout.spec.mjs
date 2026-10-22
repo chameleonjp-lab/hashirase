@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+test.beforeEach(async({page})=>{const errors=[];page.on('pageerror',error=>errors.push(String(error)));page.controlErrors=errors;});
+test.afterEach(async({page})=>{expect(page.controlErrors).toEqual([]);});
 async function ready(page,profile='touch',mode='driving'){await page.goto(`/tests/fixtures/device-controls.html?profile=${profile}&mode=${mode}`);await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);}
 const pointer=(id,x,y,type='touch')=>({pointerId:id,clientX:x,clientY:y,pointerType:type,button:0,bubbles:true});
 const sample=(page,options)=>page.evaluate(options=>window.harness.sample(options),options);
@@ -40,7 +42,7 @@ test('settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input',
  for(const event of ['pointercancel','lostpointercapture']){await start();await s.dispatchEvent(event,pointer(1,200,190));expect((await sample(page)).throttle).toBe(0);}
  await start();await page.evaluate(()=>dispatchEvent(new Event('orientationchange')));expect((await sample(page)).throttle).toBe(0);
  await start();await page.locator('#settings-open').click();expect((await sample(page)).throttle).toBe(0);await s.dispatchEvent('pointerdown',pointer(4,180,280));await s.dispatchEvent('pointermove',pointer(4,200,190));expect((await sample(page)).throttle).toBe(0);
- await page.getByLabel('代替の明示操作を表示').check();await page.getByRole('button',{name:'適用',exact:true}).click();await expect(page.locator('[data-alternative]')).toHaveCount(4);
+  await page.getByLabel('代替の明示操作を表示').check();await page.getByRole('button',{name:'適用',exact:true}).click();await expect(page.locator('[data-alternative]')).toHaveCount(5);
  await page.getByRole('button',{name:'前進',exact:true}).dispatchEvent('pointerdown',pointer(3,200,400));expect((await sample(page)).throttle).toBe(1);
  await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,value:'hidden'});document.dispatchEvent(new Event('visibilitychange'));});expect((await sample(page)).throttle).toBe(0);
 });
@@ -48,4 +50,22 @@ test('settings_at_200_percent_and_manual_profile_switch_remain_usable',async({pa
  await page.setViewportSize({width:393,height:852});await ready(page);await page.addStyleTag({content:'html{font-size:200%}'});await page.locator('#settings-open').click();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.getByRole('button',{name:'閉じる',exact:true}).scrollIntoViewIfNeeded();await expect(page.getByRole('button',{name:'閉じる',exact:true})).toBeVisible();await info.attach('settings-touch-200-percent.png',{body:await page.screenshot(),contentType:'image/png'});
  await page.getByLabel('操作する端末').selectOption('hybrid');expect(await page.evaluate(()=>window.harness.profile())).toBe('hybrid');await page.locator('#settings-open').click();await expect(page.getByLabel('左右のスワイプ感度')).toBeVisible();await expect(page.getByLabel('マウス感度')).toBeVisible();
+});
+
+test('actual_browser_touch_capture_continues_outside_surface_and_ends_neutral',async({page,context})=>{
+ await ready(page);const cdp=await context.newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:3});const box=await page.locator('#surface').boundingBox(),x=box.x+box.width/2,y=box.y+box.height/2;
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});expect((await sample(page)).throttle).toBe(0);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+88,y:10,id:1}]});expect((await sample(page)).throttle).toBe(1);expect((await sample(page)).steer).toBe(1);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});expect((await sample(page)).throttle).toBe(0);expect((await sample(page)).steer).toBe(0);await cdp.detach();
+});
+test('reconfiguring_and_disposing_UI_removes_all_owned_listeners',async({page})=>{
+ await page.addInitScript(()=>{const types=new Set(['pointerdown','pointerup','pointermove','pointercancel','lostpointercapture','keydown','keyup','blur','resize','orientationchange','visibilitychange','click','close','submit','change']);const listeners=[];const add=EventTarget.prototype.addEventListener,remove=EventTarget.prototype.removeEventListener;EventTarget.prototype.addEventListener=function(type,handler,options){if(types.has(type))listeners.push({target:this,type,handler});return add.call(this,type,handler,options);};EventTarget.prototype.removeEventListener=function(type,handler,options){const index=listeners.findIndex(l=>l.target===this&&l.type===type&&l.handler===handler);if(index>=0)listeners.splice(index,1);return remove.call(this,type,handler,options);};window.controlListenerCount=()=>listeners.length;});
+ await ready(page);const before=await page.evaluate(()=>window.controlListenerCount());
+ for(let i=0;i<3;i++){await page.locator('#settings-open').click();await page.getByRole('button',{name:'適用',exact:true}).click();}
+ expect(await page.evaluate(()=>window.controlListenerCount())).toBe(before);await page.evaluate(()=>window.harness.dispose());expect(await page.evaluate(()=>window.controlListenerCount())).toBe(0);
+});
+test('edge_guide_origin_matches_actual_tap_without_spontaneous_input',async({page})=>{
+ await ready(page);const surface=page.locator('#surface'),box=await surface.boundingBox();await surface.dispatchEvent('pointerdown',pointer(1,box.x+3,box.y+3));
+ expect(await page.locator('.swipe-guide').evaluate(el=>parseFloat(el.style.left))).toBe(3);expect(await page.locator('.swipe-guide').evaluate(el=>parseFloat(el.style.top))).toBe(3);
+ expect((await sample(page)).throttle).toBe(0);expect((await sample(page)).steer).toBe(0);
 });

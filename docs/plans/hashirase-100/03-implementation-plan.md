@@ -172,10 +172,10 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** createInputService(profile)、createSwipeController(settings)、createSettingsStore(storage)。タップした場所をpointerIdごとの起点にして、SwipeFrameのhorizontal/verticalをInputFrameへ変換する。入力源別に保持し合成する。profileはtouch/desktop/hybrid。下スワイプの後退は前進停止後に切替える（06参照）
 
-- [ ] 先に検査を書く：touch_tap_is_zero、swipe_up_accelerates、swipe_down_brakes_then_reverses_only_after_stop、swipe_left_right_steers、diagonal_swipe_combines_axes、swipe_returns_to_origin_is_zero、pointer_cancel_clears、primary_pointer_is_not_stolen、second_finger_action_works、touch_and_keyboard_do_not_overwrite、blur_clears_all、settings_separate_by_profile_and_mode、corrupt_storage_uses_defaults。上下左右・斜め・画面端・戻す・離す・前進中の逆噴射防止をfixtureで再現し、設定UIで別端末の不要項目が出ないことを確認する。
-- [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：06の**タップした場所を起点にした2軸スワイプ操作**を標準にする。固定のアクセル・ブレーキ・左右ボタンを主操作から外し、アクセル/制動/後退/操舵を指の移動量に応じて入力する。指を離したら全入力0で惰性走行。後退は停止条件を満たすまで禁止。複数指・追加操作ボタン・画面端・中断・指の捕捉解除を処理。特殊ボタン等は44px以上。PCのキー操作と保存を維持し、初期感度とガイドの表示設定はtouch/desktop/hybrid × driving/simulationで独立させる。
-- [ ] `node --test tests/unit/input-settings.test.mjs tests/unit/swipe-control.test.mjs && npx playwright test tests/e2e/device-layout.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
+- [x] 先に検査を書く：touch_tap_is_zero、swipe_up_accelerates、swipe_down_brakes_then_reverses_only_after_stop、swipe_left_right_steers、diagonal_swipe_combines_axes、swipe_returns_to_origin_is_zero、pointer_cancel_clears、primary_pointer_is_not_stolen、second_finger_action_works、touch_and_keyboard_do_not_overwrite、blur_clears_all、settings_separate_by_profile_and_mode、corrupt_storage_uses_defaults。上下左右・斜め・画面端・戻す・離す・前進中の逆噴射防止をfixtureで再現し、設定UIで別端末の不要項目が出ないことを確認する。
+- [x] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
+- [x] 実装する：06の**タップした場所を起点にした2軸スワイプ操作**を標準にする。固定のアクセル・ブレーキ・左右ボタンを主操作から外し、アクセル/制動/後退/操舵を指の移動量に応じて入力する。指を離したら全入力0で惰性走行。後退は停止条件を満たすまで禁止。複数指・追加操作ボタン・画面端・中断・指の捕捉解除を処理。特殊ボタン等は44px以上。PCのキー操作と保存を維持し、初期感度とガイドの表示設定はtouch/desktop/hybrid × driving/simulationで独立させる。
+- [x] `node --test tests/unit/input-settings.test.mjs tests/unit/swipe-control.test.mjs && npx playwright test tests/e2e/device-layout.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t06` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
 **完了条件:** スマホ・PC・タッチPCが同じ契約を利用でき、スマホでタップ起点の上下左右・斜め入力が成立する。標準画面に固定ペダルは不要。ホームや設定で誤発進せず、解放後は惰性走行となり、設定は混ざらない。T05との統合後に第1段階を判定。

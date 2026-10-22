@@ -41,8 +41,9 @@ export function createSettingsStore(storage){
  const failed=()=>{persistent=false;message='この端末へ保存できません。今回の設定はメモリに保持します。';};
  function read(profile,mode){
   const id=key(profile,mode);if(cache.has(id))return cache.get(id);let value=defaultSettings(profile,mode);
-  try{const raw=storage?.getItem(id);if(raw!==null&&raw!==undefined){if(typeof raw!=='string'||raw.length>16384)throw Error('settings length');const payload=JSON.parse(raw);record(payload,'saved settings');keysOnly(payload,['schemaVersion','values'],'saved settings');if(payload.schemaVersion!==1)throw Error('settings version');record(payload.values,'values');value=validate(profile,mode,{...value,...payload.values});}}
-  catch(error){if(error instanceof SyntaxError||error instanceof TypeError||String(error).includes('settings'))message='保存した設定を読み取れないため、この設定だけ初期値を使います。';else failed();}
+  let raw;try{raw=storage?.getItem(id);}catch{failed();}
+  try{if(raw!==null&&raw!==undefined){if(typeof raw!=='string'||raw.length>16384)throw Error('settings length');const payload=JSON.parse(raw);record(payload,'saved settings');keysOnly(payload,['schemaVersion','values'],'saved settings');if(payload.schemaVersion!==1)throw Error('settings version');record(payload.values,'values');value=validate(profile,mode,{...value,...payload.values});}}
+  catch{message='保存した設定を読み取れないため、この設定だけ初期値を使います。';}
   cache.set(id,value);return value;
  }
  return Object.freeze({read,

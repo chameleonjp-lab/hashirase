@@ -22,6 +22,7 @@ export function createInputService(profile,{mode='driving'}={}){
   },clear,
   onClear(listener){if(typeof listener!=='function')throw new TypeError('clear listener');clearListeners.add(listener);return()=>clearListeners.delete(listener);},
   setEnabled(value){if(typeof value!=='boolean')throw new TypeError('enabled');enabled=value;if(!enabled)clear();},
+  isEnabled(){return enabled&&!disposed;},
   dispose(){if(disposed)return;disposed=true;enabled=false;clear();clearListeners.clear();}
  });
 }
