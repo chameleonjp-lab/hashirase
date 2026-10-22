@@ -1,6 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { build } from 'esbuild';
+import { generateDrivingAdapter } from '../scripts/build-driving-adapter.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // Source parts share one lexical scope and MUST be concatenated in this order.
@@ -20,7 +22,10 @@ const parts = [
 ];
 const output = resolve(root, 'assets/js/simulator.js');
 const contents = await Promise.all(parts.map(part => readFile(resolve(root, part), 'utf8')));
-const generated = '\n' + contents.join('');
+const ports = await build({ absWorkingDir:root,entryPoints:['tools/legacy-ports.mjs'],bundle:true,format:'iife',globalName:'drivingPorts',write:false,logLevel:'silent',target:'es2022' });
+const portNames=['createCarState','createPursuitState','createTimeAttackState','DRIVING_TRIMS','stepVehicleState','createRampProfile','detachVehicle','beginKickflip','calculateCollisionDamage','scoreDrivingState','advanceDistance','applyDrivingVisuals','updateGameCamera','createAudioService'];
+const generated = '\n' + contents.join('').replace('(function () {','(function () {\n'+ports.outputFiles[0].text+'\nconst {'+portNames.join(',')+'}=drivingPorts;');
+await generateDrivingAdapter(root,{check:process.argv.includes('--check')});
 if (process.argv.includes('--check')) {
   const committed = await readFile(output, 'utf8');
   if (committed !== generated) {

@@ -33,7 +33,7 @@ function assetURLs(rootDir) {
     name: 'owned-asset-urls',
     setup(build) {
       build.onResolve({ filter: /^hashirase-asset:/ }, args => ({ path: args.path.slice('hashirase-asset:'.length), namespace: 'asset-file' }));
-      build.onResolve({ filter: /\.(?:css|svg|png|jpe?g|webp|ogg|mp3|wav|glb)$/ }, args => ({
+      build.onResolve({ filter: /\.(?:html|css|svg|png|jpe?g|webp|ogg|mp3|wav|glb)$/ }, args => ({
         path: slash(relative(rootDir, resolve(args.resolveDir, args.path))), namespace: 'asset-url'
       }));
       build.onLoad({ filter: /.*/, namespace: 'asset-url' }, args => ({
@@ -58,7 +58,12 @@ export async function buildProject({ rootDir = defaultRoot, entryPoints } = {}) 
   rootDir = resolve(rootDir);
   await assertBoundaries({ rootDir });
   const hasApp = await exists(resolve(rootDir, 'src/app/main.js'));
-  entryPoints ??= hasApp ? ['src/app/main.js'] : foundationEntries;
+  const modeEntries=[];
+  for(const mode of ['driving','simulation']) {
+    const entry=`src/modes/${mode}/index.js`;
+    if(await exists(resolve(rootDir,entry)))modeEntries.push(entry);
+  }
+  entryPoints ??= hasApp ? ['src/app/main.js'] : [...foundationEntries,...modeEntries];
   const result = await esbuild({
     absWorkingDir: rootDir,
     entryPoints, outdir: 'dist', outbase: 'src', entryNames: '[dir]/[name]',

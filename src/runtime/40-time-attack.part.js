@@ -1,14 +1,5 @@
 const TIME_ATTACK_TARGET_DIST = 3800; // 3.8 km (3,800 meters) from NYC Center (0, 0)
-const timeAttackState = {
-active: false,
-finished: false,
-elapsedSec: 0,
-bestSec: null,
-destX: 0,
-destZ: -3800,
-destName: 'UPPER MANHATTAN // 3.8KM GATE',
-startDistKm: 3.80
-};
+const timeAttackState = createTimeAttackState();
 const goalBeaconGroup = new THREE.Group();
 goalBeaconGroup.visible = false;
 goalBeaconGroup.frustumCulled = false;

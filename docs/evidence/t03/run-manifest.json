@@ -1,0 +1,131 @@
+{
+  "taskId": "T03",
+  "baseCommit": "f44bb235a8c84f3a6af8b5c7338ebdb2f54bc442",
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "Chromium154.0.8037.57",
+    "os": "Linux-6.18.55-x86_64-with-glibc2.41",
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "dpr": 1
+    },
+    "physicalDevices": "NOT_RUN"
+  },
+  "settings": {
+    "step": 0.008333333333333333,
+    "seed": "0x48415348",
+    "physicsRandom": "Mulberry32 fork physics",
+    "visualRandom": "Mulberry32 fork visual",
+    "quality": "fixture DPR1, software WebGL"
+  },
+  "commands": [
+    {
+      "command": "node --test tests/unit/driving-session.test.mjs && npx playwright test tests/integration/driving-lifecycle.spec.mjs",
+      "result": "PASS13 Node +5 browser"
+    },
+    {
+      "command": "npm run check",
+      "result": "PASS45 Node +117 IDs +11 fragments"
+    },
+    {
+      "command": "npm run build",
+      "result": "PASS foundation with driving mode and lazy HTML/CSS assets"
+    },
+    {
+      "command": "npx playwright test",
+      "result": "PASS9 including T01 regressions"
+    }
+  ],
+  "browserStats": {
+    "startTime": "2026-10-22T13:07:03.229Z",
+    "duration": 21365.798000000003,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "comparison": [
+    {
+      "name": "ramp-overhang-flight",
+      "maxDeltas": {
+        "position": 0.0,
+        "velocity": 0.0,
+        "rotation": 0.0
+      },
+      "baselineHP": 1000,
+      "currentHP": 1000
+    },
+    {
+      "name": "coasting-touchdown",
+      "maxDeltas": {
+        "position": 0.0,
+        "velocity": 0.0,
+        "rotation": 0.0
+      },
+      "baselineHP": 1000,
+      "currentHP": 1000
+    },
+    {
+      "name": "reset-kickflip",
+      "maxDeltas": {
+        "position": 0,
+        "velocity": 0,
+        "rotation": 0
+      },
+      "baselineHP": 1000,
+      "currentHP": 1000
+    },
+    {
+      "name": "parked-truck-collision",
+      "maxDeltas": {
+        "position": 0.0,
+        "velocity": 0.0,
+        "rotation": 0.0
+      },
+      "baselineHP": 869,
+      "currentHP": 869
+    }
+  ],
+  "sourceSha256": {
+    ".github/workflows/verify.yml": "4a70170269fdfe90cb02ce76da15a2f45b01794f5beb5fdb090aa8a3ec494b01",
+    "scripts/build-driving-adapter.mjs": "3af7688c4672f22d4055d5b57bdf299313a7dae267928ccf1061348818fb36a7",
+    "scripts/build.mjs": "a799bd4604c23b0bbded9b5befabdd6c8efbb13f27027bdb1aae28446041bbb0",
+    "src/assets/driving/screen.html": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f",
+    "src/modes/driving/index.js": "58b7e44d770b6b9cd8d9533ec7956ece208fc85cbaa86131b5508224117c277a",
+    "src/modes/driving/legacy-adapter.js": "0504894ac223c427ff15fc3eca93f8ac85537680980cb2bd076f85a500c38bae",
+    "src/modes/driving/physics.js": "dbbf9a406f036db5f5787539ea0d9750291cc97cdbf811997e5a7edd085e06e5",
+    "src/modes/driving/rules.js": "94626ff099cbc8af5acd85fda337c09d2584a5f9a7ae78316fe1b54a18cccdc7",
+    "src/modes/driving/screen-assets.js": "670514ac7ee50b24236ce9d4ae8d8fa47256f4d0297a03444aa97af54fd92aed",
+    "src/modes/driving/session.js": "102aa2dbe92924374717a37ec77c9c9b3883e3b798fab4ef3cc17cb263374f69",
+    "src/modes/driving/state.js": "9c18201affc45235ff10f42b99d4ea1aaf7ea4dda263293950c280f03ca45f0a",
+    "src/platform/audio.js": "d32d3e7470129f3e9a8d8cd3eeb767846d109f25a4ada743c735393b5755a9da",
+    "src/rendering/camera.js": "d78d86e19dd3135aca4d2b6055a4e4e67a86a597ac869000c538cc430e12d821",
+    "src/rendering/renderer-host.js": "a413d190f14cc9a5570ca3f5064034c716ed5c15dffac45911d9029434455d59",
+    "src/rendering/vehicle-view.js": "078fa762ae26e13c1371ef0259610896214129e2cc23db2d08fa50717784cc4b",
+    "src/runtime/00-boot-audio.part.js": "7194a0e245b2911aa446e4688f1edeab2aefea733d73bd6794fd7846336d64a1",
+    "src/runtime/10-renderer-track.part.js": "c12c82efb874bd212b7824ac81162dbac2070e3b768ae741e76f4f260944c68d",
+    "src/runtime/20-nyc-traffic.part.js": "25e20fca8ad3423b43ad5d0092c7d04fa904b1fde87c79dc4ab1e295a4f37c49",
+    "src/runtime/30-utility-poles.part.js": "955a6f0e010b003fb3d1846afc66d4322321c3bc4ea9fb5c6e37815f3d163179",
+    "src/runtime/40-time-attack.part.js": "ef6fced4edfcf48bb8a77a166e2f66be79ca2bb898826161bcd1d8b7c5457bd9",
+    "src/runtime/50-police-scoring.part.js": "eb5a9294e85f794a698122c1e6b18679050d76a1552aeca43911f36f962810d9",
+    "src/runtime/60-collisions-damage.part.js": "a7b541497cdc75953060df7c76504c01b990850af2404d725f4c0f4ba23997df",
+    "src/runtime/70-vehicle-model.part.js": "f845a5b71728aadf083681986dbeeaf74ba8874d2780b85308a8fcd6be30f7d9",
+    "src/runtime/80-interface-input.part.js": "87a0e0c5863e0e0ba7edea34ab0a32046cfedb39927eaf19c0180680b6173d36",
+    "src/runtime/90-world-effects.part.js": "d9c83e7a08853d02f7733fcf01da8f5b46ddb58af246a19f358f605d85fc34f7",
+    "src/runtime/99-physics-loop.part.js": "96efa722862ad234c3361a40da34a9b80d1b4697e632d393211cf98105714f89",
+    "tests/integration/driving-lifecycle.spec.mjs": "6cebc30757382ab4c8d346834c93ded14419514c1046206de5217ae49db9d78b",
+    "tests/support/baseline-browser.mjs": "6734cb4851bf231cb50942a91c605bcc2f773ece97b61f127647bfb44bbe85ba",
+    "tests/support/driving-browser.mjs": "3bc72f0d841cf50a50cf94d41ea21126c4209a741504cfe38ec0d80cd685190a",
+    "tests/support/server.mjs": "d20aef335b3d5ef1f2ab2eaf3072e45fe44828e6b02002ef1bc40ae529653752",
+    "tests/unit/driving-session.test.mjs": "fcb734625e6f3af5d633ea7d81bf61af0acaf535578877c286d7d5f2486c7e8c",
+    "tools/build.mjs": "237b7c8b3dbdd85c670950d7fccaa84d6db61c617e5ce33998e74ad573a79ebc",
+    "tools/legacy-ports.mjs": "48a8e9af5886c89d39b0984fb3c749029ae742609ddbf420c8ff3eaaa5001c1a"
+  },
+  "acceptance": "A01–A60 remain NOT_RUN; no stage-1, real-device, or complete game claim",
+  "imagesInspected": [
+    "driving-nyc.png",
+    "driving-kickflip.png",
+    "startup-error-load.png"
+  ]
+}

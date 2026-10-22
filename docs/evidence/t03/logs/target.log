@@ -1,0 +1,35 @@
+✔ driving_import_has_no_side_effect (25.154967ms)
+✔ two_driving_sessions_do_not_share_state (3.10933ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (7.165201ms)
+✔ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (0.418683ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.530001ms)
+✔ driving_disposal_continues_when_one_owned_service_fails (0.48292ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.645887ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.872599ms)
+✔ driving_brake_does_not_become_reverse_drive (1.448499ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.292091ms)
+✔ driving_build_has_a_real_mode_entry_without_simulation_or_Three (129.068241ms)
+✔ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (32.654538ms)
+✔ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (23.941833ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 312.197891
+[WebServer] (node:14010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:14023) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.6s)
+  ✓  2 [chromium] › tests/integration/driving-lifecycle.spec.mjs:51:1 › driving_fixed_tick_trace_matches_pre_extraction_game (4.5s)
+  ✓  3 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (769ms)
+  ✓  4 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_police_and_siren_survive_audio_extraction (1.5s)
+  ✓  5 [chromium] › tests/integration/driving-lifecycle.spec.mjs:106:1 › driving_external_input_blocks_legacy_keyboard_actions (1.2s)
+
+  5 passed (11.8s)

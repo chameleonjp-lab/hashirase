@@ -1,0 +1,11 @@
+[WebServer] (node:10261) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:10274) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.5s)
+  ✓  2 [chromium] › tests/integration/driving-lifecycle.spec.mjs:48:1 › driving_fixed_tick_trace_matches_pre_extraction_game (4.3s)
+
+  2 passed (7.9s)
