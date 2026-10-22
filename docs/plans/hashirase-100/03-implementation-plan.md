@@ -132,10 +132,10 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** createVehicleModel(config)。直線の入力→駆動力/抵抗→加速度→速度/位置を数値だけで返す。質量等はorigin: estimated/reference/measuredを持つ
 
-- [ ] 先に検査を書く：force_over_mass_accelerates、drag_does_not_accelerate_rest、zero_input_remains_finite、simulation_has_no_game_rules。1000kgへ1000Nを10秒与え速度10m/s、位置50mを許容差内で検証。
-- [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：独立した最小3自由度モデルから始める。四輪を作り込む前に単位・符号・時間積分を証明する。ロケット・HP倍率・無制限ガス回復・警察を読み込まない。未実装の四輪機能は完成表示しない。
-- [ ] `node --test tests/physics/straight-line.test.mjs tests/unit/simulation-isolation.test.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
+- [x] 先に検査を書く：force_over_mass_accelerates、drag_does_not_accelerate_rest、zero_input_remains_finite、simulation_has_no_game_rules。1000kgへ1000Nを10秒与え速度10m/s、位置50mを許容差内で検証。
+- [x] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
+- [x] 実装する：独立した最小3自由度モデルから始める。四輪を作り込む前に単位・符号・時間積分を証明する。ロケット・HP倍率・無制限ガス回復・警察を読み込まない。未実装の四輪機能は完成表示しない。
+- [x] `node --test tests/physics/straight-line.test.mjs tests/unit/simulation-isolation.test.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t04` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
 **完了条件:** 別の物理モデルとして数値検査でき、最小試験場で走行可能。現実車の再現済みという表示はない。

@@ -1,0 +1,52 @@
+✔ force_over_mass_accelerates (7.613537ms)
+✔ drive_force_is_scaled_by_throttle_and_reverse_has_the_opposite_sign (1.85536ms)
+✖ drag_does_not_accelerate_rest (5.358277ms)
+✔ resistance_opposes_motion_and_never_reverses_it (29.135276ms)
+✔ braking_stops_forward_and_reverse_without_driving_through_zero (70.489008ms)
+✔ zero_input_remains_finite_and_three_translation_axes_obey_F_equals_ma (1.13712ms)
+✔ same_tick_inputs_are_reproducible_across_render_schedules_and_five_runs (22.628485ms)
+✔ invalid_config_input_environment_and_overflow_do_not_corrupt_state (0.97088ms)
+✔ parameter_metadata_is_bounded_versioned_and_detached (0.337717ms)
+✔ simulation_has_no_game_rules (5.990838ms)
+✔ simulation_sessions_start_pause_reset_and_remain_independent (2.330925ms)
+✔ simulation_abort_disposes_without_global_or_timing_state (0.627814ms)
+✔ simulation_build_and_import_graph_contain_no_driving_code_or_engine (74.05673ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.025272
+
+✖ failing tests:
+
+test at tests/physics/straight-line.test.mjs:36:1
+✖ drag_does_not_accelerate_rest (5.358277ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   x: -0,
+  +   y: -0,
+  +   z: -0
+  -   x: 0,
+  -   y: 0,
+  -   z: 0
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:41:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { x: -0, y: -0, z: -0 },
+    expected: { x: 0, y: 0, z: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

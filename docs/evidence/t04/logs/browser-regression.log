@@ -1,0 +1,14 @@
+[WebServer] (node:19889) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:19901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/baseline/startup.spec.mjs:4:1 › startup_nyc_has_no_unbound_radius (4.5s)
+  ✓  2 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (timer) (967ms)
+  ✓  3 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (load) (683ms)
+  ✓  4 [chromium] › tests/baseline/startup.spec.mjs:60:1 › vehicle_reset_restores_part_positions (3.1s)
+  ✓  5 [chromium] › tests/integration/simulation-track.spec.mjs:4:1 › simulation_minimum_track_uses_real_force_model_and_releases_its_canvas (465ms)
+
+  5 passed (11.0s)
