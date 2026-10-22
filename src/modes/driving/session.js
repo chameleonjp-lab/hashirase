@@ -67,6 +67,7 @@ export async function createMode(context,options={}) {
       snapshot,
       action(name,active){live();if(name!=='rcsSpin'||typeof active!=='boolean')throw new TypeError('Invalid driving action');backend.action?.(name,active);},
       reset(initial){live();if(initial?.position)for(const key of ['x','y','z'])finite(initial.position[key],'position.'+key);context.input.clear();backend.reset(initial);world.reset(options.seed??0x48415348);},
+      resultAction(action){live();if(!['retry','freeDrive'].includes(action))throw new TypeError('Invalid driving result action');context.input.clear();if(backend.resultAction)backend.resultAction(action);else backend.reset();if(action==='retry')world.reset(options.seed??0x48415348);},
       dispose
     });
     signal.addEventListener('abort',dispose,{once:true});return session;

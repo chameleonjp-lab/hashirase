@@ -1293,6 +1293,8 @@ transform: translateY(12px);
 [data-mode-screen="driving"] #top-scroll-strip button{min-height:44px!important;min-width:44px}
 [data-mode-screen="driving"] #btn-accel, [data-mode-screen="driving"] #btn-brake, [data-mode-screen="driving"] #btn-steer-left, [data-mode-screen="driving"] #btn-steer-right, [data-mode-screen="driving"] #btn-hover, [data-mode-screen="driving"] #btn-boost, [data-mode-screen="driving"] #btn-kickflip, [data-mode-screen="driving"] #btn-auto-accel{display:none!important}
 [data-mode-screen="driving"] #btn-rcs-spin{min-height:56px!important;min-width:56px}
-[data-mode-screen="driving"] #help-modal, [data-mode-screen="driving"] #gameover-modal, [data-mode-screen="driving"] #ta-result-modal{padding-top:76px}
-[data-mode-screen="driving"] #help-modal button, [data-mode-screen="driving"] #gameover-modal button, [data-mode-screen="driving"] #ta-result-modal button{min-height:44px;min-width:44px}
+[data-mode-screen="driving"] #help-modal, [data-mode-screen="driving"] #gameover-modal, [data-mode-screen="driving"] #ta-finish-modal{padding-top:76px;overflow:auto}
+[data-mode-screen="driving"] #help-modal>div, [data-mode-screen="driving"] #gameover-modal>div, [data-mode-screen="driving"] #ta-finish-modal>div{max-height:calc(100dvh - 100px);overflow:auto}
+[data-mode-screen="driving"] #help-modal button, [data-mode-screen="driving"] #gameover-modal button, [data-mode-screen="driving"] #ta-finish-modal button{min-height:44px;min-width:44px}
+[data-mode-screen="driving"] #btn-gameover-retry, [data-mode-screen="driving"] #btn-ta-retry, [data-mode-screen="driving"] #btn-ta-close-modal{min-height:56px}
 

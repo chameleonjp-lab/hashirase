@@ -37,7 +37,9 @@ function drawState(state){
  if(atHome&&!homeView)homeView=mountHome(homeRoot,{onSelect:choose,onSettings:openHomeSettings});
  if(!atHome&&homeView){homeView.dispose();homeView=null;}
  if(active)active.stage.hidden=!['READY','RUNNING','PAUSED','RESULT'].includes(state.state);
- panel.replaceChildren();panel.hidden=['HOME','READY','RUNNING'].includes(state.state);
+ const retainedHelp=state.state==='PAUSED'&&state.pauseReason==='help'&&active?.root.querySelector('#help-modal:not(.hidden)');
+ const retainedResult=state.state==='RESULT'&&active?.pack.hasResults;
+ panel.replaceChildren();panel.hidden=['HOME','READY','RUNNING'].includes(state.state)||!!retainedHelp||!!retainedResult;
  const pauseButton=app.querySelector('[data-pause]');pauseButton.disabled=state.state!=='RUNNING';pauseButton.textContent=state.state==='PAUSED'?'中断中':'一時停止';
  const text=value=>{const p=document.createElement('p');p.textContent=value;panel.append(p);};
  const button=(label,callback)=>{const b=document.createElement('button');b.textContent=label;b.type='button';b.addEventListener('click',callback);panel.append(b);};
@@ -49,7 +51,7 @@ function drawState(state){
   button('リセットして再開',()=>{host.reset();host.resume();});
  }
  if(state.state==='DISPOSING')text('ホームに戻っています…');
- if(state.state==='RESULT'){text('走行が終了しました');button('リセットして再開',()=>{host.reset();host.resume();});}
+ if(state.state==='RESULT'&&!retainedResult){text('走行が終了しました');button('リセットして再開',()=>{host.reset();host.resume();});}
 }
 
 async function prepareMode(module,{mode,scope,abortSignal,sessionId}){
@@ -91,7 +93,8 @@ async function prepareMode(module,{mode,scope,abortSignal,sessionId}){
  bind();
  const events=listenerScope();scope.own(events);
  events.on(root,'webglcontextlost',e=>{e.preventDefault();if(!abortSignal.aborted)host.reportError(new Error('描画が停止しました。再試行してください。'));},true);
- events.on(root,'click',e=>{if(e.target.closest('#btn-help'))host.pause('help');if(e.target.closest('#btn-toggle-course,#btn-reset-car'))facade.clear();});
+ events.on(root,'click',e=>{if(host.snapshot().state==='RESULT'&&e.target.closest('#btn-gameover-retry,#btn-ta-retry,#btn-ta-close-modal')){e.preventDefault();e.stopImmediatePropagation();host.resultAction(e.target.closest('#btn-ta-close-modal')?'freeDrive':'retry');if(host.snapshot().state==='RUNNING')surface.focus({preventScroll:true});}},true);
+ events.on(root,'click',e=>{if(e.target.closest('#btn-help'))host.pause('help');if(e.target.closest('#btn-close-help,#btn-close-help-bottom'))drawState(host.snapshot());if(e.target.closest('#btn-toggle-course,#btn-reset-car'))facade.clear();});
  const renderer={...pack.renderer,render(snapshot,alpha){pack.renderer.render(snapshot,alpha);if(mode==='simulation'){const rect=root.querySelector('canvas')?.getBoundingClientRect();if(rect){surface.style.top=rect.top+'px';surface.style.height=rect.height+'px';surface.style.bottom='auto';}}},resize(size){pack.renderer.resize(size);}};
  renderer.resize({width:innerWidth,height:innerHeight,pixelRatio:devicePixelRatio});
  const world={step(){},query:()=>Object.freeze({}),reset(){},dispose(){}};

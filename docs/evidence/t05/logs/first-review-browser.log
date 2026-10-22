@@ -1,0 +1,336 @@
+[WebServer] (node:49080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:49092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_pointer (4.8s)
+(node:49221) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_keyboard (11.7s)
+(node:49357) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_retry (4.8s)
+(node:49497) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_close-modal (4.9s)
+(node:49635) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 (1.0m)
+(node:49779) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 (1.0m)
+(node:49958) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 [chromium] › tests/e2e/result-quality.spec.mjs:24:1 › review_repeated_home_waits_for_actual_AudioContext_close (11.5s)
+
+
+  1) [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_pointer ────────
+
+    TimeoutError: locator.click: Timeout 3000ms exceeded.
+    Call log:
+      - waiting for locator('#btn-gameover-retry')
+        - locator resolved to <button id="btn-gameover-retry" class="btn-game flex-1 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs sm:text-sm cursor-pointer shadow-lg">↵↺ リトライ (体力1000で最初からやり直す)↵</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        6 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+
+
+       9 | for(const input of ['pointer','keyboard'])test('review_game_result_retry_'+input,async({page},info)=>{
+      10 |  await prepareApp(page);await terminalProbe(page);await page.goto('/');await open(page,'driving');await page.evaluate(()=>window.__terminal.gameOver());await tick(page);await expect(state(page)).toHaveAttribute('data-app-state','RESULT');await expect(page.locator('#go-reason-text')).toContainText('検査用の衝突');await expect(page.locator('#go-final-score')).toContainText('pt');await info.attach('game-result-'+input+'.png',{body:await page.screenshot(),contentType:'image/png'});
+    > 11 |  const retry=page.locator('#btn-gameover-retry');if(input==='pointer')await retry.click({timeout:3000});else{await retry.focus();await page.keyboard.press('Enter');}await expect(state(page)).toHaveAttribute('data-app-state','RUNNING');await tick(page,2);expect(await page.evaluate(()=>window.__terminal.snapshot().pursuit.gameOver)).toBe(false);expect(await page.evaluate(()=>window.__terminal.snapshot().hp)).toBe(1000);expect((await diagnostics(page)).activeRAF).toBe(1);await expect(page.locator('canvas')).toHaveCount(1);await home(page);
+         |                                                                                   ^
+      12 | });
+      13 | for(const action of ['retry','close-modal'])test('review_time_attack_result_'+action,async({page},info)=>{
+      14 |  await prepareApp(page);await terminalProbe(page);await page.goto('/');await open(page,'driving');await page.evaluate(()=>window.__terminal.goal());await tick(page);await expect(state(page)).toHaveAttribute('data-app-state','RESULT');await expect(page.locator('#ta-finish-time')).toContainText('42');await expect(page.locator('#ta-finish-score')).toContainText('pt');await info.attach('time-attack-result-'+action+'.png',{body:await page.screenshot(),contentType:'image/png'});await page.locator('#btn-ta-'+action).click({timeout:3000});await expect(state(page)).toHaveAttribute('data-app-state','RUNNING');await tick(page,2);const result=await page.evaluate(()=>window.__terminal.snapshot());expect(result.timeAttack.finished).toBe(false);expect(result.timeAttack.active).toBe(action==='retry');await expect(page.locator('#ta-finish-modal')).not.toBeVisible();expect((await diagnostics(page)).activeRAF).toBe(1);await home(page);
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:11:83
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-game-result-retry-pointer-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review-game-result-retry-pointer-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-game-result-retry-pointer-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review-game-result-retry-pointer-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_keyboard ───────
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('[data-app-state]')
+    Expected: "RUNNING"
+    Received: "RESULT"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('[data-app-state]') with timeout 10000ms
+      - waiting for locator('[data-app-state]')
+        24 × locator resolved to <div id="app" data-mode="driving" data-app-state="RESULT">…</div>
+           - unexpected value "RESULT"
+
+
+       9 | for(const input of ['pointer','keyboard'])test('review_game_result_retry_'+input,async({page},info)=>{
+      10 |  await prepareApp(page);await terminalProbe(page);await page.goto('/');await open(page,'driving');await page.evaluate(()=>window.__terminal.gameOver());await tick(page);await expect(state(page)).toHaveAttribute('data-app-state','RESULT');await expect(page.locator('#go-reason-text')).toContainText('検査用の衝突');await expect(page.locator('#go-final-score')).toContainText('pt');await info.attach('game-result-'+input+'.png',{body:await page.screenshot(),contentType:'image/png'});
+    > 11 |  const retry=page.locator('#btn-gameover-retry');if(input==='pointer')await retry.click({timeout:3000});else{await retry.focus();await page.keyboard.press('Enter');}await expect(state(page)).toHaveAttribute('data-app-state','RUNNING');await tick(page,2);expect(await page.evaluate(()=>window.__terminal.snapshot().pursuit.gameOver)).toBe(false);expect(await page.evaluate(()=>window.__terminal.snapshot().hp)).toBe(1000);expect((await diagnostics(page)).activeRAF).toBe(1);await expect(page.locator('canvas')).toHaveCount(1);await home(page);
+         |                                                                                                                                                                                                ^
+      12 | });
+      13 | for(const action of ['retry','close-modal'])test('review_time_attack_result_'+action,async({page},info)=>{
+      14 |  await prepareApp(page);await terminalProbe(page);await page.goto('/');await open(page,'driving');await page.evaluate(()=>window.__terminal.goal());await tick(page);await expect(state(page)).toHaveAttribute('data-app-state','RESULT');await expect(page.locator('#ta-finish-time')).toContainText('42');await expect(page.locator('#ta-finish-score')).toContainText('pt');await info.attach('time-attack-result-'+action+'.png',{body:await page.screenshot(),contentType:'image/png'});await page.locator('#btn-ta-'+action).click({timeout:3000});await expect(state(page)).toHaveAttribute('data-app-state','RUNNING');await tick(page,2);const result=await page.evaluate(()=>window.__terminal.snapshot());expect(result.timeAttack.finished).toBe(false);expect(result.timeAttack.active).toBe(action==='retry');await expect(page.locator('#ta-finish-modal')).not.toBeVisible();expect((await diagnostics(page)).activeRAF).toBe(1);await home(page);
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:11:192
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-game-result-retry-keyboard-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review-game-result-retry-keyboard-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-game-result-retry-keyboard-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review-game-result-retry-keyboard-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_retry ────────
+
+    TimeoutError: locator.click: Timeout 3000ms exceeded.
+    Call log:
+      - waiting for locator('#btn-ta-retry')
+        - locator resolved to <button id="btn-ta-retry" class="btn-game flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs cursor-pointer">↵🏁 次の3.8km目的地で再挑戦↵</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        6 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+
+
+      12 | });
+      13 | for(const action of ['retry','close-modal'])test('review_time_attack_result_'+action,async({page},info)=>{
+    > 14 |  await prepareApp(page);await terminalProbe(page);await page.goto('/');await open(page,'driving');await page.evaluate(()=>window.__terminal.goal());await tick(page);await expect(state(page)).toHaveAttribute('data-app-state','RESULT');await expect(page.locator('#ta-finish-time')).toContainText('42');await expect(page.locator('#ta-finish-score')).toContainText('pt');await info.attach('time-attack-result-'+action+'.png',{body:await page.screenshot(),contentType:'image/png'});await page.locator('#btn-ta-'+action).click({timeout:3000});await expect(state(page)).toHaveAttribute('data-app-state','RUNNING');await tick(page,2);const result=await page.evaluate(()=>window.__terminal.snapshot());expect(result.timeAttack.finished).toBe(false);expect(result.timeAttack.active).toBe(action==='retry');await expect(page.locator('#ta-finish-modal')).not.toBeVisible();expect((await diagnostics(page)).activeRAF).toBe(1);await home(page);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      15 | });
+      16 | for(const dpr of [1,2])test('review_simulation_quality_survives_resize_dpr_'+dpr,async({browser},info)=>{
+      17 |  const context=await browser.newContext({baseURL:'http://127.0.0.1:4173',viewport:{width:1280,height:800},deviceScaleFactor:dpr}),page=await context.newPage();await prepareApp(page);await page.goto('/');
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:14:516
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-time-attack-result-retry-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review-time-attack-result-retry-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-time-attack-result-retry-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review-time-attack-result-retry-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_close-modal ──
+
+    TimeoutError: locator.click: Timeout 3000ms exceeded.
+    Call log:
+      - waiting for locator('#btn-ta-close-modal')
+        - locator resolved to <button id="btn-ta-close-modal" class="btn-game px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs cursor-pointer">↵フリー走行へ↵</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        6 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div tabindex="0" aria-label="運転エリア" class="drive-surface mode-input-area">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+
+
+      12 | });
+      13 | for(const action of ['retry','close-modal'])test('review_time_attack_result_'+action,async({page},info)=>{
+    > 14 |  await prepareApp(page);await terminalProbe(page);await page.goto('/');await open(page,'driving');await page.evaluate(()=>window.__terminal.goal());await tick(page);await expect(state(page)).toHaveAttribute('data-app-state','RESULT');await expect(page.locator('#ta-finish-time')).toContainText('42');await expect(page.locator('#ta-finish-score')).toContainText('pt');await info.attach('time-attack-result-'+action+'.png',{body:await page.screenshot(),contentType:'image/png'});await page.locator('#btn-ta-'+action).click({timeout:3000});await expect(state(page)).toHaveAttribute('data-app-state','RUNNING');await tick(page,2);const result=await page.evaluate(()=>window.__terminal.snapshot());expect(result.timeAttack.finished).toBe(false);expect(result.timeAttack.active).toBe(action==='retry');await expect(page.locator('#ta-finish-modal')).not.toBeVisible();expect((await diagnostics(page)).activeRAF).toBe(1);await home(page);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      15 | });
+      16 | for(const dpr of [1,2])test('review_simulation_quality_survives_resize_dpr_'+dpr,async({browser},info)=>{
+      17 |  const context=await browser.newContext({baseURL:'http://127.0.0.1:4173',viewport:{width:1280,height:800},deviceScaleFactor:dpr}),page=await context.newPage();await prepareApp(page);await page.goto('/');
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:14:516
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-time-attack-result-close-modal-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review-time-attack-result-close-modal-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review-time-attack-result-close-modal-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review-time-attack-result-close-modal-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.selectOption: Test ended.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('画質', { exact: true })
+
+
+      18 |  async function quality(expected){await tick(page);const size=await page.locator('canvas').evaluate(c=>({backing:c.width,css:c.getBoundingClientRect().width}));expect(Math.abs(size.backing-Math.round(size.css*expected))).toBeLessThanOrEqual(1);}
+      19 |  for(const [name,ratio]of [['low',0.75],['balanced',1],['high',Math.min(dpr,2)]]){
+    > 20 |   await page.locator('[data-settings-mode="simulation"]').click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await open(page,'simulation');await quality(ratio);await page.setViewportSize({width:1200,height:800});await quality(ratio);
+         |                                                                                                                                ^
+      21 |   await page.getByRole('button',{name:'設定',exact:true}).click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await page.getByRole('button',{name:'再開',exact:true}).click();await quality(ratio);await home(page);await open(page,'simulation');await quality(ratio);await home(page);
+      22 |  }await context.close();
+      23 | });
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:20:128
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.selectOption: Test ended.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('画質', { exact: true })
+
+
+      18 |  async function quality(expected){await tick(page);const size=await page.locator('canvas').evaluate(c=>({backing:c.width,css:c.getBoundingClientRect().width}));expect(Math.abs(size.backing-Math.round(size.css*expected))).toBeLessThanOrEqual(1);}
+      19 |  for(const [name,ratio]of [['low',0.75],['balanced',1],['high',Math.min(dpr,2)]]){
+    > 20 |   await page.locator('[data-settings-mode="simulation"]').click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await open(page,'simulation');await quality(ratio);await page.setViewportSize({width:1200,height:800});await quality(ratio);
+         |                                                                                                                                ^
+      21 |   await page.getByRole('button',{name:'設定',exact:true}).click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await page.getByRole('button',{name:'再開',exact:true}).click();await quality(ratio);await home(page);await open(page,'simulation');await quality(ratio);await home(page);
+      22 |  }await context.close();
+      23 | });
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:20:128
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests/e2e/result-quality.spec.mjs:24:1 › review_repeated_home_waits_for_actual_AudioContext_close 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('[data-app-state]')
+    Expected: "DISPOSING"
+    Received: "HOME"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('[data-app-state]') with timeout 10000ms
+      - waiting for locator('[data-app-state]')
+        24 × locator resolved to <div id="app" data-mode="" data-app-state="HOME">…</div>
+           - unexpected value "HOME"
+
+
+      23 | });
+      24 | test('review_repeated_home_waits_for_actual_AudioContext_close',async({page})=>{
+    > 25 |  await prepareApp(page);await page.addInitScript(()=>{const Real=window.AudioContext;window.AudioContext=class extends Real{close(){window.__audioClosing=true;return new Promise(resolve=>{window.__finishAudioClose=()=>super.close().then(()=>{window.__audioClosing=false;resolve();});});}};});await page.goto('/');await open(page,'driving');await page.locator('#btn-sound').click();expect((await diagnostics(page)).audio.contexts).toBe(1);await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(state(page)).toHaveAttribute('data-app-state','DISPOSING');await page.getByRole('link',{name:'HASHIRASE ホーム',exact:true}).click();await expect(state(page)).toHaveAttribute('data-app-state','DISPOSING');expect((await diagnostics(page)).activeSession).toBe(1);await page.evaluate(()=>window.__finishAudioClose());await expect(state(page)).toHaveAttribute('data-app-state','HOME');await open(page,'simulation');expect(await page.evaluate(()=>window.__audioClosing)).toBe(false);await home(page);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      26 | });
+      27 |
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:25:672
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--5a9b2-r-actual-AudioContext-close-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review--5a9b2-r-actual-AudioContext-close-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--5a9b2-r-actual-AudioContext-close-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review--5a9b2-r-actual-AudioContext-close-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_pointer ─────────
+    [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_keyboard ────────
+    [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_retry ─────────
+    [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_close-modal ───
+    [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 
+    [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 
+    [chromium] › tests/e2e/result-quality.spec.mjs:24:1 › review_repeated_home_waits_for_actual_AudioContext_close 

@@ -4958,6 +4958,7 @@ hostWindow.__hideLoadingScreen();
 const extractedRules=createDrivingRules(carState,policePursuitState,timeAttackState);
 let pendingRenderTime=0,previousKick=false,disposed=false;
 function clearInputs(){modeActions.rcsSpin=false;for(const key of Object.keys(inputs))inputs[key]=false;autoAccelLocked=false;activePointers.clear();updateAutoAccelUI();}
+function resetRunState(){clearInputs();stopAutoDemo();previousKick=false;pendingRenderTime=0;simulationTime=0;extractedRules.reset();}
 return Object.freeze({
 step(dt,frame,environment={}){
   if(disposed)return;
@@ -4971,7 +4972,8 @@ configureView(settings){if(disposed)return;__viewSettings={...__viewSettings,...
 look(dx,dy){camOrbitYawOffset-=dx*0.0065;camOrbitPitchOffset=Math.max(-0.25,Math.min(0.65,camOrbitPitchOffset+dy*0.0045));},
 cycleCamera(){applyCameraMode(currentCamIndex===1?0:1);return currentCamIndex===1?'cockpit':'chase';},
 resize(){if(!disposed)handleViewportResize();},
-reset(initial={}){clearInputs();stopAutoDemo();resetVehicle(initial.position?.x??0,initial.position?.z??(currentCourse==='NYC'?0:36));carState.y=initial.position?.y??0;previousKick=false;pendingRenderTime=0;simulationTime=0;extractedRules.reset();applyCurrentDrivingVisuals(0);},
+reset(initial={}){resetRunState();stopNycTimeAttack();resetVehicle(initial.position?.x??0,initial.position?.z??(currentCourse==='NYC'?0:36));carState.y=initial.position?.y??0;applyCurrentDrivingVisuals(0);},
+resultAction(action){resetRunState();if(action==='retry'){if(timeAttackState.active)startNycTimeAttack();else resetVehicle(0,currentCourse==='NYC'?0:36);}else stopNycTimeAttack();applyCurrentDrivingVisuals(0);},
 pause(){clearInputs();},
 render(){if(disposed)return;updateSmoke(pendingRenderTime);updateCamera(pendingRenderTime);renderer.render(scene,camera);pendingRenderTime=0;},
 dispose(){if(disposed)return;disposed=true;clearInputs();surface.detach();}

@@ -15,17 +15,17 @@ function signedSpeed(snapshot){const v=snapshot?.vehicle?.velocity,q=snapshot?.v
 export function createSessionHost({loadMode,prepare,requestFrame=callback=>globalThis.requestAnimationFrame(callback),cancelFrame=id=>globalThis.cancelAnimationFrame(id),onChange=()=>{},countCanvases=()=>0,loadTimeoutMs=15000}={}){
  if(typeof loadMode!=='function'||typeof prepare!=='function')throw new TypeError('Host requires loadMode and prepare');
  finite(loadTimeoutMs,'loadTimeoutMs',0);
- let generation=0,current=null,state='HOME',error=null,disposed=false,maxActiveSession=0,maxCanvas=0;
+ let generation=0,current=null,state='HOME',error=null,disposed=false,maxActiveSession=0,maxCanvas=0,cleanupBarrier=Promise.resolve(),disposePromise;
  const liveSessions=new Set(),frames=new Set(),initialized={driving:0,simulation:0},cleanupErrors=[];
  function snapshot(){maxCanvas=Math.max(maxCanvas,countCanvases());return readonlyCopy({state,mode:current?.mode??null,error,pauseReason:current?.context?.clock.snapshot().pauseReason??null,activeSession:liveSessions.size,activeRAF:frames.size,maxActiveSession,maxCanvas,initialized,cleanupErrors,generation});}
  function emit(){onChange(snapshot());}
  function cancelLoop(record){if(record?.frame!==null&&record?.frame!==undefined){cancelFrame(record.frame);frames.delete(record.frame);record.frame=null;}}
  function adopt(context,scope){for(const key of ['input','world','renderer','audio','events'])if(context[key]&&typeof context[key]!=='function'&&typeof context[key].dispose==='function')scope.own(context[key]);return context;}
  function teardown(record){
-  if(!record)return Promise.resolve();if(record.teardown)return record.teardown;
+  if(!record||record.teardown)return cleanupBarrier;
   record.controller.abort();cancelLoop(record);
   try{record.context?.input.clear();record.context?.input.setEnabled?.(false);record.context?.clock.pause('leave');}catch(e){cleanupErrors.push(String(e));}
-  record.teardown=record.scope.dispose().then(()=>{cleanupErrors.push(...record.scope.snapshot().errors);record.session=null;record.context=null;});return record.teardown;
+  record.teardown=cleanupBarrier.then(()=>record.scope.dispose()).then(()=>{cleanupErrors.push(...record.scope.snapshot().errors);if(record.session)liveSessions.delete(record.session);record.session=null;record.context=null;});cleanupBarrier=record.teardown;return cleanupBarrier;
  }
  function valid(record){return current===record&&!record.controller.signal.aborted&&!disposed;}
  async function fail(record,cause){if(!valid(record))return;state='ERROR';error=String(cause?.message??cause);await teardown(record);if(current===record)emit();}
@@ -60,16 +60,18 @@ export function createSessionHost({loadMode,prepare,requestFrame=callback=>globa
    const sessionPromise=Promise.resolve(module.createMode(context,{legacyControls:false})).then(session=>{record.scope.own(session);return session;});
    const session=await abortable(sessionPromise,record.controller.signal);if(!valid(record))return;assertModeSession(session);record.session=session;
    clearTimeout(timer);state='READY';emit();if(!valid(record))return;
-   record.scope.own(()=>liveSessions.delete(session));liveSessions.add(session);maxActiveSession=Math.max(maxActiveSession,liveSessions.size);
+   liveSessions.add(session);maxActiveSession=Math.max(maxActiveSession,liveSessions.size);
    context.clock.reset();session.start();context.input.setEnabled?.(true);state='RUNNING';if(record.pendingPause)pause(record.pendingPause);else{emit();schedule(record);}
   }catch(cause){if(valid(record))await fail(record,cause);}
  }
  async function leaveMode(){const record=current,currentGeneration=++generation;current=null;state='DISPOSING';error=null;emit();await teardown(record);if(generation===currentGeneration){state='HOME';emit();}}
+ function resume(){const record=current;if(!record?.session||state!=='PAUSED')return;try{record.context.clock.resume();record.session.resume();record.context.input.setEnabled?.(true);record.lastTime=record.lastRender=null;state='RUNNING';emit();schedule(record);}catch(cause){void fail(record,cause);}}
  return Object.freeze({selectMode,leaveMode,pause,
   action(name,active){if(current?.session&&valid(current)&&(state==='RUNNING'||!active))current.session.action?.(name,active);},
   reportError(cause){if(current)void fail(current,cause);},
-  resume(){const record=current;if(!record?.session||state!=='PAUSED')return;try{record.context.clock.resume();record.session.resume();record.context.input.setEnabled?.(true);record.lastTime=record.lastRender=null;state='RUNNING';emit();schedule(record);}catch(cause){void fail(record,cause);}},
+  resume,
+  resultAction(action){if(!['retry','freeDrive'].includes(action))throw new TypeError('Invalid result action');const record=current;if(!record?.session||!valid(record)||state!=='RESULT')return;try{record.context.input.clear();if(record.session.resultAction)record.session.resultAction(action);else record.session.reset?.();record.context.clock.reset();record.context.clock.pause('manual');record.lastTime=record.lastRender=null;record.context.renderer.render(record.session.snapshot(),0);state='PAUSED';resume();}catch(cause){void fail(record,cause);}},
   reset(){const record=current;if(!record?.session)return;record.context.input.clear();record.session.reset?.();record.context.clock.reset();record.lastTime=record.lastRender=null;if(state==='RESULT')state='PAUSED';if(state==='PAUSED')record.context.clock.pause('manual');record.context.renderer.render(record.session.snapshot(),0);emit();},
-  snapshot,async dispose(){if(disposed)return;await leaveMode();disposed=true;}
+  snapshot,dispose(){if(disposePromise)return disposePromise;disposed=true;disposePromise=leaveMode();return disposePromise;}
  });
 }

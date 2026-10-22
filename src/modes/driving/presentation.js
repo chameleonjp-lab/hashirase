@@ -7,6 +7,6 @@ export async function prepareDriving({root,scope,signal,settings,createRendererH
  const audio=scope.own(createAudioService({createContext:()=>new(view.AudioContext||view.webkitAudioContext)(),random:createRandom(0x48415348).fork('audio').next}));
  renderer.configure(settings);audio.configure(settings);
  for(const id of ['btn-steer-left','btn-brake']){const group=root.querySelector('#'+id)?.closest('.glass-bar');if(group)group.style.display='none';}
- for(const id of ['help-modal','gameover-modal','ta-result-modal'])root.querySelector('#'+id)?.setAttribute('data-no-drive','');
- return{renderer,audio,cameraLabel:'視点を切替',hiddenSettings:[],hasRcs:true,configure(next){renderer.configure(next);audio.configure(next);}};
+ for(const id of ['help-modal','gameover-modal','ta-finish-modal'])root.querySelector('#'+id)?.setAttribute('data-no-drive','');
+ return{renderer,audio,cameraLabel:'視点を切替',hiddenSettings:[],hasRcs:true,hasResults:true,configure(next){renderer.configure(next);audio.configure(next);}};
 }

@@ -3,10 +3,10 @@ import {prepareApp as prepare,tick,diagnostics} from '../support/app-browser.mjs
 async function select(page,mode){await page.locator(`[data-select-mode="${mode}"]`).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await expect(page.locator('canvas')).toHaveCount(1);await tick(page);}
 async function home(page){await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','HOME');await expect(page.locator('canvas')).toHaveCount(0);}
 test('home_requests_no_3d',async({page},info)=>{
- const d=await prepare(page);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();
+ const d=await prepare(page);const m=JSON.parse(await readFile(new URL('../../dist/build-manifest.json',import.meta.url),'utf8'));const forbidden=m.outputs.filter(out=>out.inputs.some(input=>/src\/(?:modes|assets)\/(?:driving|simulation)\/|node_modules\/three|src\/rendering\/|src\/platform\/audio/.test(input))).map(out=>'/'+out.path);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();expect(d.requests.filter(url=>forbidden.includes(new URL(url).pathname))).toEqual([]);
  expect(d.requests.filter(url=>/three|assets\/js\/simulator|modes\/(driving|simulation)|legacy-adapter/.test(url))).toEqual([]);
  await expect(page.getByRole('button',{name:'シミュレーターをはじめる',exact:true})).toBeVisible();await expect(page.locator('canvas')).toHaveCount(0);expect((await diagnostics(page)).initialized).toEqual({driving:0,simulation:0});
- await info.attach('home.png',{body:await page.screenshot(),contentType:'image/png'});expect(d.errors).toEqual([]);
+ await info.attach('home.png',{body:await page.screenshot(),contentType:'image/png'});await info.attach('home-network.json',{body:JSON.stringify({requests:d.requests,forbidden,diagnostics:await diagnostics(page)}),contentType:'application/json'});expect(d.errors).toEqual([]);
 });
 for(const mode of ['driving','simulation'])test(`${mode}_does_not_fetch_${mode==='driving'?'simulation':'driving'}`,async({page},info)=>{
  const d=await prepare(page);const manifest=JSON.parse(await readFile(new URL('../../dist/build-manifest.json',import.meta.url),'utf8'));const opposite=mode==='driving'?'simulation':'driving';
@@ -18,7 +18,7 @@ for(const mode of ['driving','simulation'])test(`${mode}_does_not_fetch_${mode==
 });
 test('mode_round_trips_and_inputs_remain_owned',async({page})=>{
  const d=await prepare(page);await page.goto('/');for(let i=0;i<20;i++)for(const mode of ['driving','simulation']){await select(page,mode);await page.keyboard.down('KeyW');await tick(page,2);await page.keyboard.up('KeyW');await page.getByRole('button',{name:'一時停止',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','PAUSED');await page.getByRole('button',{name:'再開',exact:true}).click();await home(page);}
- expect(d.errors).toEqual([]);expect((await diagnostics(page)).maxActiveSession).toBe(1);expect((await diagnostics(page)).maxCanvas).toBe(1);
+ expect(d.errors).toEqual([]);expect((await diagnostics(page)).maxActiveSession).toBe(1);expect((await diagnostics(page)).maxCanvas).toBe(1);expect((await diagnostics(page)).cleanupErrors).toEqual([]);await expect(page.locator('.dialogs dialog')).toHaveCount(0);await expect(page.locator('link[href*="/assets/screen-"]')).toHaveCount(0);
 });
 
 test('real_settings_persist_per_mode_and_do_not_resume_held_input',async({page},info)=>{
