@@ -1,0 +1,5 @@
+POST /repos/chameleonjp-lab/hashirase/environments/github-pages/deployment-branch-policies
+name: ops/bootstrap-pages-20261022; type: branch
+GitHub API: Resource not accessible by integration (HTTP 403)
+No temporary policy created; GET before/after both contain only main policy 63955279.
+No bootstrap branch push or deployment executed.

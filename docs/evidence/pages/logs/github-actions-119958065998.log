@@ -1,0 +1,1262 @@
+﻿2026-10-22T16:48:04.4124573Z Current runner version: '2.338.0'
+2026-10-22T16:48:04.4143068Z ##[group]Runner Image Provisioner
+2026-10-22T16:48:04.4143662Z Hosted Compute Agent
+2026-10-22T16:48:04.4144349Z Version: 20261021.618
+2026-10-22T16:48:04.4144839Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-22T16:48:04.4145321Z Build Date: 2026-10-21T00:45:21Z
+2026-10-22T16:48:04.4145767Z Worker ID: {63a5e755-ffa8-4cf6-81b1-d8df5376303b}
+2026-10-22T16:48:04.4146248Z Region: centralus
+2026-10-22T16:48:04.4146643Z Cloud: Azure
+2026-10-22T16:48:04.4147002Z ##[endgroup]
+2026-10-22T16:48:04.4148150Z ##[group]Operating System
+2026-10-22T16:48:04.4148558Z Ubuntu
+2026-10-22T16:48:04.4148933Z 24.04.5
+2026-10-22T16:48:04.4149301Z LTS
+2026-10-22T16:48:04.4149639Z ##[endgroup]
+2026-10-22T16:48:04.4149983Z ##[group]Runner Image
+2026-10-22T16:48:04.4150422Z Image: ubuntu-24.04
+2026-10-22T16:48:04.4150824Z Version: 20261021.345.10
+2026-10-22T16:48:04.4151671Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261021.345/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-22T16:48:04.4152582Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261021.345
+2026-10-22T16:48:04.4153217Z ##[endgroup]
+2026-10-22T16:48:04.4153961Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T16:48:04.4155486Z Contents: read
+2026-10-22T16:48:04.4155862Z Metadata: read
+2026-10-22T16:48:04.4156315Z ##[endgroup]
+2026-10-22T16:48:04.4157707Z Secret source: Actions
+2026-10-22T16:48:04.4158317Z Cache mode: write
+2026-10-22T16:48:04.4158781Z Prepare workflow directory
+2026-10-22T16:48:04.4391206Z Prepare all required actions
+2026-10-22T16:48:04.4439310Z Getting action download info
+2026-10-22T16:48:04.6872486Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-22T16:48:04.7798580Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-22T16:48:04.9023835Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T16:48:05.0685133Z Download action repository 'actions/upload-pages-artifact@v3' (SHA:56afc609e74202658d3ffba0e8f6dda462b719fa)
+2026-10-22T16:48:05.2973607Z Getting action download info
+2026-10-22T16:48:05.4355689Z Complete job name: source-check
+2026-10-22T16:48:05.4987366Z ##[group]Run actions/checkout@v4
+2026-10-22T16:48:05.4987804Z with:
+2026-10-22T16:48:05.4988043Z   fetch-depth: 0
+2026-10-22T16:48:05.4988312Z   repository: chameleonjp-lab/hashirase
+2026-10-22T16:48:05.4990423Z   token: ***
+2026-10-22T16:48:05.4990670Z   ssh-strict: true
+2026-10-22T16:48:05.4990922Z   ssh-user: git
+2026-10-22T16:48:05.4991177Z   persist-credentials: true
+2026-10-22T16:48:05.4991449Z   clean: true
+2026-10-22T16:48:05.4991703Z   sparse-checkout-cone-mode: true
+2026-10-22T16:48:05.4992000Z   fetch-tags: false
+2026-10-22T16:48:05.4992253Z   show-progress: true
+2026-10-22T16:48:05.4992507Z   lfs: false
+2026-10-22T16:48:05.4992742Z   submodules: false
+2026-10-22T16:48:05.4993001Z   set-safe-directory: true
+2026-10-22T16:48:05.4993305Z   allow-unsafe-pr-checkout: false
+2026-10-22T16:48:05.4993677Z ##[endgroup]
+2026-10-22T16:48:05.5708858Z Syncing repository: chameleonjp-lab/hashirase
+2026-10-22T16:48:05.5710602Z ##[group]Getting Git version info
+2026-10-22T16:48:05.5711345Z Working directory is '/home/runner/work/hashirase/hashirase'
+2026-10-22T16:48:05.5712334Z [command]/usr/bin/git version
+2026-10-22T16:48:05.5768738Z git version 2.55.0
+2026-10-22T16:48:05.5788227Z ##[endgroup]
+2026-10-22T16:48:05.5794001Z Temporarily overriding HOME='/home/runner/work/_temp/32fa036e-a985-45ea-bba3-a6c2d19b4708' before making global git config changes
+2026-10-22T16:48:05.5796163Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T16:48:05.5809626Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hashirase/hashirase
+2026-10-22T16:48:05.5861967Z Deleting the contents of '/home/runner/work/hashirase/hashirase'
+2026-10-22T16:48:05.5868124Z ##[group]Initializing the repository
+2026-10-22T16:48:05.5868920Z [command]/usr/bin/git init /home/runner/work/hashirase/hashirase
+2026-10-22T16:48:05.5971081Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T16:48:05.5972041Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T16:48:05.5972770Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T16:48:05.5973311Z hint: call:
+2026-10-22T16:48:05.5973543Z hint:
+2026-10-22T16:48:05.5973857Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T16:48:05.5974420Z hint:
+2026-10-22T16:48:05.5974931Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T16:48:05.5975785Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T16:48:05.5976430Z hint:
+2026-10-22T16:48:05.5976794Z hint: 	git branch -m <name>
+2026-10-22T16:48:05.5977210Z hint:
+2026-10-22T16:48:05.5977752Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T16:48:05.5980099Z Initialized empty Git repository in /home/runner/work/hashirase/hashirase/.git/
+2026-10-22T16:48:05.5988990Z [command]/usr/bin/git remote add origin https://github.com/chameleonjp-lab/hashirase
+2026-10-22T16:48:05.6035132Z ##[endgroup]
+2026-10-22T16:48:05.6035826Z ##[group]Disabling automatic garbage collection
+2026-10-22T16:48:05.6039060Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T16:48:05.6083823Z ##[endgroup]
+2026-10-22T16:48:05.6084564Z ##[group]Setting up auth
+2026-10-22T16:48:05.6090925Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T16:48:05.6127919Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T16:48:05.6440202Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T16:48:05.6479681Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T16:48:05.6680076Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T16:48:05.6717411Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T16:48:05.6915388Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T16:48:05.6958320Z ##[endgroup]
+2026-10-22T16:48:05.6959019Z ##[group]Fetching the repository
+2026-10-22T16:48:05.6966492Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +4e6bae946549c169945feb89b85b1140ce70d1da:refs/remotes/pull/11/merge
+2026-10-22T16:48:08.4602284Z From https://github.com/chameleonjp-lab/hashirase
+2026-10-22T16:48:08.4603663Z  * [new branch]      docs/hashirase-100point-plan-20261022    -> origin/docs/hashirase-100point-plan-20261022
+2026-10-22T16:48:08.4604970Z  * [new branch]      docs/tap-origin-swipe-control-20261022   -> origin/docs/tap-origin-swipe-control-20261022
+2026-10-22T16:48:08.4605847Z  * [new branch]      feat/t01                                 -> origin/feat/t01
+2026-10-22T16:48:08.4606628Z  * [new branch]      feat/t02                                 -> origin/feat/t02
+2026-10-22T16:48:08.4607120Z  * [new branch]      feat/t03                                 -> origin/feat/t03
+2026-10-22T16:48:08.4607428Z  * [new branch]      feat/t04                                 -> origin/feat/t04
+2026-10-22T16:48:08.4607768Z  * [new branch]      feat/t05                                 -> origin/feat/t05
+2026-10-22T16:48:08.4608205Z  * [new branch]      feat/t06                                 -> origin/feat/t06
+2026-10-22T16:48:08.4609002Z  * [new branch]      feature/mode-home-device-settings-police-five-20261021 -> origin/feature/mode-home-device-settings-police-five-20261021
+2026-10-22T16:48:08.4609632Z  * [new branch]      import/original-roadster-html-20261021   -> origin/import/original-roadster-html-20261021
+2026-10-22T16:48:08.4610011Z  * [new branch]      main                                     -> origin/main
+2026-10-22T16:48:08.4610375Z  * [new branch]      ops/publish-pages                        -> origin/ops/publish-pages
+2026-10-22T16:48:08.4610836Z  * [new branch]      refactor/split-index-by-responsibility-20261022 -> origin/refactor/split-index-by-responsibility-20261022
+2026-10-22T16:48:08.4611343Z  * [new ref]         4e6bae946549c169945feb89b85b1140ce70d1da -> pull/11/merge
+2026-10-22T16:48:08.4612699Z ##[endgroup]
+2026-10-22T16:48:08.4613085Z ##[group]Determining the checkout info
+2026-10-22T16:48:08.4613525Z ##[endgroup]
+2026-10-22T16:48:08.4613720Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T16:48:08.4667107Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T16:48:08.4701538Z ##[group]Checking out the ref
+2026-10-22T16:48:08.4704050Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/11/merge
+2026-10-22T16:48:08.5354871Z Note: switching to 'refs/remotes/pull/11/merge'.
+2026-10-22T16:48:08.5355228Z 
+2026-10-22T16:48:08.5355461Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-22T16:48:08.5355790Z changes and commit them, and you can discard any commits you make in this
+2026-10-22T16:48:08.5356104Z state without impacting any branches by switching back to a branch.
+2026-10-22T16:48:08.5356291Z 
+2026-10-22T16:48:08.5356422Z If you want to create a new branch to retain commits you create, you may
+2026-10-22T16:48:08.5356770Z do so (now or later) by using -c with the switch command. Example:
+2026-10-22T16:48:08.5356962Z 
+2026-10-22T16:48:08.5357049Z   git switch -c <new-branch-name>
+2026-10-22T16:48:08.5357181Z 
+2026-10-22T16:48:08.5357316Z Or undo this operation with:
+2026-10-22T16:48:08.5357488Z 
+2026-10-22T16:48:08.5357559Z   git switch -
+2026-10-22T16:48:08.5357649Z 
+2026-10-22T16:48:08.5357793Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-22T16:48:08.5358188Z 
+2026-10-22T16:48:08.5358405Z HEAD is now at 4e6bae9 Merge b2f16de096dcc61cba03a417c189fa64a9b5582d into 1306887074e37ad08d66edab1ea4aac875071e37
+2026-10-22T16:48:08.5417305Z ##[endgroup]
+2026-10-22T16:48:08.5419661Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T16:48:08.5450194Z 4e6bae946549c169945feb89b85b1140ce70d1da
+2026-10-22T16:48:08.5676297Z ##[group]Run actions/setup-node@v4
+2026-10-22T16:48:08.5676526Z with:
+2026-10-22T16:48:08.5676686Z   node-version: 22
+2026-10-22T16:48:08.5676841Z   always-auth: false
+2026-10-22T16:48:08.5677003Z   check-latest: false
+2026-10-22T16:48:08.5678448Z   token: ***
+2026-10-22T16:48:08.5678600Z ##[endgroup]
+2026-10-22T16:48:08.6948960Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-10-22T16:48:08.6952271Z (node:2047) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T16:48:08.6952752Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T16:48:08.6954696Z ##[group]Environment details
+2026-10-22T16:48:09.0401351Z node: v22.23.4
+2026-10-22T16:48:09.0402374Z npm: 10.9.9
+2026-10-22T16:48:09.0402576Z yarn: 1.22.22
+2026-10-22T16:48:09.0403217Z ##[endgroup]
+2026-10-22T16:48:09.0528737Z ##[group]Run npm ci
+2026-10-22T16:48:09.0528997Z [36;1mnpm ci[0m
+2026-10-22T16:48:09.0663215Z shell: /usr/bin/bash -e {0}
+2026-10-22T16:48:09.0663437Z ##[endgroup]
+2026-10-22T16:48:11.3667592Z 
+2026-10-22T16:48:11.3671926Z added 80 packages, and audited 81 packages in 2s
+2026-10-22T16:48:11.3672274Z 
+2026-10-22T16:48:11.3672430Z 19 packages are looking for funding
+2026-10-22T16:48:11.3672648Z   run `npm fund` for details
+2026-10-22T16:48:11.3885657Z 
+2026-10-22T16:48:11.3886672Z 7 vulnerabilities (2 moderate, 5 high)
+2026-10-22T16:48:11.3888126Z 
+2026-10-22T16:48:11.3888677Z To address issues that do not require attention, run:
+2026-10-22T16:48:11.3889303Z   npm audit fix
+2026-10-22T16:48:11.3889617Z 
+2026-10-22T16:48:11.3890041Z To address all issues (including breaking changes), run:
+2026-10-22T16:48:11.3890586Z   npm audit fix --force
+2026-10-22T16:48:11.3890886Z 
+2026-10-22T16:48:11.3891170Z Run `npm audit` for details.
+2026-10-22T16:48:11.4341506Z ##[group]Run npm run check
+2026-10-22T16:48:11.4341702Z [36;1mnpm run check[0m
+2026-10-22T16:48:11.4390999Z shell: /usr/bin/bash -e {0}
+2026-10-22T16:48:11.4391167Z ##[endgroup]
+2026-10-22T16:48:11.5091673Z 
+2026-10-22T16:48:11.5092332Z > hashirase@0.1.0 check
+2026-10-22T16:48:11.5093751Z > npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm run check:boundaries && npm test
+2026-10-22T16:48:11.5094768Z 
+2026-10-22T16:48:11.5733458Z 
+2026-10-22T16:48:11.5734357Z > hashirase@0.1.0 build:check
+2026-10-22T16:48:11.5735105Z > node tools/build.mjs --check
+2026-10-22T16:48:11.5735300Z 
+2026-10-22T16:48:11.7565871Z Bundle matches all 11 source parts.
+2026-10-22T16:48:11.9066329Z 
+2026-10-22T16:48:11.9067115Z > hashirase@0.1.0 check:boundaries
+2026-10-22T16:48:11.9067447Z > node scripts/check-boundaries.mjs
+2026-10-22T16:48:11.9067654Z 
+2026-10-22T16:48:12.0822112Z Boundary check: 40 ESM modules, 85 imports; 11 legacy fragments explicitly excluded.
+2026-10-22T16:48:12.1589573Z 
+2026-10-22T16:48:12.1590285Z > hashirase@0.1.0 test
+2026-10-22T16:48:12.1591038Z > node tests/smoke.mjs && npm run test:unit && npm run test:integration && npm run test:physics
+2026-10-22T16:48:12.1591398Z 
+2026-10-22T16:48:12.1873912Z Smoke test passed: 117 unique IDs and expected asset order.
+2026-10-22T16:48:12.2522638Z 
+2026-10-22T16:48:12.2523237Z > hashirase@0.1.0 test:unit
+2026-10-22T16:48:12.2523604Z > node --test tests/baseline/original.test.mjs tests/unit/*.test.mjs
+2026-10-22T16:48:12.2523822Z 
+2026-10-22T16:48:12.2975724Z TAP version 13
+2026-10-22T16:48:12.4255864Z # Subtest: original_manifest_identifies_immutable_baseline_sources
+2026-10-22T16:48:12.4281876Z ok 1 - original_manifest_identifies_immutable_baseline_sources
+2026-10-22T16:48:12.4282791Z   ---
+2026-10-22T16:48:12.4283301Z   duration_ms: 83.077305
+2026-10-22T16:48:12.4283739Z   type: 'test'
+2026-10-22T16:48:12.4284072Z   ...
+2026-10-22T16:48:12.4328799Z # Subtest: original_screen_controls_and_asset_order_are_preserved
+2026-10-22T16:48:12.4329699Z ok 2 - original_screen_controls_and_asset_order_are_preserved
+2026-10-22T16:48:12.4354796Z   ---
+2026-10-22T16:48:12.4386180Z   duration_ms: 1.08588
+2026-10-22T16:48:12.4414702Z   type: 'test'
+2026-10-22T16:48:12.4444682Z   ...
+2026-10-22T16:48:12.4445386Z # Subtest: original_courses_trims_constants_and_core_features_are_preserved
+2026-10-22T16:48:12.4474919Z ok 3 - original_courses_trims_constants_and_core_features_are_preserved
+2026-10-22T16:48:12.4504750Z   ---
+2026-10-22T16:48:12.4505201Z   duration_ms: 0.821549
+2026-10-22T16:48:12.4534694Z   type: 'test'
+2026-10-22T16:48:12.4564789Z   ...
+2026-10-22T16:48:12.4592186Z # Subtest: clock_is_render_rate_independent
+2026-10-22T16:48:12.4592819Z ok 4 - clock_is_render_rate_independent
+2026-10-22T16:48:12.4629273Z   ---
+2026-10-22T16:48:12.4656096Z   duration_ms: 6.693708
+2026-10-22T16:48:12.4684848Z   type: 'test'
+2026-10-22T16:48:12.4714733Z   ...
+2026-10-22T16:48:12.4717252Z # Subtest: clock_remains_render_rate_independent_over_ten_minutes
+2026-10-22T16:48:12.4744942Z ok 5 - clock_remains_render_rate_independent_over_ten_minutes
+2026-10-22T16:48:12.4768718Z   ---
+2026-10-22T16:48:12.4769189Z   duration_ms: 42.207405
+2026-10-22T16:48:12.4769535Z   type: 'test'
+2026-10-22T16:48:12.4769720Z   ...
+2026-10-22T16:48:12.4770054Z # Subtest: clock_marks_overload_without_dropping_unprocessed_time
+2026-10-22T16:48:12.4770525Z ok 6 - clock_marks_overload_without_dropping_unprocessed_time
+2026-10-22T16:48:12.4771240Z   ---
+2026-10-22T16:48:12.4771422Z   duration_ms: 0.741306
+2026-10-22T16:48:12.4771627Z   type: 'test'
+2026-10-22T16:48:12.4771805Z   ...
+2026-10-22T16:48:12.4772141Z # Subtest: clock_bounds_each_advance_and_can_drain_a_short_backlog
+2026-10-22T16:48:12.4772607Z ok 7 - clock_bounds_each_advance_and_can_drain_a_short_backlog
+2026-10-22T16:48:12.4772906Z   ---
+2026-10-22T16:48:12.4773393Z   duration_ms: 0.24306
+2026-10-22T16:48:12.4773613Z   type: 'test'
+2026-10-22T16:48:12.4773792Z   ...
+2026-10-22T16:48:12.4801920Z # Subtest: clock_pause_excludes_hidden_time_and_resume_does_not_catch_up
+2026-10-22T16:48:12.4802410Z ok 8 - clock_pause_excludes_hidden_time_and_resume_does_not_catch_up
+2026-10-22T16:48:12.4802726Z   ---
+2026-10-22T16:48:12.4802913Z   duration_ms: 0.389322
+2026-10-22T16:48:12.4803138Z   type: 'test'
+2026-10-22T16:48:12.4803308Z   ...
+2026-10-22T16:48:12.4803619Z # Subtest: clock_rejects_bad_values_and_does_not_replay_a_failed_step
+2026-10-22T16:48:12.4804274Z ok 9 - clock_rejects_bad_values_and_does_not_replay_a_failed_step
+2026-10-22T16:48:12.4804609Z   ---
+2026-10-22T16:48:12.4804785Z   duration_ms: 0.519429
+2026-10-22T16:48:12.4805040Z   type: 'test'
+2026-10-22T16:48:12.4805216Z   ...
+2026-10-22T16:48:12.4805546Z # Subtest: random_is_repeatable_and_visual_draws_do_not_change_physics
+2026-10-22T16:48:12.4806023Z ok 10 - random_is_repeatable_and_visual_draws_do_not_change_physics
+2026-10-22T16:48:12.4806348Z   ---
+2026-10-22T16:48:12.4806651Z   duration_ms: 1.453639
+2026-10-22T16:48:12.4806858Z   type: 'test'
+2026-10-22T16:48:12.4807040Z   ...
+2026-10-22T16:48:12.4807426Z # Subtest: clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes
+2026-10-22T16:48:12.4808017Z ok 11 - clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes
+2026-10-22T16:48:12.4808393Z   ---
+2026-10-22T16:48:12.4808571Z   duration_ms: 0.182247
+2026-10-22T16:48:12.4808780Z   type: 'test'
+2026-10-22T16:48:12.4808980Z   ...
+2026-10-22T16:48:12.4809395Z # Subtest: input_frame_rejects_invalid_values_and_defaults_reverse_throttle
+2026-10-22T16:48:12.4809977Z ok 12 - input_frame_rejects_invalid_values_and_defaults_reverse_throttle
+2026-10-22T16:48:12.4810309Z   ---
+2026-10-22T16:48:12.4810492Z   duration_ms: 1.81566
+2026-10-22T16:48:12.4810704Z   type: 'test'
+2026-10-22T16:48:12.4810885Z   ...
+2026-10-22T16:48:12.4811284Z # Subtest: input_frame_resolves_drive_conflicts_without_reverse_force_during_braking
+2026-10-22T16:48:12.4811880Z ok 13 - input_frame_resolves_drive_conflicts_without_reverse_force_during_braking
+2026-10-22T16:48:12.4812260Z   ---
+2026-10-22T16:48:12.4812447Z   duration_ms: 0.273155
+2026-10-22T16:48:12.4812636Z   type: 'test'
+2026-10-22T16:48:12.4812818Z   ...
+2026-10-22T16:48:12.4813198Z # Subtest: swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership
+2026-10-22T16:48:12.4813733Z ok 14 - swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership
+2026-10-22T16:48:12.4814082Z   ---
+2026-10-22T16:48:12.4814401Z   duration_ms: 0.347067
+2026-10-22T16:48:12.4814612Z   type: 'test'
+2026-10-22T16:48:12.4814788Z   ...
+2026-10-22T16:48:12.4815174Z # Subtest: vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots
+2026-10-22T16:48:12.4815728Z ok 15 - vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots
+2026-10-22T16:48:12.4816090Z   ---
+2026-10-22T16:48:12.4816260Z   duration_ms: 1.136677
+2026-10-22T16:48:12.4816468Z   type: 'test'
+2026-10-22T16:48:12.4816643Z   ...
+2026-10-22T16:48:12.4817005Z # Subtest: session_contract_preserves_named_ports_and_has_no_render_loop
+2026-10-22T16:48:12.4817567Z ok 16 - session_contract_preserves_named_ports_and_has_no_render_loop
+2026-10-22T16:48:12.4817890Z   ---
+2026-10-22T16:48:12.4818068Z   duration_ms: 0.378365
+2026-10-22T16:48:12.4818270Z   type: 'test'
+2026-10-22T16:48:12.4818443Z   ...
+2026-10-22T16:48:12.4818680Z # Subtest: events_reject_invalid_session
+2026-10-22T16:48:12.4818992Z ok 17 - events_reject_invalid_session
+2026-10-22T16:48:12.4819224Z   ---
+2026-10-22T16:48:12.4819632Z   duration_ms: 1.004557
+2026-10-22T16:48:12.4819837Z   type: 'test'
+2026-10-22T16:48:12.4820012Z   ...
+2026-10-22T16:48:12.4820336Z # Subtest: events_are_readonly_deduplicated_and_isolated_per_session
+2026-10-22T16:48:12.4820822Z ok 18 - events_are_readonly_deduplicated_and_isolated_per_session
+2026-10-22T16:48:12.4821136Z   ---
+2026-10-22T16:48:12.4821305Z   duration_ms: 0.265213
+2026-10-22T16:48:12.4821687Z   type: 'test'
+2026-10-22T16:48:12.4821864Z   ...
+2026-10-22T16:48:12.7570445Z # Subtest: driving_import_has_no_side_effect
+2026-10-22T16:48:12.7575664Z ok 19 - driving_import_has_no_side_effect
+2026-10-22T16:48:12.7576170Z   ---
+2026-10-22T16:48:12.7576489Z   duration_ms: 44.780115
+2026-10-22T16:48:12.7576831Z   type: 'test'
+2026-10-22T16:48:12.7577131Z   ...
+2026-10-22T16:48:12.7577524Z # Subtest: two_driving_sessions_do_not_share_state
+2026-10-22T16:48:12.7578017Z ok 20 - two_driving_sessions_do_not_share_state
+2026-10-22T16:48:12.7578398Z   ---
+2026-10-22T16:48:12.7578693Z   duration_ms: 5.160262
+2026-10-22T16:48:12.7579055Z   type: 'test'
+2026-10-22T16:48:12.7605468Z   ...
+2026-10-22T16:48:12.7606857Z # Subtest: driving_start_pause_resume_reset_and_dispose_are_independent
+2026-10-22T16:48:12.7607557Z ok 21 - driving_start_pause_resume_reset_and_dispose_are_independent
+2026-10-22T16:48:12.7607997Z   ---
+2026-10-22T16:48:12.7608302Z   duration_ms: 18.318238
+2026-10-22T16:48:12.7608617Z   type: 'test'
+2026-10-22T16:48:12.7608929Z   ...
+2026-10-22T16:48:12.7609397Z # Subtest: numeric_driving_session_uses_the_city_origin_when_NYC_is_selected
+2026-10-22T16:48:12.7610016Z ok 22 - numeric_driving_session_uses_the_city_origin_when_NYC_is_selected
+2026-10-22T16:48:12.7651596Z   ---
+2026-10-22T16:48:12.7659961Z   duration_ms: 0.396993
+2026-10-22T16:48:12.7708928Z   type: 'test'
+2026-10-22T16:48:12.7715614Z   ...
+2026-10-22T16:48:12.7716165Z # Subtest: driving_dispose_is_idempotent_and_abort_releases_owned_services
+2026-10-22T16:48:12.7716841Z ok 23 - driving_dispose_is_idempotent_and_abort_releases_owned_services
+2026-10-22T16:48:12.7739186Z   ---
+2026-10-22T16:48:12.7748865Z   duration_ms: 0.775588
+2026-10-22T16:48:12.7749247Z   type: 'test'
+2026-10-22T16:48:12.7749548Z   ...
+2026-10-22T16:48:12.7750210Z # Subtest: driving_disposal_continues_when_one_owned_service_fails
+2026-10-22T16:48:12.7750805Z ok 24 - driving_disposal_continues_when_one_owned_service_fails
+2026-10-22T16:48:12.7751228Z   ---
+2026-10-22T16:48:12.7751551Z   duration_ms: 0.449133
+2026-10-22T16:48:12.7751875Z   type: 'test'
+2026-10-22T16:48:12.7752164Z   ...
+2026-10-22T16:48:12.7752676Z # Subtest: driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice
+2026-10-22T16:48:12.7753375Z ok 25 - driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice
+2026-10-22T16:48:12.7753851Z   ---
+2026-10-22T16:48:12.7754362Z   duration_ms: 0.701957
+2026-10-22T16:48:12.7754640Z   type: 'test'
+2026-10-22T16:48:12.7757546Z   ...
+2026-10-22T16:48:12.7758367Z # Subtest: driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting
+2026-10-22T16:48:12.7759072Z ok 26 - driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting
+2026-10-22T16:48:12.7759536Z   ---
+2026-10-22T16:48:12.7759828Z   duration_ms: 0.820167
+2026-10-22T16:48:12.7760146Z   type: 'test'
+2026-10-22T16:48:12.7760437Z   ...
+2026-10-22T16:48:12.7760825Z # Subtest: driving_brake_does_not_become_reverse_drive
+2026-10-22T16:48:12.7761330Z ok 27 - driving_brake_does_not_become_reverse_drive
+2026-10-22T16:48:12.7762201Z   ---
+2026-10-22T16:48:12.7762493Z   duration_ms: 5.990854
+2026-10-22T16:48:12.7762813Z   type: 'test'
+2026-10-22T16:48:12.7763104Z   ...
+2026-10-22T16:48:12.7763705Z # Subtest: explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion
+2026-10-22T16:48:12.7764534Z ok 28 - explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion
+2026-10-22T16:48:12.7765002Z   ---
+2026-10-22T16:48:12.7765292Z   duration_ms: 12.162564
+2026-10-22T16:48:12.7765612Z   type: 'test'
+2026-10-22T16:48:12.7765898Z   ...
+2026-10-22T16:48:12.7766710Z # Subtest: audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent
+2026-10-22T16:48:12.7767342Z ok 29 - audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent
+2026-10-22T16:48:12.7767788Z   ---
+2026-10-22T16:48:12.7768069Z   duration_ms: 0.452388
+2026-10-22T16:48:12.7768378Z   type: 'test'
+2026-10-22T16:48:12.7768661Z   ...
+2026-10-22T16:48:13.1666705Z # Subtest: driving_build_has_a_real_mode_entry_without_simulation_or_Three
+2026-10-22T16:48:13.1795546Z ok 30 - driving_build_has_a_real_mode_entry_without_simulation_or_Three
+2026-10-22T16:48:13.1852359Z   ---
+2026-10-22T16:48:13.1995598Z   duration_ms: 562.538887
+2026-10-22T16:48:13.2080916Z   type: 'test'
+2026-10-22T16:48:13.2134921Z   ...
+2026-10-22T16:48:13.2315967Z # Subtest: legacy_smoke_rendering_does_not_consume_the_physics_random_stream
+2026-10-22T16:48:13.2345557Z ok 31 - legacy_smoke_rendering_does_not_consume_the_physics_random_stream
+2026-10-22T16:48:13.2374927Z   ---
+2026-10-22T16:48:13.2375454Z   duration_ms: 65.258074
+2026-10-22T16:48:13.2375994Z   type: 'test'
+2026-10-22T16:48:13.2376307Z   ...
+2026-10-22T16:48:13.2795281Z # Subtest: legacy_animation_uses_simulation_time_instead_of_sampling_wall_time
+2026-10-22T16:48:13.2804107Z ok 32 - legacy_animation_uses_simulation_time_instead_of_sampling_wall_time
+2026-10-22T16:48:13.2804984Z   ---
+2026-10-22T16:48:13.2805349Z   duration_ms: 49.929296
+2026-10-22T16:48:13.2805821Z   type: 'test'
+2026-10-22T16:48:13.2806156Z   ...
+2026-10-22T16:48:13.3085938Z # Subtest: game_styles_are_local_and_scoped_away_from_home_and_settings
+2026-10-22T16:48:13.3087977Z ok 33 - game_styles_are_local_and_scoped_away_from_home_and_settings
+2026-10-22T16:48:13.3088515Z   ---
+2026-10-22T16:48:13.3088784Z   duration_ms: 528.294069
+2026-10-22T16:48:13.3089119Z   type: 'test'
+2026-10-22T16:48:13.3089408Z   ...
+2026-10-22T16:48:13.3089828Z # Subtest: audio_volume_is_applied_to_the_real_owned_output_gain
+2026-10-22T16:48:13.3090365Z ok 34 - audio_volume_is_applied_to_the_real_owned_output_gain
+2026-10-22T16:48:13.3090763Z   ---
+2026-10-22T16:48:13.3091003Z   duration_ms: 0.899607
+2026-10-22T16:48:13.3100780Z   type: 'test'
+2026-10-22T16:48:13.3101006Z   ...
+2026-10-22T16:48:13.3101331Z # Subtest: repeat_audio_dispose_returns_the_same_pending_close
+2026-10-22T16:48:13.3101766Z ok 35 - repeat_audio_dispose_returns_the_same_pending_close
+2026-10-22T16:48:13.3102050Z   ---
+2026-10-22T16:48:13.3102248Z   duration_ms: 0.179824
+2026-10-22T16:48:13.3102443Z   type: 'test'
+2026-10-22T16:48:13.3102623Z   ...
+2026-10-22T16:48:13.3102918Z # Subtest: disposed_renderer_rejects_late_legacy_allocations
+2026-10-22T16:48:13.3103338Z ok 36 - disposed_renderer_rejects_late_legacy_allocations
+2026-10-22T16:48:13.3103620Z   ---
+2026-10-22T16:48:13.3103795Z   duration_ms: 0.653874
+2026-10-22T16:48:13.3103994Z   type: 'test'
+2026-10-22T16:48:13.3104320Z   ...
+2026-10-22T16:48:13.3104686Z # Subtest: display_settings_and_camera_have_an_explicit_readonly_renderer_port
+2026-10-22T16:48:13.3105238Z ok 37 - display_settings_and_camera_have_an_explicit_readonly_renderer_port
+2026-10-22T16:48:13.3105569Z   ---
+2026-10-22T16:48:13.3105731Z   duration_ms: 0.80289
+2026-10-22T16:48:13.3105927Z   type: 'test'
+2026-10-22T16:48:13.3106101Z   ...
+2026-10-22T16:48:13.3106408Z # Subtest: explicit_RCS_action_is_preserved_and_cleared_on_pause
+2026-10-22T16:48:13.3106833Z ok 38 - explicit_RCS_action_is_preserved_and_cleared_on_pause
+2026-10-22T16:48:13.3107143Z   ---
+2026-10-22T16:48:13.3107320Z   duration_ms: 19.108279
+2026-10-22T16:48:13.3107527Z   type: 'test'
+2026-10-22T16:48:13.3107705Z   ...
+2026-10-22T16:48:13.3108078Z # Subtest: bundle_audit_starts_at_requested_entries_and_follows_only_static_edges
+2026-10-22T16:48:13.3108632Z ok 39 - bundle_audit_starts_at_requested_entries_and_follows_only_static_edges
+2026-10-22T16:48:13.3108985Z   ---
+2026-10-22T16:48:13.3109161Z   duration_ms: 8.136596
+2026-10-22T16:48:13.3109360Z   type: 'test'
+2026-10-22T16:48:13.3109537Z   ...
+2026-10-22T16:48:13.3109919Z # Subtest: paused_legacy_view_allows_semantic_dialog_close_but_blocks_driving_keys
+2026-10-22T16:48:13.3110971Z ok 40 - paused_legacy_view_allows_semantic_dialog_close_but_blocks_driving_keys
+2026-10-22T16:48:13.3111335Z   ---
+2026-10-22T16:48:13.3111509Z   duration_ms: 3.637528
+2026-10-22T16:48:13.3111709Z   type: 'test'
+2026-10-22T16:48:13.3111887Z   ...
+2026-10-22T16:48:13.3112135Z # Subtest: touch_and_keyboard_do_not_overwrite
+2026-10-22T16:48:13.3112652Z ok 41 - touch_and_keyboard_do_not_overwrite
+2026-10-22T16:48:13.3112900Z   ---
+2026-10-22T16:48:13.3113067Z   duration_ms: 2.012659
+2026-10-22T16:48:13.3113268Z   type: 'test'
+2026-10-22T16:48:13.3113446Z   ...
+2026-10-22T16:48:13.3113820Z # Subtest: source_arbitration_brake_wins_and_simulation_specials_are_filtered
+2026-10-22T16:48:13.3114528Z ok 42 - source_arbitration_brake_wins_and_simulation_specials_are_filtered
+2026-10-22T16:48:13.3114867Z   ---
+2026-10-22T16:48:13.3115037Z   duration_ms: 0.391255
+2026-10-22T16:48:13.3115241Z   type: 'test'
+2026-10-22T16:48:13.3115417Z   ...
+2026-10-22T16:48:13.3115742Z # Subtest: blur_clears_all_and_disabled_sources_do_not_restart
+2026-10-22T16:48:13.3116179Z ok 43 - blur_clears_all_and_disabled_sources_do_not_restart
+2026-10-22T16:48:13.3116481Z   ---
+2026-10-22T16:48:13.3116642Z   duration_ms: 0.431025
+2026-10-22T16:48:13.3116833Z   type: 'test'
+2026-10-22T16:48:13.3117003Z   ...
+2026-10-22T16:48:13.3117407Z # Subtest: reverse_interlock_requires_continuous_stationary_time_and_resets_on_clear
+2026-10-22T16:48:13.3117985Z ok 44 - reverse_interlock_requires_continuous_stationary_time_and_resets_on_clear
+2026-10-22T16:48:13.3118361Z   ---
+2026-10-22T16:48:13.3118536Z   duration_ms: 0.90832
+2026-10-22T16:48:13.3118732Z   type: 'test'
+2026-10-22T16:48:13.3118906Z   ...
+2026-10-22T16:48:13.3119157Z # Subtest: settings_separate_by_profile_and_mode
+2026-10-22T16:48:13.3119510Z ok 45 - settings_separate_by_profile_and_mode
+2026-10-22T16:48:13.3119775Z   ---
+2026-10-22T16:48:13.3119947Z   duration_ms: 5.407408
+2026-10-22T16:48:13.3120153Z   type: 'test'
+2026-10-22T16:48:13.3120336Z   ...
+2026-10-22T16:48:13.3120563Z # Subtest: corrupt_storage_uses_defaults
+2026-10-22T16:48:13.3120863Z ok 46 - corrupt_storage_uses_defaults
+2026-10-22T16:48:13.3121098Z   ---
+2026-10-22T16:48:13.3121271Z   duration_ms: 1.430294
+2026-10-22T16:48:13.3121472Z   type: 'test'
+2026-10-22T16:48:13.3121647Z   ...
+2026-10-22T16:48:13.3122046Z # Subtest: settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies
+2026-10-22T16:48:13.3122719Z ok 47 - settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies
+2026-10-22T16:48:13.3123098Z   ---
+2026-10-22T16:48:13.3123269Z   duration_ms: 1.784532
+2026-10-22T16:48:13.3123463Z   type: 'test'
+2026-10-22T16:48:13.3123627Z   ...
+2026-10-22T16:48:13.3124739Z # Subtest: storage_denial_uses_memory_and_reports_status
+2026-10-22T16:48:13.3125241Z ok 48 - storage_denial_uses_memory_and_reports_status
+2026-10-22T16:48:13.3125649Z   ---
+2026-10-22T16:48:13.3125955Z   duration_ms: 0.71758
+2026-10-22T16:48:13.3126265Z   type: 'test'
+2026-10-22T16:48:13.3126569Z   ...
+2026-10-22T16:48:13.3127009Z # Subtest: any_storage_read_exception_is_reported_as_unavailable
+2026-10-22T16:48:13.3127568Z ok 49 - any_storage_read_exception_is_reported_as_unavailable
+2026-10-22T16:48:13.3127979Z   ---
+2026-10-22T16:48:13.3128269Z   duration_ms: 0.542194
+2026-10-22T16:48:13.3128587Z   type: 'test'
+2026-10-22T16:48:13.3128884Z   ...
+2026-10-22T16:48:13.3129350Z # Subtest: device_profile_uses_capabilities_and_allows_manual_override
+2026-10-22T16:48:13.3129979Z ok 50 - device_profile_uses_capabilities_and_allows_manual_override
+2026-10-22T16:48:13.3130419Z   ---
+2026-10-22T16:48:13.3130714Z   duration_ms: 0.542644
+2026-10-22T16:48:13.3131031Z   type: 'test'
+2026-10-22T16:48:13.3131327Z   ...
+2026-10-22T16:48:13.3131830Z # Subtest: reverse_release_between_ticks_discards_grace_without_clearing_other_holds
+2026-10-22T16:48:13.3132538Z ok 51 - reverse_release_between_ticks_discards_grace_without_clearing_other_holds
+2026-10-22T16:48:13.3133019Z   ---
+2026-10-22T16:48:13.3133590Z   duration_ms: 0.286565
+2026-10-22T16:48:13.3133915Z   type: 'test'
+2026-10-22T16:48:13.3134413Z   ...
+2026-10-22T16:48:13.3134922Z # Subtest: swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace
+2026-10-22T16:48:13.3135646Z ok 52 - swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace
+2026-10-22T16:48:13.3136119Z   ---
+2026-10-22T16:48:13.3136609Z   duration_ms: 0.226765
+2026-10-22T16:48:13.3136936Z   type: 'test'
+2026-10-22T16:48:13.3137232Z   ...
+2026-10-22T16:48:13.3137815Z # Subtest: pages_artifact_contains_runtime_bytes_commit_and_complete_hashes_without_source_or_secrets
+2026-10-22T16:48:13.3138645Z ok 53 - pages_artifact_contains_runtime_bytes_commit_and_complete_hashes_without_source_or_secrets
+2026-10-22T16:48:13.3139182Z   ---
+2026-10-22T16:48:13.3139476Z   duration_ms: 65.698519
+2026-10-22T16:48:13.3139801Z   type: 'test'
+2026-10-22T16:48:13.3140096Z   ...
+2026-10-22T16:48:13.3140601Z # Subtest: pages_packaging_rejects_stale_missing_escaping_or_non_application_builds
+2026-10-22T16:48:13.3141315Z ok 54 - pages_packaging_rejects_stale_missing_escaping_or_non_application_builds
+2026-10-22T16:48:13.3141801Z   ---
+2026-10-22T16:48:13.3142097Z   duration_ms: 9.478915
+2026-10-22T16:48:13.3142414Z   type: 'test'
+2026-10-22T16:48:13.3142702Z   ...
+2026-10-22T16:48:13.3143261Z # Subtest: deployment_verification_requires_matching_commit_all_bytes_prefix_paths_and_real_404
+2026-10-22T16:48:13.3144075Z ok 55 - deployment_verification_requires_matching_commit_all_bytes_prefix_paths_and_real_404
+2026-10-22T16:48:13.3144749Z   ---
+2026-10-22T16:48:13.3145041Z   duration_ms: 112.92086
+2026-10-22T16:48:13.3145365Z   type: 'test'
+2026-10-22T16:48:13.3145651Z   ...
+2026-10-22T16:48:13.3146138Z # Subtest: stale_reruns_are_rejected_before_entering_the_shared_deployment_queue
+2026-10-22T16:48:13.3146815Z ok 56 - stale_reruns_are_rejected_before_entering_the_shared_deployment_queue
+2026-10-22T16:48:13.3147287Z   ---
+2026-10-22T16:48:13.3147582Z   duration_ms: 4.705981
+2026-10-22T16:48:13.3147908Z   type: 'test'
+2026-10-22T16:48:13.3148228Z   ...
+2026-10-22T16:48:13.4187287Z # Subtest: simulation_has_no_game_rules
+2026-10-22T16:48:13.4187929Z ok 57 - simulation_has_no_game_rules
+2026-10-22T16:48:13.4188354Z   ---
+2026-10-22T16:48:13.4188665Z   duration_ms: 52.918153
+2026-10-22T16:48:13.4189003Z   type: 'test'
+2026-10-22T16:48:13.4189297Z   ...
+2026-10-22T16:48:13.4189878Z # Subtest: simulation_sessions_start_pause_reset_and_remain_independent
+2026-10-22T16:48:13.4190523Z ok 58 - simulation_sessions_start_pause_reset_and_remain_independent
+2026-10-22T16:48:13.4190966Z   ---
+2026-10-22T16:48:13.4191270Z   duration_ms: 2.742347
+2026-10-22T16:48:13.4191593Z   type: 'test'
+2026-10-22T16:48:13.4191885Z   ...
+2026-10-22T16:48:13.4192349Z # Subtest: simulation_abort_disposes_without_global_or_timing_state
+2026-10-22T16:48:13.4192940Z ok 59 - simulation_abort_disposes_without_global_or_timing_state
+2026-10-22T16:48:13.4193365Z   ---
+2026-10-22T16:48:13.4193658Z   duration_ms: 1.031898
+2026-10-22T16:48:13.4193986Z   type: 'test'
+2026-10-22T16:48:13.4194517Z   ...
+2026-10-22T16:48:13.4195025Z # Subtest: simulation_build_and_import_graph_contain_no_driving_code_or_engine
+2026-10-22T16:48:13.4195692Z ok 60 - simulation_build_and_import_graph_contain_no_driving_code_or_engine
+2026-10-22T16:48:13.4196148Z   ---
+2026-10-22T16:48:13.4196443Z   duration_ms: 474.713555
+2026-10-22T16:48:13.4196764Z   type: 'test'
+2026-10-22T16:48:13.4197066Z   ...
+2026-10-22T16:48:13.4197619Z # Subtest: simulation_cancellation_releases_supplied_services_immediately_and_late_world_once
+2026-10-22T16:48:13.4198403Z ok 61 - simulation_cancellation_releases_supplied_services_immediately_and_late_world_once
+2026-10-22T16:48:13.4198940Z   ---
+2026-10-22T16:48:13.4199233Z   duration_ms: 0.68416
+2026-10-22T16:48:13.4199543Z   type: 'test'
+2026-10-22T16:48:13.4199837Z   ...
+2026-10-22T16:48:13.4200319Z # Subtest: simulation_startup_errors_and_invalid_reset_cannot_leak_owned_services
+2026-10-22T16:48:13.4200994Z ok 62 - simulation_startup_errors_and_invalid_reset_cannot_leak_owned_services
+2026-10-22T16:48:13.4201763Z   ---
+2026-10-22T16:48:13.4202069Z   duration_ms: 1.243971
+2026-10-22T16:48:13.4202402Z   type: 'test'
+2026-10-22T16:48:13.4202699Z   ...
+2026-10-22T16:48:13.4302653Z # Subtest: touch_tap_is_zero
+2026-10-22T16:48:13.4302904Z ok 63 - touch_tap_is_zero
+2026-10-22T16:48:13.4303072Z   ---
+2026-10-22T16:48:13.4303514Z   duration_ms: 1.337122
+2026-10-22T16:48:13.4303659Z   type: 'test'
+2026-10-22T16:48:13.4303839Z   ...
+2026-10-22T16:48:13.4304050Z # Subtest: swipe_up_accelerates
+2026-10-22T16:48:13.4305596Z ok 64 - swipe_up_accelerates
+2026-10-22T16:48:13.4305789Z   ---
+2026-10-22T16:48:13.4305906Z   duration_ms: 0.42091
+2026-10-22T16:48:13.4306098Z   type: 'test'
+2026-10-22T16:48:13.4306251Z   ...
+2026-10-22T16:48:13.4306527Z # Subtest: swipe_down_brakes_then_reverses_only_after_stop
+2026-10-22T16:48:13.4306851Z ok 65 - swipe_down_brakes_then_reverses_only_after_stop
+2026-10-22T16:48:13.4307114Z   ---
+2026-10-22T16:48:13.4307266Z   duration_ms: 0.85567
+2026-10-22T16:48:13.4307422Z   type: 'test'
+2026-10-22T16:48:13.4307569Z   ...
+2026-10-22T16:48:13.4307768Z # Subtest: swipe_left_right_steers
+2026-10-22T16:48:13.4308019Z ok 66 - swipe_left_right_steers
+2026-10-22T16:48:13.4308217Z   ---
+2026-10-22T16:48:13.4308353Z   duration_ms: 0.145832
+2026-10-22T16:48:13.4308563Z   type: 'test'
+2026-10-22T16:48:13.4308693Z   ...
+2026-10-22T16:48:13.4308887Z # Subtest: diagonal_swipe_combines_axes
+2026-10-22T16:48:13.4309160Z ok 67 - diagonal_swipe_combines_axes
+2026-10-22T16:48:13.4309370Z   ---
+2026-10-22T16:48:13.4309496Z   duration_ms: 0.812154
+2026-10-22T16:48:13.4309694Z   type: 'test'
+2026-10-22T16:48:13.4309863Z   ...
+2026-10-22T16:48:13.4310097Z # Subtest: swipe_returns_to_origin_is_zero
+2026-10-22T16:48:13.4310370Z ok 68 - swipe_returns_to_origin_is_zero
+2026-10-22T16:48:13.4310591Z   ---
+2026-10-22T16:48:13.4310751Z   duration_ms: 0.080102
+2026-10-22T16:48:13.4310954Z   type: 'test'
+2026-10-22T16:48:13.4311111Z   ...
+2026-10-22T16:48:13.4311324Z # Subtest: pointer_cancel_clears
+2026-10-22T16:48:13.4311591Z ok 69 - pointer_cancel_clears
+2026-10-22T16:48:13.4311781Z   ---
+2026-10-22T16:48:13.4311961Z   duration_ms: 0.109937
+2026-10-22T16:48:13.4312162Z   type: 'test'
+2026-10-22T16:48:13.4312281Z   ...
+2026-10-22T16:48:13.4312495Z # Subtest: primary_pointer_is_not_stolen_or_automatically_promoted
+2026-10-22T16:48:13.4312807Z ok 70 - primary_pointer_is_not_stolen_or_automatically_promoted
+2026-10-22T16:48:13.4313014Z   ---
+2026-10-22T16:48:13.4313128Z   duration_ms: 0.063156
+2026-10-22T16:48:13.4313264Z   type: 'test'
+2026-10-22T16:48:13.4313376Z   ...
+2026-10-22T16:48:13.4313511Z # Subtest: second_finger_action_works
+2026-10-22T16:48:13.4313692Z ok 71 - second_finger_action_works
+2026-10-22T16:48:13.4313830Z   ---
+2026-10-22T16:48:13.4313935Z   duration_ms: 0.255828
+2026-10-22T16:48:13.4314061Z   type: 'test'
+2026-10-22T16:48:13.4314309Z   ...
+2026-10-22T16:48:13.4314517Z # Subtest: swipe_deadzone_linear_axes_clamping_and_edge_origin_are_stable
+2026-10-22T16:48:13.4314835Z ok 72 - swipe_deadzone_linear_axes_clamping_and_edge_origin_are_stable
+2026-10-22T16:48:13.4315038Z   ---
+2026-10-22T16:48:13.4315147Z   duration_ms: 0.325684
+2026-10-22T16:48:13.4315276Z   type: 'test'
+2026-10-22T16:48:13.4315386Z   ...
+2026-10-22T16:48:13.4315614Z # Subtest: changing_swipe_settings_releases_the_origin_and_rejects_invalid_values
+2026-10-22T16:48:13.4315962Z ok 73 - changing_swipe_settings_releases_the_origin_and_rejects_invalid_values
+2026-10-22T16:48:13.4316178Z   ---
+2026-10-22T16:48:13.4316286Z   duration_ms: 0.402161
+2026-10-22T16:48:13.4316413Z   type: 'test'
+2026-10-22T16:48:13.4316522Z   ...
+2026-10-22T16:48:13.4316627Z 1..73
+2026-10-22T16:48:13.4316735Z # tests 73
+2026-10-22T16:48:13.4316846Z # suites 0
+2026-10-22T16:48:13.4316963Z # pass 73
+2026-10-22T16:48:13.4317076Z # fail 0
+2026-10-22T16:48:13.4317189Z # cancelled 0
+2026-10-22T16:48:13.4317311Z # skipped 0
+2026-10-22T16:48:13.4317424Z # todo 0
+2026-10-22T16:48:13.4317549Z # duration_ms 1151.67018
+2026-10-22T16:48:13.5041998Z 
+2026-10-22T16:48:13.5042513Z > hashirase@0.1.0 test:integration
+2026-10-22T16:48:13.5042811Z > node --test tests/integration/*.test.mjs
+2026-10-22T16:48:13.5042937Z 
+2026-10-22T16:48:13.5395600Z TAP version 13
+2026-10-22T16:48:13.6597140Z # Subtest: imports_do_not_cross_modes
+2026-10-22T16:48:13.6601573Z ok 1 - imports_do_not_cross_modes
+2026-10-22T16:48:13.6601827Z   ---
+2026-10-22T16:48:13.6602275Z   duration_ms: 9.836289
+2026-10-22T16:48:13.6602417Z   type: 'test'
+2026-10-22T16:48:13.6602531Z   ...
+2026-10-22T16:48:13.6663585Z # Subtest: common_code_and_static_home_imports_cannot_pull_in_a_mode
+2026-10-22T16:48:13.6664737Z ok 2 - common_code_and_static_home_imports_cannot_pull_in_a_mode
+2026-10-22T16:48:13.6665048Z   ---
+2026-10-22T16:48:13.6665227Z   duration_ms: 6.701019
+2026-10-22T16:48:13.6665429Z   type: 'test'
+2026-10-22T16:48:13.6665602Z   ...
+2026-10-22T16:48:13.6707256Z # Subtest: cycles_and_computed_imports_fail_and_comment_strings_are_not_imports
+2026-10-22T16:48:13.6708599Z ok 3 - cycles_and_computed_imports_fail_and_comment_strings_are_not_imports
+2026-10-22T16:48:13.6709437Z   ---
+2026-10-22T16:48:13.6709641Z   duration_ms: 4.29664
+2026-10-22T16:48:13.6709869Z   type: 'test'
+2026-10-22T16:48:13.6710189Z   ...
+2026-10-22T16:48:13.6751381Z # Subtest: physics_cannot_use_rendering_DOM_audio_storage_or_global_state
+2026-10-22T16:48:13.6752399Z ok 4 - physics_cannot_use_rendering_DOM_audio_storage_or_global_state
+2026-10-22T16:48:13.6752897Z   ---
+2026-10-22T16:48:13.6753194Z   duration_ms: 4.34276
+2026-10-22T16:48:13.6753538Z   type: 'test'
+2026-10-22T16:48:13.6753834Z   ...
+2026-10-22T16:48:13.6797389Z # Subtest: literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded
+2026-10-22T16:48:13.6798196Z ok 5 - literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded
+2026-10-22T16:48:13.6798822Z   ---
+2026-10-22T16:48:13.6799127Z   duration_ms: 4.446647
+2026-10-22T16:48:13.6799477Z   type: 'test'
+2026-10-22T16:48:13.6799794Z   ...
+2026-10-22T16:48:13.6827925Z # Subtest: physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper
+2026-10-22T16:48:13.6828533Z ok 6 - physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper
+2026-10-22T16:48:13.6829041Z   ---
+2026-10-22T16:48:13.6829472Z   duration_ms: 3.12906
+2026-10-22T16:48:13.6829632Z   type: 'test'
+2026-10-22T16:48:13.6829961Z   ...
+2026-10-22T16:48:13.6861920Z # Subtest: modes_cannot_hide_an_independent_render_loop_in_a_shared_helper
+2026-10-22T16:48:13.6862470Z ok 7 - modes_cannot_hide_an_independent_render_loop_in_a_shared_helper
+2026-10-22T16:48:13.6862876Z   ---
+2026-10-22T16:48:13.6863099Z   duration_ms: 3.409081
+2026-10-22T16:48:13.6863306Z   type: 'test'
+2026-10-22T16:48:13.6863482Z   ...
+2026-10-22T16:48:13.7291678Z # Subtest: split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph
+2026-10-22T16:48:13.7293863Z ok 8 - split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph
+2026-10-22T16:48:13.7294820Z   ---
+2026-10-22T16:48:13.7295077Z   duration_ms: 42.578243
+2026-10-22T16:48:13.7295299Z   type: 'test'
+2026-10-22T16:48:13.7295471Z   ...
+2026-10-22T16:48:13.7314715Z # Subtest: bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS
+2026-10-22T16:48:13.7315242Z ok 9 - bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS
+2026-10-22T16:48:13.7315553Z   ---
+2026-10-22T16:48:13.7315726Z   duration_ms: 2.410413
+2026-10-22T16:48:13.7315938Z   type: 'test'
+2026-10-22T16:48:13.7316103Z   ...
+2026-10-22T16:48:13.7372011Z # Subtest: build_fails_when_a_common_entry_statically_includes_a_mode
+2026-10-22T16:48:13.7372567Z ok 10 - build_fails_when_a_common_entry_statically_includes_a_mode
+2026-10-22T16:48:13.7372888Z   ---
+2026-10-22T16:48:13.7373066Z   duration_ms: 5.821017
+2026-10-22T16:48:13.7373265Z   type: 'test'
+2026-10-22T16:48:13.7373436Z   ...
+2026-10-22T16:48:13.7505011Z # Subtest: asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes
+2026-10-22T16:48:13.7505641Z ok 11 - asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes
+2026-10-22T16:48:13.7506366Z   ---
+2026-10-22T16:48:13.7506554Z   duration_ms: 13.21013
+2026-10-22T16:48:13.7506719Z   type: 'test'
+2026-10-22T16:48:13.7506831Z   ...
+2026-10-22T16:48:13.7671283Z # Subtest: build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets
+2026-10-22T16:48:13.7672511Z ok 12 - build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets
+2026-10-22T16:48:13.7673040Z   ---
+2026-10-22T16:48:13.7673507Z   duration_ms: 16.438808
+2026-10-22T16:48:13.7673701Z   type: 'test'
+2026-10-22T16:48:13.7673845Z   ...
+2026-10-22T16:48:13.7831960Z # Subtest: build_rejects_CSS_imports_including_cross_mode_dependencies
+2026-10-22T16:48:13.7837573Z ok 13 - build_rejects_CSS_imports_including_cross_mode_dependencies
+2026-10-22T16:48:13.7837982Z   ---
+2026-10-22T16:48:13.7838188Z   duration_ms: 15.799081
+2026-10-22T16:48:13.7838394Z   type: 'test'
+2026-10-22T16:48:13.7838565Z   ...
+2026-10-22T16:48:13.7838880Z # Subtest: bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk
+2026-10-22T16:48:13.7839275Z ok 14 - bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk
+2026-10-22T16:48:13.7839462Z   ---
+2026-10-22T16:48:13.7839579Z   duration_ms: 0.266595
+2026-10-22T16:48:13.7839717Z   type: 'test'
+2026-10-22T16:48:13.7839831Z   ...
+2026-10-22T16:48:13.7932267Z # Subtest: latest_selection_wins
+2026-10-22T16:48:13.7932660Z ok 15 - latest_selection_wins
+2026-10-22T16:48:13.7932940Z   ---
+2026-10-22T16:48:13.7933135Z   duration_ms: 5.397463
+2026-10-22T16:48:13.7933363Z   type: 'test'
+2026-10-22T16:48:13.7933552Z   ...
+2026-10-22T16:48:13.7933828Z # Subtest: leave_during_load_disposes_late_result
+2026-10-22T16:48:13.7934796Z ok 16 - leave_during_load_disposes_late_result
+2026-10-22T16:48:13.7935105Z   ---
+2026-10-22T16:48:13.7935291Z   duration_ms: 0.977446
+2026-10-22T16:48:13.7935510Z   type: 'test'
+2026-10-22T16:48:13.7935693Z   ...
+2026-10-22T16:48:13.7935978Z # Subtest: leave_during_prepare_disposes_late_context
+2026-10-22T16:48:13.7936380Z ok 17 - leave_during_prepare_disposes_late_context
+2026-10-22T16:48:13.7936675Z   ---
+2026-10-22T16:48:13.7936860Z   duration_ms: 0.832696
+2026-10-22T16:48:13.7937073Z   type: 'test'
+2026-10-22T16:48:13.7937257Z   ...
+2026-10-22T16:48:13.7937597Z # Subtest: host_owns_one_loop_and_pause_resume_excludes_hidden_time
+2026-10-22T16:48:13.7938137Z ok 18 - host_owns_one_loop_and_pause_resume_excludes_hidden_time
+2026-10-22T16:48:13.7938468Z   ---
+2026-10-22T16:48:13.7938649Z   duration_ms: 0.865685
+2026-10-22T16:48:13.7938858Z   type: 'test'
+2026-10-22T16:48:13.7939039Z   ...
+2026-10-22T16:48:13.7939386Z # Subtest: startup_failure_and_retry_do_not_retain_session_or_loop
+2026-10-22T16:48:13.7939867Z ok 19 - startup_failure_and_retry_do_not_retain_session_or_loop
+2026-10-22T16:48:13.7940187Z   ---
+2026-10-22T16:48:13.7940367Z   duration_ms: 0.564598
+2026-10-22T16:48:13.7940580Z   type: 'test'
+2026-10-22T16:48:13.7940762Z   ...
+2026-10-22T16:48:13.7941074Z # Subtest: frame_failure_clears_input_and_releases_resources
+2026-10-22T16:48:13.7941535Z ok 20 - frame_failure_clears_input_and_releases_resources
+2026-10-22T16:48:13.7941834Z   ---
+2026-10-22T16:48:13.7942014Z   duration_ms: 2.218932
+2026-10-22T16:48:13.7942229Z   type: 'test'
+2026-10-22T16:48:13.7942415Z   ...
+2026-10-22T16:48:13.7942810Z # Subtest: resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners
+2026-10-22T16:48:13.7943432Z ok 21 - resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners
+2026-10-22T16:48:13.7943800Z   ---
+2026-10-22T16:48:13.7943980Z   duration_ms: 0.628344
+2026-10-22T16:48:13.7944326Z   type: 'test'
+2026-10-22T16:48:13.7944500Z   ...
+2026-10-22T16:48:13.7944890Z # Subtest: unknown_mode_is_rejected_without_fetch_or_destroying_current_session
+2026-10-22T16:48:13.7945418Z ok 22 - unknown_mode_is_rejected_without_fetch_or_destroying_current_session
+2026-10-22T16:48:13.7945752Z   ---
+2026-10-22T16:48:13.7945925Z   duration_ms: 0.84224
+2026-10-22T16:48:13.7946130Z   type: 'test'
+2026-10-22T16:48:13.7946305Z   ...
+2026-10-22T16:48:13.7947062Z # Subtest: overload_pause_explains_why_and_can_be_reset
+2026-10-22T16:48:13.7947443Z ok 23 - overload_pause_explains_why_and_can_be_reset
+2026-10-22T16:48:13.7947704Z   ---
+2026-10-22T16:48:13.7947873Z   duration_ms: 0.6378
+2026-10-22T16:48:13.7948072Z   type: 'test'
+2026-10-22T16:48:13.7948246Z   ...
+2026-10-22T16:48:13.7948588Z # Subtest: finished_rules_stop_in_RESULT_and_reset_allows_a_new_run
+2026-10-22T16:48:13.7949260Z ok 24 - finished_rules_stop_in_RESULT_and_reset_allows_a_new_run
+2026-10-22T16:48:13.7949572Z   ---
+2026-10-22T16:48:13.7949747Z   duration_ms: 0.553351
+2026-10-22T16:48:13.7949947Z   type: 'test'
+2026-10-22T16:48:13.7950112Z   ...
+2026-10-22T16:48:13.7950439Z # Subtest: pause_requested_while_loading_is_kept_until_explicit_resume
+2026-10-22T16:48:13.7950930Z ok 25 - pause_requested_while_loading_is_kept_until_explicit_resume
+2026-10-22T16:48:13.7951240Z   ---
+2026-10-22T16:48:13.7951410Z   duration_ms: 0.297512
+2026-10-22T16:48:13.7951610Z   type: 'test'
+2026-10-22T16:48:13.7951792Z   ...
+2026-10-22T16:48:13.7952047Z # Subtest: review_cleanup_barrier_select-select
+2026-10-22T16:48:13.7952393Z ok 26 - review_cleanup_barrier_select-select
+2026-10-22T16:48:13.7952649Z   ---
+2026-10-22T16:48:13.7952823Z   duration_ms: 2.065098
+2026-10-22T16:48:13.7953034Z   type: 'test'
+2026-10-22T16:48:13.7953209Z   ...
+2026-10-22T16:48:13.7953478Z # Subtest: review_cleanup_barrier_leave-leave-select
+2026-10-22T16:48:13.7953853Z ok 27 - review_cleanup_barrier_leave-leave-select
+2026-10-22T16:48:13.7954098Z   ---
+2026-10-22T16:48:13.7954427Z   duration_ms: 1.349551
+2026-10-22T16:48:13.7954615Z   type: 'test'
+2026-10-22T16:48:13.7954772Z   ...
+2026-10-22T16:48:13.7954912Z 1..27
+2026-10-22T16:48:13.7955070Z # tests 27
+2026-10-22T16:48:13.7955230Z # suites 0
+2026-10-22T16:48:13.7955393Z # pass 27
+2026-10-22T16:48:13.7955546Z # fail 0
+2026-10-22T16:48:13.7955709Z # cancelled 0
+2026-10-22T16:48:13.7955879Z # skipped 0
+2026-10-22T16:48:13.7956039Z # todo 0
+2026-10-22T16:48:13.7956215Z # duration_ms 264.466199
+2026-10-22T16:48:13.8680882Z 
+2026-10-22T16:48:13.8681388Z > hashirase@0.1.0 test:physics
+2026-10-22T16:48:13.8681666Z > node --test tests/physics/*.test.mjs
+2026-10-22T16:48:13.8681784Z 
+2026-10-22T16:48:13.8990178Z TAP version 13
+2026-10-22T16:48:14.6831846Z # Subtest: force_over_mass_accelerates
+2026-10-22T16:48:14.6836505Z ok 1 - force_over_mass_accelerates
+2026-10-22T16:48:14.6837101Z   ---
+2026-10-22T16:48:14.6837396Z   duration_ms: 80.001221
+2026-10-22T16:48:14.6837646Z   type: 'test'
+2026-10-22T16:48:14.6837828Z   ...
+2026-10-22T16:48:14.6839592Z # Subtest: drive_force_is_scaled_by_throttle_and_reverse_has_the_opposite_sign
+2026-10-22T16:48:14.6840758Z ok 2 - drive_force_is_scaled_by_throttle_and_reverse_has_the_opposite_sign
+2026-10-22T16:48:14.6841134Z   ---
+2026-10-22T16:48:14.6841326Z   duration_ms: 14.925704
+2026-10-22T16:48:14.6841539Z   type: 'test'
+2026-10-22T16:48:14.6841719Z   ...
+2026-10-22T16:48:14.6846855Z # Subtest: drag_does_not_accelerate_rest
+2026-10-22T16:48:14.6849338Z ok 3 - drag_does_not_accelerate_rest
+2026-10-22T16:48:14.6850155Z   ---
+2026-10-22T16:48:14.6850364Z   duration_ms: 72.119748
+2026-10-22T16:48:14.6850616Z   type: 'test'
+2026-10-22T16:48:14.6850824Z   ...
+2026-10-22T16:48:14.6853753Z # Subtest: resistance_opposes_motion_and_never_reverses_it
+2026-10-22T16:48:14.6854882Z ok 4 - resistance_opposes_motion_and_never_reverses_it
+2026-10-22T16:48:14.6855190Z   ---
+2026-10-22T16:48:14.6855392Z   duration_ms: 50.50821
+2026-10-22T16:48:14.6855747Z   type: 'test'
+2026-10-22T16:48:14.6856051Z   ...
+2026-10-22T16:48:14.6862542Z # Subtest: braking_stops_forward_and_reverse_without_driving_through_zero
+2026-10-22T16:48:14.6863546Z ok 5 - braking_stops_forward_and_reverse_without_driving_through_zero
+2026-10-22T16:48:14.6864337Z   ---
+2026-10-22T16:48:14.6864772Z   duration_ms: 128.579918
+2026-10-22T16:48:14.6865129Z   type: 'test'
+2026-10-22T16:48:14.6865546Z   ...
+2026-10-22T16:48:14.6866101Z # Subtest: zero_input_remains_finite_and_three_translation_axes_obey_F_equals_ma
+2026-10-22T16:48:14.6867080Z ok 6 - zero_input_remains_finite_and_three_translation_axes_obey_F_equals_ma
+2026-10-22T16:48:14.6867577Z   ---
+2026-10-22T16:48:14.6867871Z   duration_ms: 7.256198
+2026-10-22T16:48:14.6868264Z   type: 'test'
+2026-10-22T16:48:14.6868577Z   ...
+2026-10-22T16:48:14.6869153Z # Subtest: same_tick_inputs_are_reproducible_across_render_schedules_and_five_runs
+2026-10-22T16:48:14.6870122Z ok 7 - same_tick_inputs_are_reproducible_across_render_schedules_and_five_runs
+2026-10-22T16:48:14.6870628Z   ---
+2026-10-22T16:48:14.6870925Z   duration_ms: 397.977631
+2026-10-22T16:48:14.6871384Z   type: 'test'
+2026-10-22T16:48:14.6871748Z   ...
+2026-10-22T16:48:14.6872207Z # Subtest: invalid_config_input_environment_and_overflow_do_not_corrupt_state
+2026-10-22T16:48:14.6885414Z ok 8 - invalid_config_input_environment_and_overflow_do_not_corrupt_state
+2026-10-22T16:48:14.6885810Z   ---
+2026-10-22T16:48:14.6886003Z   duration_ms: 1.208036
+2026-10-22T16:48:14.6886170Z   type: 'test'
+2026-10-22T16:48:14.6886301Z   ...
+2026-10-22T16:48:14.6886526Z # Subtest: parameter_metadata_is_bounded_versioned_and_detached
+2026-10-22T16:48:14.6886834Z ok 9 - parameter_metadata_is_bounded_versioned_and_detached
+2026-10-22T16:48:14.6887029Z   ---
+2026-10-22T16:48:14.6887144Z   duration_ms: 0.500801
+2026-10-22T16:48:14.6887273Z   type: 'test'
+2026-10-22T16:48:14.6887388Z   ...
+2026-10-22T16:48:14.6887612Z # Subtest: derived_speed_overflow_is_rejected_atomically_on_reset_and_step
+2026-10-22T16:48:14.6887951Z ok 10 - derived_speed_overflow_is_rejected_atomically_on_reset_and_step
+2026-10-22T16:48:14.6888160Z   ---
+2026-10-22T16:48:14.6888272Z   duration_ms: 0.692292
+2026-10-22T16:48:14.6888399Z   type: 'test'
+2026-10-22T16:48:14.6888511Z   ...
+2026-10-22T16:48:14.6954947Z 1..10
+2026-10-22T16:48:14.6955113Z # tests 10
+2026-10-22T16:48:14.6955258Z # suites 0
+2026-10-22T16:48:14.6955442Z # pass 10
+2026-10-22T16:48:14.6955793Z # fail 0
+2026-10-22T16:48:14.6956006Z # cancelled 0
+2026-10-22T16:48:14.6958563Z # skipped 0
+2026-10-22T16:48:14.6958752Z # todo 0
+2026-10-22T16:48:14.6958942Z # duration_ms 804.679742
+2026-10-22T16:48:14.7199113Z ##[group]Run npm run build
+2026-10-22T16:48:14.7199304Z [36;1mnpm run build[0m
+2026-10-22T16:48:14.7242458Z shell: /usr/bin/bash -e {0}
+2026-10-22T16:48:14.7242609Z ##[endgroup]
+2026-10-22T16:48:14.7921754Z 
+2026-10-22T16:48:14.7922291Z > hashirase@0.1.0 build
+2026-10-22T16:48:14.7922634Z > node scripts/build.mjs
+2026-10-22T16:48:14.7922784Z 
+2026-10-22T16:48:15.3031919Z Regenerated assets/js/simulator.js.
+2026-10-22T16:48:15.5348751Z ESM application build: 45 inputs, 19 outputs; dist/build-manifest.json.
+2026-10-22T16:48:15.5560832Z ##[group]Run bash tools/install-ci-browser.sh
+2026-10-22T16:48:15.5561065Z [36;1mbash tools/install-ci-browser.sh[0m
+2026-10-22T16:48:15.5605767Z shell: /usr/bin/bash -e {0}
+2026-10-22T16:48:15.5605923Z ##[endgroup]
+2026-10-22T16:48:16.1596513Z Installing dependencies...
+2026-10-22T16:48:16.1677518Z Switching to root user to install dependencies...
+2026-10-22T16:48:16.2475767Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [139 B]
+2026-10-22T16:48:16.2776286Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-22T16:48:16.3347646Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [568 kB]
+2026-10-22T16:48:16.3526149Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [631 kB]
+2026-10-22T16:48:16.8807323Z Hit:2 https://archive.ubuntu.com/ubuntu noble InRelease
+2026-10-22T16:48:17.0052417Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-22T16:48:17.4403509Z Get:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-22T16:48:17.6348231Z Get:5 https://archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-22T16:48:17.8187684Z Get:9 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1400 kB]
+2026-10-22T16:48:18.3198593Z Get:10 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1706 kB]
+2026-10-22T16:48:18.5620961Z Get:11 https://archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+2026-10-22T16:48:20.9516031Z Fetched 5833 kB in 2s (2378 kB/s)
+2026-10-22T16:48:21.7078881Z Reading package lists...
+2026-10-22T16:48:21.7372796Z Reading package lists...
+2026-10-22T16:48:21.9820529Z Building dependency tree...
+2026-10-22T16:48:21.9827234Z Reading state information...
+2026-10-22T16:48:22.1903065Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-10-22T16:48:22.1903760Z libasound2t64 set to manually installed.
+2026-10-22T16:48:22.1909121Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-22T16:48:22.1909510Z libatk-bridge2.0-0t64 set to manually installed.
+2026-10-22T16:48:22.1909799Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-22T16:48:22.1910048Z libatk1.0-0t64 set to manually installed.
+2026-10-22T16:48:22.1910306Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-22T16:48:22.1910586Z libatspi2.0-0t64 set to manually installed.
+2026-10-22T16:48:22.1910854Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-10-22T16:48:22.1911182Z libcairo2 set to manually installed.
+2026-10-22T16:48:22.1911547Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-10-22T16:48:22.1911923Z libcups2t64 set to manually installed.
+2026-10-22T16:48:22.1912170Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-10-22T16:48:22.1912404Z libdbus-1-3 set to manually installed.
+2026-10-22T16:48:22.1912673Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-10-22T16:48:22.1912921Z libdrm2 set to manually installed.
+2026-10-22T16:48:22.1913160Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-10-22T16:48:22.1913398Z libgbm1 set to manually installed.
+2026-10-22T16:48:22.1913650Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.10).
+2026-10-22T16:48:22.1913898Z libglib2.0-0t64 set to manually installed.
+2026-10-22T16:48:22.1914366Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-10-22T16:48:22.1914661Z libnspr4 set to manually installed.
+2026-10-22T16:48:22.1914890Z libnss3 is already the newest version (2:3.98-1ubuntu0.3).
+2026-10-22T16:48:22.1915103Z libnss3 set to manually installed.
+2026-10-22T16:48:22.1915341Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-10-22T16:48:22.1915699Z libpango-1.0-0 set to manually installed.
+2026-10-22T16:48:22.1916070Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-10-22T16:48:22.1917005Z libx11-6 set to manually installed.
+2026-10-22T16:48:22.1917255Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-10-22T16:48:22.1917478Z libxcb1 set to manually installed.
+2026-10-22T16:48:22.1917709Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-10-22T16:48:22.1917947Z libxcomposite1 set to manually installed.
+2026-10-22T16:48:22.1918180Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-10-22T16:48:22.1918402Z libxdamage1 set to manually installed.
+2026-10-22T16:48:22.1918654Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-10-22T16:48:22.1918874Z libxext6 set to manually installed.
+2026-10-22T16:48:22.1919102Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-10-22T16:48:22.1919323Z libxfixes3 set to manually installed.
+2026-10-22T16:48:22.1919551Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-10-22T16:48:22.1919777Z libxkbcommon0 set to manually installed.
+2026-10-22T16:48:22.1920020Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-10-22T16:48:22.1920236Z libxrandr2 set to manually installed.
+2026-10-22T16:48:22.1920460Z xvfb is already the newest version (2:21.1.12-1ubuntu1.9).
+2026-10-22T16:48:22.1920763Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-10-22T16:48:22.1921079Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-10-22T16:48:22.1921313Z libfontconfig1 set to manually installed.
+2026-10-22T16:48:22.1921691Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-10-22T16:48:22.1921931Z libfreetype6 set to manually installed.
+2026-10-22T16:48:22.1922235Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-10-22T16:48:22.1922488Z fonts-liberation set to manually installed.
+2026-10-22T16:48:22.1922720Z The following additional packages will be installed:
+2026-10-22T16:48:22.1922934Z   xfonts-encodings xfonts-utils
+2026-10-22T16:48:22.1923106Z Recommended packages:
+2026-10-22T16:48:22.1923285Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-10-22T16:48:22.2149965Z The following NEW packages will be installed:
+2026-10-22T16:48:22.2150580Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-22T16:48:22.2164408Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-22T16:48:22.2164948Z   xfonts-utils
+2026-10-22T16:48:22.2414039Z 0 upgraded, 9 newly installed, 0 to remove and 1 not upgraded.
+2026-10-22T16:48:22.2414661Z Need to get 21.1 MB of archives.
+2026-10-22T16:48:22.2415077Z After this operation, 79.5 MB of additional disk space will be used.
+2026-10-22T16:48:22.2415522Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [139 B]
+2026-10-22T16:48:22.9028559Z Get:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-22T16:48:23.9530670Z Get:3 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+2026-10-22T16:48:24.2590841Z Get:4 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-22T16:48:24.3820651Z Get:5 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+2026-10-22T16:48:24.5400891Z Get:6 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-22T16:48:24.7480747Z Get:7 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-22T16:48:24.8748423Z Get:8 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+2026-10-22T16:48:24.9970613Z Get:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+2026-10-22T16:48:25.1218195Z Get:10 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+2026-10-22T16:48:25.3438239Z Fetched 21.1 MB in 3s (7283 kB/s)
+2026-10-22T16:48:25.3630495Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-22T16:48:25.3826921Z (Reading database ... 
+2026-10-22T16:48:25.3827374Z (Reading database ... 5%
+2026-10-22T16:48:25.3827925Z (Reading database ... 10%
+2026-10-22T16:48:25.3828134Z (Reading database ... 15%
+2026-10-22T16:48:25.3828295Z (Reading database ... 20%
+2026-10-22T16:48:25.3828454Z (Reading database ... 25%
+2026-10-22T16:48:25.3828618Z (Reading database ... 30%
+2026-10-22T16:48:25.3828765Z (Reading database ... 35%
+2026-10-22T16:48:25.3828927Z (Reading database ... 40%
+2026-10-22T16:48:25.3829071Z (Reading database ... 45%
+2026-10-22T16:48:25.3829213Z (Reading database ... 50%
+2026-10-22T16:48:25.3856517Z (Reading database ... 55%
+2026-10-22T16:48:25.5216209Z (Reading database ... 60%
+2026-10-22T16:48:25.7231151Z (Reading database ... 65%
+2026-10-22T16:48:25.7831350Z (Reading database ... 70%
+2026-10-22T16:48:25.9726735Z (Reading database ... 75%
+2026-10-22T16:48:26.1184954Z (Reading database ... 80%
+2026-10-22T16:48:26.2776824Z (Reading database ... 85%
+2026-10-22T16:48:26.4131780Z (Reading database ... 90%
+2026-10-22T16:48:26.5408357Z (Reading database ... 95%
+2026-10-22T16:48:26.5408700Z (Reading database ... 100%
+2026-10-22T16:48:26.5409097Z (Reading database ... 215505 files and directories currently installed.)
+2026-10-22T16:48:26.5449303Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-22T16:48:26.5532375Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-22T16:48:26.7901065Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-22T16:48:26.8016247Z Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+2026-10-22T16:48:26.8025294Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-22T16:48:26.8902864Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-22T16:48:26.9018808Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-22T16:48:26.9026120Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-22T16:48:26.9331995Z Selecting previously unselected package fonts-unifont.
+2026-10-22T16:48:26.9450638Z Preparing to unpack .../3-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+2026-10-22T16:48:26.9458126Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+2026-10-22T16:48:27.1403269Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-22T16:48:27.1518385Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-22T16:48:27.1633186Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-22T16:48:27.6593106Z Selecting previously unselected package xfonts-encodings.
+2026-10-22T16:48:27.6709327Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-22T16:48:27.6728862Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-22T16:48:27.7039028Z Selecting previously unselected package xfonts-utils.
+2026-10-22T16:48:27.7153467Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+2026-10-22T16:48:27.7160443Z Unpacking xfonts-utils (1:7.7+6build3) ...
+2026-10-22T16:48:27.7489047Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-22T16:48:27.7603229Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+2026-10-22T16:48:27.7609750Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-22T16:48:27.7919062Z Selecting previously unselected package xfonts-scalable.
+2026-10-22T16:48:27.8033598Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+2026-10-22T16:48:27.8041700Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-22T16:48:27.8471785Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-22T16:48:27.8574556Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-22T16:48:27.8590921Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-22T16:48:27.8606693Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-22T16:48:27.8626439Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-22T16:48:27.8691195Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-22T16:48:27.8705721Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+2026-10-22T16:48:27.8723779Z Setting up xfonts-utils (1:7.7+6build3) ...
+2026-10-22T16:48:27.8768811Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-22T16:48:27.9016659Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-22T16:48:27.9253561Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-22T16:48:27.9276091Z Not building database; man-db/auto-update is not 'true'.
+2026-10-22T16:48:27.9290360Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+2026-10-22T16:48:28.4822506Z 
+2026-10-22T16:48:28.4823150Z Running kernel seems to be up-to-date.
+2026-10-22T16:48:28.4823411Z 
+2026-10-22T16:48:28.4823557Z No services need to be restarted.
+2026-10-22T16:48:28.4823730Z 
+2026-10-22T16:48:28.4823863Z No containers need to be restarted.
+2026-10-22T16:48:28.4824028Z 
+2026-10-22T16:48:28.4824392Z No user sessions are running outdated binaries.
+2026-10-22T16:48:28.4824591Z 
+2026-10-22T16:48:28.4824890Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-22T16:48:29.4016615Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip
+2026-10-22T16:48:29.7283206Z |                                                                                |   0% of 191.1 MiB
+2026-10-22T16:48:29.9401689Z |■■■■■■■■                                                                        |  10% of 191.1 MiB
+2026-10-22T16:48:29.9841044Z |■■■■■■■■■■■■■■■■                                                                |  20% of 191.1 MiB
+2026-10-22T16:48:30.0147562Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 191.1 MiB
+2026-10-22T16:48:30.0522624Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 191.1 MiB
+2026-10-22T16:48:30.0970121Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 191.1 MiB
+2026-10-22T16:48:30.1422211Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 191.1 MiB
+2026-10-22T16:48:30.1925057Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 191.1 MiB
+2026-10-22T16:48:30.2364765Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 191.1 MiB
+2026-10-22T16:48:30.2834748Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 191.1 MiB
+2026-10-22T16:48:30.3211396Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 191.1 MiB
+2026-10-22T16:48:32.1409216Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to /home/runner/.cache/ms-playwright/chromium-1248
+2026-10-22T16:48:32.1411555Z Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-linux.zip
+2026-10-22T16:48:32.4769051Z |                                                                                |   0% of 2.2 MiB
+2026-10-22T16:48:32.5090469Z |■■■■■■■■                                                                        |  10% of 2.2 MiB
+2026-10-22T16:48:32.5209734Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.2 MiB
+2026-10-22T16:48:32.5305425Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.2 MiB
+2026-10-22T16:48:32.5339200Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.2 MiB
+2026-10-22T16:48:32.5366611Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.2 MiB
+2026-10-22T16:48:32.5428927Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.2 MiB
+2026-10-22T16:48:32.5451654Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.2 MiB
+2026-10-22T16:48:32.5475514Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.2 MiB
+2026-10-22T16:48:32.5484756Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.2 MiB
+2026-10-22T16:48:32.5499346Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.2 MiB
+2026-10-22T16:48:32.5929115Z FFmpeg (playwright ffmpeg v1013) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1013
+2026-10-22T16:48:32.5931334Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-headless-shell-linux64.zip
+2026-10-22T16:48:32.9314956Z |                                                                                |   0% of 120 MiB
+2026-10-22T16:48:33.1618721Z |■■■■■■■■                                                                        |  10% of 120 MiB
+2026-10-22T16:48:33.1926831Z |■■■■■■■■■■■■■■■■                                                                |  20% of 120 MiB
+2026-10-22T16:48:33.2231833Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 120 MiB
+2026-10-22T16:48:33.2538837Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 120 MiB
+2026-10-22T16:48:33.2959016Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 120 MiB
+2026-10-22T16:48:33.3406536Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 120 MiB
+2026-10-22T16:48:33.3879134Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 120 MiB
+2026-10-22T16:48:33.4108326Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 120 MiB
+2026-10-22T16:48:33.4380765Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 120 MiB
+2026-10-22T16:48:33.4762340Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 120 MiB
+2026-10-22T16:48:34.7754540Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1248
+2026-10-22T16:48:34.8007627Z ##[group]Run npx playwright test
+2026-10-22T16:48:34.8007822Z [36;1mnpx playwright test[0m
+2026-10-22T16:48:34.8050741Z shell: /usr/bin/bash -e {0}
+2026-10-22T16:48:34.8050924Z ##[endgroup]
+2026-10-22T16:48:36.0426255Z 
+2026-10-22T16:48:36.0426965Z Running 62 tests using 1 worker
+2026-10-22T16:48:36.0427205Z 
+2026-10-22T16:48:41.9749359Z   ✓   1 [chromium] › tests/baseline/startup.spec.mjs:4:1 › startup_nyc_has_no_unbound_radius (5.2s)
+2026-10-22T16:48:42.9465883Z   ✓   2 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (timer) (957ms)
+2026-10-22T16:48:43.9540794Z   ✓   3 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (load) (998ms)
+2026-10-22T16:48:47.4346763Z   ✓   4 [chromium] › tests/baseline/startup.spec.mjs:60:1 › vehicle_reset_restores_part_positions (3.5s)
+2026-10-22T16:48:47.8367129Z   ✓   5 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_360x640 (378ms)
+2026-10-22T16:48:48.2386402Z   ✓   6 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_393x852 (394ms)
+2026-10-22T16:48:48.5651150Z   ✓   7 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_430x932 (319ms)
+2026-10-22T16:48:48.9209734Z   ✓   8 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_640x360 (349ms)
+2026-10-22T16:48:49.3369068Z   ✓   9 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_852x393 (407ms)
+2026-10-22T16:48:49.7274407Z   ✓  10 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_touch_932x430 (383ms)
+2026-10-22T16:48:50.1494694Z   ✓  11 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_hybrid_1280x720 (414ms)
+2026-10-22T16:48:50.7001739Z   ✓  12 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_1920x1080 (543ms)
+2026-10-22T16:48:51.1290796Z   ✓  13 [chromium] › tests/e2e/device-layout.spec.mjs:7:208 › device_layout_desktop_800x720 (421ms)
+2026-10-22T16:48:51.5212561Z   ✓  14 [chromium] › tests/e2e/device-layout.spec.mjs:17:1 › touch_ownership_second_finger_and_release_reach_InputFrame (384ms)
+2026-10-22T16:48:51.9335930Z   ✓  15 [chromium] › tests/e2e/device-layout.spec.mjs:27:1 › hybrid_keyboard_touch_mouse_repeat_and_focus_loss_are_independent (404ms)
+2026-10-22T16:48:52.7594414Z   ✓  16 [chromium] › tests/e2e/device-layout.spec.mjs:33:1 › settings_exclude_driving_swipe_and_mode_inappropriate_fields_and_restore_focus (819ms)
+2026-10-22T16:48:53.3076209Z   ✓  17 [chromium] › tests/e2e/device-layout.spec.mjs:40:1 › settings_modal_rotation_hidden_lost_capture_and_alternatives_clear_input (538ms)
+2026-10-22T16:48:53.7354268Z   ✓  18 [chromium] › tests/e2e/device-layout.spec.mjs:49:1 › settings_at_200_percent_and_manual_profile_switch_remain_usable (420ms)
+2026-10-22T16:48:54.1199077Z   ✓  19 [chromium] › tests/e2e/device-layout.spec.mjs:55:1 › actual_browser_touch_capture_continues_outside_surface_and_ends_neutral (376ms)
+2026-10-22T16:48:54.5817590Z   ✓  20 [chromium] › tests/e2e/device-layout.spec.mjs:61:1 › reconfiguring_and_disposing_UI_removes_all_owned_listeners (454ms)
+2026-10-22T16:48:54.8425609Z   ✓  21 [chromium] › tests/e2e/device-layout.spec.mjs:67:1 › edge_guide_origin_matches_actual_tap_without_spontaneous_input (253ms)
+2026-10-22T16:48:55.3386415Z   ✓  22 [chromium] › tests/e2e/device-layout.spec.mjs:73:1 › review_button_key_release_after_Tab_and_pointer_hold_have_separate_owners (487ms)
+2026-10-22T16:48:55.6995598Z   ✓  23 [chromium] › tests/e2e/device-layout.spec.mjs:78:1 › review_abnormal_mouse_and_button_capture_cancellation_clears_all_sources (353ms)
+2026-10-22T16:48:56.0376504Z   ✓  24 [chromium] › tests/e2e/device-layout.spec.mjs:82:1 › review_real_mouse_capture_is_released_on_clear_and_dispose (330ms)
+2026-10-22T16:48:56.3826154Z   ✓  25 [chromium] › tests/e2e/device-layout.spec.mjs:86:1 › review_second_finger_camera_keeps_primary_swipe (336ms)
+2026-10-22T16:48:56.7871482Z   ✓  26 [chromium] › tests/e2e/device-layout.spec.mjs:90:1 › review_save_failure_warning_remains_visible_with_memory_value (396ms)
+2026-10-22T16:48:57.0892661Z   ✓  27 [chromium] › tests/e2e/device-layout.spec.mjs:95:1 › review_storage_acquisition_denial_still_starts_reference_UI (295ms)
+2026-10-22T16:48:57.4367341Z   ✓  28 [chromium] › tests/e2e/device-layout.spec.mjs:98:1 › review_form_whitespace_does_not_start_driving (339ms)
+2026-10-22T16:48:57.7888939Z   ✓  29 [chromium] › tests/e2e/device-layout.spec.mjs:101:1 › review_remapped_keys_update_visible_help (343ms)
+2026-10-22T16:48:58.1656994Z   ✓  30 [chromium] › tests/e2e/home-lifecycle.spec.mjs:6:1 › slow_import_change_cancel_and_browser_back_cannot_start_a_stale_mode (363ms)
+2026-10-22T16:48:58.6186521Z   ✓  31 [chromium] › tests/e2e/home-lifecycle.spec.mjs:9:1 › cancel_pending_assets_and_asset_404_leave_no_owned_surface (448ms)
+2026-10-22T16:48:59.0837836Z   ✓  32 [chromium] › tests/e2e/home-lifecycle.spec.mjs:12:1 › hidden_input_and_overload_are_paused_without_background_catchup (456ms)
+2026-10-22T16:49:01.0407470Z   ✓  33 [chromium] › tests/e2e/home-lifecycle.spec.mjs:15:1 › webgl_loss_releases_game_before_retry_and_invalid_URL_never_imports (1.9s)
+2026-10-22T16:49:02.5401518Z   ✓  34 [chromium] › tests/e2e/home-lifecycle.spec.mjs:18:1 › repository_subpath_keeps_all_emitted_asset_URLs_inside_prefix (1.5s)
+2026-10-22T16:49:04.5033400Z   ✓  35 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-portrait (2.0s)
+2026-10-22T16:49:06.5068136Z   ✓  36 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-landscape (2.0s)
+2026-10-22T16:49:08.8694654Z   ✓  37 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_touch-pc (2.4s)
+2026-10-22T16:49:09.1475218Z   ✓  38 [chromium] › tests/e2e/mode-loading.spec.mjs:5:1 › home_requests_no_3d (265ms)
+2026-10-22T16:49:10.7495880Z   ✓  39 [chromium] › tests/e2e/mode-loading.spec.mjs:11:44 › driving_does_not_fetch_simulation (1.6s)
+2026-10-22T16:49:11.0973930Z   ✓  40 [chromium] › tests/e2e/mode-loading.spec.mjs:11:44 › simulation_does_not_fetch_driving (339ms)
+2026-10-22T16:49:44.4469600Z   ✓  41 [chromium] › tests/e2e/mode-loading.spec.mjs:19:1 › mode_round_trips_and_inputs_remain_owned (33.3s)
+2026-10-22T16:49:46.2237373Z   ✓  42 [chromium] › tests/e2e/mode-loading.spec.mjs:24:1 › real_settings_persist_per_mode_and_do_not_resume_held_input (1.8s)
+2026-10-22T16:49:46.6633702Z   ✓  43 [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers (433ms)
+2026-10-22T16:49:48.1466007Z   ✓  44 [chromium] › tests/e2e/mode-loading.spec.mjs:34:1 › game_help_can_close_while_paused (1.5s)
+2026-10-22T16:49:50.1986193Z   ✓  45 [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving (2.0s)
+2026-10-22T16:49:50.8483846Z   ✓  46 [chromium] › tests/e2e/pages-artifact.spec.mjs:20:1 › pages_artifact_matches_commit_without_access_to_source_checkout (353ms)
+2026-10-22T16:49:52.6148887Z   ✓  47 [chromium] › tests/e2e/pages-artifact.spec.mjs:36:47 › pages_artifact_driving_starts_and_returns_home_at_repository_prefix (1.8s)
+2026-10-22T16:49:52.9922244Z   ✓  48 [chromium] › tests/e2e/pages-artifact.spec.mjs:36:47 › pages_artifact_simulation_starts_and_returns_home_at_repository_prefix (361ms)
+2026-10-22T16:49:55.8660144Z   ✓  49 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_pointer (2.9s)
+2026-10-22T16:49:58.6339205Z   ✓  50 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_keyboard (2.8s)
+2026-10-22T16:50:02.3124552Z   ✓  51 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_retry (3.7s)
+2026-10-22T16:50:05.1536305Z   ✓  52 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_close-modal (2.8s)
+2026-10-22T16:50:06.8500412Z   ✓  53 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 (1.7s)
+2026-10-22T16:50:08.6711935Z   ✓  54 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 (1.8s)
+2026-10-22T16:50:10.2640450Z   ✓  55 [chromium] › tests/e2e/result-quality.spec.mjs:24:1 › review_repeated_home_waits_for_actual_AudioContext_close (1.6s)
+2026-10-22T16:50:13.1161385Z   ✓  56 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.8s)
+2026-10-22T16:50:18.0822210Z   ✓  57 [chromium] › tests/integration/driving-lifecycle.spec.mjs:51:1 › driving_fixed_tick_trace_matches_pre_extraction_game (5.0s)
+2026-10-22T16:50:18.8314399Z   ✓  58 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (743ms)
+2026-10-22T16:50:21.5536082Z   ✓  59 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick (2.7s)
+2026-10-22T16:50:23.1466505Z   ✓  60 [chromium] › tests/integration/driving-lifecycle.spec.mjs:109:1 › driving_police_and_siren_survive_audio_extraction (1.6s)
+2026-10-22T16:50:24.6644602Z   ✓  61 [chromium] › tests/integration/driving-lifecycle.spec.mjs:120:1 › driving_external_input_blocks_legacy_keyboard_actions (1.5s)
+2026-10-22T16:50:25.1982795Z   ✓  62 [chromium] › tests/integration/simulation-track.spec.mjs:4:1 › simulation_minimum_track_uses_real_force_model_and_releases_its_canvas (375ms)
+2026-10-22T16:50:25.3231070Z 
+2026-10-22T16:50:25.3234592Z   62 passed (1.8m)
+2026-10-22T16:50:25.4297998Z ##[group]Run npm run build && node scripts/stage-pages.mjs
+2026-10-22T16:50:25.4298271Z [36;1mnpm run build && node scripts/stage-pages.mjs[0m
+2026-10-22T16:50:25.4340876Z shell: /usr/bin/bash -e {0}
+2026-10-22T16:50:25.4341029Z ##[endgroup]
+2026-10-22T16:50:25.5017192Z 
+2026-10-22T16:50:25.5019201Z > hashirase@0.1.0 build
+2026-10-22T16:50:25.5019535Z > node scripts/build.mjs
+2026-10-22T16:50:25.5019676Z 
+2026-10-22T16:50:26.0041524Z Regenerated assets/js/simulator.js.
+2026-10-22T16:50:26.2418396Z ESM application build: 45 inputs, 19 outputs; dist/build-manifest.json.
+2026-10-22T16:50:26.3078764Z Pages staged: 4e6bae946549c169945feb89b85b1140ce70d1da, 25 runtime files
+2026-10-22T16:50:26.3193057Z ##[group]Run actions/upload-artifact@v4
+2026-10-22T16:50:26.3193251Z with:
+2026-10-22T16:50:26.3193423Z   name: baseline-browser-4e6bae946549c169945feb89b85b1140ce70d1da
+2026-10-22T16:50:26.3193627Z   path: test-results/
+2026-10-22T16:50:26.3193748Z   retention-days: 14
+2026-10-22T16:50:26.3193873Z   if-no-files-found: warn
+2026-10-22T16:50:26.3194002Z   compression-level: 6
+2026-10-22T16:50:26.3194286Z   overwrite: false
+2026-10-22T16:50:26.3194466Z   include-hidden-files: false
+2026-10-22T16:50:26.3194608Z ##[endgroup]
+2026-10-22T16:50:26.4389033Z (node:4161) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T16:50:26.4389630Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T16:50:26.4635737Z With the provided path, there will be 1 file uploaded
+2026-10-22T16:50:26.4636347Z Artifact name is valid!
+2026-10-22T16:50:26.4636657Z Root directory input is valid!
+2026-10-22T16:50:26.7288173Z Beginning upload of artifact content to blob storage
+2026-10-22T16:50:26.9253435Z (node:4161) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T16:50:27.4829230Z Uploaded bytes 6736353
+2026-10-22T16:50:27.5299078Z Finished uploading artifact content to blob storage!
+2026-10-22T16:50:27.5299584Z SHA256 digest of uploaded artifact zip is ac16fe686262e15ab6ba1884b4e506f615286157819e671cc16664df8b1f37d1
+2026-10-22T16:50:27.5301275Z Finalizing artifact upload
+2026-10-22T16:50:27.9716891Z Artifact baseline-browser-4e6bae946549c169945feb89b85b1140ce70d1da.zip successfully finalized. Artifact ID 12441614627
+2026-10-22T16:50:27.9718011Z Artifact baseline-browser-4e6bae946549c169945feb89b85b1140ce70d1da has been successfully uploaded! Final size is 6736353 bytes. Artifact ID is 12441614627
+2026-10-22T16:50:27.9722781Z Artifact download URL: https://github.com/chameleonjp-lab/hashirase/actions/runs/39817024918/artifacts/12441614627
+2026-10-22T16:50:27.9892866Z ##[group]Run actions/upload-artifact@v4
+2026-10-22T16:50:27.9893036Z with:
+2026-10-22T16:50:27.9893213Z   name: foundation-build-4e6bae946549c169945feb89b85b1140ce70d1da
+2026-10-22T16:50:27.9893414Z   path: dist/
+2026-10-22T16:50:27.9893528Z   retention-days: 14
+2026-10-22T16:50:27.9893656Z   if-no-files-found: warn
+2026-10-22T16:50:27.9893792Z   compression-level: 6
+2026-10-22T16:50:27.9893919Z   overwrite: false
+2026-10-22T16:50:27.9894043Z   include-hidden-files: false
+2026-10-22T16:50:27.9894386Z ##[endgroup]
+2026-10-22T16:50:28.1035126Z (node:4173) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T16:50:28.1035913Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T16:50:28.1124915Z With the provided path, there will be 21 files uploaded
+2026-10-22T16:50:28.1125857Z Artifact name is valid!
+2026-10-22T16:50:28.1126146Z Root directory input is valid!
+2026-10-22T16:50:28.4075805Z Beginning upload of artifact content to blob storage
+2026-10-22T16:50:28.4579358Z (node:4173) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T16:50:28.7179717Z Uploaded bytes 317625
+2026-10-22T16:50:28.7568846Z Finished uploading artifact content to blob storage!
+2026-10-22T16:50:28.7569654Z SHA256 digest of uploaded artifact zip is 242f87d0ab0467b4ef2cccdac196495087c82ea016cce8c68200744394155019
+2026-10-22T16:50:28.7570153Z Finalizing artifact upload
+2026-10-22T16:50:29.2427159Z Artifact foundation-build-4e6bae946549c169945feb89b85b1140ce70d1da.zip successfully finalized. Artifact ID 12442762361
+2026-10-22T16:50:29.2428017Z Artifact foundation-build-4e6bae946549c169945feb89b85b1140ce70d1da has been successfully uploaded! Final size is 317625 bytes. Artifact ID is 12442762361
+2026-10-22T16:50:29.2432131Z Artifact download URL: https://github.com/chameleonjp-lab/hashirase/actions/runs/39817024918/artifacts/12442762361
+2026-10-22T16:50:29.2632497Z Post job cleanup.
+2026-10-22T16:50:29.3499196Z (node:4185) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T16:50:29.3499678Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T16:50:29.3653496Z Post job cleanup.
+2026-10-22T16:50:29.4276653Z [command]/usr/bin/git version
+2026-10-22T16:50:29.4313165Z git version 2.55.0
+2026-10-22T16:50:29.4340148Z Temporarily overriding HOME='/home/runner/work/_temp/d25693ec-13b6-48f2-8977-905693b0eb0b' before making global git config changes
+2026-10-22T16:50:29.4341039Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T16:50:29.4344005Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/hashirase/hashirase
+2026-10-22T16:50:29.4384260Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T16:50:29.4424539Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T16:50:29.4649690Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T16:50:29.4678567Z http.https://github.com/.extraheader
+2026-10-22T16:50:29.4691763Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T16:50:29.4735671Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T16:50:29.4963590Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T16:50:29.5003715Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T16:50:29.5335796Z Cleaning up orphan processes
+2026-10-22T16:50:29.5600231Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

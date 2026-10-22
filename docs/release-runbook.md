@@ -34,9 +34,9 @@ node scripts/verify-deployment.mjs --url https://chameleonjp-lab.github.io/hashi
 
 ## 初回公開
 
-mainへワークフローを直接追加せず、`ops/bootstrap-pages-20261022` の一度限りのワークフローから **mainを明示的にcheckout** して公開します。配備用スクリプトはこの公開PRと同じものを使い、アプリは未マージのブランチから取得しません。mainの既存106 Node / 59ブラウザ回帰検査を再実行します。
+この公開PRをユーザー本人がmainへマージすると、通常の公開ワークフローが初回公開も実行します。Actionsの `source-check` → `release-target` → `deploy-pages` を確認します。
 
-初回だけ `github-pages` environmentへこのブランチを追加し、配備終了後に削除してmainのみへ戻します。この補助ワークフローをmainへ取り込まず、以後の自動更新は公開PRの通常ワークフローを使います。
+2026-10-22には別ブランチからmainを明示checkoutする初回補助ワークフローも準備しましたが、environmentの許可ブランチ追加がGitHub Appの権限不足（HTTP 403）で拒否されました。許可はmainのみのままで、補助ブランチのpush・配備は実行していません。未実行の案は `docs/evidence/pages/bootstrap-workflow.yml` に保存しています。環境保護を迂回したり、mainへ直接追加したり、代理でPRをマージしたりせず、公開PRのユーザーマージを待ちます。
 
 ## 前版へ戻す
 

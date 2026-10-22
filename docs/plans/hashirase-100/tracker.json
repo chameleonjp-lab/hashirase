@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "chameleonjp-lab/hashirase",
-  "publication": {"id": "P01", "status": "IN_PROGRESS", "url": "https://chameleonjp-lab.github.io/hashirase/", "sourceCommit": "1306887074e37ad08d66edab1ea4aac875071e37", "automaticUpdates": "PENDING_USER_MERGE", "evidence": ["docs/evidence/pages.md", "docs/release-runbook.md"]},
+  "publication": {"id": "P01", "status": "WAITING_USER_MERGE", "url": "https://chameleonjp-lab.github.io/hashirase/", "sourceCommit": "1306887074e37ad08d66edab1ea4aac875071e37", "automaticUpdates": "PENDING_USER_MERGE", "evidence": ["docs/evidence/pages.md", "docs/release-runbook.md"], "pr": "https://github.com/chameleonjp-lab/hashirase/pull/11", "deployedCommit": null, "blocker": "github-pages allows only main; GitHub App returned HTTP 403 for temporary bootstrap branch policy; no policy change or bootstrap push; user merge of PR #11 starts first deployment"},
   "createdDate": "2026-10-22",
   "baseline": {"mainCommit": "e889e511cc3f0122faf325a40bfd8fa2c2befb0c", "refactorPR": 2, "refactorCommit": "40f0e28913c16f967ec0f9ee9daf46b9078431f9", "refactorMergedAtInspection": false, "workflowRun": 39757827739, "workflowConclusion": "success", "runtimePartBlobsVerified": 11, "gameRuntimeTestedThisSession": false},
   "submission": {"branchProposed": "docs/hashirase-100point-plan-20261022", "base": "main", "pullRequestUrl": "https://github.com/chameleonjp-lab/hashirase/pull/3", "status": "MERGED", "reason": "Documentation PR #3 was merged before the swipe-control amendment. Feature implementation and acceptance tests remain unverified."},

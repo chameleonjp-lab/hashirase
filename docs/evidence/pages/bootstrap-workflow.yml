@@ -1,3 +1,5 @@
+# NOT RUN: adding this branch to github-pages was rejected with HTTP 403.
+# Saved only as evidence of the abandoned bootstrap path; not installed in CI.
 name: Publish merged main once
 on:
   push:

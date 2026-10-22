@@ -6,7 +6,7 @@
 - 開始時main: `1306887074e37ad08d66edab1ea4aac875071e37`。PR #10のユーザーマージをGitHubで確認。
 - 開始時Pages: `build_type: workflow`、HTTPS有効、environment許可mainのみ。公開ワークフローなし、公開URL HTTP 404。
 - 変更: 公開ファイルの限定収集、ビルドSHA/配信ハッシュ記録、配備照合、既存CI成功後だけmainを配信するジョブ、専用404、公開/戻し手順。
-- main直接変更・PR自動マージ・課金変更なし。初回補助ブランチはmainを明示checkoutする。
+- main直接変更・PR自動マージ・課金変更なし。初回補助案はmainを明示checkoutする設計だが、権限不足により未実行。
 
 ## 検査
 
@@ -20,7 +20,20 @@
 
 独立レビュー後に1回の修正パスを実施。古い再実行による待機取消と、偽manifestの自己照合をREDで再現後に修正した。最終 `npm run check` 110 Node（単体73・統合27・物理10）、Playwright 62/62、build、stage 25ファイル成功。詳細は `pages/review.md`。
 
-GitHub Actions・公開照合の最終結果は公開後に追記する。未実施の検査は完了扱いにしない。
+GitHub Actionsも実装head `b2f16de096dcc61cba03a417c189fa64a9b5582d` で成功を確認し、checkoutのhead一致と全文ログを保存。
+
+- 全体: https://github.com/chameleonjp-lab/hashirase/actions/runs/39817024918/job/119958065998 — 110 Node / 62 browser / build / stage 25 / artifacts 成功。PRなので公開とpreflightは意図どおり未実行。
+- SIM: https://github.com/chameleonjp-lab/hashirase/actions/runs/39817024874/job/119958066213 — 16 Node / 1 browser 成功。
+
+公開後の照合はマージ待ちで未実施。未実施の検査は完了扱いにしない。
+
+## 公開を止めている条件
+
+`github-pages` environmentの許可はmainだけ。初回補助ブランチ `ops/bootstrap-pages-20261022` の追加をGitHub APIで試みたが、`Resource not accessible by integration (HTTP 403)` で拒否された。これはGitHub Appの権限による拒否であり、自動承認レビューの拒否ではない。変更前後に許可がmainの1件だけであることを確認し、追加権限は残っていない。補助ブランチはローカルのコミットに保存したが、リモートへpushしていない。
+
+公開と自動更新の導入PR: https://github.com/chameleonjp-lab/hashirase/pull/11 。ユーザーマージ後のmain CIから公開できるよう、すべて準備済み。マージと公開完了はまだ確認していない。公開URLは開始時404で、公開版のSHA・全ハッシュ照合と公開ブラウザ3画面は **NOT_RUN**。ローカル成果物の3画像を公開サイトの画像とは呼ばない。`public-smoke.mjs` は公開後の確認用に保存した未実行スクリプト。
+
+Chromiumからの初回HTTPS疎通はセッションCAを信頼せず `ERR_CERT_AUTHORITY_INVALID` になった。TLS検証を無効にせず、公開後はNodeのTLS検証付きfetchで実公開レスポンスを取得し、同じURLのChromiumへ渡す手順を用意した。これは実機検証ではない。
 
 ## 判断
 
