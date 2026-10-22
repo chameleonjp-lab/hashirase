@@ -1,0 +1,12 @@
+✔ game_styles_are_local_and_scoped_away_from_home_and_settings (156.027801ms)
+✔ audio_volume_is_applied_to_the_real_owned_output_gain (0.719794ms)
+✔ repeat_audio_dispose_returns_the_same_pending_close (0.299441ms)
+✔ disposed_renderer_rejects_late_legacy_allocations (0.53751ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 276.161356

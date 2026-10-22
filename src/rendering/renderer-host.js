@@ -9,6 +9,7 @@ export function createRendererHost(container,quality={}) {
   const resources=new Set(),listeners=new Set(),timers=new Set(),wrappedElements=new WeakMap(),constructors=new Map();
   if(quality.markup!==undefined)container.innerHTML=quality.markup;
   function track(resource){
+    if(disposed){try{resource?.dispose?.();}catch{}throw new DOMException('Renderer disposed','AbortError');}
     if(typeof resource?.dispose!=='function')return resource;
     resources.add(resource);
     if(typeof resource.clone==='function'){
@@ -20,7 +21,7 @@ export function createRendererHost(container,quality={}) {
   const THREE=new Proxy(Three,{get(target,key){
     const value=target[key];
     if(typeof value!=='function'||!value.prototype)return value;
-    if(!constructors.has(key))constructors.set(key,new Proxy(value,{construct(type,args){return track(Reflect.construct(type,args));}}));
+    if(!constructors.has(key))constructors.set(key,new Proxy(value,{construct(type,args){if(disposed)throw new DOMException('Renderer disposed','AbortError');return track(Reflect.construct(type,args));}}));
     return constructors.get(key);
   }});
   function listen(target,type,callback,options){

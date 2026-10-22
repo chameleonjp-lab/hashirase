@@ -5,6 +5,7 @@ import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { assertBoundaries, checkBundleGraph } from './check-boundaries.mjs';
+import { buildDrivingStyle } from './build-driving-style.mjs';
 
 const defaultRoot = fileURLToPath(new URL('../', import.meta.url));
 const foundationEntries = ['src/contracts/session.js', 'src/contracts/vehicle.js', 'src/contracts/events.js', 'src/platform/clock.js', 'src/platform/random.js'];
@@ -102,6 +103,7 @@ export async function buildProject({ rootDir = defaultRoot, entryPoints } = {}) 
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
+    await buildDrivingStyle();
     // Preserve the public game while adding the new independent build foundation.
     execFileSync(process.execPath, ['tools/build.mjs'], { cwd: defaultRoot, stdio: 'inherit' });
     const { manifest } = await buildProject();

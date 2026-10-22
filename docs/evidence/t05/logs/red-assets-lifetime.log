@@ -1,0 +1,103 @@
+✖ game_styles_are_local_and_scoped_away_from_home_and_settings (1.109938ms)
+✖ audio_volume_is_applied_to_the_real_owned_output_gain (0.253642ms)
+✖ repeat_audio_dispose_returns_the_same_pending_close (0.723978ms)
+✖ disposed_renderer_rejects_late_legacy_allocations (0.641875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.904367
+
+✖ failing tests:
+
+test at tests/unit/home-assets.test.mjs:4:1
+✖ game_styles_are_local_and_scoped_away_from_home_and_settings (1.109938ms)
+  AssertionError [ERR_ASSERTION]: T05 requires owned game styles
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:5:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/home-assets.test.mjs:11:1
+✖ audio_volume_is_applied_to_the_real_owned_output_gain (0.253642ms)
+  AssertionError [ERR_ASSERTION]: T05 settings must reach audio
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:11:149)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/home-assets.test.mjs:12:1
+✖ repeat_audio_dispose_returns_the_same_pending_close (0.723978ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - Promise {
+  -   <pending>,
+  -   Symbol(async_id_symbol): 89,
+  -   Symbol(trigger_async_id_symbol): 88
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:12:226)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Promise],
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/home-assets.test.mjs:13:1
+✖ disposed_renderer_rejects_late_legacy_allocations (0.641875ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:13:284)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /disposed|Abort/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

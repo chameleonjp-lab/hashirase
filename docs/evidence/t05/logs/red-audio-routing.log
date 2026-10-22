@@ -1,0 +1,30 @@
+✖ audio_volume_is_applied_to_the_real_owned_output_gain (1.296035ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.341073
+
+✖ failing tests:
+
+test at tests/unit/home-assets.test.mjs:11:1
+✖ audio_volume_is_applied_to_the_real_owned_output_gain (1.296035ms)
+  AssertionError [ERR_ASSERTION]: Every audio channel passes through the owned volume output
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:11:391)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

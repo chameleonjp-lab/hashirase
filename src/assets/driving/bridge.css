@@ -1,0 +1,6 @@
+.safe-overlay-padding{padding-top:max(70px,calc(64px + env(safe-area-inset-top)));padding-bottom:max(86px,calc(80px + env(safe-area-inset-bottom)))}
+#top-scroll-strip button{min-height:44px!important;min-width:44px}
+#btn-accel,#btn-brake,#btn-steer-left,#btn-steer-right,#btn-hover,#btn-boost,#btn-kickflip,#btn-auto-accel{display:none!important}
+#btn-rcs-spin{min-height:56px!important;min-width:56px}
+#help-modal,#gameover-modal,#ta-result-modal{padding-top:76px}
+#help-modal button,#gameover-modal button,#ta-result-modal button{min-height:44px;min-width:44px}

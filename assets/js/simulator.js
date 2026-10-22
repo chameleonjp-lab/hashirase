@@ -817,6 +817,7 @@ var drivingPorts = (() => {
     let thrusterNoiseNode = null;
     let thrusterGain = null;
     let thrusterFilter = null;
+    let outputGain = null, volume = 1, closePromise = null;
     let carState;
     let disposed = false;
     const persistent = [], transients = /* @__PURE__ */ new Set();
@@ -841,6 +842,10 @@ var drivingPorts = (() => {
       if (audioCtx) return;
       try {
         audioCtx = createContext();
+        outputGain = audioCtx.createGain();
+        outputGain.gain.value = volume;
+        outputGain.connect(audioCtx.destination);
+        persistent.push(outputGain);
         motorOsc = audioCtx.createOscillator();
         motorOsc.type = "sawtooth";
         motorOsc.frequency.value = 110;
@@ -852,7 +857,7 @@ var drivingPorts = (() => {
         motorGain.gain.value = 0;
         motorOsc.connect(motorFilter);
         motorFilter.connect(motorGain);
-        motorGain.connect(audioCtx.destination);
+        motorGain.connect(outputGain);
         motorOsc.start();
         fanOsc = audioCtx.createOscillator();
         fanOsc.type = "triangle";
@@ -860,7 +865,7 @@ var drivingPorts = (() => {
         fanGain = audioCtx.createGain();
         fanGain.gain.value = 0;
         fanOsc.connect(fanGain);
-        fanGain.connect(audioCtx.destination);
+        fanGain.connect(outputGain);
         fanOsc.start();
         const bufferSize = audioCtx.sampleRate * 2;
         const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
@@ -879,7 +884,7 @@ var drivingPorts = (() => {
         thrusterGain.gain.value = 0;
         thrusterNoiseNode.connect(thrusterFilter);
         thrusterFilter.connect(thrusterGain);
-        thrusterGain.connect(audioCtx.destination);
+        thrusterGain.connect(outputGain);
         thrusterNoiseNode.start();
         persistent.push(motorOsc, motorFilter, motorGain, fanOsc, fanGain, thrusterNoiseNode, thrusterFilter, thrusterGain);
       } catch (e) {
@@ -914,7 +919,7 @@ var drivingPorts = (() => {
         gain.gain.setValueAtTime(Math.min(0.45, 0.18 * impactIntensity), now);
         gain.gain.exponentialRampToValueAtTime(1e-3, now + 0.35);
         osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        gain.connect(outputGain);
         osc.start(now);
         osc.stop(now + 0.36);
         trackTransient([osc], gain);
@@ -935,7 +940,7 @@ var drivingPorts = (() => {
         gain.gain.setValueAtTime(Math.min(0.08, 0.035 * intensity), now);
         gain.gain.exponentialRampToValueAtTime(1e-3, now + 0.16);
         osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        gain.connect(outputGain);
         osc.start(now);
         osc.stop(now + 0.17);
         trackTransient([osc], gain);
@@ -959,7 +964,7 @@ var drivingPorts = (() => {
         gain.gain.exponentialRampToValueAtTime(1e-3, now + 0.34);
         osc1.connect(gain);
         osc2.connect(gain);
-        gain.connect(audioCtx.destination);
+        gain.connect(outputGain);
         osc1.start(now);
         osc2.start(now);
         osc1.stop(now + 0.35);
@@ -982,7 +987,7 @@ var drivingPorts = (() => {
         gain.gain.setValueAtTime(0.14, now);
         gain.gain.exponentialRampToValueAtTime(1e-3, now + 0.58);
         osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        gain.connect(outputGain);
         osc.start(now);
         osc.stop(now + 0.6);
         trackTransient([osc], gain);
@@ -990,6 +995,11 @@ var drivingPorts = (() => {
       }
     }
     return Object.freeze({
+      configure(settings) {
+        finite(settings.volume, "volume", 0, 1);
+        volume = settings.volume;
+        if (outputGain) outputGain.gain.value = volume;
+      },
       init() {
         if (!disposed) initAudio();
       },
@@ -1027,7 +1037,7 @@ var drivingPorts = (() => {
         });
       },
       dispose() {
-        if (disposed) return;
+        if (disposed) return closePromise;
         disposed = true;
         soundEnabled = false;
         silence();
@@ -1049,19 +1059,24 @@ var drivingPorts = (() => {
               osc.stop();
             } catch {
             }
-            osc.disconnect();
+            try {
+              osc.disconnect();
+            } catch {
+            }
           }
-          gain.disconnect();
+          try {
+            gain.disconnect();
+          } catch {
+          }
         }
         transients.clear();
-        if (audioCtx) {
-          closedContexts++;
-          return audioCtx.close().catch(() => {
-          });
-        }
+        if (audioCtx) closedContexts++;
+        closePromise = audioCtx ? audioCtx.close().catch(() => {
+        }) : Promise.resolve();
+        return closePromise;
       },
       diagnostics() {
-        return { disposed, contexts: audioCtx && !disposed ? 1 : 0, closedContexts, nodes: persistent.length + transients.size };
+        return { disposed, contexts: audioCtx && !disposed ? 1 : 0, closedContexts, nodes: persistent.length + transients.size, volume };
       }
     });
   }
