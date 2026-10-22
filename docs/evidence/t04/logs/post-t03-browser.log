@@ -1,0 +1,20 @@
+[WebServer] (node:22748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 11 tests using 1 worker
+
+(node:22761) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/baseline/startup.spec.mjs:4:1 › startup_nyc_has_no_unbound_radius (4.6s)
+  ✓   2 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (timer) (927ms)
+  ✓   3 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (load) (919ms)
+  ✓   4 [chromium] › tests/baseline/startup.spec.mjs:60:1 › vehicle_reset_restores_part_positions (3.0s)
+  ✓   5 [chromium] › tests/integration/driving-lifecycle.spec.mjs:13:1 › driving_lifecycle_preserves_controls_and_releases_resources (2.4s)
+  ✓   6 [chromium] › tests/integration/driving-lifecycle.spec.mjs:51:1 › driving_fixed_tick_trace_matches_pre_extraction_game (4.6s)
+  ✓   7 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (814ms)
+  ✓   8 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick (2.5s)
+  ✓   9 [chromium] › tests/integration/driving-lifecycle.spec.mjs:109:1 › driving_police_and_siren_survive_audio_extraction (1.5s)
+  ✓  10 [chromium] › tests/integration/driving-lifecycle.spec.mjs:120:1 › driving_external_input_blocks_legacy_keyboard_actions (1.3s)
+  ✓  11 [chromium] › tests/integration/simulation-track.spec.mjs:4:1 › simulation_minimum_track_uses_real_force_model_and_releases_its_canvas (433ms)
+
+  11 passed (24.4s)

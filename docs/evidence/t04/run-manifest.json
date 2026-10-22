@@ -40,5 +40,19 @@
   "imagesInspected": [
     "simulation-track.png"
   ],
-  "review": "0Critical;2Important fixed in one TDD pass;0Minor"
+  "review": "0Critical;2Important fixed in one TDD pass;0Minor",
+  "integrationBase": "48508af68580246c0f18bf6a064ba5d5db7768d1",
+  "postT03Commands": {
+    "npm run check": "PASS62 Node +117IDs +11fragments",
+    "npm run build": "PASS both independent mode entries, see post-t03-build.log",
+    "npx playwright test": "PASS11 (T01+T03+T04)"
+  },
+  "postT03BrowserStats": {
+    "startTime": "2026-10-22T13:43:40.656Z",
+    "duration": 24421.168999999998,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
 }
