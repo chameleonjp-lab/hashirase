@@ -1,0 +1,325 @@
+✖ force_over_mass_accelerates (0.999387ms)
+✖ drive_force_is_scaled_by_throttle_and_reverse_has_the_opposite_sign (0.17291ms)
+✖ drag_does_not_accelerate_rest (0.107032ms)
+✖ resistance_opposes_motion_and_never_reverses_it (0.101243ms)
+✖ braking_stops_forward_and_reverse_without_driving_through_zero (0.153041ms)
+✖ zero_input_remains_finite_and_three_translation_axes_obey_F_equals_ma (0.126631ms)
+✖ same_tick_inputs_are_reproducible_across_render_schedules_and_five_runs (0.11263ms)
+✖ invalid_config_input_environment_and_overflow_do_not_corrupt_state (0.116356ms)
+✖ parameter_metadata_is_bounded_versioned_and_detached (0.206772ms)
+✖ simulation_has_no_game_rules (0.925695ms)
+✖ simulation_sessions_start_pause_reset_and_remain_independent (0.441696ms)
+✖ simulation_abort_disposes_without_global_or_timing_state (0.187633ms)
+✖ simulation_build_and_import_graph_contain_no_driving_code_or_engine (0.132851ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 0
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.467034
+
+✖ failing tests:
+
+test at tests/physics/straight-line.test.mjs:18:1
+✖ force_over_mass_accelerates (0.999387ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:19:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:27:1
+✖ drive_force_is_scaled_by_throttle_and_reverse_has_the_opposite_sign (0.17291ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:28:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:36:1
+✖ drag_does_not_accelerate_rest (0.107032ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:37:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:45:1
+✖ resistance_opposes_motion_and_never_reverses_it (0.101243ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:47:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:53:1
+✖ braking_stops_forward_and_reverse_without_driving_through_zero (0.153041ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:55:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:61:1
+✖ zero_input_remains_finite_and_three_translation_axes_obey_F_equals_ma (0.126631ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:62:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:70:1
+✖ same_tick_inputs_are_reproducible_across_render_schedules_and_five_runs (0.11263ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:71:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:79:1
+✖ invalid_config_input_environment_and_overflow_do_not_corrupt_state (0.116356ms)
+  AssertionError [ERR_ASSERTION]: T04 requires an independent createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:9:23)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:80:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/physics/straight-line.test.mjs:91:1
+✖ parameter_metadata_is_bounded_versioned_and_detached (0.206772ms)
+  AssertionError [ERR_ASSERTION]: T04 requires versioned parameter metadata
+      at config (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:11:3)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/physics/straight-line.test.mjs:92:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/unit/simulation-isolation.test.mjs:19:1
+✖ simulation_has_no_game_rules (0.925695ms)
+  AssertionError [ERR_ASSERTION]: T04 requires numeric physics
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:20:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/simulation-isolation.test.mjs:31:1
+✖ simulation_sessions_start_pause_reset_and_remain_independent (0.441696ms)
+  AssertionError [ERR_ASSERTION]: T04 requires its own createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at factory (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:11:27)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:32:40)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/simulation-isolation.test.mjs:40:1
+✖ simulation_abort_disposes_without_global_or_timing_state (0.187633ms)
+  AssertionError [ERR_ASSERTION]: T04 requires its own createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at factory (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:11:27)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:41:35)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/simulation-isolation.test.mjs:46:1
+✖ simulation_build_and_import_graph_contain_no_driving_code_or_engine (0.132851ms)
+  AssertionError [ERR_ASSERTION]: T04 requires its own createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at factory (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:11:27)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:47:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,17 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>T04 直線試験場</title>
+<body style="margin:0;background:#101c2a;color:#e9f0f5;font-family:system-ui"><main id="track"></main>
+<nav aria-label="検査用の固定時間操作" style="display:flex;gap:12px;padding:18px"><button id="accelerate" style="min-height:56px">1秒加速</button><button id="brake" style="min-height:56px">1秒制動</button><button id="reset" style="min-height:56px">初期位置へ</button></nav>
+<script type="module">
+import {createFixedClock} from '/src/platform/clock.js';import {createEventChannel} from '/src/contracts/events.js';import {createInputFrame} from '/src/contracts/vehicle.js';
+try{
+ const manifest=await(await fetch('/dist/build-manifest.json')).json(),mode=await import('/'+manifest.entryPoints['src/modes/simulation/index.js']);
+ if(typeof mode.createTrackRenderer!=='function')throw Error('T04 track renderer is absent');
+ const root=document.querySelector('#track'),renderer=mode.createTrackRenderer(root),controller=new AbortController();
+ const session=await mode.createMode({sessionId:'track-fixture',abortSignal:controller.signal,clock:createFixedClock(),events:createEventChannel('track-fixture'),input:{sample:()=>createInputFrame(),clear(){},dispose(){}},settings:{read:()=>({}),write(){}},world:{step(){},query:()=>({}),reset(){},dispose(){}},renderer,audio:{dispose(){}}});
+ renderer.resize({width:innerWidth,height:520,pixelRatio:1});session.start();
+ const draw=()=>renderer.render(session.snapshot(),0);draw();
+ const tick=frame=>{for(let i=0;i<120;i++)session.step(1/120,createInputFrame(frame));draw();};
+ document.querySelector('#accelerate').onclick=()=>tick({throttle:1});document.querySelector('#brake').onclick=()=>tick({brake:1});document.querySelector('#reset').onclick=()=>{session.reset();draw();};
+ window.harness={available:true,snapshot:()=>session.snapshot(),dispose(){session.dispose();session.dispose();return renderer.diagnostics();}};
+}catch(error){window.harness={available:false,error:String(error)};}
+</script></body></html>

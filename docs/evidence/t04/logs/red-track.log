@@ -1,0 +1,45 @@
+[WebServer] (node:19160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:19172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/integration/simulation-track.spec.mjs:4:1 › simulation_minimum_track_uses_real_force_model_and_releases_its_canvas (10.1s)
+
+
+  1) [chromium] › tests/integration/simulation-track.spec.mjs:4:1 › simulation_minimum_track_uses_real_force_model_and_releases_its_canvas 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      4 | test('simulation_minimum_track_uses_real_force_model_and_releases_its_canvas',async({page},testInfo)=>{
+      5 |  const errors=[];page.on('pageerror',error=>errors.push(String(error)));
+    > 6 |  await page.goto('/tests/fixtures/simulation-track.html');await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);
+        |                                                                                                                               ^
+      7 |  await expect(page.locator('canvas')).toHaveCount(1);await expect(page.getByText('推定デモ車・直線の最小モデル（実車未検証）')).toBeVisible();
+      8 |  await page.locator('#accelerate').click();const moving=await page.evaluate(()=>window.harness.snapshot());
+      9 |  expect(moving.vehicle.velocity.z).toBeLessThan(-2);expect(moving.vehicle.position.z).toBeLessThan(-1);
+        at /workspace/hashirase-t04/tests/integration/simulation-track.spec.mjs:6:127
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-simulation-tra-37510-del-and-releases-its-canvas-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-simulation-tra-37510-del-and-releases-its-canvas-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-simulation-tra-37510-del-and-releases-its-canvas-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-simulation-tra-37510-del-and-releases-its-canvas-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/integration/simulation-track.spec.mjs:4:1 › simulation_minimum_track_uses_real_force_model_and_releases_its_canvas 

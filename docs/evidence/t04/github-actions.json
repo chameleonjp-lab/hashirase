@@ -1,0 +1,11 @@
+{
+ "taskId":"T04",
+ "pullRequest":"https://github.com/chameleonjp-lab/hashirase/pull/8",
+ "headSHA":"5df414b9d1671d10183174dce4ed179258a72cc0",
+ "runs":[
+  {"id":39792022700,"conclusion":"success","jobId":119870228589,"coverage":"check62 Node, both-mode build, all11 browser","log":"logs/github-actions-39792022700.log"},
+  {"id":39792022584,"conclusion":"success","jobId":119870226812,"coverage":"target16 Node, actual simulation browser","log":"logs/github-actions-39792022584.log"}
+ ],
+ "previousCancelledRuns":[39790002765,39790003286],
+ "previousCause":"Azure Ubuntu HTTP mirror exceeded10min before product tests; officialUbuntuHTTPS fixed while retaining all dependency installation and tests"
+}

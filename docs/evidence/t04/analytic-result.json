@@ -1,0 +1,164 @@
+{
+  "ticks": 1200,
+  "dt": 0.008333333333333333,
+  "expected": {
+    "velocity": 10,
+    "position": 50
+  },
+  "observed": {
+    "position": {
+      "x": 50.00000000000088,
+      "y": 0,
+      "z": 0
+    },
+    "velocity": {
+      "x": 10.000000000000073,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "angularVelocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "wheels": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "damage": {},
+    "telemetry": {
+      "model": "T04-three-translations",
+      "rotationModel": "not-modelled",
+      "roadModel": "flat-normal-balances-gravity",
+      "label": "推定デモ車・直線の最小モデル（実車未検証）",
+      "configId": "estimated-demo-car",
+      "configVersion": "1.0.0",
+      "parameters": {
+        "mass": {
+          "value": 1000,
+          "unit": "kg",
+          "min": 1,
+          "max": 100000,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "maxDriveForce": {
+          "value": 4500,
+          "unit": "N",
+          "min": 0,
+          "max": 1000000,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "maxBrakeForce": {
+          "value": 9000,
+          "unit": "N",
+          "min": 0,
+          "max": 1000000,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "dragCoefficient": {
+          "value": 0,
+          "unit": "1",
+          "min": 0,
+          "max": 3,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "frontalArea": {
+          "value": 2.2,
+          "unit": "m²",
+          "min": 0,
+          "max": 100,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "rollingCoefficient": {
+          "value": 0,
+          "unit": "1",
+          "min": 0,
+          "max": 1,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "airDensity": {
+          "value": 1.225,
+          "unit": "kg/m³",
+          "min": 0,
+          "max": 10,
+          "origin": "estimated",
+          "source": "T04 estimated demonstrator; uncalibrated",
+          "version": "1.0.0"
+        },
+        "gravity": {
+          "value": 9.80665,
+          "unit": "m/s²",
+          "min": 0,
+          "max": 30,
+          "origin": "reference",
+          "source": "BIPM SI Brochure: conventional standard acceleration of free fall; flat road normal balances gravity",
+          "version": "1.0.0"
+        }
+      },
+      "mass": 1000,
+      "time": 10.000000000000073,
+      "acceleration": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "forces": {
+        "drive": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "drag": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rolling": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "brake": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "external": {
+          "x": 1000,
+          "y": 0,
+          "z": 0
+        },
+        "total": {
+          "x": 1000,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "speed": 10.000000000000073
+    }
+  },
+  "absoluteError": {
+    "velocity": 7.283063041541027e-14,
+    "position": 8.810729923425242e-13
+  }
+}

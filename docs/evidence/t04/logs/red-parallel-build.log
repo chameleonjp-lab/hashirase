@@ -1,0 +1,338 @@
+✖ simulation_build_and_import_graph_contain_no_driving_code_or_engine (148.923443ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.136301
+
+✖ failing tests:
+
+test at tests/unit/simulation-isolation.test.mjs:46:1
+✖ simulation_build_and_import_graph_contain_no_driving_code_or_engine (148.923443ms)
+  AssertionError [ERR_ASSERTION]: A model test must not replace application build output used by another test
+  + actual - expected
+  ... Skipped lines
+  
+    '{\n' +
+      '  "schemaVersion": 1,\n' +
+      '  "phase": "foundation",\n' +
+      '  "format": "esm",\n' +
+      '  "splitting": true,\n' +
+      '  "esbuildVersion": "0.28.2",\n' +
+      '  "entryPoints": {\n' +
+  +   '    "src/modes/simulation/index.js": "dist/modes/simulation/index.js"\n' +
+  -   '    "src/contracts/session.js": "dist/contracts/session.js",\n' +
+  -   '    "src/contracts/vehicle.js": "dist/contracts/vehicle.js",\n' +
+  -   '    "src/contracts/events.js": "dist/contracts/events.js",\n' +
+  -   '    "src/platform/clock.js": "dist/platform/clock.js",\n' +
+  -   '    "src/platform/random.js": "dist/platform/random.js",\n' +
+  -   '    "src/modes/driving/index.js": "dist/modes/driving/index.js",\n' +
+  -   '    "src/modes/simulation/index.js": "dist/modes/simulation/index.js",\n' +
+  -   '    "src/modes/driving/screen-assets.js": "dist/chunks/screen-assets-AQWDDUGU.js"\n' +
+      '  },\n' +
+      '  "inputFiles": [\n' +
+      '    {\n' +
+  -   '      "path": "assets/css/simulator.css",\n' +
+  -   '      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/assets/driving/screen.html",\n' +
+  -   '      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/contracts/events.js",\n' +
+  -   '      "sha256": "a2209be5d5e59591be07f0b5baa42affe00766a424c73da9e2340918549c8b32"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+      '      "path": "src/contracts/session.js",\n' +
+      '      "sha256": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148"\n' +
+      '    },\n' +
+      '    {\n' +
+      '      "path": "src/contracts/validation.js",\n' +
+  ...
+      '    {\n' +
+  -   '      "path": "src/modes/driving/index.js",\n' +
+  -   '      "sha256": "58b7e44d770b6b9cd8d9533ec7956ece208fc85cbaa86131b5508224117c277a"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/modes/driving/legacy-adapter.js",\n' +
+  -   '      "sha256": "da3e3c5fde21fa3d868a5cbc59a82fd2b47d15c3255384335eec95d9abef9352"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/modes/driving/physics.js",\n' +
+  -   '      "sha256": "170acbf9335f5764c263934abc29d3570b2a9e68d9e4f9ab539c34bf8d1a5c09"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/modes/driving/rules.js",\n' +
+  -   '      "sha256": "94626ff099cbc8af5acd85fda337c09d2584a5f9a7ae78316fe1b54a18cccdc7"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/modes/driving/screen-assets.js",\n' +
+  -   '      "sha256": "670514ac7ee50b24236ce9d4ae8d8fa47256f4d0297a03444aa97af54fd92aed"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/modes/driving/session.js",\n' +
+  -   '      "sha256": "102aa2dbe92924374717a37ec77c9c9b3883e3b798fab4ef3cc17cb263374f69"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/modes/driving/state.js",\n' +
+  -   '      "sha256": "9c18201affc45235ff10f42b99d4ea1aaf7ea4dda263293950c280f03ca45f0a"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+      '      "path": "src/modes/simulation/config/demo-car.js",\n' +
+      '      "sha256": "d74001eb79605a73e385f50055ac3962ef7ba4c322f5132e666904ce3c727bcf"\n' +
+      '    },\n' +
+      '    {\n' +
+      '      "path": "src/modes/simulation/index.js",\n' +
+  ...
+      '      "sha256": "ecbd793cac63d9ace4380f3d719e3c116843a12f23b2ba4ab50ce2e0c1067585"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/platform/audio.js",\n' +
+  -   '      "sha256": "d32d3e7470129f3e9a8d8cd3eeb767846d109f25a4ada743c735393b5755a9da"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/platform/clock.js",\n' +
+  -   '      "sha256": "8e2fef5c7a5f4b4b4be343aca8885e52c7a4346783469ec0a6284328d80cd0cf"\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "src/platform/random.js",\n' +
+  -   '      "sha256": "faf81b142c779ca6c6e992d84b8ddf38ba61ac99c5588b4e9e6ceebed1880a44"\n' +
+      '    }\n' +
+      '  ],\n' +
+      '  "outputs": [\n' +
+      '    {\n' +
+  -   '      "path": "dist/assets/screen-FPNW7CA7.html",\n' +
+  -   '      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/assets/driving/screen.html"\n' +
+  -   '      ],\n' +
+  -   '      "imports": []\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/assets/simulator-QM3GNTMM.css",\n' +
+  -   '      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "assets/css/simulator.css"\n' +
+  -   '      ],\n' +
+  -   '      "imports": []\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/chunks/chunk-INSMGBLP.js",\n' +
+  -   '      "sha256": "63267384478ffd01d8e3f4cfc5b82932b71e4c003e932535f61a33aed47672d7",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/platform/random.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/chunks/chunk-K2P3NXBS.js",\n' +
+  -   '      "sha256": "77833809c335aa72fcad9ef54ad8232ffbd10f9ddae365160357ac110ff8c712",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/contracts/session.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '      "sha256": "443756291d8a433fcd912bebf692457cb2fe1df661c4a72e67f2cd983b625c93",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/contracts/validation.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": []\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/chunks/chunk-YHDLSDEI.js",\n' +
+  -   '      "sha256": "f2c43df46e285871fa8fe310e1f4662dbf9ef9b84c2cacebb6ac7a46cb60e45f",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/contracts/vehicle.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/chunks/screen-assets-AQWDDUGU.js",\n' +
+  -   '      "sha256": "21b6801ef8b8259f822ab4277dc8401f011766a915d8578666c8d77368988fae",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "assets/css/simulator.css",\n' +
+  -   '        "src/assets/driving/screen.html",\n' +
+  -   '        "src/modes/driving/screen-assets.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/assets/screen-FPNW7CA7.html",\n' +
+  -   '          "kind": "file-loader"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/assets/simulator-QM3GNTMM.css",\n' +
+  -   '          "kind": "file-loader"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/contracts/events.js",\n' +
+  -   '      "sha256": "36ecbddd91748e31cada9a12010930eb1120736a3a80cc4140054d8425b9354e",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/contracts/events.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/contracts/session.js",\n' +
+  -   '      "sha256": "4cc1befa5b339c92e15bec9ce95f1a47cc9e9ea527b0dc102cd197fd3402c1c8",\n' +
+  -   '      "inputs": [],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-K2P3NXBS.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/contracts/vehicle.js",\n' +
+  -   '      "sha256": "aa4f6b5641e3d31ff460b169d2d7fd87ace883312991e27f5c9d4ad515d08317",\n' +
+  -   '      "inputs": [],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-YHDLSDEI.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/modes/driving/index.js",\n' +
+  -   '      "sha256": "e3632ecd9cb27b1be2ed99b331dedd38a6a43cb65de371b313c510ebe904b359",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/modes/driving/index.js",\n' +
+  -   '        "src/modes/driving/legacy-adapter.js",\n' +
+  -   '        "src/modes/driving/physics.js",\n' +
+  -   '        "src/modes/driving/rules.js",\n' +
+  -   '        "src/modes/driving/session.js",\n' +
+  -   '        "src/modes/driving/state.js",\n' +
+  -   '        "src/platform/audio.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-INSMGBLP.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-K2P3NXBS.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-YHDLSDEI.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/screen-assets-AQWDDUGU.js",\n' +
+  -   '          "kind": "dynamic-import"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+      '      "path": "dist/modes/simulation/index.js",\n' +
+  +   '      "sha256": "867a7ced50ee239e03740e8a53339a1e3a4f642b1bbabbe643ed2950f101eee9",\n' +
+  -   '      "sha256": "9c7aeefc2927ea79a619fb77083fc7e3cd3a4bb45edd7d19bc1d78591930c451",\n' +
+      '      "inputs": [\n' +
+  +   '        "src/contracts/session.js",\n' +
+  +   '        "src/contracts/validation.js",\n' +
+  +   '        "src/contracts/vehicle.js",\n' +
+      '        "src/modes/simulation/config/demo-car.js",\n' +
+      '        "src/modes/simulation/index.js",\n' +
+      '        "src/modes/simulation/physics/forces.js",\n' +
+      '        "src/modes/simulation/physics/vehicle-model.js",\n' +
+      '        "src/modes/simulation/renderer.js",\n' +
+      '        "src/modes/simulation/session.js"\n' +
+      '      ],\n' +
+  +   '      "imports": []\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-K2P3NXBS.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-YHDLSDEI.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/platform/clock.js",\n' +
+  -   '      "sha256": "a7b1c4aa51ac2259a72606500ed0fd64964c7091b7595ddae59ef3bf19cfebde",\n' +
+  -   '      "inputs": [\n' +
+  -   '        "src/platform/clock.js"\n' +
+  -   '      ],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+  -   '    },\n' +
+  -   '    {\n' +
+  -   '      "path": "dist/platform/random.js",\n' +
+  -   '      "sha256": "84d9644125ce100a0fd1faea75801645eb468f047138b2ed39af19abf101ab1c",\n' +
+  -   '      "inputs": [],\n' +
+  -   '      "imports": [\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-INSMGBLP.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        },\n' +
+  -   '        {\n' +
+  -   '          "path": "dist/chunks/chunk-S6VTBFRY.js",\n' +
+  -   '          "kind": "import-statement"\n' +
+  -   '        }\n' +
+  -   '      ]\n' +
+      '    }\n' +
+      '  ]\n' +
+      '}\n'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t04/tests/unit/simulation-isolation.test.mjs:53:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '{\n  "schemaVersion": 1,\n  "phase": "foundation",\n  "format": "esm",\n  "splitting": true,\n  "esbuildVersion": "0.28.2",\n  "entryPoints": {\n    "src/modes/simulation/index.js": "dist/modes/simulation/index.js"\n  },\n  "inputFiles": [\n    {\n      "path": "src/contracts/session.js",\n      "sha256": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148"\n    },\n    {\n      "path": "src/contracts/validation.js",\n      "sha256": "4c14145e22f916762e8e3805a67cedf5f7f85e42f8ba2c9a173e1b1731e39a76"\n    },\n    {\n      "path": "src/contracts/vehicle.js",\n      "sha256": "4c3009a5606a9075e5b35fda437a6b4ab34cdc6c5e1c46616ea9efb9bffc5d69"\n    },\n    {\n      "path": "src/modes/simulation/config/demo-car.js",\n      "sha256": "d74001eb79605a73e385f50055ac3962ef7ba4c322f5132e666904ce3c727bcf"\n    },\n    {\n      "path": "src/modes/simulation/index.js",\n      "sha256": "4609949038f0238ab17b27c5b3085d5fb9e64a9ae5f315866724e64a600688f8"\n    },\n    {\n      "path": "src/modes/simulation/physics/forces.js",\n      "sha256": "9111eab020675254c1bcac27a6a37036b49a949f951acda62b47c41967d2dd48"\n    },\n    {\n      "path": "src/modes/simulation/physics/vehicle-model.js",\n      "sha256": "c61365e081e9a2fc551148ff4bf6bda8194c82775acf877245d31d63df1e5194"\n    },\n    {\n      "path": "src/modes/simulation/renderer.js",\n      "sha256": "96e8799d96a9cfd262705da46f3a700e54e67d5f40749e3495436fd0d373be60"\n    },\n    {\n      "path": "src/modes/simulation/session.js",\n      "sha256": "ecbd793cac63d9ace4380f3d719e3c116843a12f23b2ba4ab50ce2e0c1067585"\n    }\n  ],\n  "outputs": [\n    {\n      "path": "dist/modes/simulation/index.js",\n      "sha256": "867a7ced50ee239e03740e8a53339a1e3a4f642b1bbabbe643ed2950f101eee9",\n      "inputs": [\n        "src/contracts/session.js",\n        "src/contracts/validation.js",\n        "src/contracts/vehicle.js",\n        "src/modes/simulation/config/demo-car.js",\n        "src/modes/simulation/index.js",\n        "src/modes/simulation/physics/forces.js",\n        "src/modes/simulation/physics/vehicle-model.js",\n        "src/modes/simulation/renderer.js",\n        "src/modes/simulation/session.js"\n      ],\n      "imports": []\n    }\n  ]\n}\n',
+    expected: '{\n  "schemaVersion": 1,\n  "phase": "foundation",\n  "format": "esm",\n  "splitting": true,\n  "esbuildVersion": "0.28.2",\n  "entryPoints": {\n    "src/contracts/session.js": "dist/contracts/session.js",\n    "src/contracts/vehicle.js": "dist/contracts/vehicle.js",\n    "src/contracts/events.js": "dist/contracts/events.js",\n    "src/platform/clock.js": "dist/platform/clock.js",\n    "src/platform/random.js": "dist/platform/random.js",\n    "src/modes/driving/index.js": "dist/modes/driving/index.js",\n    "src/modes/simulation/index.js": "dist/modes/simulation/index.js",\n    "src/modes/driving/screen-assets.js": "dist/chunks/screen-assets-AQWDDUGU.js"\n  },\n  "inputFiles": [\n    {\n      "path": "assets/css/simulator.css",\n      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487"\n    },\n    {\n      "path": "src/assets/driving/screen.html",\n      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f"\n    },\n    {\n      "path": "src/contracts/events.js",\n      "sha256": "a2209be5d5e59591be07f0b5baa42affe00766a424c73da9e2340918549c8b32"\n    },\n    {\n      "path": "src/contracts/session.js",\n      "sha256": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148"\n    },\n    {\n      "path": "src/contracts/validation.js",\n      "sha256": "4c14145e22f916762e8e3805a67cedf5f7f85e42f8ba2c9a173e1b1731e39a76"\n    },\n    {\n      "path": "src/contracts/vehicle.js",\n      "sha256": "4c3009a5606a9075e5b35fda437a6b4ab34cdc6c5e1c46616ea9efb9bffc5d69"\n    },\n    {\n      "path": "src/modes/driving/index.js",\n      "sha256": "58b7e44d770b6b9cd8d9533ec7956ece208fc85cbaa86131b5508224117c277a"\n    },\n    {\n      "path": "src/modes/driving/legacy-adapter.js",\n      "sha256": "da3e3c5fde21fa3d868a5cbc59a82fd2b47d15c3255384335eec95d9abef9352"\n    },\n    {\n      "path": "src/modes/driving/physics.js",\n      "sha256": "170acbf9335f5764c263934abc29d3570b2a9e68d9e4f9ab539c34bf8d1a5c09"\n    },\n    {\n      "path": "src/modes/driving/rules.js",\n      "sha256": "94626ff099cbc8af5acd85fda337c09d2584a5f9a7ae78316fe1b54a18cccdc7"\n    },\n    {\n      "path": "src/modes/driving/screen-assets.js",\n      "sha256": "670514ac7ee50b24236ce9d4ae8d8fa47256f4d0297a03444aa97af54fd92aed"\n    },\n    {\n      "path": "src/modes/driving/session.js",\n      "sha256": "102aa2dbe92924374717a37ec77c9c9b3883e3b798fab4ef3cc17cb263374f69"\n    },\n    {\n      "path": "src/modes/driving/state.js",\n      "sha256": "9c18201affc45235ff10f42b99d4ea1aaf7ea4dda263293950c280f03ca45f0a"\n    },\n    {\n      "path": "src/modes/simulation/config/demo-car.js",\n      "sha256": "d74001eb79605a73e385f50055ac3962ef7ba4c322f5132e666904ce3c727bcf"\n    },\n    {\n      "path": "src/modes/simulation/index.js",\n      "sha256": "4609949038f0238ab17b27c5b3085d5fb9e64a9ae5f315866724e64a600688f8"\n    },\n    {\n      "path": "src/modes/simulation/physics/forces.js",\n      "sha256": "9111eab020675254c1bcac27a6a37036b49a949f951acda62b47c41967d2dd48"\n    },\n    {\n      "path": "src/modes/simulation/physics/vehicle-model.js",\n      "sha256": "c61365e081e9a2fc551148ff4bf6bda8194c82775acf877245d31d63df1e5194"\n    },\n    {\n      "path": "src/modes/simulation/renderer.js",\n      "sha256": "96e8799d96a9cfd262705da46f3a700e54e67d5f40749e3495436fd0d373be60"\n    },\n    {\n      "path": "src/modes/simulation/session.js",\n      "sha256": "ecbd793cac63d9ace4380f3d719e3c116843a12f23b2ba4ab50ce2e0c1067585"\n    },\n    {\n      "path": "src/platform/audio.js",\n      "sha256": "d32d3e7470129f3e9a8d8cd3eeb767846d109f25a4ada743c735393b5755a9da"\n    },\n    {\n      "path": "src/platform/clock.js",\n      "sha256": "8e2fef5c7a5f4b4b4be343aca8885e52c7a4346783469ec0a6284328d80cd0cf"\n    },\n    {\n      "path": "src/platform/random.js",\n      "sha256": "faf81b142c779ca6c6e992d84b8ddf38ba61ac99c5588b4e9e6ceebed1880a44"\n    }\n  ],\n  "outputs": [\n    {\n      "path": "dist/assets/screen-FPNW7CA7.html",\n      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f",\n      "inputs": [\n        "src/assets/driving/screen.html"\n      ],\n      "imports": []\n    },\n    {\n      "path": "dist/assets/simulator-QM3GNTMM.css",\n      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487",\n      "inputs": [\n        "assets/css/simulator.css"\n      ],\n      "imports": []\n    },\n    {\n      "path": "dist/chunks/chunk-INSMGBLP.js",\n      "sha256": "63267384478ffd01d8e3f4cfc5b82932b71e4c003e932535f61a33aed47672d7",\n      "inputs": [\n        "src/platform/random.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/chunks/chunk-K2P3NXBS.js",\n      "sha256": "77833809c335aa72fcad9ef54ad8232ffbd10f9ddae365160357ac110ff8c712",\n      "inputs": [\n        "src/contracts/session.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/chunks/chunk-S6VTBFRY.js",\n      "sha256": "443756291d8a433fcd912bebf692457cb2fe1df661c4a72e67f2cd983b625c93",\n      "inputs": [\n        "src/contracts/validation.js"\n      ],\n      "imports": []\n    },\n    {\n      "path": "dist/chunks/chunk-YHDLSDEI.js",\n      "sha256": "f2c43df46e285871fa8fe310e1f4662dbf9ef9b84c2cacebb6ac7a46cb60e45f",\n      "inputs": [\n        "src/contracts/vehicle.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/chunks/screen-assets-AQWDDUGU.js",\n      "sha256": "21b6801ef8b8259f822ab4277dc8401f011766a915d8578666c8d77368988fae",\n      "inputs": [\n        "assets/css/simulator.css",\n        "src/assets/driving/screen.html",\n        "src/modes/driving/screen-assets.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/assets/screen-FPNW7CA7.html",\n          "kind": "file-loader"\n        },\n        {\n          "path": "dist/assets/simulator-QM3GNTMM.css",\n          "kind": "file-loader"\n        }\n      ]\n    },\n    {\n      "path": "dist/contracts/events.js",\n      "sha256": "36ecbddd91748e31cada9a12010930eb1120736a3a80cc4140054d8425b9354e",\n      "inputs": [\n        "src/contracts/events.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/contracts/session.js",\n      "sha256": "4cc1befa5b339c92e15bec9ce95f1a47cc9e9ea527b0dc102cd197fd3402c1c8",\n      "inputs": [],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-K2P3NXBS.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/contracts/vehicle.js",\n      "sha256": "aa4f6b5641e3d31ff460b169d2d7fd87ace883312991e27f5c9d4ad515d08317",\n      "inputs": [],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-YHDLSDEI.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/modes/driving/index.js",\n      "sha256": "e3632ecd9cb27b1be2ed99b331dedd38a6a43cb65de371b313c510ebe904b359",\n      "inputs": [\n        "src/modes/driving/index.js",\n        "src/modes/driving/legacy-adapter.js",\n        "src/modes/driving/physics.js",\n        "src/modes/driving/rules.js",\n        "src/modes/driving/session.js",\n        "src/modes/driving/state.js",\n        "src/platform/audio.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-INSMGBLP.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-K2P3NXBS.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-YHDLSDEI.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/screen-assets-AQWDDUGU.js",\n          "kind": "dynamic-import"\n        }\n      ]\n    },\n    {\n      "path": "dist/modes/simulation/index.js",\n      "sha256": "9c7aeefc2927ea79a619fb77083fc7e3cd3a4bb45edd7d19bc1d78591930c451",\n      "inputs": [\n        "src/modes/simulation/config/demo-car.js",\n        "src/modes/simulation/index.js",\n        "src/modes/simulation/physics/forces.js",\n        "src/modes/simulation/physics/vehicle-model.js",\n        "src/modes/simulation/renderer.js",\n        "src/modes/simulation/session.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-K2P3NXBS.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-YHDLSDEI.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/platform/clock.js",\n      "sha256": "a7b1c4aa51ac2259a72606500ed0fd64964c7091b7595ddae59ef3bf19cfebde",\n      "inputs": [\n        "src/platform/clock.js"\n      ],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    },\n    {\n      "path": "dist/platform/random.js",\n      "sha256": "84d9644125ce100a0fd1faea75801645eb468f047138b2ed39af19abf101ab1c",\n      "inputs": [],\n      "imports": [\n        {\n          "path": "dist/chunks/chunk-INSMGBLP.js",\n          "kind": "import-statement"\n        },\n        {\n          "path": "dist/chunks/chunk-S6VTBFRY.js",\n          "kind": "import-statement"\n        }\n      ]\n    }\n  ]\n}\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
