@@ -18,12 +18,12 @@ jobs:
           node-version: '22'
       - name: Install pinned test dependencies
         run: npm ci
-      - name: Install Chromium for baseline browser tests
-        run: npx playwright install --with-deps chromium
       - name: Validate generated code, JavaScript syntax, and HTML references
         run: npm run check
       - name: Build isolated ESM foundation and audit split output
         run: npm run build
+      - name: Install Chromium and full dependencies from Ubuntu HTTPS archive
+        run: bash tools/install-ci-browser.sh
       - name: Exercise original regressions and isolated mode lifecycles
         run: npx playwright test
       - name: Save browser diagnostics, screenshots, and failure traces
