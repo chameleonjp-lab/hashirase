@@ -1,0 +1,6 @@
+
+> hashirase@0.1.0 build
+> node scripts/build.mjs
+
+Regenerated assets/js/simulator.js.
+ESM foundation build: 22 inputs, 14 outputs; dist/build-manifest.json.

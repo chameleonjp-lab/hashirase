@@ -1,7 +1,7 @@
 {
   "taskId": "T06",
   "originalBase": "f44bb235a8c84f3a6af8b5c7338ebdb2f54bc442",
-  "integrationBase": "48508af68580246c0f18bf6a064ba5d5db7768d1",
+  "integrationBase": "c3419eb53d06ae5615c74b2b5f175d3c7be67119",
   "environment": {
     "node": "v24.19.0",
     "browser": "Chromium154.0.8037.57",
@@ -58,5 +58,18 @@
     "settings-touch-200-percent.png"
   ],
   "acceptance": "A01–A60 NOT_RUN; fixture is input/settings contract, not home/mode integration",
-  "review": "0Critical6Important3Minor; all9 fixed one TDD pass; see review.md"
+  "review": "0Critical6Important3Minor; all9 fixed one TDD pass; see review.md",
+  "postT04": {
+    "npm run check": "PASS85 Node (61unit+14integration+10physics)",
+    "npm run build": "PASS both modes",
+    "npx playwright test": "PASS36 (T01+T03+T04+T06)",
+    "browserStats": {
+      "startTime": "2026-10-22T14:34:48.496Z",
+      "duration": 37482.420000000006,
+      "expected": 36,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  }
 }
