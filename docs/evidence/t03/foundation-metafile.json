@@ -1,0 +1,330 @@
+{
+  "inputs": {
+    "src/contracts/validation.js": {
+      "bytes": 2647,
+      "imports": [],
+      "format": "esm"
+    },
+    "src/contracts/session.js": {
+      "bytes": 4380,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "./validation.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/contracts/vehicle.js": {
+      "bytes": 6550,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "./validation.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/state.js": {
+      "bytes": 3806,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "../../contracts/validation.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/physics.js": {
+      "bytes": 23743,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "../../contracts/validation.js"
+        },
+        {
+          "path": "src/contracts/vehicle.js",
+          "kind": "import-statement",
+          "original": "../../contracts/vehicle.js"
+        },
+        {
+          "path": "src/modes/driving/state.js",
+          "kind": "import-statement",
+          "original": "./state.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/rules.js": {
+      "bytes": 3175,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "../../contracts/validation.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/platform/audio.js": {
+      "bytes": 7977,
+      "imports": [],
+      "format": "esm"
+    },
+    "src/platform/random.js": {
+      "bytes": 1219,
+      "imports": [
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "../contracts/validation.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/legacy-adapter.js": {
+      "bytes": 202536,
+      "imports": [
+        {
+          "path": "src/modes/driving/state.js",
+          "kind": "import-statement",
+          "original": "./state.js"
+        },
+        {
+          "path": "src/modes/driving/physics.js",
+          "kind": "import-statement",
+          "original": "./physics.js"
+        },
+        {
+          "path": "src/modes/driving/rules.js",
+          "kind": "import-statement",
+          "original": "./rules.js"
+        },
+        {
+          "path": "src/platform/audio.js",
+          "kind": "import-statement",
+          "original": "../../platform/audio.js"
+        },
+        {
+          "path": "src/platform/random.js",
+          "kind": "import-statement",
+          "original": "../../platform/random.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/session.js": {
+      "bytes": 5218,
+      "imports": [
+        {
+          "path": "src/contracts/session.js",
+          "kind": "import-statement",
+          "original": "../../contracts/session.js"
+        },
+        {
+          "path": "src/contracts/validation.js",
+          "kind": "import-statement",
+          "original": "../../contracts/validation.js"
+        },
+        {
+          "path": "src/contracts/vehicle.js",
+          "kind": "import-statement",
+          "original": "../../contracts/vehicle.js"
+        },
+        {
+          "path": "src/modes/driving/state.js",
+          "kind": "import-statement",
+          "original": "./state.js"
+        },
+        {
+          "path": "src/modes/driving/physics.js",
+          "kind": "import-statement",
+          "original": "./physics.js"
+        },
+        {
+          "path": "src/modes/driving/rules.js",
+          "kind": "import-statement",
+          "original": "./rules.js"
+        },
+        {
+          "path": "src/modes/driving/legacy-adapter.js",
+          "kind": "import-statement",
+          "original": "./legacy-adapter.js"
+        }
+      ],
+      "format": "esm"
+    },
+    "asset-file:src/assets/driving/screen.html": {
+      "bytes": 30288,
+      "imports": []
+    },
+    "asset-url:src/assets/driving/screen.html": {
+      "bytes": 118,
+      "imports": [
+        {
+          "path": "asset-file:src/assets/driving/screen.html",
+          "kind": "import-statement",
+          "original": "hashirase-asset:src/assets/driving/screen.html"
+        }
+      ],
+      "format": "esm"
+    },
+    "asset-file:assets/css/simulator.css": {
+      "bytes": 9249,
+      "imports": []
+    },
+    "asset-url:assets/css/simulator.css": {
+      "bytes": 112,
+      "imports": [
+        {
+          "path": "asset-file:assets/css/simulator.css",
+          "kind": "import-statement",
+          "original": "hashirase-asset:assets/css/simulator.css"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/screen-assets.js": {
+      "bytes": 148,
+      "imports": [
+        {
+          "path": "asset-url:src/assets/driving/screen.html",
+          "kind": "import-statement",
+          "original": "../../assets/driving/screen.html"
+        },
+        {
+          "path": "asset-url:assets/css/simulator.css",
+          "kind": "import-statement",
+          "original": "../../../assets/css/simulator.css"
+        }
+      ],
+      "format": "esm"
+    },
+    "src/modes/driving/index.js": {
+      "bytes": 202,
+      "imports": [
+        {
+          "path": "src/modes/driving/session.js",
+          "kind": "import-statement",
+          "original": "./session.js"
+        },
+        {
+          "path": "src/modes/driving/screen-assets.js",
+          "kind": "dynamic-import",
+          "original": "./screen-assets.js"
+        }
+      ],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "dist/modes/driving/index.js": {
+      "imports": [
+        {
+          "path": "dist/chunks/screen-assets-AQWDDUGU.js",
+          "kind": "dynamic-import"
+        }
+      ],
+      "exports": [
+        "createMode",
+        "loadScreenAssets"
+      ],
+      "entryPoint": "src/modes/driving/index.js",
+      "inputs": {
+        "src/contracts/validation.js": {
+          "bytesInOutput": 2441
+        },
+        "src/contracts/session.js": {
+          "bytesInOutput": 1354
+        },
+        "src/contracts/vehicle.js": {
+          "bytesInOutput": 1406
+        },
+        "src/modes/driving/state.js": {
+          "bytesInOutput": 4185
+        },
+        "src/modes/driving/physics.js": {
+          "bytesInOutput": 19326
+        },
+        "src/modes/driving/rules.js": {
+          "bytesInOutput": 2738
+        },
+        "src/platform/audio.js": {
+          "bytesInOutput": 9252
+        },
+        "src/platform/random.js": {
+          "bytesInOutput": 935
+        },
+        "src/modes/driving/legacy-adapter.js": {
+          "bytesInOutput": 207306
+        },
+        "src/modes/driving/session.js": {
+          "bytesInOutput": 5517
+        },
+        "src/modes/driving/index.js": {
+          "bytesInOutput": 97
+        }
+      },
+      "bytes": 254943
+    },
+    "dist/assets/screen-FPNW7CA7.html": {
+      "imports": [],
+      "exports": [],
+      "inputs": {
+        "asset-file:src/assets/driving/screen.html": {
+          "bytesInOutput": 30288
+        }
+      },
+      "bytes": 30288
+    },
+    "dist/assets/simulator-QM3GNTMM.css": {
+      "imports": [],
+      "exports": [],
+      "inputs": {
+        "asset-file:assets/css/simulator.css": {
+          "bytesInOutput": 9249
+        }
+      },
+      "bytes": 9249
+    },
+    "dist/chunks/screen-assets-AQWDDUGU.js": {
+      "imports": [
+        {
+          "path": "dist/assets/screen-FPNW7CA7.html",
+          "kind": "file-loader"
+        },
+        {
+          "path": "dist/assets/simulator-QM3GNTMM.css",
+          "kind": "file-loader"
+        }
+      ],
+      "exports": [
+        "screenURL",
+        "styleURL"
+      ],
+      "entryPoint": "src/modes/driving/screen-assets.js",
+      "inputs": {
+        "asset-file:src/assets/driving/screen.html": {
+          "bytesInOutput": 55
+        },
+        "asset-url:src/assets/driving/screen.html": {
+          "bytesInOutput": 69
+        },
+        "asset-file:assets/css/simulator.css": {
+          "bytesInOutput": 60
+        },
+        "asset-url:assets/css/simulator.css": {
+          "bytesInOutput": 75
+        },
+        "src/modes/driving/screen-assets.js": {
+          "bytesInOutput": 0
+        }
+      },
+      "bytes": 505
+    }
+  }
+}

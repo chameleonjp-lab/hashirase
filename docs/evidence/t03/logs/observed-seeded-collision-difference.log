@@ -1,0 +1,48 @@
+[WebServer] (node:10562) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:10575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:48:1 › driving_fixed_tick_trace_matches_pre_extraction_game (5.0s)
+
+
+  1) [chromium] › tests/integration/driving-lifecycle.spec.mjs:48:1 › driving_fixed_tick_trace_matches_pre_extraction_game 
+
+    Error: parked-truck-collision position.x
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 0.000001
+    Received:    0.04689709187583446
+
+      68 |     const old=await reference.evaluate(({frames,legacy})=>window.__legacyTrace.advance(frames,legacy),run);
+      69 |     const current=(await page.evaluate(({frames,frame})=>window.harness.tick(frames,frame),run)).vehicle;
+    > 70 |     for(const group of ['position','velocity','rotation'])for(const key of Object.keys(old[group]))expect(Math.abs(current[group][key]-old[group][key]),`${run.name} ${group}.${key}`).toBeLessThanOrEqual(1e-6);
+         |                                                                                                                                                                                        ^
+      71 |     expect(current.telemetry.mode).toBe(old.mode);expect(Math.abs(current.telemetry.gasMass-old.gasMass)).toBeLessThanOrEqual(1e-6);
+      72 |     observations.push({name:run.name,baseline:old,current});
+      73 |   }
+        at /workspace/hashirase-t03/tests/integration/driving-lifecycle.spec.mjs:70:184
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-a19a6-matches-pre-extraction-game-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-a19a6-matches-pre-extraction-game-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-driving-lifecy-a19a6-matches-pre-extraction-game-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-a19a6-matches-pre-extraction-game-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-driving-lifecy-a19a6-matches-pre-extraction-game-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/integration/driving-lifecycle.spec.mjs:48:1 › driving_fixed_tick_trace_matches_pre_extraction_game 

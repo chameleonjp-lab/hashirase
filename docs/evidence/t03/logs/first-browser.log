@@ -1,0 +1,142 @@
+[WebServer] (node:9306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:9318) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/baseline/startup.spec.mjs:4:1 › startup_nyc_has_no_unbound_radius (4.4s)
+  ✓  2 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (timer) (888ms)
+  ✓  3 [chromium] › tests/baseline/startup.spec.mjs:39:3 › startup_failure_shows_error (load) (682ms)
+  ✓  4 [chromium] › tests/baseline/startup.spec.mjs:60:1 › vehicle_reset_restores_part_positions (3.0s)
+  ✘  5 [chromium] › tests/integration/driving-lifecycle.spec.mjs:4:1 › driving_lifecycle_preserves_controls_and_releases_resources (1.0m)
+
+
+  1) [chromium] › tests/integration/driving-lifecycle.spec.mjs:4:1 › driving_lifecycle_preserves_controls_and_releases_resources 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Browser logs:
+
+    <launching> /usr/bin/chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --enable-unsafe-swiftshader --user-data-dir=/tmp/playwright_chromiumdev_profile-AQ1t1C --remote-debugging-pipe --no-startup-window
+    <launched> pid=9330
+    [pid=9330][err] [9330:9330:1022/123448.005989:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /home/agent/.config/chromium/Crash Reports/settings.dat: Read-only file system (30)
+    [pid=9330][err] [9330:9330:1022/123448.006117:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /home/agent/.config/chromium/Crash Reports/settings.dat: Read-only file system (30)
+    [pid=9330][err] [9330:9360:1022/123448.041053:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=9330][err] [9330:9360:1022/123448.041091:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9360:1022/123448.044062:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=9330][err] [9330:9360:1022/123448.044268:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=9330][err] [9330:9360:1022/123448.044289:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9368:1022/123448.047505:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9371: Read-only file system (30)
+    [pid=9330][err] [9330:9357:1022/123448.051436:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:208] open /home/agent/.config/chromium/Crash Reports/settings.dat: Read-only file system (30)
+    [pid=9330][err] [9330:9360:1022/123448.087122:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9368:1022/123448.090856:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9399: Read-only file system (30)
+    [pid=9330][err] [9330:9330:1022/123448.097499:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9360:1022/123448.097566:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9330:1022/123448.097598:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9360:1022/123448.097614:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9330:1022/123448.100151:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9360:1022/123448.100198:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9330:1022/123448.101570:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9330:1022/123448.101632:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9360:1022/123448.101669:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=9330][err] [9330:9360:1022/123448.101681:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+    [pid=9330][err] [9330:9360:1022/123448.101685:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9330:1022/123448.102135:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9330:1022/123448.102465:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: 
+    [pid=9330][err] [9330:9330:1022/123448.102499:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9360:1022/123448.102523:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9330:1022/123448.104739:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9360:1022/123448.104782:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+    [pid=9330][err] [9330:9330:1022/123448.104988:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+    [pid=9330][err] [9330:9356:1022/123448.117021:ERROR:crypto/nss_util.cc:256] Error initializing NSS with a persistent database (sql:/home/agent/.pki/nssdb): NSS error code: -8126
+    [pid=9330][err] [9374:9391:1022/123448.117872:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] 
+    [pid=9330][err] (process:9330): dconf-CRITICAL **: 12:34:48.122: unable to create file '/home/agent/.cache/dconf/user': Read-only file system.  dconf will not work properly.
+    [pid=9330][err] 
+    [pid=9330][err] (process:9330): dconf-CRITICAL **: 12:34:48.122: unable to create file '/home/agent/.cache/dconf/user': Read-only file system.  dconf will not work properly.
+    [pid=9330][err] 
+    [pid=9330][err] (process:9330): dconf-CRITICAL **: 12:34:48.122: unable to create file '/home/agent/.cache/dconf/user': Read-only file system.  dconf will not work properly.
+    [pid=9330][err] [9330:9368:1022/123448.141872:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9413: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123448.160943:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9422: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123448.161965:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9423: Read-only file system (30)
+    [pid=9330][err] [9374:9391:1022/123448.200393:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9371:9371:1022/123448.545220:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x18a401ab0200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+    [pid=9330][err] [9374:9391:1022/123448.953304:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9371:9371:1022/123449.691697:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x18a401ab0200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+    [pid=9330][err] [9371:9371:1022/123450.992019:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x18a401ab0200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+    [pid=9330][err] [9374:9391:1022/123451.437375:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9371:9371:1022/123451.979187:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x18a401ab0200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+    [pid=9330][err] [9330:9368:1022/123452.578343:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9449: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123452.590569:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9458: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123452.591517:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9459: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123453.487166:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9483: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123453.497692:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9492: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123453.498918:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9494: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123454.173551:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9518: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123454.191878:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9527: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123454.193638:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9530: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123457.163022:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9555: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123457.179873:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9564: Read-only file system (30)
+    [pid=9330][err] [9330:9368:1022/123457.180712:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:300] Failed to adjust OOM score of renderer with pid 9565: Read-only file system (30)
+    [pid=9330][err] [9374:9391:1022/123459.830216:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9374:9391:1022/123501.264710:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9374:9391:1022/123521.637845:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9374:9391:1022/123524.521705:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330][err] [9374:9391:1022/123548.175427:ERROR:net/socket/ssl_client_socket_impl.cc:949] handshake failed; returned -1, SSL error code 1, net_error -202
+    [pid=9330] <gracefully close start>
+    Call log:
+      - waiting for locator('#btn-toggle-course')
+        - locator resolved to <button id="btn-toggle-course" class="btn-game rounded-xl px-3 py-1.5 bg-emerald-950/85 border border-emerald-400/60 text-emerald-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-md">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div id="loading-screen">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div id="loading-screen">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        112 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <div id="loading-screen">…</div> intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      17 |   await page.keyboard.up('KeyW');
+      18 |   await page.evaluate(() => window.harness.resume());
+    > 19 |   await page.locator('#btn-toggle-course').click();
+         |                                            ^
+      20 |   expect((await page.evaluate(() => window.harness.tick())).course).toBe('NYC');
+      21 |   await page.locator('#btn-reset-car').click();
+      22 |   expect((await page.evaluate(() => window.harness.snapshot())).vehicle.damage.hp).toBe(1000);
+        at /workspace/hashirase-t03/tests/integration/driving-lifecycle.spec.mjs:19:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-driving-lifecy-de12f-rols-and-releases-resources-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/integration/driving-lifecycle.spec.mjs:4:1 › driving_lifecycle_preserves_controls_and_releases_resources 
+  4 passed (1.2m)

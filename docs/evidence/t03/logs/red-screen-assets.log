@@ -1,0 +1,30 @@
+✖ driving_build_has_a_real_mode_entry_without_simulation_or_Three (115.427186ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208.286953
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:158:1
+✖ driving_build_has_a_real_mode_entry_without_simulation_or_Three (115.427186ms)
+  AssertionError [ERR_ASSERTION]: Selected game must provide its own screen/style assets
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:165:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

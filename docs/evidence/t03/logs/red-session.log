@@ -1,0 +1,208 @@
+✖ driving_import_has_no_side_effect (1.216642ms)
+✖ two_driving_sessions_do_not_share_state (0.253323ms)
+✖ driving_start_pause_resume_reset_and_dispose_are_independent (0.375346ms)
+✖ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.180486ms)
+✖ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.27079ms)
+✖ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.194108ms)
+✖ driving_brake_does_not_become_reverse_drive (0.108773ms)
+✖ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.146763ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 69.856712
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:31:1
+✖ driving_import_has_no_side_effect (1.216642ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:32:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:36:1
+✖ two_driving_sessions_do_not_share_state (0.253323ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:37:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:54:1
+✖ driving_start_pause_resume_reset_and_dispose_are_independent (0.375346ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:55:46)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:75:1
+✖ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.180486ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:76:46)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:84:1
+✖ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.27079ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createMode
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:85:46)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:98:1
+✖ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.194108ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:99:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:115:1
+✖ driving_brake_does_not_become_reverse_drive (0.108773ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createVehicleModel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:116:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:123:1
+✖ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.146763ms)
+  AssertionError [ERR_ASSERTION]: T03 requires createAudioService
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:13:37)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:125:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

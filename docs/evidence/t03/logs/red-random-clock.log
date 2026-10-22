@@ -1,0 +1,53 @@
+✖ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (49.035623ms)
+✖ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (28.825478ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.554433
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:167:1
+✖ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (49.035623ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   draws: 6,
+  -   draws: 0,
+      seed: 2002845228,
+  +   state: 107338218,
+  -   state: 2002845228,
+      version: 1
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:172:55)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { version: 1, seed: 2002845228, state: 107338218, draws: 6 },
+    expected: { version: 1, seed: 2002845228, state: 2002845228, draws: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/driving-session.test.mjs:176:1
+✖ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (28.825478ms)
+  file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:179
+      performance:{now(){throw new Error('Unexpected wall-clock read');}},simulationTime:1,
+                         ^
+  
+  Error: Unexpected wall-clock read
+      at Object.now (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:179:30)
+      at updatePoliceHelicopter (evalmachine.<anonymous>:7:25)
+      at evalmachine.<anonymous>:21:3
+      at Script.runInContext (node:vm:149:12)
+      at Script.runInNewContext (node:vm:154:17)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:178:98)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

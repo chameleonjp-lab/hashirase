@@ -22,7 +22,7 @@ stuntToast.classList.add('opacity-0', 'translate-y-2');
 }, 1600);
 }
 const nycHudExtras = document.getElementById('nyc-hud-extras');
-btnToggleCourse.addEventListener('click', () => {
+function changeCourse() {
 stopAutoDemo();
 stopNycTimeAttack();
 if (currentCourse === 'PROVING_GROUND') {
@@ -50,7 +50,8 @@ courseLabelText.textContent = '🗽 コース: テスト場 ➔ NY市街地へ';
 resetVehicle(0, 36);
 showToast('🏟️ McGregor テストコースへ移動しました');
 }
-});
+}
+btnToggleCourse.addEventListener('click',changeCourse);
 document.getElementById('btn-time-attack').addEventListener('click', () => {
 startNycTimeAttack();
 });
@@ -236,16 +237,7 @@ bindHoldButton('btn-hover', 'hover');
 bindHoldButton('btn-rcs-spin', 'rcsSpin');
 document.getElementById('btn-kickflip').addEventListener('click', () => {
 if (!currentTrim.hasPerimeterFlight) selectTrim('ROCKET');
-if (carState.mode === 'GROUND') {
-carState.mode = 'AIR';
-carState.airSubPhase = 'KICKFLIP_JUMP';
-carState.airTimer = 0;
-carState.vy = 13.5; // Powerful 4-nozzle vertical jump burst!
-carState.y = 0.4;
-} else if (carState.mode === 'RAMP') {
-detachFromOverhangIntoAir();
-}
-carState.rollVel = Math.PI * 2.9;
+beginKickflip(carState, rampProfile.point);
 showToast('🔄 スラスター垂直ジャンプ＆360° Kickflip！');
 });
 window.addEventListener('keydown', (e) => {
@@ -403,16 +395,7 @@ showToast('🚛 公式『The Kickflip』大型セミトラック＋4台をスラ
 }
 });
 const btnSound = document.getElementById('btn-sound');
-btnSound.addEventListener('click', () => {
-initAudio();
-soundEnabled = !soundEnabled;
-btnSound.textContent = soundEnabled ? '🔊 音ON' : '🔇 音OFF';
-if (!soundEnabled && motorGain && thrusterGain && fanGain) {
-motorGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-thrusterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-fanGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-}
-});
+btnSound.addEventListener('click', () => { const enabled=audioService.toggle();btnSound.textContent=enabled?'🔊 音ON':'🔇 音OFF'; });
 const helpModal = document.getElementById('help-modal');
 document.getElementById('btn-help').addEventListener('click', () => {
 helpModal.classList.remove('hidden');
@@ -438,26 +421,7 @@ document.getElementById('noz-mr'),
 document.getElementById('noz-rl'),
 document.getElementById('noz-rr')
 ];
-function detachFromOverhangIntoAir() {
-const pt = getRampPoint(Math.max(0, carState.rampS), carState.x);
-carState.mode = 'AIR';
-carState.airTimer = 0;
-const launchSpeed = Math.max(18, carState.speed);
-if (pt.theta > Math.PI * 0.52) {
-carState.yaw = Math.PI;
-carState.pitch = Math.PI - pt.theta;
-carState.roll = Math.PI;
-carState.airSubPhase = 'OVERHANG_DROP';
-carState.vx = 0;
-carState.vy = pt.tangent.y * launchSpeed * 0.62;
-carState.vz = pt.tangent.z * launchSpeed * 0.92;
-} else {
-carState.airSubPhase = 'FREE_AIR';
-carState.vx = 0;
-carState.vy = pt.tangent.y * launchSpeed;
-carState.vz = pt.tangent.z * launchSpeed;
-}
-}
+function detachFromOverhangIntoAir() { detachVehicle(carState, rampProfile.point); }
 function updateAutoDemoAI(dt) {
 if (!carState.autoDemoMode) return;
 carState.demoTimer += dt;
@@ -509,4 +473,3 @@ resetVehicle(KICKFLIP_LANE.x, 34);
 }
 }
 }
-

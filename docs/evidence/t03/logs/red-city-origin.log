@@ -1,0 +1,34 @@
+✖ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (2.542918ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.773525
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:85:1
+✖ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (2.542918ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      x: 0,
+      y: 0,
+  +   z: 36
+  -   z: 0
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:87:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { x: 0, y: 0, z: 36 },
+    expected: { x: 0, y: 0, z: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

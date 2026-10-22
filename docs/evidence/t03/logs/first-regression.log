@@ -1,0 +1,83 @@
+
+> hashirase@0.1.0 check
+> npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm run check:boundaries && npm test
+
+
+> hashirase@0.1.0 build:check
+> node tools/build.mjs --check
+
+Bundle matches all 11 source parts.
+
+> hashirase@0.1.0 check:boundaries
+> node scripts/check-boundaries.mjs
+
+Boundary check: 16 ESM modules, 26 imports; 11 legacy fragments explicitly excluded.
+
+> hashirase@0.1.0 test
+> node tests/smoke.mjs && npm run test:unit && npm run test:integration
+
+Smoke test passed: 117 unique IDs and expected asset order.
+
+> hashirase@0.1.0 test:unit
+> node --test tests/baseline/original.test.mjs tests/unit/*.test.mjs
+
+✔ original_manifest_identifies_immutable_baseline_sources (57.021507ms)
+✔ original_screen_controls_and_asset_order_are_preserved (0.821167ms)
+✔ original_courses_trims_constants_and_core_features_are_preserved (0.786365ms)
+✔ clock_is_render_rate_independent (7.811791ms)
+✔ clock_remains_render_rate_independent_over_ten_minutes (27.906793ms)
+✔ clock_marks_overload_without_dropping_unprocessed_time (0.6303ms)
+✔ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.139881ms)
+✔ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.387594ms)
+✔ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.505712ms)
+✔ random_is_repeatable_and_visual_draws_do_not_change_physics (1.08164ms)
+✔ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.114012ms)
+✔ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (3.035104ms)
+✔ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.301965ms)
+✔ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (0.524941ms)
+✔ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (0.654206ms)
+✔ session_contract_preserves_named_ports_and_has_no_render_loop (0.345331ms)
+✔ events_reject_invalid_session (0.707466ms)
+✔ events_are_readonly_deduplicated_and_isolated_per_session (1.354451ms)
+✔ driving_import_has_no_side_effect (32.403439ms)
+✔ two_driving_sessions_do_not_share_state (6.398963ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (10.065067ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.76348ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (1.206458ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (1.389123ms)
+✔ driving_brake_does_not_become_reverse_drive (2.790866ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.354384ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 224.650641
+
+> hashirase@0.1.0 test:integration
+> node --test tests/integration/*.test.mjs
+
+✔ imports_do_not_cross_modes (10.693184ms)
+✔ common_code_and_static_home_imports_cannot_pull_in_a_mode (10.172078ms)
+✔ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (5.492256ms)
+✔ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (3.592234ms)
+✔ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (4.086158ms)
+✔ physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper (5.210572ms)
+✔ modes_cannot_hide_an_independent_render_loop_in_a_shared_helper (2.87971ms)
+✔ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (28.586337ms)
+✔ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (1.875016ms)
+✔ build_fails_when_a_common_entry_statically_includes_a_mode (4.317767ms)
+✔ asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes (17.642026ms)
+✔ build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets (23.743009ms)
+✔ build_rejects_CSS_imports_including_cross_mode_dependencies (17.867634ms)
+✔ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.287183ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 189.680584

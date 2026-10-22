@@ -24,8 +24,8 @@ jobs:
         run: npm run check
       - name: Build isolated ESM foundation and audit split output
         run: npm run build
-      - name: Exercise original startup, course switching, faults, and reset
-        run: npx playwright test tests/baseline/startup.spec.mjs
+      - name: Exercise original regressions and isolated mode lifecycles
+        run: npx playwright test
       - name: Save browser diagnostics, screenshots, and failure traces
         if: always()
         uses: actions/upload-artifact@v4

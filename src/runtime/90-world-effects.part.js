@@ -79,50 +79,9 @@ function clearAllSkidmarks() {
   }
 }
 
-function playTireScreechSound(intensity = 0.5) {
-  if (!audioCtx || !soundEnabled || weatherState.screechCooldown > 0) return;
-  weatherState.screechCooldown = 0.18;
-  try {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const now = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(1420 + Math.random() * 240, now);
-    osc.frequency.linearRampToValueAtTime(1180, now + 0.15);
-    gain.gain.setValueAtTime(Math.min(0.08, 0.035 * intensity), now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start(now);
-    osc.stop(now + 0.17);
-  } catch (e) {}
-}
+function playTireScreechSound(intensity = 0.5) { audioService.screech(intensity,weatherState); }
 
-function playCarHornSound(pitchScale = 1.0) {
-  if (!audioCtx || !soundEnabled || weatherState.hornCooldown > 0) return;
-  weatherState.hornCooldown = 1.1;
-  try {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const now = audioCtx.currentTime;
-    const osc1 = audioCtx.createOscillator();
-    const osc2 = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc1.type = 'sawtooth';
-    osc2.type = 'sawtooth';
-    osc1.frequency.setValueAtTime(410 * pitchScale, now);
-    osc2.frequency.setValueAtTime(512 * pitchScale, now);
-    gain.gain.setValueAtTime(0.065, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.34);
-    osc1.connect(gain);
-    osc2.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc1.start(now);
-    osc2.start(now);
-    osc1.stop(now + 0.35);
-    osc2.stop(now + 0.35);
-  } catch (e) {}
-}
+function playCarHornSound(pitchScale = 1.0) { audioService.horn(pitchScale,weatherState); }
 
 function toggleWeatherCondition() {
   weatherState.isWet = !weatherState.isWet;
@@ -868,4 +827,3 @@ function updateAll7RealismSystems(dt) {
   // ⑥ Civilian Panic Evasion, Horns & Hazard Lights
   updateCivilianPanicAndHazards(dt);
 }
-
