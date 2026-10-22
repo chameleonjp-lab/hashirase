@@ -84,5 +84,15 @@
     "targetLog": "docs/evidence/t01/logs/final-target.log",
     "regressionLog": "docs/evidence/t01/logs/post-merge-check.log",
     "results": "Node 3/3, browser 4/4, npm run check PASS"
+  },
+  "githubActions": {
+    "runId": 39767317249,
+    "jobId": 119785886046,
+    "headCommit": "5bdb72d9c74697eb637b4c33d4ade1d71d288631",
+    "status": "PASS",
+    "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39767317249",
+    "log": "docs/evidence/t01/logs/github-actions-39767317249.log",
+    "artifactUrl": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39767317249/artifacts/12420712807",
+    "note": "This immutable run verifies the submitted code. Subsequent evidence-only head checks are authoritative in PR #5 Checks."
   }
 }

@@ -104,3 +104,19 @@ T02再開時は06も読み、この新しい契約を実装対象にする。
 
 [独立レビュー](t01/review.md)で重大な指摘はなく、軽微な検査強化 TEST-T01-01 を記録した。
 スキル付属スクリプトの代わりに正本Txxと台帳を使ったこと、ブラウザ検査用の開発依存をT01で固定した判断も同記録に残す。
+
+## 提出・GitHub Actions・引継ぎ
+
+Draft PR: [#5](https://github.com/chameleonjp-lab/hashirase/pull/5)、ブランチ `feat/t01`。
+T01 は `IN_REVIEW`。マージ未確認のため `DONE` とはしない。
+最初の提出head `5bdb72d9c74697eb637b4c33d4ade1d71d288631` で
+[Actions 39767317249](https://github.com/chameleonjp-lab/hashirase/actions/runs/39767317249) が成功した。
+Node 22のクリーン導入、原本/生成/構文、Chromium 4/4、証拠アップロードの全stepを確認。
+[省略前ジョブログ](t01/logs/github-actions-39767317249.log)と
+[ブラウザ証拠artifact](https://github.com/chameleonjp-lab/hashirase/actions/runs/39767317249/artifacts/12420712807)を保存した。
+Actionsは成功しているが、既存v4 ActionsのNode 20実行系が24へ強制移行される警告は残る。CI更新作業で整理する。
+
+この成功記録の追加後は証拠・進捗だけのコミットとなる。最新headの検査状態はPR Checksを正本とし、PR本文と最終報告へ記載する。
+全変更・再現ログ・確認済み画像・検査結果をGitHubに保存し、未提出の差分は残さない。
+次に開始できる機能作業は **T01のユーザーマージを確認した後のT02**。
+再開時は最新main、PR #5、tracker.jsonを照合し、重複実装せず契約/時計/分割ビルドから続ける。
