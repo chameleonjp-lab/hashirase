@@ -8,11 +8,26 @@ permissions:
 jobs:
   source-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install pinned test dependencies
+        run: npm ci
+      - name: Install Chromium for baseline browser tests
+        run: npx playwright install --with-deps chromium
       - name: Validate generated code, JavaScript syntax, and HTML references
         run: npm run check
+      - name: Exercise original startup, course switching, faults, and reset
+        run: npx playwright test tests/baseline/startup.spec.mjs
+      - name: Save browser diagnostics, screenshots, and failure traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baseline-browser-${{ github.sha }}
+          path: test-results/
+          retention-days: 14
