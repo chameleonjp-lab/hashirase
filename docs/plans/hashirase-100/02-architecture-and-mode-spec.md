@@ -67,11 +67,11 @@ dist/                         # 生成物。手編集禁止、配備元
 | 物理 | `createVehicleModel(config)` → `reset(initial)` / `step(dt,input,environment)` / `snapshot()` | 数値だけを保持。DOM・Three.js・音・保存へ依存しない |
 | 世界 | `createWorld(seed, config)` → `step(dt)` / `query(bounds)` / `reset(seed)` / `dispose()` | 道路・接触対象・信号の正本。カメラ距離で物理状態を消さない |
 | 描画 | `createRendererHost(container, quality)` → `render(snapshot, alpha)` / `resize(size)` / `dispose()` | 3Dオブジェクト・描画資源。得点や車の速度を変更しない |
-| 入力 | `createInputService(profile)` → `sample()` / `clear()` / `dispose()` | 指・キー・マウスを個別追跡し、共通の入力へ変換 |
+| 入力 | `createInputService(profile)` → `sample()` / `clear()` / `dispose()` | 06の`SwipeFrame`と指・キー・マウスを別々に追跡し、共通の入力へ変換 |
 | 設定 | `createSettingsStore(storage)` → `read(profile,mode)` / `write(profile,mode,value)` | 検証済み値のみ返す。保存不能時はメモリに切り替える |
 | 追跡 | `createPursuitManager(config)` → `step(dt,world,player)` / `snapshot()` / `reset()` | 追跡車ID・順序・台数・増援時計。描画の所有者ではない |
 
-`InputFrame` は `throttle/brake: 0..1`、`steer: -1..1`、`boost/hover/kickflip: boolean`。キー割当・タッチ配置は別データです。シミュレーターでは非対応のスタント入力を無視し、設定にも出しません。
+`InputFrame` は `throttle/brake/reverseThrottle: 0..1`、`steer: -1..1`、`boost/hover/kickflip: boolean`。`reverseThrottle`は初期0で、停止後の安全な後退駆動だけに使います。`SwipeFrame`は`{horizontal,vertical,active,pointerId}`で、各軸は-1..1の値を持ちます。06の操作計算からInputFrameへ変換し、モード別の物理計算と分離します。キー割当・タッチ配置は別データです。シミュレーターでは非対応のスタント入力を無視し、設定にも出しません。
 
 `VehicleSnapshot` は `position: {x,y,z}`、`rotation: quaternion`、`velocity`、`angularVelocity`、`wheels[4]`、`damage`、`telemetry` を持ちます。値はメートル・秒・キログラム・ラジアンで統一し、画面でだけkm/hやmphへ変換します。
 
@@ -99,13 +99,19 @@ dist/                         # 生成物。手編集禁止、配備元
 
 | 共通設定 | スマホで出す項目 | PCで出す項目 |
 |---|---|---|
-| 画質、30/60fps、音量、視点、揺れ軽減、速度単位、表示サイズ | ボタンサイズ・位置、左右配置、ステア感度、タッチカメラ、自動アクセル | キー割当、マウス感度、ドラッグ視点、キー同時押しの説明 |
+| 画質、30/60fps、音量、視点、揺れ軽減、速度単位、表示サイズ | スワイプ感度（前後/左右）、無反応範囲、最大操作距離、起点ガイド表示、必要に応じた代替操作 | キー割当、マウス感度、ドラッグ視点、キー同時押しの説明 |
 
 保存キーは `hashirase:settings:v1:{profile}:{mode}`。profileは `touch/desktop/hybrid`、modeは `driving/simulation`。シミュレーターの物理条件とゲームの難易度は分けます。設定初期化は対象範囲を明示し、記録を巻き込んで消しません。
 
-タッチ領域は44×44 CSSピクセル以上、主要ペダルは標準56以上を目標にします。両親指で操舵＋加速ができ、追加操作を無理な指の交差なしで使える配置にします。速度・HP・目的地を常時、細かな計器は折りたたみます。設定は走行を中断して開きます。
+スマホは**タップ位置からの移動で前後・左右を同時に入力するスワイプ操作を標準**とし、固定のアクセル・ブレーキ・左右ハンドルボタンを主操作として常時表示しません。ゲーム用のジャンプ・ロケット等、残す専用ボタンは44×44 CSSピクセル以上で指が交差せず届くようにします。速度・HP・目的地を常時、細かな計器は折りたたみます。設定は走行を中断して開きます。
 
 ゲーム領域だけブラウザ操作との競合を抑え、ホーム・設定・説明では文字拡大を妨げません。200%表示、縦横切替、Safariのバー表示変化、安全領域を検査します。読み上げ対応はホーム・設定・結果・重要通知を対象とし、音声だけで3D走行を完全に遊べるとまでは主張しません。
+
+### 6.1 タップ起点のスワイプ運転（U09）
+
+標準操作は、プレイ領域で指を置いた位置を起点とする可動式の操作です。**上に動かすと加速、下に動かすと前進中はブレーキ・停止後は後退、左右に動かすと操舵、斜めは同時入力**となり、元の起点に戻す／指を離すとすべての運転入力が0に戻ります。車の惰性は残ります。タップだけで発進させません。ホーム・設定・操作ボタンをスワイプ運転として扱いません。
+
+計算・画面端・複数指・中断・PCとの競合・設定の詳細は[06 タッチ操作仕様](06-touch-swipe-control.md)を正とします。後退への切替では前進中に逆駆動力を掛けず、安全な停止を確認します。初期感度など未確定数値は06の**提案値**であり、実機確認前に達成済みとしません。
 
 ## 7. 右側通行と信号
 
