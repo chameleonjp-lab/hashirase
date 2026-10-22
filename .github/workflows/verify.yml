@@ -3,8 +3,12 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: verify-and-publish-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   source-check:
     runs-on: ubuntu-latest
@@ -26,6 +30,8 @@ jobs:
         run: bash tools/install-ci-browser.sh
       - name: Exercise original regressions and isolated mode lifecycles
         run: npx playwright test
+      - name: Stage only built runtime files for GitHub Pages
+        run: npm run build && node scripts/stage-pages.mjs
       - name: Save browser diagnostics, screenshots, and failure traces
         if: always()
         uses: actions/upload-artifact@v4
@@ -40,3 +46,42 @@ jobs:
           name: foundation-build-${{ github.sha }}
           path: dist/
           retention-days: 14
+      - name: Upload tested Pages artifact on main
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .pages-site
+  deploy-pages:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: source-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Refuse to publish an older main commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')
+          test "$current_sha" = "$GITHUB_SHA"
+      - uses: actions/configure-pages@v5
+      - name: Publish the artifact after all regressions passed
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify deployed commit, every runtime hash, repository paths and 404
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: node scripts/verify-deployment.mjs --url "$PAGES_URL" --expected-sha "$GITHUB_SHA"
