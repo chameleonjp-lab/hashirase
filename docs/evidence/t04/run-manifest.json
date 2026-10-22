@@ -1,0 +1,68 @@
+{
+  "taskId": "T04",
+  "baseCommit": "f44bb235a8c84f3a6af8b5c7338ebdb2f54bc442",
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "Chromium154.0.8037.57",
+    "platform": "managed Linux x86_64",
+    "viewport": "1280x720 DPR1",
+    "physicalDevices": "NOT_RUN"
+  },
+  "commands": {
+    "target": "PASS16 Node +1 browser",
+    "npm run check": "PASS48 Node (24unit +14integration +10physics),117 IDs,11fragments",
+    "npm run build": "PASS T02 foundation; explicit simulation build covered by target (T03 build auto-discovery pending user merge)",
+    "npx playwright test": "PASS5 (T01 4 +T04 1)"
+  },
+  "browserStats": {
+    "startTime": "2026-10-22T13:39:01.816Z",
+    "duration": 11149.271999999999,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "sourceSha256": {
+    ".github/workflows/simulation.yml": "65a158b9760c6c18c444e0665cbc4c3cc93a4a22303588f6c497f04e320ac8f1",
+    "package.json": "47e870f44619cf4ae442b8c847e5c87ff102bfe2f66a72b92a7466bae91c3acc",
+    "src/modes/simulation/config/demo-car.js": "d74001eb79605a73e385f50055ac3962ef7ba4c322f5132e666904ce3c727bcf",
+    "src/modes/simulation/index.js": "4609949038f0238ab17b27c5b3085d5fb9e64a9ae5f315866724e64a600688f8",
+    "src/modes/simulation/physics/forces.js": "9111eab020675254c1bcac27a6a37036b49a949f951acda62b47c41967d2dd48",
+    "src/modes/simulation/physics/vehicle-model.js": "c61365e081e9a2fc551148ff4bf6bda8194c82775acf877245d31d63df1e5194",
+    "src/modes/simulation/renderer.js": "96e8799d96a9cfd262705da46f3a700e54e67d5f40749e3495436fd0d373be60",
+    "src/modes/simulation/session.js": "ecbd793cac63d9ace4380f3d719e3c116843a12f23b2ba4ab50ce2e0c1067585",
+    "tests/fixtures/simulation-track.html": "baf50ee4c86b3a5634ea36699bc64e331dd090a1911f97813f8fb50e5ff1f316",
+    "tests/integration/simulation-track.spec.mjs": "ee4984d4fb0a8751991ec5a60f22413b97f3b883189c2a9f6abecb77d4d3ade8",
+    "tests/physics/straight-line.test.mjs": "b7161f30b4cf2e46849b60f2b9b9658d420881d0c7491251a1da7b6f08f2cfa4",
+    "tests/unit/simulation-isolation.test.mjs": "6b8a1fcd6f78450e3b61f74433f6b7ba45dc020c1cf6f787f7852f6685a85dc2",
+    ".github/workflows/verify.yml": "33dc912e8ff86a7a6a8206ac0fd2e2756163b200dd2f27dc603cc2c7d25910f6",
+    "tools/install-ci-browser.sh": "d8f4b8b290542fb7d9780e1348cef353fd2709f7de43dc75490e0e52277ec453"
+  },
+  "acceptance": "A01–A60 NOT_RUN; no real-car or full simulation claim",
+  "imagesInspected": [
+    "simulation-track.png"
+  ],
+  "review": "0Critical;2Important fixed in one TDD pass;0Minor",
+  "integrationBase": "48508af68580246c0f18bf6a064ba5d5db7768d1",
+  "postT03Commands": {
+    "npm run check": "PASS62 Node +117IDs +11fragments",
+    "npm run build": "PASS both independent mode entries, see post-t03-build.log",
+    "npx playwright test": "PASS11 (T01+T03+T04)"
+  },
+  "postT03BrowserStats": {
+    "startTime": "2026-10-22T13:43:40.656Z",
+    "duration": 24421.168999999998,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "failedCI": {
+    "head": "e602f8598f75dde0efff4fe5dafc2902e428f9d4",
+    "runs": [
+      39790002765,
+      39790003286
+    ],
+    "result": "cancelled:10min Ubuntu Azure mirror installation timeout; product tests not run"
+  }
+}
