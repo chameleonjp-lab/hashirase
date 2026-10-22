@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "phase": "foundation",
+  "format": "esm",
+  "splitting": true,
+  "esbuildVersion": "0.28.2",
+  "entryPoints": {
+    "src/modes/driving/index.js": "dist/modes/driving/index.js",
+    "src/modes/driving/screen-assets.js": "dist/chunks/screen-assets-AQWDDUGU.js"
+  },
+  "inputFiles": [
+    {
+      "path": "assets/css/simulator.css",
+      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487"
+    },
+    {
+      "path": "src/assets/driving/screen.html",
+      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f"
+    },
+    {
+      "path": "src/contracts/session.js",
+      "sha256": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148"
+    },
+    {
+      "path": "src/contracts/validation.js",
+      "sha256": "4c14145e22f916762e8e3805a67cedf5f7f85e42f8ba2c9a173e1b1731e39a76"
+    },
+    {
+      "path": "src/contracts/vehicle.js",
+      "sha256": "4c3009a5606a9075e5b35fda437a6b4ab34cdc6c5e1c46616ea9efb9bffc5d69"
+    },
+    {
+      "path": "src/modes/driving/index.js",
+      "sha256": "58b7e44d770b6b9cd8d9533ec7956ece208fc85cbaa86131b5508224117c277a"
+    },
+    {
+      "path": "src/modes/driving/legacy-adapter.js",
+      "sha256": "da3e3c5fde21fa3d868a5cbc59a82fd2b47d15c3255384335eec95d9abef9352"
+    },
+    {
+      "path": "src/modes/driving/physics.js",
+      "sha256": "170acbf9335f5764c263934abc29d3570b2a9e68d9e4f9ab539c34bf8d1a5c09"
+    },
+    {
+      "path": "src/modes/driving/rules.js",
+      "sha256": "94626ff099cbc8af5acd85fda337c09d2584a5f9a7ae78316fe1b54a18cccdc7"
+    },
+    {
+      "path": "src/modes/driving/screen-assets.js",
+      "sha256": "670514ac7ee50b24236ce9d4ae8d8fa47256f4d0297a03444aa97af54fd92aed"
+    },
+    {
+      "path": "src/modes/driving/session.js",
+      "sha256": "102aa2dbe92924374717a37ec77c9c9b3883e3b798fab4ef3cc17cb263374f69"
+    },
+    {
+      "path": "src/modes/driving/state.js",
+      "sha256": "9c18201affc45235ff10f42b99d4ea1aaf7ea4dda263293950c280f03ca45f0a"
+    },
+    {
+      "path": "src/platform/audio.js",
+      "sha256": "d32d3e7470129f3e9a8d8cd3eeb767846d109f25a4ada743c735393b5755a9da"
+    },
+    {
+      "path": "src/platform/random.js",
+      "sha256": "faf81b142c779ca6c6e992d84b8ddf38ba61ac99c5588b4e9e6ceebed1880a44"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "dist/assets/screen-FPNW7CA7.html",
+      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f",
+      "inputs": [
+        "src/assets/driving/screen.html"
+      ],
+      "imports": []
+    },
+    {
+      "path": "dist/assets/simulator-QM3GNTMM.css",
+      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487",
+      "inputs": [
+        "assets/css/simulator.css"
+      ],
+      "imports": []
+    },
+    {
+      "path": "dist/chunks/screen-assets-AQWDDUGU.js",
+      "sha256": "21b6801ef8b8259f822ab4277dc8401f011766a915d8578666c8d77368988fae",
+      "inputs": [
+        "assets/css/simulator.css",
+        "src/assets/driving/screen.html",
+        "src/modes/driving/screen-assets.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/assets/screen-FPNW7CA7.html",
+          "kind": "file-loader"
+        },
+        {
+          "path": "dist/assets/simulator-QM3GNTMM.css",
+          "kind": "file-loader"
+        }
+      ]
+    },
+    {
+      "path": "dist/modes/driving/index.js",
+      "sha256": "b34eb41eaa386360e0cf5c44043099b4f69630c83081513202d646e2f879979a",
+      "inputs": [
+        "src/contracts/session.js",
+        "src/contracts/validation.js",
+        "src/contracts/vehicle.js",
+        "src/modes/driving/index.js",
+        "src/modes/driving/legacy-adapter.js",
+        "src/modes/driving/physics.js",
+        "src/modes/driving/rules.js",
+        "src/modes/driving/session.js",
+        "src/modes/driving/state.js",
+        "src/platform/audio.js",
+        "src/platform/random.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/chunks/screen-assets-AQWDDUGU.js",
+          "kind": "dynamic-import"
+        }
+      ]
+    }
+  ]
+}

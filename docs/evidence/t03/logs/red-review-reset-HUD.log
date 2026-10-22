@@ -1,0 +1,51 @@
+[WebServer] (node:17306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:17319) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick (12.2s)
+
+
+  1) [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#val-speed')
+    Expected: "0"
+    Received: "124"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#val-speed') with timeout 10000ms
+      - waiting for locator('#val-speed')
+        24 × locator resolved to <span id="val-speed" class="font-mono-tech font-extrabold text-sm text-white">124</span>
+           - unexpected value "124"
+
+
+      100 |   const reset=await page.evaluate(()=>window.harness.reset({position:{x:3,y:7,z:40}}));
+      101 |   expect(reset.status).toBe('PAUSED');
+    > 102 |   await expect(page.locator('#val-speed')).toHaveText('0');
+          |                                            ^
+      103 |   expect(reset.vehicle.position).toEqual({x:3,y:7,z:40});await expect(page.locator('#val-alt-ft')).toHaveText('23.0');
+      104 |   expect(await page.evaluate(()=>window.harness.tick(1,{}))).toEqual(reset);
+      105 |   await testInfo.attach('driving-paused-reset.png',{body:await page.screenshot(),contentType:'image/png'});
+        at /workspace/hashirase-t03/tests/integration/driving-lifecycle.spec.mjs:102:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-8de77-pose-and-HUD-without-a-tick-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-driving-lifecy-8de77-pose-and-HUD-without-a-tick-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-8de77-pose-and-HUD-without-a-tick-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-driving-lifecy-8de77-pose-and-HUD-without-a-tick-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_paused_reset_immediately_synchronizes_pose_and_HUD_without_a_tick 

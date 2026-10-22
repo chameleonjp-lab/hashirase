@@ -117,58 +117,9 @@ scene.add(provingGroundGroup);
 const nycCityGroup = new THREE.Group();
 nycCityGroup.visible = false;
 scene.add(nycCityGroup);
-const RAMP_LUT_STEPS = 200;
-const rampLUT = [];
-(function buildRampLUT() {
-let curY = 0;
-let curZ = RAMP.entryZ;
-const ds = RAMP.totalArc / RAMP_LUT_STEPS;
-for (let i = 0; i <= RAMP_LUT_STEPS; i++) {
-const s = i * ds;
-const u = s / RAMP.totalArc; // 0 .. 1
-let theta;
-if (u < 0.22) {
-const t = u / 0.22;
-theta = (t * t * (3 - 2 * t)) * 0.56;
-} else if (u < 0.62) {
-const t = (u - 0.22) / 0.40;
-theta = 0.56 + t * 1.15;
-} else {
-const t = (u - 0.62) / 0.38;
-theta = 1.71 + (1 - Math.pow(1 - t, 1.35)) * (RAMP.maxAngle - 1.71);
-}
-rampLUT.push({
-s,
-y: curY,
-z: curZ,
-theta
-});
-if (i < RAMP_LUT_STEPS) {
-curY += Math.sin(theta) * ds;
-curZ -= Math.cos(theta) * ds;
-}
-}
-})();
-function getRampPoint(s, lateralX = 0) {
-const clampedS = Math.min(Math.max(s, 0), RAMP.totalArc);
-const fIdx = (clampedS / RAMP.totalArc) * RAMP_LUT_STEPS;
-const i0 = Math.min(Math.floor(fIdx), RAMP_LUT_STEPS - 1);
-const i1 = i0 + 1;
-const frac = fIdx - i0;
-const p0 = rampLUT[i0];
-const p1 = rampLUT[i1];
-const y = p0.y + (p1.y - p0.y) * frac;
-const z = p0.z + (p1.z - p0.z) * frac;
-const theta = p0.theta + (p1.theta - p0.theta) * frac;
-const tangent = new THREE.Vector3(0, Math.sin(theta), -Math.cos(theta)).normalize();
-const normal = new THREE.Vector3(0, Math.cos(theta), Math.sin(theta)).normalize();
-return {
-pos: new THREE.Vector3(lateralX, y, z),
-tangent,
-normal,
-theta
-};
-}
+const rampProfile = createRampProfile(RAMP);
+const rampLUT = rampProfile.samples;
+function getRampPoint(s, lateralX = 0) { const p = rampProfile.point(s,lateralX); return { ...p, pos:new THREE.Vector3(p.pos.x,p.pos.y,p.pos.z), tangent:new THREE.Vector3(p.tangent.x,p.tangent.y,p.tangent.z), normal:new THREE.Vector3(p.normal.x,p.normal.y,p.normal.z) }; }
 function buildProvingGroundAndRamp() {
 const lineMat = new THREE.MeshBasicMaterial({ color: 0xdbeafe });
 const centerRunwayLine = new THREE.Mesh(new THREE.PlaneGeometry(0.24, 120), lineMat);

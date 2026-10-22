@@ -1,4 +1,3 @@
-
 // ============================================================================
 // UTILITY POLE (電柱) SYSTEM — DEPLOYED IN PROVING GROUND & NYC
 // Breaks/snaps on collision and reduces player speed by 60 km/h (16.67 m/s) once!
@@ -310,4 +309,3 @@ function updateAndCollideUtilityPoles(dt) {
     }
   }
 }
-

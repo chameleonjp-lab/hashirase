@@ -1,0 +1,436 @@
+<div id="loading-screen">
+<div class="loader-card">
+<div class="loader-spinner-wrap">
+<div class="loader-ring-outer"></div>
+<div class="loader-ring-inner"></div>
+<div class="loader-core-dot"></div>
+</div>
+<div class="loader-badge">TESLA ROADSTER (2026) // SPACE-X SIM</div>
+<h1 id="loading-title" class="loader-title">3Dシミュレーターを読み込み中...</h1>
+<p id="loading-step-text" class="loader-step-text">3Dエンジン・グラフィックモジュールを準備しています...</p>
+<div class="loader-gauge-header">
+<span id="loading-phase-label" class="loader-phase-label">INITIALIZING // STEP 1/6</span>
+<span id="loading-pct-num" class="loader-pct-value">4%</span>
+</div>
+<div class="loader-bar-track">
+<div id="loading-bar-fill" class="loader-bar-fill"></div>
+</div>
+<p id="loading-sub-hint" class="loader-sub-hint">完了までゲージが溜まります。そのままお待ちください...</p>
+</div>
+</div>
+
+
+
+
+
+<div id="canvas-container"></div>
+
+<div id="cockpit-hud" class="fixed inset-0 z-10 opacity-0 flex items-center justify-center pointer-events-none transition-opacity duration-200">
+<div id="hud-horizon" class="w-36 h-36 sm:w-44 sm:h-44 -mt-16 rounded-full border border-sky-400/20 flex items-center justify-center relative">
+<div class="w-16 sm:w-20 h-[1px] bg-sky-400/35 flex justify-between items-center">
+<div class="w-2 h-1.5 border-t border-l border-sky-400/70"></div>
+<div class="w-1.5 h-1.5 rounded-full border border-red-400/80"></div>
+<div class="w-2 h-1.5 border-t border-r border-sky-400/70"></div>
+</div>
+</div>
+</div>
+
+<!-- ⑦ Windshield Spiderweb Glass Crack & High-Speed Vignette Overlay -->
+<div id="windshield-crack-overlay" class="fixed inset-0 z-10 pointer-events-none opacity-0 transition-opacity duration-200">
+  <svg class="w-full h-full" viewBox="0 0 1000 600" preserveAspectRatio="none">
+    <!-- Left-top impact spiderweb -->
+    <g id="crack-group-minor" stroke="rgba(226,232,240,0.75)" stroke-width="1.6" fill="none">
+      <path d="M180,140 L40,30 M180,140 L340,45 M180,140 L390,175 M180,140 L260,310 M180,140 L95,295 M180,140 L20,165" />
+      <path d="M130,100 L215,90 L245,155 L195,205 L125,190 L105,145 Z" stroke-width="1.1" stroke="rgba(248,250,252,0.55)" />
+      <path d="M85,65 L275,65 L325,165 L230,260 L105,245 L55,155 Z" stroke-width="1.0" stroke="rgba(248,250,252,0.45)" />
+    </g>
+    <!-- Right-side heavy spiderweb -->
+    <g id="crack-group-severe" stroke="rgba(241,245,249,0.85)" stroke-width="2.0" fill="none" style="display:none;">
+      <path d="M780,210 L960,60 M780,210 L980,240 M780,210 L910,460 M780,210 L640,420 M780,210 L520,235 M780,210 L660,55" />
+      <path d="M720,145 L845,140 L875,225 L805,295 L710,275 L675,215 Z" stroke-width="1.3" />
+      <path d="M665,95 L905,105 L945,235 L855,365 L670,345 L600,225 Z" stroke-width="1.1" />
+      <path d="M180,140 L520,235 L780,210" stroke-dasharray="12 4" stroke-width="1.4" />
+    </g>
+  </svg>
+</div>
+
+<div class="fixed inset-0 z-20 pointer-events-none flex flex-col justify-between safe-overlay-padding">
+
+<div class="w-full flex flex-col gap-1.5">
+<div class="w-full pointer-events-auto glass-bar rounded-2xl p-1 shadow-xl">
+<div id="top-scroll-strip">
+
+<button id="btn-toggle-ui" class="btn-game rounded-xl px-3 py-1.5 bg-slate-800/90 border border-white/20 text-white font-bold text-xs flex items-center gap-1 cursor-pointer">
+<span id="ui-toggle-label">👁️ UI消す</span>
+</button>
+
+<button id="btn-toggle-course" class="btn-game rounded-xl px-3 py-1.5 bg-emerald-950/85 border border-emerald-400/60 text-emerald-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-md">
+<span id="course-label-text">🗽 コース: テスト場 ➔ NY市街地へ</span>
+</button>
+
+<button id="btn-time-attack" class="btn-game rounded-xl px-3 py-1.5 bg-amber-950/90 border border-amber-400/70 text-amber-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-md">
+<span id="time-attack-btn-label">🏁 NY 3.8kmタイムアタック</span>
+</button>
+
+<button id="btn-toggle-camera" class="btn-game rounded-xl px-3 py-1.5 bg-red-950/80 border border-red-500/60 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-md">
+<span>🎥</span>
+<span id="camera-label-text">視点: 第三者 ➔ 運転席(左ハンドル)</span>
+</button>
+
+<button id="btn-auto-demo" class="btn-game rounded-xl px-3 py-1.5 bg-sky-950/80 border border-sky-400/50 text-sky-200 font-bold text-xs flex items-center gap-1 cursor-pointer">
+<span>🚀 壁面静止＆反転着地デモ</span>
+</button>
+
+<button id="btn-kickflip-demo" class="btn-game rounded-xl px-3 py-1.5 bg-amber-950/75 border border-amber-400/50 text-amber-200 font-bold text-xs flex items-center gap-1 cursor-pointer">
+<span>🚛 トラック＆4台越えKickflipデモ</span>
+</button>
+
+<button id="btn-sub-camera" class="btn-game rounded-xl px-2.5 py-1.5 bg-slate-900/80 border border-white/15 text-slate-200 font-semibold text-xs cursor-pointer">
+🎥 別カメラ
+</button>
+
+<button id="btn-suction-toggle" class="btn-game rounded-xl px-2.5 py-1.5 bg-purple-950/70 border border-purple-400/40 text-purple-200 font-bold text-xs cursor-pointer">
+🌀 吸引4.7t: ON (壁面静止可)
+</button>
+
+<button id="btn-weather-toggle" class="btn-game rounded-xl px-2.5 py-1.5 bg-sky-950/75 border border-sky-400/50 text-sky-200 font-bold text-xs cursor-pointer">
+☀️ 天候: 晴天(DRY)
+</button>
+
+<button id="btn-reset-car" class="btn-game rounded-xl px-2.5 py-1.5 bg-slate-900/80 border border-white/15 text-slate-200 font-semibold text-xs cursor-pointer">
+↺ リセット
+</button>
+
+<div class="scroll-item flex items-center bg-slate-950/90 rounded-xl p-0.5 border border-white/15 text-[10px] font-mono-tech">
+<button id="trim-rocket" class="px-2 py-1 rounded-lg font-bold bg-red-600 text-white cursor-pointer">ROCKET</button>
+<button id="trim-thrust" class="px-2 py-1 rounded-lg font-semibold text-slate-300 hover:text-white cursor-pointer">THRUST</button>
+<button id="trim-perf" class="px-2 py-1 rounded-lg font-semibold text-slate-300 hover:text-white cursor-pointer">PERF</button>
+</div>
+
+<button id="btn-sound" class="btn-game rounded-xl px-2.5 py-1.5 bg-slate-900/80 border border-white/15 text-slate-300 font-semibold text-xs cursor-pointer">
+🔇 音OFF
+</button>
+
+<button id="btn-help" class="btn-game rounded-xl px-2.5 py-1.5 bg-slate-900/80 border border-sky-400/40 text-sky-300 font-bold text-xs cursor-pointer">
+📊 解説
+</button>
+</div>
+</div>
+
+<div id="top-telemetry-pill" class="ui-fade self-start glass-bar rounded-xl px-2.5 py-1 flex items-center gap-2.5 pointer-events-auto">
+<div class="relative w-4 h-6 rounded-sm border border-slate-400/60 bg-slate-900/90 flex items-center justify-center shrink-0">
+<div id="ind-suction-core" class="w-2 h-2 rounded-full bg-purple-400/70"></div>
+<div id="noz-fl" class="nozzle-dot absolute -top-0.5 -left-0.5 w-1 h-1 rounded-full bg-slate-600"></div>
+<div id="noz-fr" class="nozzle-dot absolute -top-0.5 -right-0.5 w-1 h-1 rounded-full bg-slate-600"></div>
+<div id="noz-ml" class="nozzle-dot absolute top-2 -left-0.5 w-1 h-1 rounded-full bg-slate-600"></div>
+<div id="noz-mr" class="nozzle-dot absolute top-2 -right-0.5 w-1 h-1 rounded-full bg-slate-600"></div>
+<div id="noz-rl" class="nozzle-dot absolute -bottom-0.5 -left-0.5 w-1 h-1 rounded-full bg-slate-600"></div>
+<div id="noz-rr" class="nozzle-dot absolute -bottom-0.5 -right-0.5 w-1 h-1 rounded-full bg-slate-600"></div>
+</div>
+<div class="flex items-baseline gap-1">
+<span id="val-speed" class="font-mono-tech font-extrabold text-sm text-white">0</span>
+<span class="text-[9px] font-mono-tech text-slate-400">km/h</span>
+</div>
+<div class="h-3 w-[1px] bg-white/15"></div>
+<div class="flex items-baseline gap-1">
+<span class="text-[9px] font-mono-tech text-slate-400">ALT</span>
+<span id="val-alt-ft" class="font-mono-tech font-bold text-xs text-sky-400">0.0</span>
+<span class="text-[9px] font-mono-tech text-slate-400">ft</span>
+</div>
+<div class="h-3 w-[1px] bg-white/15"></div>
+<span id="flight-state-badge" class="text-[9px] font-mono-tech font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+SUCTION 4.7t
+</span>
+<span class="text-[10px] font-mono-tech text-slate-300">COPV(1.5x) <strong id="val-gas-pct" class="text-cyan-300">100%</strong></span>
+<div id="nyc-hud-extras" class="hidden items-center gap-2 border-l border-white/15 pl-2">
+<span id="val-signal-state" class="text-[9px] font-mono-tech font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">信号: 青</span>
+</div>
+</div>
+
+<!-- HP 1000 Health Gauge & Offense / Score HUD Bar -->
+<div id="pursuit-hud-bar" class="ui-fade self-start glass-bar rounded-xl px-2.5 py-1.5 flex flex-wrap items-center gap-2 pointer-events-auto border border-emerald-500/40 shadow-lg max-w-full">
+  <!-- Health Gauge (体力 1000) -->
+  <div class="flex items-center gap-1.5 bg-slate-950/90 px-2 py-0.5 rounded-lg border border-white/15">
+    <span class="text-[10px] font-mono-tech font-extrabold text-emerald-300">❤️ 体力(HP)</span>
+    <div class="w-24 sm:w-32 h-2.5 rounded-full bg-slate-800 border border-white/20 overflow-hidden p-0.5">
+      <div id="hp-bar-fill" class="h-full rounded-full bg-emerald-400 transition-all duration-150" style="width: 100%;"></div>
+    </div>
+    <span id="val-hp-text" class="text-[11px] font-mono-tech font-extrabold text-emerald-300">1000<span class="text-[9px] text-slate-400">/1000</span></span>
+    <span id="val-damage-pct" class="hidden">100%</span>
+  </div>
+
+  <!-- Live Score -->
+  <div class="flex items-center gap-1 bg-slate-950/90 px-2 py-0.5 rounded-lg border border-amber-400/40 text-[10px] font-mono-tech">
+    <span class="text-amber-300 font-bold">🏆 SCORE:</span>
+    <strong id="val-live-score" class="text-white font-extrabold text-xs">0</strong>
+  </div>
+
+  <!-- 3 Offense Counters: 物損 / 器物損壊 / 公務執行妨害 -->
+  <div class="flex items-center gap-1.5 text-[10px] font-mono-tech bg-slate-900/90 px-2 py-0.5 rounded-lg border border-white/15">
+    <span class="text-slate-300" title="壁・信号・電柱との接触 (-150pt)">🧱 物損:<strong id="val-prop-hits" class="text-sky-300 ml-0.5">0</strong></span>
+    <span class="text-slate-500">|</span>
+    <span class="text-slate-300" title="一般車両との接触 (-350pt)">🚗 器物損壊:<strong id="val-car-hits" class="text-amber-300 ml-0.5">0</strong></span>
+    <span class="text-slate-500">|</span>
+    <span class="text-slate-300" title="パトカーとの接触 (-700pt・ダメージ2倍)">🚓 公務執行妨害:<strong id="val-police-hits" class="text-red-400 ml-0.5">0</strong></span>
+  </div>
+
+  <!-- Police Pursuit Status -->
+  <span id="pursuit-status-badge" class="text-[10px] font-mono-tech font-bold px-2 py-0.5 rounded bg-slate-800/90 text-slate-200 border border-white/15">
+    🚓 警察未出動 (器物損壊3回で出動)
+  </span>
+  <div id="pursuit-active-details" class="hidden items-center gap-1.5 text-[10px] font-mono-tech">
+    <span class="text-sky-300 font-bold">追跡:<strong id="val-police-count" class="text-white ml-0.5">1</strong>台</span>
+    <span class="text-slate-300">(増援<strong id="val-next-police-sec" class="text-amber-300 ml-0.5">30.0</strong>s)</span>
+  </div>
+  <!-- ① Subsystem Mechanical Status Badge -->
+  <span id="val-subsystem-status" class="text-[10px] font-mono-tech font-bold px-2 py-0.5 rounded bg-emerald-950/85 text-emerald-300 border border-emerald-500/40">
+    🔧 機関: 正常
+  </span>
+</div>
+
+<div id="time-attack-hud" class="hidden ui-fade w-full flex-wrap items-start justify-between gap-2 pointer-events-none">
+<!-- Left/Center: Time Attack Timer + Prominent Destination Direction Arrow & Distance -->
+<div class="glass-bar rounded-2xl px-3.5 py-2 flex items-center gap-3 pointer-events-auto border-2 border-amber-400/75 shadow-2xl">
+  <div class="flex flex-col">
+    <span class="text-[9px] font-mono-tech font-bold text-amber-300 tracking-wider">⏱ TIME ATTACK</span>
+    <span id="ta-timer-val" class="font-mono-tech font-extrabold text-base sm:text-lg text-white tracking-tight leading-tight">00:00.00</span>
+  </div>
+  <div class="h-7 w-[1px] bg-white/20"></div>
+  <!-- Big Rotating Arrow toward Destination -->
+  <div class="flex items-center gap-2.5 bg-amber-500/15 border border-amber-400/60 rounded-xl px-2.5 py-1">
+    <div id="ta-compass-arrow" class="w-9 h-9 rounded-full bg-amber-500/30 border-2 border-amber-300 flex items-center justify-center text-amber-200 font-extrabold text-lg shadow-md transition-transform duration-75">
+      ▲
+    </div>
+    <div class="flex flex-col">
+      <div class="flex items-center gap-1">
+        <span class="text-[10px] font-mono-tech font-extrabold text-amber-300">🏁 目的地方向:</span>
+        <span id="ta-dir-text" class="text-[10px] font-mono-tech font-extrabold text-white bg-amber-600/80 px-1.5 py-0.2 rounded">正面 0°</span>
+      </div>
+      <div class="flex items-baseline gap-1 mt-0.5">
+        <span class="text-[10px] font-mono-tech text-slate-300 font-bold">残り距離</span>
+        <span id="ta-dist-val" class="font-mono-tech font-extrabold text-base sm:text-lg text-emerald-300">3.80</span>
+        <span class="text-[10px] font-mono-tech text-emerald-200 font-bold">km</span>
+        <span id="ta-dist-meters" class="text-[10px] font-mono-tech text-slate-300">(3800m)</span>
+      </div>
+      <span id="ta-dest-name" class="text-[8px] font-mono-tech text-amber-200/90 leading-none mt-0.5">DEST: 3.8km POINT</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-1">
+    <button id="btn-ta-reroll" class="btn-game rounded-lg px-2.5 py-1 bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/60 text-[10px] font-mono-tech font-bold text-amber-200 cursor-pointer">
+      🎲 新目的地
+    </button>
+    <button id="btn-ta-quit" class="btn-game rounded-lg px-2.5 py-1 bg-slate-800/90 hover:bg-slate-700 border border-white/20 text-[10px] font-mono-tech text-slate-200 cursor-pointer">
+      ✕ 終了
+    </button>
+  </div>
+</div>
+
+<!-- Right: Live 2D Mini-Map (Shows Player, 700m Cull Radius, Roads, Direction Vector & Glowing Goal Pillar) -->
+<div id="ta-minimap-card" class="glass-bar rounded-2xl p-2 pointer-events-auto border-2 border-sky-400/60 shadow-2xl flex flex-col items-center">
+  <div class="w-full flex items-center justify-between text-[9px] font-mono-tech font-bold text-sky-300 mb-1 px-0.5">
+    <span>🗺️ NY NAVI MAP</span>
+    <span class="text-emerald-300">描画半径: 700m</span>
+  </div>
+  <canvas id="ta-minimap-canvas" width="136" height="136" class="rounded-xl border border-white/20 bg-slate-950/90 block"></canvas>
+  <div class="w-full flex items-center justify-between text-[8px] font-mono-tech text-slate-300 mt-1 px-0.5">
+    <span><strong class="text-cyan-300">▲</strong> 自車</span>
+    <span><strong class="text-amber-300">★</strong> 光の柱(ゴール)</span>
+    <span><strong class="text-red-400">●</strong> パトカー</span>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="w-full flex justify-center pointer-events-none my-auto">
+<div id="stunt-toast" class="opacity-0 transition-all duration-200 transform translate-y-2 glass-bar border-red-500/50 px-3.5 py-1.5 rounded-full text-xs font-mono-tech font-bold text-white tracking-wider shadow-2xl text-center">
+VIEW SWITCHED
+</div>
+</div>
+
+<div id="bottom-controls-panel" class="ui-fade w-full flex items-end justify-between gap-2.5 pb-1 sm:pb-1.5 pointer-events-auto">
+
+<div class="flex flex-col gap-2 items-start">
+<div class="flex items-center gap-2">
+<button id="btn-kickflip" class="btn-game glass-bar rounded-2xl px-3.5 py-2 text-xs sm:text-sm font-mono-tech font-extrabold text-amber-300 border-amber-400/60 cursor-pointer shadow-lg">
+🔄 ジャンプKickflip (F)
+</button>
+<button id="btn-rcs-spin" data-touch-key="rcsSpin" class="btn-game glass-bar rounded-2xl px-3.5 py-2 text-xs sm:text-sm font-mono-tech font-extrabold text-cyan-300 border-cyan-400/60 cursor-pointer shadow-lg">
+💨 RCS旋回 (Q)
+</button>
+</div>
+<div id="steer-touch-zone" class="glass-bar rounded-2xl p-2 flex items-center gap-2.5 relative touch-none select-none shadow-2xl">
+<button id="btn-steer-left" data-touch-key="left" class="btn-game rounded-2xl bg-slate-800/95 border-2 border-white/30 flex flex-col items-center justify-center text-white active:bg-sky-500/45 active:border-sky-300 cursor-pointer">
+<svg class="w-8 h-8 pointer-events-none" fill="none" stroke="currentColor" stroke-width="3.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+<span class="text-[10px] font-mono-tech font-bold text-slate-200 pointer-events-none -mt-0.5">◀ 左</span>
+</button>
+<button id="btn-steer-right" data-touch-key="right" class="btn-game rounded-2xl bg-slate-800/95 border-2 border-white/30 flex flex-col items-center justify-center text-white active:bg-sky-500/45 active:border-sky-300 cursor-pointer">
+<svg class="w-8 h-8 pointer-events-none" fill="none" stroke="currentColor" stroke-width="3.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+<span class="text-[10px] font-mono-tech font-bold text-slate-200 pointer-events-none -mt-0.5">右 ▶</span>
+</button>
+</div>
+</div>
+
+<div class="flex flex-col gap-2 items-end">
+<div class="flex items-center gap-2">
+<button id="btn-auto-accel" class="btn-game glass-bar rounded-2xl px-4 py-2 text-xs sm:text-sm font-mono-tech font-extrabold text-slate-200 border-white/30 cursor-pointer shadow-lg">
+🔒 自動ACCEL: OFF
+</button>
+</div>
+<div id="pedal-touch-zone" class="glass-bar rounded-2xl p-2 grid grid-cols-2 gap-2 touch-none select-none shadow-2xl">
+<button id="btn-hover" data-touch-key="hover" class="btn-game pedal-hover rounded-2xl bg-sky-950/80 border-2 border-sky-400/65 flex flex-col items-center justify-center font-mono-tech font-extrabold text-sky-200 cursor-pointer">
+<span class="pointer-events-none leading-tight">▲ HOVER</span>
+<span class="text-[10px] font-bold text-sky-300/90 pointer-events-none">浮上</span>
+</button>
+<button id="btn-boost" data-touch-key="boost" class="btn-game pedal-boost rounded-2xl bg-orange-950/80 border-2 border-orange-400/65 flex flex-col items-center justify-center font-mono-tech font-extrabold text-orange-200 cursor-pointer">
+<span class="pointer-events-none leading-tight">⚡ BOOST</span>
+<span class="text-[10px] font-bold text-orange-300/90 pointer-events-none">加速噴射</span>
+</button>
+<button id="btn-brake" data-touch-key="brake" class="btn-game pedal-brake rounded-2xl bg-red-950/80 border-2 border-red-500/65 flex flex-col items-center justify-center font-mono-tech font-extrabold text-red-100 cursor-pointer">
+<span class="pointer-events-none leading-tight">BRAKE</span>
+<span class="text-[10px] font-bold text-red-300/90 pointer-events-none">ブレーキ/後退</span>
+</button>
+<button id="btn-accel" data-touch-key="accel" class="btn-game pedal-accel rounded-2xl bg-emerald-950/80 border-2 border-emerald-400/70 flex flex-col items-center justify-center font-mono-tech font-extrabold text-emerald-100 cursor-pointer">
+<span class="pointer-events-none leading-tight">ACCEL</span>
+<span class="text-[10px] font-bold text-emerald-300/90 pointer-events-none">アクセル</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="hidden">
+<span id="val-060"></span>
+<span id="val-alt"></span>
+<span id="val-gload"></span>
+<span id="val-wall-angle"></span>
+<span id="copv-label"></span>
+<div id="bar-gas"></div>
+<div id="steer-indicator-dot"></div>
+<p id="mission-status-text"></p>
+</div>
+
+<div id="ta-finish-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+<div class="glass-bar rounded-2xl max-w-md w-full p-5 border border-amber-400/60 text-slate-100 shadow-2xl pointer-events-auto text-center">
+<div class="text-xs font-mono-tech font-bold text-amber-300 tracking-widest uppercase">NYC 3.8KM TIME ATTACK // GOAL REACHED!</div>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">🏁 目的地到達！</h2>
+<p id="ta-finish-dest" class="text-xs font-mono-tech text-slate-300 mt-1">目的地: マンハッタン 3.8km地点</p>
+<div class="my-3 py-3 px-4 rounded-xl bg-slate-900/90 border border-white/15 flex flex-col gap-1">
+<span class="text-[11px] font-mono-tech text-slate-400">クリアタイム / 最終スコア</span>
+<span id="ta-finish-time" class="font-mono-tech font-extrabold text-2xl sm:text-3xl text-emerald-400">00:42.15</span>
+<span id="ta-finish-score" class="font-mono-tech font-extrabold text-xl text-amber-300">SCORE: 18,500 pt</span>
+<span id="ta-finish-best" class="text-[11px] font-mono-tech text-sky-300 mt-0.5">BEST: 00:42.15</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs font-mono-tech bg-slate-950/70 rounded-xl p-2.5 border border-white/10 mb-3">
+<div>
+<span class="text-slate-400 block text-[10px]">直線到達距離</span>
+<strong id="ta-finish-dist" class="text-sky-300">3.80 km</strong>
+</div>
+<div>
+<span class="text-slate-400 block text-[10px]">残存体力 (HP)</span>
+<strong id="ta-finish-integrity" class="text-emerald-300">1000 / 1000</strong>
+</div>
+<div class="col-span-2 pt-1 border-t border-white/10 flex items-center justify-around text-[11px]">
+<span>🧱 物損: <strong id="ta-finish-prop" class="text-sky-300">0回</strong></span>
+<span>🚗 器物損壊: <strong id="ta-finish-van" class="text-amber-300">0回</strong></span>
+<span>🚓 公務執行妨害: <strong id="ta-finish-obs" class="text-red-400">0回</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button id="btn-ta-retry" class="btn-game flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs cursor-pointer">
+🏁 次の3.8km目的地で再挑戦
+</button>
+<button id="btn-ta-close-modal" class="btn-game px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs cursor-pointer">
+フリー走行へ
+</button>
+</div>
+</div>
+</div>
+
+<div id="gameover-modal" class="fixed inset-0 z-50 bg-red-950/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+<div class="glass-bar rounded-2xl max-w-md w-full p-5 border-2 border-red-500/80 text-slate-100 shadow-2xl pointer-events-auto text-center">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/25 border border-red-400/60 text-xs font-mono-tech font-extrabold text-red-300 tracking-widest uppercase">
+💥 VEHICLE TOTALED // HP 0 GAME OVER
+</div>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">💥 走行不能（ゲームオーバー）！</h2>
+<p id="go-reason-text" class="text-xs font-mono-tech text-red-200 mt-1">激しい衝突により体力(HP 1000)が0になり、目的地へ到達不能となりました</p>
+<div class="my-4 py-3 px-4 rounded-xl bg-slate-950/90 border border-red-500/40 grid grid-cols-2 gap-2.5 text-xs font-mono-tech">
+<div>
+<span class="text-slate-400 block text-[10px]">最終スコア</span>
+<strong id="go-final-score" class="text-xl text-amber-300 font-extrabold">0 pt</strong>
+</div>
+<div>
+<span class="text-slate-400 block text-[10px]">残存体力 (HP)</span>
+<strong id="go-hp-val" class="text-xl text-red-400 font-extrabold">0 / 1000</strong>
+</div>
+<div>
+<span class="text-slate-400 block text-[10px]">🧱 物損 (壁・信号・電柱)</span>
+<strong id="go-prop-hits" class="text-sm text-sky-300 font-bold">0回 (-0pt)</strong>
+</div>
+<div>
+<span class="text-slate-400 block text-[10px]">🚗 器物損壊 (一般車両)</span>
+<strong id="go-car-hits" class="text-sm text-amber-300 font-bold">0回 (-0pt)</strong>
+</div>
+<div>
+<span class="text-slate-400 block text-[10px]">🚓 公務執行妨害 (パトカー)</span>
+<strong id="go-police-hits" class="text-sm text-red-400 font-bold">0回 (-0pt)</strong>
+</div>
+<div>
+<span class="text-slate-400 block text-[10px]">追跡パトカー / 生存時間</span>
+<strong id="go-police-count" class="text-sm text-slate-200 font-bold">0台</strong>
+<span id="go-chase-time" class="text-[10px] text-slate-400 block">00:00.0</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button id="btn-gameover-retry" class="btn-game flex-1 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs sm:text-sm cursor-pointer shadow-lg">
+↺ リトライ (体力1000で最初からやり直す)
+</button>
+</div>
+</div>
+</div>
+
+<div id="help-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+<div class="glass-bar rounded-2xl max-w-lg w-full p-4 sm:p-5 border border-white/20 text-slate-200 shadow-2xl my-auto pointer-events-auto">
+<div class="flex items-center justify-between pb-2.5 border-b border-white/10">
+<h2 class="font-bold text-sm sm:text-base text-white">2026 Tesla Roadster (Rocket仕様) アップデートガイド</h2>
+<button id="btn-close-help" class="text-slate-400 hover:text-white text-xs font-bold px-2 py-1 cursor-pointer">✕ 閉じる</button>
+</div>
+<div class="mt-3 space-y-2.5 text-xs leading-relaxed text-slate-300">
+<p>
+<strong>① 片側RCS旋回ノズル噴射</strong>: 旋回時は両側同時ではなく、進行方向と逆側のフロント側面RCSノズル片側のみが物理法則通りに噴射します。
+</p>
+<p>
+<strong>② 公式「The Kickflip」障害物（大型セミトラック＋4台）完全再現</strong>: ジャンプ台を使わず、横一列に並んだ<strong>白い大型セミトラック（Tesla Semi）・サイバートラック・ゴールドのCybercab・SUV・セダン</strong>の手前で底面4基リフトスラスターを噴射して垂直ジャンプし、トラックの屋根の上で360°キックフリップを決めて着地します。
+</p>
+<p>
+<strong>③ 公式資料準拠の深オーバーハング反り立ち壁（最大155°・63.4ft〜70ft級）</strong>: テスト場の反り立ち壁を公式資料の鋭いオーバーハング曲線・背面立体トラス支柱に合わせて改良。吸引ファンON時は0km/hの完全静止でも頭上オーバーハング壁面にピタッと張り付きます（※NY市街地には反り立つ壁は配置されません）。
+</p>
+<p>
+<strong>④ NY市街地「3.8kmランダム目的地タイムアタック」＆広域都市</strong>: NY中心（0, 0）からスタートし、<strong>3.8km地点にランダム生成される光の目的地ゲート</strong>へ到達するまでのタイムを競うゲームモードを搭載！上部の「🏁 NY 3.8kmタイムアタック」からいつでも挑戦できます。
+</p>
+<p>
+<strong>⑤ 空中フルスラスター移動＆滑らかな着地・ブースト壁登坂</strong>:
+<br>・<strong>空中制御</strong>: 宙に浮いている間もスラスター推力で<strong>自由な方向転換（左右ステア/Q）・前進加速（ACCEL/BOOST）・逆噴射制動（BRAKE）</strong>が可能です。
+<br>・<strong>滑らかな着地＆連続壁面ブースト</strong>: 着地直前の移動操作時のカクつきを解消し、テスト場では<strong>BOOST全開のまま反り立つ道へ突入しても減速・停止せず頂上まで一気に駆け上がれます</strong>。
+</p>
+<p>
+<strong>⑦ 7大リアリティ強化システム（1〜7完全実装）</strong>:
+<br>・<strong>① 部位別ダメージ＆機能低下</strong>: 衝突箇所に応じてアライメント偏り・冷却系白煙/黒煙・パンク・スラスター脈動が発生。
+<br>・<strong>② 警察ロードブロック検問＆スパイクストリップ</strong>: 追跡中に前方交差点へ検問とタイヤパンク帯を展開（HOVERやKickflipで飛び越えると+500ptボーナス）。
+<br>・<strong>③ PITマニューバ＆警察ヘリ上空サーチライト</strong>: パトカーがリア側面を突いてスピンを誘発し、上空から警察ヘリがサーチライトで照射。
+<br>・<strong>④ 3Dスキッドマーク・タイヤ煙＆天候変化（DRY/WET）</strong>: ドリフト・急制動でブラックマークとスキッド音が発生。雨天WET時は路面反射とグリップ低下を再現。
+<br>・<strong>⑤ 消火栓の12m水柱・街路樹・ゴミ箱・歩行者緊急回避</strong>: 消火栓を跳ね飛ばすと高圧水柱が噴き上がり、歩道の歩行者は車を察知して緊急ダイブ回避。
+<br>・<strong>⑥ 一般車AIのパニック回避・クラクション・ハザード点滅</strong>: 暴走車やサイレン接近時にハザードを点滅させクラクションを鳴らして路肩へ緊急退避。
+<br>・<strong>⑦ Gフォース視野角ワープ・衝撃カメラシェイク・フロントガラスひび割れ</strong>: 超高速時のFOV拡大、衝突時の3Dカメラ振動、ダメージ連動ガラスクラック演出。
+</p>
+<p>
+<strong>⑥ 体力ゲージ（HP 1000）・速度比例ダメージ＆罪状別スコアシステム</strong>:
+<br>・<strong>罪状カウント＆スコア反映</strong>: 壁・信号機・電柱との接触は<strong>「物損（-150pt）」</strong>、一般車両との接触は<strong>「器物損壊（-350pt）」</strong>、パトカーとの接触は<strong>「公務執行妨害（-700pt）」</strong>としてスコアに反映されます。
+<br>・<strong>速度比例ダメージ＆パトカー2倍ダメージ</strong>: 体力は<strong>1000</strong>からスタートし、衝突時のスピード（km/h）に応じて体力が減少します。<strong>パトカーとの接触ダメージは一般車両の2倍</strong>となります。
+<br>・<strong>目的地到達不能（HP 0）でゲームオーバー</strong>: パトカーに2回接触しても即ゲームオーバーにはならず、<strong>体力が0になり車が走行不能（目的地に辿り着けない状態）になった時点でゲームオーバー</strong>となります。
+</p>
+</div>
+<button id="btn-close-help-bottom" class="mt-4 w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs cursor-pointer">
+閉じる
+</button>
+</div>
+</div>

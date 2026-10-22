@@ -7,7 +7,7 @@ const root = new URL('../../', import.meta.url);
 const three = await readFile(new URL('node_modules/three/build/three.min.js', root), 'utf8');
 const bundle = await readFile(new URL('assets/js/simulator.js', root), 'utf8');
 const css = (await postcss([tailwindcss({
-  content: [new URL('index.html', root).pathname, new URL('src/runtime/*.js', root).pathname]
+  content: [new URL('index.html', root).pathname, new URL('src/assets/driving/screen.html',root).pathname, new URL('src/runtime/*.js', root).pathname]
 })]).process('@tailwind base; @tailwind components; @tailwind utilities;', { from: undefined })).css;
 
 // Test-only observation of the real legacy closure. Never shipped in the bundle.
@@ -41,7 +41,7 @@ window.__baseline = {
 const anchor = 'stepPhysics(0.016);\nupdateCamera(0.016);';
 assert.equal(bundle.split(anchor).length, 2, 'Legacy observation anchor must be unique');
 
-export async function prepareBaseline(page, { fault = false, entry = 'load', observe = true } = {}) {
+export async function prepareBaseline(page, { fault = false, entry = 'load', observe = true, sourceBundle = bundle, sourceProbe = '' } = {}) {
   const diagnostics = { errors: [], console: [], requests: [] };
   page.on('pageerror', error => diagnostics.errors.push(error.message));
   page.on('console', msg => diagnostics.console.push({ type: msg.type(), text: msg.text() }));
@@ -92,8 +92,9 @@ export async function prepareBaseline(page, { fault = false, entry = 'load', obs
     }
   });
   if (observe) {
+    assert.equal(sourceBundle.split(anchor).length, 2, 'Observed source must have one startup anchor');
     await page.route('**/assets/js/simulator.js', route => route.fulfill({
-      contentType: 'text/javascript', body: bundle.replace(anchor, probe + anchor)
+      contentType: 'text/javascript', body: sourceBundle.replace(anchor, probe + sourceProbe + anchor)
     }));
   }
   return diagnostics;

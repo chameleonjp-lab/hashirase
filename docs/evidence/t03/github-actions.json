@@ -1,0 +1,11 @@
+{
+  "taskId": "T03",
+  "pullRequest": "https://github.com/chameleonjp-lab/hashirase/pull/7",
+  "headSHA": "d8df005b0815359ead680ec9edde726644effebe",
+  "runId": 39786689841,
+  "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39786689841",
+  "jobId": 119851660099,
+  "conclusion": "success",
+  "log": "logs/github-actions-39786689841.log",
+  "coverage": "npm run check, build, all 10 browser tests; Node22 + Playwright Chromium; CI PR merge-ref recorded in log"
+}

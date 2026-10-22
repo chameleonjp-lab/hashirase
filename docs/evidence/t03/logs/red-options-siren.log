@@ -1,0 +1,85 @@
+[WebServer] (node:11122) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:11135) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position (914ms)
+(node:11270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_police_and_siren_survive_audio_extraction (1.6s)
+
+
+  1) [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "NYC"
+    Received: "PROVING_GROUND"
+
+      89 |   await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);
+      90 |   const state=await page.evaluate(()=>window.harness.create({course:'NYC',trim:'PERF',initial:{position:{x:8,y:0,z:12}}}));
+    > 91 |   expect(state.course).toBe('NYC');expect(state.trim).toBe('PERF');expect(state.vehicle.position).toEqual({x:8,y:0,z:12});
+         |                        ^
+      92 |   await page.evaluate(()=>window.harness.dispose());
+      93 | });
+      94 |
+        at /workspace/hashirase-t03/tests/integration/driving-lifecycle.spec.mjs:91:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-f86ff-al-course-trim-and-position-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-driving-lifecy-f86ff-al-course-trim-and-position-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-f86ff-al-course-trim-and-position-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-driving-lifecy-f86ff-al-course-trim-and-position-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_police_and_siren_survive_audio_extraction 
+
+    Error: page.evaluate: ReferenceError: audioCtx is not defined
+        at playSirenBurstSound (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:1805:3)
+        at spawnPoliceCruiser (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:2001:3)
+        at registerPlayerCarCollision (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:2018:7)
+        at updatePolicePursuitSystem (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:2381:9)
+        at stepPhysics (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:4897:3)
+        at Object.step (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:4972:38)
+        at Object.step (http://127.0.0.1:4173/src/modes/driving/session.js:59:159)
+        at Object.tick (http://127.0.0.1:4173/tests/support/driving-browser.mjs:32:48)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:22)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at playSirenBurstSound (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:1805:3)
+        at spawnPoliceCruiser (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:2001:3)
+        at registerPlayerCarCollision (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:2018:7)
+        at updatePolicePursuitSystem (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:2381:9)
+        at stepPhysics (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:4897:3)
+        at Object.step (http://127.0.0.1:4173/src/modes/driving/legacy-adapter.js:4972:38)
+        at Object.step (http://127.0.0.1:4173/src/modes/driving/session.js:59:159)
+        at Object.tick (http://127.0.0.1:4173/tests/support/driving-browser.mjs:32:48)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:22)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at /workspace/hashirase-t03/tests/integration/driving-lifecycle.spec.mjs:101:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-529ab-en-survive-audio-extraction-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/integration-driving-lifecy-529ab-en-survive-audio-extraction-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/integration-driving-lifecy-529ab-en-survive-audio-extraction-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/integration-driving-lifecy-529ab-en-survive-audio-extraction-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/integration/driving-lifecycle.spec.mjs:87:1 › driving_legacy_surface_honours_initial_course_trim_and_position 
+    [chromium] › tests/integration/driving-lifecycle.spec.mjs:95:1 › driving_police_and_siren_survive_audio_extraction 

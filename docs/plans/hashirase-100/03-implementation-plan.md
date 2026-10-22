@@ -112,11 +112,11 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** createMode(context, options)をexportし、import時は起動しない。stateはsession内だけに保持し、物理結果をsnapshotで返す
 
-- [ ] 先に検査を書く：driving_import_has_no_side_effect、two_driving_sessions_do_not_share_state、driving_dispose_is_idempotent。一方のHP変更・リセットが他方に影響しない。dispose2回で例外0件。
-- [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：ゲーム状態、ルール、数値更新、描画反映を分ける。途中のlegacy adapterは1か所に閉じ込め、移行対象と撤去条件を記録する。window経由の実行状態を増やさない。
-- [ ] `node --test tests/unit/driving-session.test.mjs && npx playwright test tests/integration/driving-lifecycle.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
-- [ ] 変更を `feat/t03` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
+- [x] 先に検査を書く：driving_import_has_no_side_effect、two_driving_sessions_do_not_share_state、driving_dispose_is_idempotent。一方のHP変更・リセットが他方に影響しない。dispose2回で例外0件。
+- [x] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
+- [x] 実装する：ゲーム状態、ルール、数値更新、描画反映を分ける。途中のlegacy adapterは1か所に閉じ込め、移行対象と撤去条件を記録する。window経由の実行状態を増やさない。
+- [x] `node --test tests/unit/driving-session.test.mjs && npx playwright test tests/integration/driving-lifecycle.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
+- [x] 変更を `feat/t03` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
 **完了条件:** ゲーム単体の開始・停止・リセットが呼べる。旧挙動との比較差を説明し、整理の名目で既存機能を削らない。
 
@@ -136,7 +136,7 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 - [x] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
 - [x] 実装する：独立した最小3自由度モデルから始める。四輪を作り込む前に単位・符号・時間積分を証明する。ロケット・HP倍率・無制限ガス回復・警察を読み込まない。未実装の四輪機能は完成表示しない。
 - [x] `node --test tests/physics/straight-line.test.mjs tests/unit/simulation-isolation.test.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
-- [ ] 変更を `feat/t04` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
+- [x] 変更を `feat/t04` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
 **完了条件:** 別の物理モデルとして数値検査でき、最小試験場で走行可能。現実車の再現済みという表示はない。
 

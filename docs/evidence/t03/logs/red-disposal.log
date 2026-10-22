@@ -1,0 +1,35 @@
+✖ driving_disposal_continues_when_one_owned_service_fails (1.823308ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.798669
+
+✖ failing tests:
+
+test at tests/unit/driving-session.test.mjs:89:1
+✖ driving_disposal_continues_when_one_owned_service_fails (1.823308ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "audio close failed"
+      at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:93:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: audio close failed
+        at c.services.audio.dispose (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:91:58)
+        at release (file:///workspace/hashirase-t03/src/modes/driving/session.js:36:104)
+        at Object.dispose (file:///workspace/hashirase-t03/src/modes/driving/session.js:43:94)
+        at file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:93:35
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///workspace/hashirase-t03/tests/unit/driving-session.test.mjs:93:10)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

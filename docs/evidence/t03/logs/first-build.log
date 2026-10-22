@@ -1,0 +1,5 @@
+
+> hashirase@0.1.0 build:legacy
+> node tools/build.mjs
+
+Regenerated assets/js/simulator.js.
