@@ -83,7 +83,9 @@
     "docs/evidence/t02/dependency-review.json",
     "docs/evidence/t02/review.md",
     "docs/evidence/t02/logs/red-final-review.log",
-    "docs/evidence/t02/logs/green-final-review.log"
+    "docs/evidence/t02/logs/green-final-review.log",
+    "docs/evidence/t02/github-actions.json",
+    "docs/evidence/t02/logs/github-actions-39775327949.log"
   ],
   "acceptance": "A01–A60 remain NOT_RUN; no full mode/home/network/device claim",
   "review": {
@@ -94,5 +96,17 @@
     "importantFixed": 2,
     "evidence": "docs/evidence/t02/review.md",
     "regressionsAdded": 3
+  },
+  "implementationCommit": "2757103fdd528f2b8bdbb0dd67f8c4ce9695057b",
+  "pullRequest": "https://github.com/chameleonjp-lab/hashirase/pull/6",
+  "status": "IN_REVIEW; user merge required before T03/T04/T06",
+  "githubActions": {
+    "runId": 39775327949,
+    "jobId": 119812693123,
+    "headCommit": "2757103fdd528f2b8bdbb0dd67f8c4ce9695057b",
+    "conclusion": "success",
+    "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39775327949",
+    "artifactCount": 2,
+    "evidence": "docs/evidence/t02/github-actions.json"
   }
 }

@@ -96,7 +96,7 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 - [x] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
 - [x] 実装する：JavaScriptの標準モジュールへ移行する土台を追加。esbuildは開発依存で版を固定し、format=esm・splittingを有効にする。物理の乱数はseed管理、見た目の乱数と分離。境界検査は循環と禁止importを失敗にする。
 - [x] `node --test tests/unit/contracts.test.mjs tests/unit/clock.test.mjs tests/integration/import-boundaries.test.mjs && npm run build` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
-- [ ] 変更を `feat/t02` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
+- [x] 変更を `feat/t02` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
 **完了条件:** T03/T04/T06が同じ契約で独立作業できる。未使用モードが共通出力へ混入する変更を検査で検出できる。
 

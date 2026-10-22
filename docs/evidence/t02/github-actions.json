@@ -1,0 +1,137 @@
+{
+  "runId": 39775327949,
+  "jobId": 119812693123,
+  "headCommit": "2757103fdd528f2b8bdbb0dd67f8c4ce9695057b",
+  "conclusion": "success",
+  "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39775327949",
+  "jobs": [
+    {
+      "id": 119812693123,
+      "name": "source-check",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39775327949,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install pinned test dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install Chromium for baseline browser tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Validate generated code, JavaScript syntax, and HTML references",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build isolated ESM foundation and audit split output",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Exercise original startup, course switching, faults, and reset",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Save browser diagnostics, screenshots, and failure traces",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Save ESM build and input graph",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12424397028,
+      "name": "baseline-browser-e1419a27e35eec4ab2c7ef62a58527336fee01c6",
+      "size_in_bytes": 1745639,
+      "url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/artifacts/12424397028",
+      "archive_download_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/artifacts/12424397028/zip",
+      "expired": false,
+      "created_at": "2026-10-22T12:04:46Z",
+      "expires_at": "2026-11-05T12:04:45Z",
+      "updated_at": "2026-10-22T12:04:46Z",
+      "digest": "sha256:4684db12b7e20b281652f54adc1d97d76bf2620b139358a5ef80539382540879",
+      "workflow_run": {
+        "id": 39775327949,
+        "repository_id": 1427905537,
+        "head_repository_id": 1427905537,
+        "head_branch": "feat/t02",
+        "head_sha": "2757103fdd528f2b8bdbb0dd67f8c4ce9695057b"
+      }
+    },
+    {
+      "id": 12423474963,
+      "name": "foundation-build-e1419a27e35eec4ab2c7ef62a58527336fee01c6",
+      "size_in_bytes": 7498,
+      "url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/artifacts/12423474963",
+      "archive_download_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/artifacts/12423474963/zip",
+      "expired": false,
+      "created_at": "2026-10-22T12:04:47Z",
+      "expires_at": "2026-11-05T12:04:46Z",
+      "updated_at": "2026-10-22T12:04:47Z",
+      "digest": "sha256:8474ac03bf7b23f9b96e83dabf992dd28e9d668c3f0140442dc7ef06ae091a2b",
+      "workflow_run": {
+        "id": 39775327949,
+        "repository_id": 1427905537,
+        "head_repository_id": 1427905537,
+        "head_branch": "feat/t02",
+        "head_sha": "2757103fdd528f2b8bdbb0dd67f8c4ce9695057b"
+      }
+    }
+  ]
+}
