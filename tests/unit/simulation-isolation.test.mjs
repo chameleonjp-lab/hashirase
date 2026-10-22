@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, cp, mkdir, mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { optionalModule } from '../support/foundation.mjs';
 import { createInputFrame } from '../../src/contracts/vehicle.js';
 import { createFixedClock } from '../../src/platform/clock.js';
@@ -47,10 +50,18 @@ test('simulation_build_and_import_graph_contain_no_driving_code_or_engine',async
   factory();const {checkBoundaries}=await import('../../scripts/check-boundaries.mjs');
   const graph=await checkBoundaries();assert.deepEqual(graph.violations,[]);
   const {buildProject}=await import('../../scripts/build.mjs');
-  const {manifest}=await buildProject({entryPoints:['src/modes/simulation/index.js']});
+  const isolated=await mkdtemp(join(tmpdir(),'hashirase-t04-build-'));
+  try{
+  await mkdir(join(isolated,'src/modes'),{recursive:true});
+  await cp(new URL('../../src/modes/simulation',import.meta.url),join(isolated,'src/modes/simulation'),{recursive:true});
+  await cp(new URL('../../src/contracts',import.meta.url),join(isolated,'src/contracts'),{recursive:true});
+  const {manifest}=await buildProject({rootDir:isolated,entryPoints:['src/modes/simulation/index.js']});
+  const compiled=await import(pathToFileURL(join(isolated,manifest.entryPoints['src/modes/simulation/index.js'])).href);
+  assert.equal(typeof compiled.createMode,'function');
   assert(!manifest.inputFiles.some(f=>/modes\/driving|runtime|legacy|node_modules\/three/.test(f.path)));
   const sources=await Promise.all(manifest.inputFiles.filter(f=>f.path.endsWith('.js')).map(f=>readFile(new URL('../../'+f.path,import.meta.url),'utf8')));
   assert(!sources.some(s=>/Math\.random|requestAnimationFrame|setInterval|performance\.now/.test(s)));
+  }finally{await rm(isolated,{recursive:true,force:true});}
 });
 
 test('simulation_cancellation_releases_supplied_services_immediately_and_late_world_once',async()=>{

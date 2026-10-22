@@ -5,6 +5,7 @@ on:
       - 'src/modes/simulation/**'
       - 'src/contracts/**'
       - 'scripts/**'
+      - 'tools/install-ci-browser.sh'
       - 'tests/physics/**'
       - 'tests/unit/simulation-isolation.test.mjs'
       - 'tests/integration/simulation-track.spec.mjs'
@@ -23,9 +24,10 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
       - name: Analytic force model and independent sessions
         run: node --test tests/physics/straight-line.test.mjs tests/unit/simulation-isolation.test.mjs
+      - name: Install Chromium and full dependencies from Ubuntu HTTPS archive
+        run: bash tools/install-ci-browser.sh
       - name: Actual minimum track, HUD and canvas disposal
         run: npx playwright test tests/integration/simulation-track.spec.mjs
       - uses: actions/upload-artifact@v4
