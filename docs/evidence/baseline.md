@@ -61,3 +61,38 @@ CDN到達性・転送量・実機fpsの試験ではない。r128 の更新はし
 
 A27 は一般車復元の部分検査、A51 は起動例外の部分検査、A55/A56 は基礎整備に留まる。
 60件の受入検査は全条件をまだ満たさないため NOT_RUN のまま。第1段階全体・ゲーム全機能・実車物理・6軸100点の完成とは扱わない。
+
+## 最小修正と検証結果
+
+検査追加と実行コード修正は別コミット。
+距離定数700mを利用先と同じ初期化スコープへ移した。値と走行ルールは変えない。
+一般車の初期変換は配置・回転が揃った後に一度保存し、既存の復元処理で戻す。
+起動のタイマー／loadの両経路で同じエラー処理を呼び、読み込み画面に失敗を残す。
+再読み込みを案内し、成功100%へ進めない。モード単位の再試行・終了処理はT05/T14。
+
+`node --test tests/baseline/original.test.mjs` は3/3、
+`npx playwright test tests/baseline/startup.spec.mjs` は4/4、`npm run check` は全てPASS。
+[GREENブラウザログ](t01/logs/green-browser.log)、[GREEN回帰ログ](t01/logs/green-check.log)、
+[環境・時刻・source hash](t01/run-manifest.json)を保存した。
+修正前後のPlaywright JSON結果は情報を削らず gzip で保存している
+（[RED](t01/red-browser-results.json.gz) / [GREEN](t01/green-browser-results.json.gz)）。
+
+画像は2026-10-22に全10枚を実見した。試験場では車体・ランプ・操作部品、
+都市では昼の路面・一般車・HUD、リセット後では車体・0速度・HP1000、
+故意の起動失敗では「起動に失敗しました」「ERROR」「24%」を確認した。
+修正前のtimer故障はローダーが消えて背景が空になり、load故障は読み込み中のままだった。
+一般車の全1,559部品の復元は数値比較で検証し、遠方車両の詳細な見た目まで画像合格とはしない。
+
+| 確認した画像 | 内容と限界 |
+|---|---|
+| [試験場](t01/images/green-proving-ground.png) | 初期の車体・ランプ・HUDが描画される |
+| [都市](t01/images/green-nyc.png) / [リセット](t01/images/green-nyc-reset.png) | 都市更新が例外で止まらず描画される。建物・車体の明部に白飛びがあり、画質評価はT13で残す |
+| [一般車復元後](t01/images/green-traffic-reset.png) | 試験場の通常画面。一般車近接・全破損方向の画像評価は未実施 |
+| [timer故障](t01/images/green-startup-error-timer.png) / [load故障](t01/images/green-startup-error-load.png) | 失敗表示を保持し、空画面を成功として見せない |
+| [修正前都市](t01/images/red-nyc.png) / [修正前リセット](t01/images/red-reset.png) | 例外・復元失敗時の画面。数値の失敗はREDログに記録 |
+| [修正前timer故障](t01/images/red-error-timer.png) / [修正前load故障](t01/images/red-error-load.png) | 誤った成功扱いと、未処理例外で停滞する違い |
+
+## 再開条件
+
+T01をDraft PRでレビューし、ユーザーのマージをGitHubで確認してからT02を開始する。
+T02〜T06は未着手。mainへの直接変更・マージ・公開・課金設定変更は行わない。

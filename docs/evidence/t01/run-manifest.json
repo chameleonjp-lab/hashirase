@@ -1,0 +1,81 @@
+{
+  "taskId": "T01",
+  "status": "PASS_LOCAL",
+  "baseCommit": "bac1f30f8af5cea9c5f6dbbb19e3999f63618e53",
+  "codeCommit": "fa90067f742522af9521f9c14bc6e0ff9b4be3e4",
+  "environment": {
+    "kind": "managed Linux container (not physical PC)",
+    "os": "Linux 6.18.55 x86_64",
+    "node": "v24.19.0",
+    "browser": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)",
+    "gpu": "software rendering requested; physical GPU model unavailable",
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "pixelRatio": 1
+    },
+    "physicalDevices": "NOT_RUN"
+  },
+  "seed": "0x48415348",
+  "settings": {
+    "trim": "ROCKET",
+    "weather": "DRY",
+    "assist": "original defaults",
+    "traffic": 85,
+    "RAF": "manually driven real callbacks; no fps claim"
+  },
+  "testIds": [
+    "startup_nyc_has_no_unbound_radius",
+    "startup_failure_shows_error (timer)",
+    "startup_failure_shows_error (load)",
+    "vehicle_reset_restores_part_positions"
+  ],
+  "commands": [
+    {
+      "command": "node --test tests/baseline/original.test.mjs",
+      "result": "PASS 3/3"
+    },
+    {
+      "command": "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npx playwright test tests/baseline/startup.spec.mjs",
+      "result": "PASS 4/4"
+    },
+    {
+      "command": "npm run check",
+      "result": "PASS (11 parts, 117 IDs, 3 Node tests)"
+    }
+  ],
+  "startedAt": "2026-10-22T10:50:57.499Z",
+  "durationMs": 10456.804,
+  "finishedAt": "2026-10-22T10:51:07.955804+00:00",
+  "productionSourceSha256": {
+    "index.html": "633c3b9dfde57d560acaa4471288f7e089fac9246b4ef80b89315955c13362d6",
+    "assets/css/simulator.css": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487",
+    "assets/js/bootstrap/loading.js": "60efd7d7508165c7448e7a2f87cbf6e913cd284ed53ae2c7a91c3b09fab672e8",
+    "assets/js/bootstrap/three-loader.js": "c530b9f6f59ef38d30d889341e6ef313f09ab54ca56fe643e8e4a1aeac92a4d2",
+    "assets/js/engine/software-fallback.js": "a7d57137a3f639270561417623c2136b0cea48fc8dfc0b9187c258e7ca7e83f6",
+    "assets/js/simulator.js": "a717f2823a2168d245b76e99ef6016917156588baae0cc892bd8b6c8dd7d48e7",
+    "src/runtime/00-boot-audio.part.js": "df960413891a5dfc57b03a8172ac94b2e100077592dbce310c518d3c45930625",
+    "src/runtime/10-renderer-track.part.js": "d5c61982fac22f28f1c2f9326c5a439a89dd0ab024f50e2ee37e9c9e5632faa3",
+    "src/runtime/20-nyc-traffic.part.js": "25e20fca8ad3423b43ad5d0092c7d04fa904b1fde87c79dc4ab1e295a4f37c49",
+    "src/runtime/30-utility-poles.part.js": "7c458dc2a5cada479c5a2625f5bf016fcb0bda15a6f18b442f0fab6b8c31f110",
+    "src/runtime/40-time-attack.part.js": "939c1c02aba050c9cde2e23b4cd1f66cb5e75a1be175da4ba75bcfc4bf385c65",
+    "src/runtime/50-police-scoring.part.js": "3473b3af8efa0851d67d83bd5dc208ce88f96bd10c6ad9b546bd46c1e07fd42d",
+    "src/runtime/60-collisions-damage.part.js": "a7b541497cdc75953060df7c76504c01b990850af2404d725f4c0f4ba23997df",
+    "src/runtime/70-vehicle-model.part.js": "f845a5b71728aadf083681986dbeeaf74ba8874d2780b85308a8fcd6be30f7d9",
+    "src/runtime/80-interface-input.part.js": "d1cc8204053e9fe12bc5e7499f5d20afbacb2c86b30ebde96dfc41909c0b4eb0",
+    "src/runtime/90-world-effects.part.js": "0bdc3dd75ff3c83bd5b0aa5ed436a13697de28e4ed40cfe1d68d7237b0402ead",
+    "src/runtime/99-physics-loop.part.js": "a8688be56db5311c17be2996ebcb48c63ecb3ced259a142c541238da0c8105ae"
+  },
+  "build": "tools/build.mjs; generated assets/js/simulator.js checked against all 11 parts",
+  "evidence": [
+    "docs/evidence/t01/logs/green-browser.log",
+    "docs/evidence/t01/logs/green-check.log",
+    "docs/evidence/t01/green-browser-results.json.gz",
+    "docs/evidence/t01/images/"
+  ],
+  "reviewer": {
+    "images": "root agent visually inspected all 10 committed RED/GREEN images",
+    "independentCodeReview": "in progress"
+  },
+  "acceptance": "All A01–A60 remain NOT_RUN. T01 exercises subsets of A27/A51/A55/A56 only."
+}

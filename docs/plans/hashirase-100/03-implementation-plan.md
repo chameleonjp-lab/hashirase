@@ -70,10 +70,10 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** 元の画面要素・モード・定数・ソース識別値をOriginalManifestとして記録。後続はmanifestを比較基準にする
 
-- [ ] 先に検査を書く：startup_nyc_has_no_unbound_radius、startup_failure_shows_error、vehicle_reset_restores_part_positions。市街地へ切替して例外0件、故意の起動失敗で成功表示0件、部品位置が初期値へ戻ることをassertする。
-- [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：現行の構文検査だけでは検出できない起動・切替の検査を追加。B02/B03/B11の再現を保存し、起動を通す最小修正は整理変更と別コミットにする。既存全機能の実装済み/未確認を棚卸しする。
-- [ ] `node --test tests/baseline/original.test.mjs && npx playwright test tests/baseline/startup.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
+- [x] 先に検査を書く：startup_nyc_has_no_unbound_radius、startup_failure_shows_error、vehicle_reset_restores_part_positions。市街地へ切替して例外0件、故意の起動失敗で成功表示0件、部品位置が初期値へ戻ることをassertする。
+- [x] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
+- [x] 実装する：現行の構文検査だけでは検出できない起動・切替の検査を追加。B02/B03/B11の再現を保存し、起動を通す最小修正は整理変更と別コミットにする。既存全機能の実装済み/未確認を棚卸しする。
+- [x] `node --test tests/baseline/original.test.mjs && npx playwright test tests/baseline/startup.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t01` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
 **完了条件:** 試験場→都市→リセットを自動操作できる。元不具合と新規不具合の区別が記録され、ゲーム全体合格と取り違えない。
