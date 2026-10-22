@@ -12,14 +12,14 @@
 
 ## Global Constraints
 
-ホーム2択・選択側だけ読込・スマホ/PC・端末別設定・右側通行・追跡最大5台/最後尾入替を維持する。数値計算はSI単位、固定時間刻み案1/120秒、増援案30秒。PRはユーザーがマージする。課金設定・秘密情報・main直接変更は禁止。完成を装う未実装画面、根拠のない実車性能表示、未検査の合格扱いは禁止。
+ホーム2択・選択側だけ読込・スマホ/PC・端末別設定・**タップ位置を起点にしたスワイプ運転をスマホ標準とすること**・右側通行・追跡最大5台/最後尾入替を維持する。数値計算はSI単位、固定時間刻み案1/120秒、増援案30秒。PRはユーザーがマージする。課金設定・秘密情報・main直接変更は禁止。完成を装う未実装画面、根拠のない実車性能表示、未検査の合格扱いは禁止。
 
 ## Review Focus
 
 | 見落としやすい条件 | 期待する動作 | 担当 |
 |---|---|---|
 | 遅い通信中の連打・戻る・別モード選択 | 古いロード結果で意図しないモードを起動しない | T05 |
-| タッチPC・同時押し・電話等による非表示 | 入力源が干渉せず、戻っても加速が残らない | T06/T14 |
+| タップだけ・斜め・端でのスワイプ・2本指・タッチPC・電話等による非表示 | 操作起点と2軸の入力が正しく、入力源が干渉せず、戻っても加速が残らない | T02/T06/T14/T17 |
 | 停止・後退・急旋回・全追跡車が前方 | 最後尾の選択が毎回同じ規則に従い5台を守る | T09 |
 | 保存破損・古い形式・容量拒否 | 起動でき、無関係の記録を消さない | T14 |
 | 低描画速度・遅い物理・ゲーム終了と衝突の同時発生 | 時間を捨てて好記録にせず、結果確定後に値が変わらない | T02/T08/T16 |
@@ -88,7 +88,9 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **変更:** package.json、package-lock.json、.github/workflows/verify.yml
 
-**入出力の約束:** 02のInputFrame、VehicleSnapshot、ModeSession。createFixedClock({step:1/120,maxSteps:8})とcreateRandom(seed)を提供し、ビルドはdistと入力ファイル一覧を生成
+**追加の契約テスト:** `InputFrame.reverseThrottle`の許可範囲、`SwipeFrame`の軸方向と-1..1、許可しない型・NaNの拒否を固定。T06はこの契約を改名しない。
+
+**入出力の約束:** 02と06のInputFrame（reverseThrottle含む）、SwipeFrame、VehicleSnapshot、ModeSession。createFixedClock({step:1/120,maxSteps:8})とcreateRandom(seed)を提供し、ビルドはdistと入力ファイル一覧を生成
 
 - [ ] 先に検査を書く：clock_is_render_rate_independent、clock_marks_overload、events_reject_invalid_session、imports_do_not_cross_modes。同一入力1200tickを30/60/120描画スケジュールで与え、物理snapshot差≤1e-6、異常値を拒否する。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
@@ -142,11 +144,11 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **段階:** 1　**前提:** T03, T04　**対応要求:** R01, R02, R07, R24, R25, R26
 
-**読む場所:** index.html、assets/js/bootstrap/loading.js、three-loader.js、旧起動監視処理
+**読む場所:** index.html、assets/js/bootstrap/loading.js、three-loader.js、旧起動監視処理、06のタップ操作対象外領域
 
 **作成:** src/app/main.js、home.js、mode-loader.js、session-host.js、src/platform/resource-scope.js、styles/home.css、tests/e2e/mode-loading.spec.mjs、tests/integration/session-races.test.mjs
 
-**変更:** index.html、scripts/build.mjs。旧simulator.jsをホームから読み込まない
+**変更:** index.html、scripts/build.mjs。旧simulator.jsをホームから読み込まない。ホーム・設定・結果のイベントを運転スワイプとして捕捉しない
 
 **入出力の約束:** selectMode(modeId): Promise<void>、leaveMode(): Promise<void>。hostだけが描画ループを所有し、世代番号・AbortSignal・資源一覧を持つ
 
@@ -162,21 +164,21 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **段階:** 1　**前提:** T02　**対応要求:** R16, R17, R18, R19, R20, R27
 
-**読む場所:** src/runtime/80-interface-input.part.js、assets/css/simulator.css、入力ボタンHTML
+**読む場所:** src/runtime/80-interface-input.part.js、assets/css/simulator.css、入力ボタンHTML、06-touch-swipe-control.md
 
-**作成:** src/platform/device-profile.js、input-service.js、settings-store.js、src/ui/settings.js、touch-controls.js、keyboard-controls.js、styles/controls.css、tests/unit/input-settings.test.mjs、tests/e2e/device-layout.spec.mjs
+**作成:** src/platform/device-profile.js、input-service.js、settings-store.js、swipe-control.js、src/ui/settings.js、touch-controls.js、swipe-guide.js、keyboard-controls.js、styles/controls.css、tests/unit/input-settings.test.mjs、tests/unit/swipe-control.test.mjs、tests/e2e/device-layout.spec.mjs
 
 **変更:** src/app/home.jsとsession-host.jsへの接続はT05完了後に担当者が統合する。並行中は契約fixtureだけを使う
 
-**入出力の約束:** createInputService(profile)、createSettingsStore(storage)。入力源別に保持しInputFrameへ合成する。profileはtouch/desktop/hybrid
+**入出力の約束:** createInputService(profile)、createSwipeController(settings)、createSettingsStore(storage)。タップした場所をpointerIdごとの起点にして、SwipeFrameのhorizontal/verticalをInputFrameへ変換する。入力源別に保持し合成する。profileはtouch/desktop/hybrid。下スワイプの後退は前進停止後に切替える（06参照）
 
-- [ ] 先に検査を書く：touch_and_keyboard_do_not_overwrite、pointer_cancel_clears、blur_clears_all、settings_separate_by_profile_and_mode、corrupt_storage_uses_defaults。設定UIで別端末の不要項目が出ない。
+- [ ] 先に検査を書く：touch_tap_is_zero、swipe_up_accelerates、swipe_down_brakes_then_reverses_only_after_stop、swipe_left_right_steers、diagonal_swipe_combines_axes、swipe_returns_to_origin_is_zero、pointer_cancel_clears、primary_pointer_is_not_stolen、second_finger_action_works、touch_and_keyboard_do_not_overwrite、blur_clears_all、settings_separate_by_profile_and_mode、corrupt_storage_uses_defaults。上下左右・斜め・画面端・戻す・離す・前進中の逆噴射防止をfixtureで再現し、設定UIで別端末の不要項目が出ないことを確認する。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：44px以上、主要56pxの操作領域、縦横のレイアウト、同時入力、画面外への指移動、キャンセルを処理。キー連打でトグルが暴走しない。設定保存は容量・破損・拒否を捕捉する。
-- [ ] `node --test tests/unit/input-settings.test.mjs && npx playwright test tests/e2e/device-layout.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
+- [ ] 実装する：06の**タップした場所を起点にした2軸スワイプ操作**を標準にする。固定のアクセル・ブレーキ・左右ボタンを主操作から外し、アクセル/制動/後退/操舵を指の移動量に応じて入力する。指を離したら全入力0で惰性走行。後退は停止条件を満たすまで禁止。複数指・追加操作ボタン・画面端・中断・指の捕捉解除を処理。特殊ボタン等は44px以上。PCのキー操作と保存を維持し、初期感度とガイドの表示設定はtouch/desktop/hybrid × driving/simulationで独立させる。
+- [ ] `node --test tests/unit/input-settings.test.mjs tests/unit/swipe-control.test.mjs && npx playwright test tests/e2e/device-layout.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t06` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
-**完了条件:** スマホ・PC・タッチPCの操作が同じ契約で動き、設定が混ざらない。T05との統合後に第1段階を判定。
+**完了条件:** スマホ・PC・タッチPCが同じ契約を利用でき、スマホでタップ起点の上下左右・斜め入力が成立する。標準画面に固定ペダルは不要。ホームや設定で誤発進せず、解放後は惰性走行となり、設定は混ざらない。T05との統合後に第1段階を判定。
 
 ## T07｜道路・信号・一般車を共通の世界モデルへ統合する
 
@@ -208,7 +210,7 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **変更:** driving/physics.js、session.js。運動と得点の関数を分ける。共有sweepはT07完成版を使い、直接変更しない
 
-**入出力の約束:** applyRunEvent(state,event)はeventId単位で一度だけ得点を更新。finishRun(reason)は不変の結果を返す。sweepは接触時刻と法線を返す
+**入出力の約束:** applyRunEvent(state,event)はeventId単位で一度だけ得点を更新。finishRun(reason)は不変の結果を返す。sweepは接触時刻と法線を返す。スマホの運転入力は06のInputFrameで受け取り、操作補助とスワイプの計算を混同しない
 
 - [ ] 先に検査を書く：no_score_from_repeated_segment、stunt_bonus_survives_finish、result_freezes_state、goal_sweep_detects_fast_pass、zero_fuel_no_free_jump、reset_clears_every_run_field。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
@@ -248,7 +250,7 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **変更:** simulation/physics/vehicle-model.js、config/demo-car.js。共通sweepはT07完成版を使用し、変更が必要なら共有担当の独立PRを先に入れる
 
-**入出力の約束:** VehicleSnapshotの四輪接地・滑り・荷重・回転状態を埋める。ContactEventは位置・法線・相対速度・力積・対象IDを持つ
+**入出力の約束:** VehicleSnapshotの四輪接地・滑り・荷重・回転状態を埋める。ContactEventは位置・法線・相対速度・力積・対象IDを持つ。06の入力（後退意図を含む）はシミュレーターの運動計算に渡すが、指の動きを直接車体速度へ変換しない
 
 - [ ] 先に検査を書く：gravity_reference、suspension_static_balance、combined_tire_force_is_bounded、wet_braking_is_longer、momentum_collision_reference、no_nan_on_rollover、render_rates_match。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
@@ -310,9 +312,9 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** 表示はsnapshotを読むだけ。素材manifestは出典・ライセンス・サイズ・用途を持つ
 
-- [ ] 先に検査を書く：guide_can_skip_reopen、all_critical_controls_visible、damage_has_correct_side、camera_does_not_enter_wall、reduced_motion_disables_shake、audio_off_has_no_active_output。
+- [ ] 先に検査を書く：guide_can_skip_reopen、swipe_origin_guide_never_hides_hud、all_critical_controls_visible、damage_has_correct_side、camera_does_not_enter_wall、reduced_motion_disables_shake、audio_off_has_no_active_output。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：操作案内は30〜60秒の短い練習を提案し、強制せず再表示可能にする。運転席/追従の視認性、夜/昼/雨、衝突演出、音量別設定を確認。画質向上でT12の性能を超過したら修正する。
+- [ ] 実装する：操作案内は06のタップ起点・上下左右・斜め・指を離すと惰性・停止後の後退を示す30〜60秒の短い練習を提案し、強制せず再表示可能にする。起点ガイドは視界を妨げず表示ON/OFF可能とし、代替操作は標準画面に大きなペダルを固定しない。運転席/追従の視認性、夜/昼/雨、衝突演出、音量別設定を確認。画質向上でT12の性能を超過したら修正する。
 - [ ] `npx playwright test tests/e2e/visual-scenarios.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t13` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
@@ -330,7 +332,7 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** 保存スキーマはversion付き。parseAllowedMode(value)は許可値以外をHOMEへ戻す。recoveryは元sessionを廃棄してから新規起動する
 
-- [ ] 先に検査を書く：storage_denied_still_runs、broken_version_migrates_or_resets、url_cannot_select_arbitrary_module、context_loss_pauses、load_timeout_shows_error、resume_does_not_hold_accelerator。
+- [ ] 先に検査を書く：storage_denied_still_runs、broken_version_migrates_or_resets、url_cannot_select_arbitrary_module、context_loss_pauses、load_timeout_shows_error、resume_does_not_hold_accelerator、swipe_pointer_clears_on_leave、swipe_release_on_orientation_change。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
 - [ ] 実装する：15秒でロード停滞を案内し再試行/戻るを提供。設定・記録の破損と容量不足は対象だけ復旧し他の保存を消さない。文字列をHTMLとして挿入しない。不要な外部通信・秘密情報・ログ漏洩を検査する。
 - [ ] `node --test tests/unit/storage-security.test.mjs && npx playwright test tests/e2e/fault-recovery.spec.mjs` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
@@ -372,7 +374,7 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 - [ ] 先に検査を書く：all_automated_acceptance_pass、sixty_cases_have_status、pursuit_30min_never_exceeds_five、twenty_mode_switches_do_not_leak。既知失敗をskipして成功にしない。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：Chromium/Firefox/WebKitで機能を検査し、スマホ/PCの寸法を切り替える。ネットワーク遮断・遅延・保存破損・低フレーム化を加える。長時間検査は正式候補でまとめ、通常PRには関連短縮検査を使う。
+- [ ] 実装する：Chromium/Firefox/WebKitで機能を検査し、スマホ/PCの寸法を切り替える。06のスワイプ運転はA06/A31〜A40/A46へ固定入力と画面実見を加え、指を離した後の入力0、後退への誤切替なし、未選択モードの画面との干渉なしを検証する。ネットワーク遮断・遅延・保存破損・低フレーム化を加える。長時間検査は正式候補でまとめ、通常PRには関連短縮検査を使う。
 - [ ] `npm run test:e2e && npm run test:physics && npm run test:perf -- --suite release` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t16` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
@@ -390,9 +392,9 @@ T03/T04/T06は契約確定後に並行可能です。T06のホームへの接続
 
 **入出力の約束:** 端末型番/OS/ブラウザ/画面実測/画質/温度影響/測定区間を記録。人による遊びやすさの評価を自動性能値と分ける
 
-- [ ] 先に検査を書く：iphone_portrait_landscape_usable、pc_all_actions_reachable、sustained_30min_budget、first_user_understands_two_modes。入力見落としや無理な同時押しがないことを録画・チェック票で確認。
+- [ ] 先に検査を書く：iphone_portrait_landscape_usable、pc_all_actions_reachable、sustained_30min_budget、first_user_understands_two_modes、swipe_start_any_play_area、diagonal_swipe_is_usable、release_coasts_without_input。入力見落としや無理な同時押しがないことを録画・チェック票で確認。
 - [ ] 対象機能がない状態で検査を実行し、期待した条件の失敗を記録する。環境エラーは別に解消する。
-- [ ] 実装する：iPhone 17 Pro Safariと指定PCで実際に操作。ユーザーにPC購入を要求せず、用意できないPC性能項目は未検証として残す。模擬WebKitをiPhone実機と呼ばない。レビュー指摘は担当作業へ戻して修正する。
+- [ ] 実装する：iPhone 17 Pro Safariの縦横で06のタップ起点スワイプを実際に操作し、画面端・2本指・小刻みな指移動・斜め入力・後退・指の解放を記録する。PCは従来のキー/マウス操作を維持する。ユーザーにPC購入を要求せず、用意できないPC性能項目は未検証として残す。模擬WebKitをiPhone実機と呼ばない。レビュー指摘は担当作業へ戻して修正する。
 - [ ] `04の実機プロトコルを実行しRunManifestへ保存。コード修正があればnpm run checkと該当テストを再実行` を実行し、対象検査が成功することを確認する。さらに既存の `npm run check` と影響する回帰検査を実行し、省略前の結果を保存する。
 - [ ] 変更を `feat/t17` 等の専用ブランチへコミットし、進捗・証拠・未検証を更新してDraft PRを提出する。mainへ直接反映しない。
 
