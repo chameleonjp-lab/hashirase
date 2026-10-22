@@ -1,0 +1,159 @@
+
+> hashirase@0.1.0 check
+> npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm run check:boundaries && npm test
+
+
+> hashirase@0.1.0 build:check
+> node tools/build.mjs --check
+
+Bundle matches all 11 source parts.
+
+> hashirase@0.1.0 check:boundaries
+> node scripts/check-boundaries.mjs
+
+Boundary check: 40 ESM modules, 85 imports; 11 legacy fragments explicitly excluded.
+
+> hashirase@0.1.0 test
+> node tests/smoke.mjs && npm run test:unit && npm run test:integration && npm run test:physics
+
+Smoke test passed: 117 unique IDs and expected asset order.
+
+> hashirase@0.1.0 test:unit
+> node --test tests/baseline/original.test.mjs tests/unit/*.test.mjs
+
+✔ original_manifest_identifies_immutable_baseline_sources (61.580383ms)
+✔ original_screen_controls_and_asset_order_are_preserved (0.883012ms)
+✔ original_courses_trims_constants_and_core_features_are_preserved (0.658674ms)
+✔ clock_is_render_rate_independent (4.69165ms)
+✔ clock_remains_render_rate_independent_over_ten_minutes (30.235903ms)
+✔ clock_marks_overload_without_dropping_unprocessed_time (0.647608ms)
+✔ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.118589ms)
+✔ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.3045ms)
+✔ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.318681ms)
+✔ random_is_repeatable_and_visual_draws_do_not_change_physics (0.955291ms)
+✔ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.11244ms)
+✔ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (2.270757ms)
+✔ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.288225ms)
+✔ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (0.469739ms)
+✔ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (1.030315ms)
+✔ session_contract_preserves_named_ports_and_has_no_render_loop (0.445872ms)
+✔ events_reject_invalid_session (0.414145ms)
+✔ events_are_readonly_deduplicated_and_isolated_per_session (0.726356ms)
+✔ driving_import_has_no_side_effect (32.018252ms)
+✔ two_driving_sessions_do_not_share_state (3.716637ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (13.614923ms)
+✔ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (0.402127ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.506765ms)
+✔ driving_disposal_continues_when_one_owned_service_fails (0.363278ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (0.730462ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (0.765585ms)
+✔ driving_brake_does_not_become_reverse_drive (1.067551ms)
+✔ explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion (6.210972ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.337409ms)
+✔ driving_build_has_a_real_mode_entry_without_simulation_or_Three (278.006464ms)
+✔ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (30.292167ms)
+✔ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (20.604499ms)
+✔ game_styles_are_local_and_scoped_away_from_home_and_settings (254.528158ms)
+✔ audio_volume_is_applied_to_the_real_owned_output_gain (0.69542ms)
+✔ repeat_audio_dispose_returns_the_same_pending_close (0.180492ms)
+✔ disposed_renderer_rejects_late_legacy_allocations (0.801359ms)
+✔ display_settings_and_camera_have_an_explicit_readonly_renderer_port (0.62291ms)
+✔ explicit_RCS_action_is_preserved_and_cleared_on_pause (13.23504ms)
+✔ bundle_audit_starts_at_requested_entries_and_follows_only_static_edges (4.753793ms)
+✔ paused_legacy_view_allows_semantic_dialog_close_but_blocks_driving_keys (0.296667ms)
+✔ touch_and_keyboard_do_not_overwrite (1.315024ms)
+✔ source_arbitration_brake_wins_and_simulation_specials_are_filtered (0.297168ms)
+✔ blur_clears_all_and_disabled_sources_do_not_restart (0.248535ms)
+✔ reverse_interlock_requires_continuous_stationary_time_and_resets_on_clear (0.570651ms)
+✔ settings_separate_by_profile_and_mode (3.397696ms)
+✔ corrupt_storage_uses_defaults (3.926645ms)
+✔ settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies (0.971236ms)
+✔ storage_denial_uses_memory_and_reports_status (0.291971ms)
+✔ any_storage_read_exception_is_reported_as_unavailable (0.160872ms)
+✔ device_profile_uses_capabilities_and_allows_manual_override (0.402427ms)
+✔ reverse_release_between_ticks_discards_grace_without_clearing_other_holds (0.190888ms)
+✔ swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace (0.121073ms)
+✔ simulation_has_no_game_rules (21.396594ms)
+✔ simulation_sessions_start_pause_reset_and_remain_independent (2.105838ms)
+✔ simulation_abort_disposes_without_global_or_timing_state (0.598323ms)
+✔ simulation_build_and_import_graph_contain_no_driving_code_or_engine (344.060958ms)
+✔ simulation_cancellation_releases_supplied_services_immediately_and_late_world_once (0.557331ms)
+✔ simulation_startup_errors_and_invalid_reset_cannot_leak_owned_services (0.916813ms)
+✔ touch_tap_is_zero (1.233051ms)
+✔ swipe_up_accelerates (0.340664ms)
+✔ swipe_down_brakes_then_reverses_only_after_stop (0.678945ms)
+✔ swipe_left_right_steers (0.169596ms)
+✔ diagonal_swipe_combines_axes (0.634738ms)
+✔ swipe_returns_to_origin_is_zero (0.09896ms)
+✔ pointer_cancel_clears (0.134803ms)
+✔ primary_pointer_is_not_stolen_or_automatically_promoted (0.111468ms)
+✔ second_finger_action_works (0.299893ms)
+✔ swipe_deadzone_linear_axes_clamping_and_edge_origin_are_stable (0.25855ms)
+✔ changing_swipe_settings_releases_the_origin_and_rejects_invalid_values (0.440635ms)
+ℹ tests 69
+ℹ suites 0
+ℹ pass 69
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 569.520711
+
+> hashirase@0.1.0 test:integration
+> node --test tests/integration/*.test.mjs
+
+✔ imports_do_not_cross_modes (13.542795ms)
+✔ common_code_and_static_home_imports_cannot_pull_in_a_mode (5.651137ms)
+✔ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (3.559491ms)
+✔ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (2.940177ms)
+✔ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (3.112997ms)
+✔ physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper (2.196194ms)
+✔ modes_cannot_hide_an_independent_render_loop_in_a_shared_helper (2.675597ms)
+✔ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (28.802099ms)
+✔ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (2.296585ms)
+✔ build_fails_when_a_common_entry_statically_includes_a_mode (4.865442ms)
+✔ asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes (21.733734ms)
+✔ build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets (17.831526ms)
+✔ build_rejects_CSS_imports_including_cross_mode_dependencies (12.868808ms)
+✔ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.200884ms)
+✔ latest_selection_wins (5.312286ms)
+✔ leave_during_load_disposes_late_result (0.753978ms)
+✔ leave_during_prepare_disposes_late_context (0.551983ms)
+✔ host_owns_one_loop_and_pause_resume_excludes_hidden_time (0.771474ms)
+✔ startup_failure_and_retry_do_not_retain_session_or_loop (0.665334ms)
+✔ frame_failure_clears_input_and_releases_resources (0.680597ms)
+✔ resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners (0.635169ms)
+✔ unknown_mode_is_rejected_without_fetch_or_destroying_current_session (0.673426ms)
+✔ overload_pause_explains_why_and_can_be_reset (0.40441ms)
+✔ finished_rules_stop_in_RESULT_and_reset_allows_a_new_run (0.385912ms)
+✔ pause_requested_while_loading_is_kept_until_explicit_resume (0.302667ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 235.10473
+
+> hashirase@0.1.0 test:physics
+> node --test tests/physics/*.test.mjs
+
+✔ force_over_mass_accelerates (74.011776ms)
+✔ drive_force_is_scaled_by_throttle_and_reverse_has_the_opposite_sign (15.006063ms)
+✔ drag_does_not_accelerate_rest (66.086124ms)
+✔ resistance_opposes_motion_and_never_reverses_it (50.453348ms)
+✔ braking_stops_forward_and_reverse_without_driving_through_zero (127.186109ms)
+✔ zero_input_remains_finite_and_three_translation_axes_obey_F_equals_ma (6.827552ms)
+✔ same_tick_inputs_are_reproducible_across_render_schedules_and_five_runs (376.13964ms)
+✔ invalid_config_input_environment_and_overflow_do_not_corrupt_state (1.249265ms)
+✔ parameter_metadata_is_bounded_versioned_and_detached (0.432483ms)
+✔ derived_speed_overflow_is_rejected_atomically_on_reset_and_step (0.598713ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 765.253483

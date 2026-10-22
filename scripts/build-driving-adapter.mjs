@@ -44,6 +44,8 @@ surface.setLegacyControls?.(options.legacyControls!==false);
 const __drivingAudio=context.audio;
 let __legacyBrakeReverse=options.legacyControls!==false;
 let simulationTime=0;
+let __viewSettings={speedUnit:'kmh',reducedMotion:false};
+const modeActions={rcsSpin:false};
 const random=createRandom(options.seed??0x48415348),physicsRandom=random.fork('physics'),visualRandom=random.fork('visual');
 ${body}
 if(options.trim)selectTrim(options.trim);
@@ -53,15 +55,20 @@ applyCurrentDrivingVisuals(0);
 hostWindow.__hideLoadingScreen();
 const extractedRules=createDrivingRules(carState,policePursuitState,timeAttackState);
 let pendingRenderTime=0,previousKick=false,disposed=false;
-function clearInputs(){for(const key of Object.keys(inputs))inputs[key]=false;autoAccelLocked=false;activePointers.clear();updateAutoAccelUI();}
+function clearInputs(){modeActions.rcsSpin=false;for(const key of Object.keys(inputs))inputs[key]=false;autoAccelLocked=false;activePointers.clear();updateAutoAccelUI();}
 return Object.freeze({
 step(dt,frame,environment={}){
   if(disposed)return;
-  if(frame!==undefined){Object.assign(inputs,legacyInput(frame));__legacyBrakeReverse=false;if(frame.kickflip&&!previousKick)beginKickflip(carState,rampProfile.point);previousKick=frame.kickflip;}
+  if(frame!==undefined){Object.assign(inputs,legacyInput(frame));inputs.rcsSpin=modeActions.rcsSpin;__legacyBrakeReverse=false;if(frame.kickflip&&!previousKick)beginKickflip(carState,rampProfile.point);previousKick=frame.kickflip;}
   else if(options.legacyControls===false){clearInputs();__legacyBrakeReverse=false;}
   simulationTime+=dt;extractedRules.step(0,environment);stepPhysics(dt);pendingRenderTime+=dt;
 },
 snapshot(metadata){return drivingSnapshot(carState,policePursuitState,timeAttackState,{...metadata,course:currentCourse,trim:currentTrim.id,score:carState.score});},
+action(name,active){if(name==='rcsSpin')modeActions.rcsSpin=active;},
+configureView(settings){if(disposed)return;__viewSettings={...__viewSettings,...settings};if(Number.isFinite(settings.pixelRatio)){currentPixelRatio=settings.pixelRatio;renderer.setPixelRatio(currentPixelRatio);handleViewportResize();}const target=settings.viewpoint==='cockpit'?1:settings.viewpoint==='chase'?0:null;if(target!==null&&target!==currentCamIndex)applyCameraMode(target);applyCurrentDrivingVisuals(0);},
+look(dx,dy){camOrbitYawOffset-=dx*0.0065;camOrbitPitchOffset=Math.max(-0.25,Math.min(0.65,camOrbitPitchOffset+dy*0.0045));},
+cycleCamera(){applyCameraMode(currentCamIndex===1?0:1);return currentCamIndex===1?'cockpit':'chase';},
+resize(){if(!disposed)handleViewportResize();},
 reset(initial={}){clearInputs();stopAutoDemo();resetVehicle(initial.position?.x??0,initial.position?.z??(currentCourse==='NYC'?0:36));carState.y=initial.position?.y??0;previousKick=false;pendingRenderTime=0;simulationTime=0;extractedRules.reset();applyCurrentDrivingVisuals(0);},
 pause(){clearInputs();},
 render(){if(disposed)return;updateSmoke(pendingRenderTime);updateCamera(pendingRenderTime);renderer.render(scene,camera);pendingRenderTime=0;},

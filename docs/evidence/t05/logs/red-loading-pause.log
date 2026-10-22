@@ -1,0 +1,40 @@
+✔ latest_selection_wins (3.847183ms)
+✔ leave_during_load_disposes_late_result (0.765601ms)
+✔ leave_during_prepare_disposes_late_context (0.545741ms)
+✔ host_owns_one_loop_and_pause_resume_excludes_hidden_time (0.74485ms)
+✔ startup_failure_and_retry_do_not_retain_session_or_loop (0.480342ms)
+✔ frame_failure_clears_input_and_releases_resources (0.597979ms)
+✔ resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners (0.585741ms)
+✔ unknown_mode_is_rejected_without_fetch_or_destroying_current_session (0.701605ms)
+✔ overload_pause_explains_why_and_can_be_reset (0.416055ms)
+✔ finished_rules_stop_in_RESULT_and_reset_allows_a_new_run (0.436205ms)
+✖ pause_requested_while_loading_is_kept_until_explicit_resume (0.763928ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49.181147
+
+✖ failing tests:
+
+test at tests/integration/session-races.test.mjs:54:1
+✖ pause_requested_while_loading_is_kept_until_explicit_resume (0.763928ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'RUNNING'
+  - 'PAUSED'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:54:269)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'RUNNING',
+    expected: 'PAUSED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

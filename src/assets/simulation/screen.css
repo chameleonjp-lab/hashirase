@@ -1,0 +1,8 @@
+[data-mode-screen="simulation"] [data-distance]{max-width:100%;line-height:1.5}
+@media(max-height:500px) and (orientation:landscape){
+ [data-mode-screen="simulation"] section>p:first-child,[data-mode-screen="simulation"] h1+p{display:none}
+ [data-mode-screen="simulation"] h1{margin:4px 0!important}
+ [data-mode-screen="simulation"] section>div{margin:8px 0!important;gap:18px!important}
+ [data-mode-screen="simulation"] [data-speed]{font-size:22px!important}
+ [data-mode-screen="simulation"] [data-distance]{font-size:11px!important;margin:8px 0!important}
+}

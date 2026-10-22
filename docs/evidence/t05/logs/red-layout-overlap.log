@@ -1,0 +1,110 @@
+[WebServer] (node:42408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:42420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-portrait (1.9s)
+(node:42557) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-landscape (1.9s)
+(node:42693) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_touch-pc (2.2s)
+
+
+  1) [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-portrait 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 772
+    Received:   795
+
+      25 |   await surface.dispatchEvent('pointerdown',{pointerId:31,pointerType:'touch',clientX:rect.x+rect.width/2,clientY:rect.y+rect.height/2,bubbles:true});await surface.dispatchEvent('pointermove',{pointerId:31,pointerType:'touch',clientX:rect.x+rect.width/2+50,clientY:rect.y+rect.height/2-70,bubbles:true});await tick(page,2);expect((await diagnostics(page)).input.throttle).toBeGreaterThan(0);expect((await diagnostics(page)).input.steer).toBeGreaterThan(0);
+      26 |   const buttons=page.locator('.mode-toolbar button');for(const box of await buttons.evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return{w:r.width,h:r.height,b:r.bottom};}))){expect(box.w).toBeGreaterThanOrEqual(44);expect(box.h).toBeGreaterThanOrEqual(56);expect(box.b).toBeLessThanOrEqual(viewport.height);}
+    > 27 |   await surface.dispatchEvent('pointercancel',{pointerId:31,pointerType:'touch',bubbles:true});await tick(page);expect((await diagnostics(page)).input.throttle).toBe(0);if(mode==='simulation'){const note=await page.locator('[data-distance]').boundingBox(),tools=await page.locator('.mode-toolbar').boundingBox();expect(note.y+note.height).toBeLessThan(tools.y-4);}await info.attach(label+'-'+mode+'.png',{body:await page.screenshot(),contentType:'image/png'});await leave(page);
+         |                                                                                                                                                                                                                                                                                                                                                    ^
+      28 |  }
+      29 | });
+      30 |
+        at /workspace/hashirase-t05/tests/e2e/home-lifecycle.spec.mjs:27:340
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-portrait-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-portrait-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-portrait-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-portrait-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-landscape 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 324
+    Received:   377
+
+      25 |   await surface.dispatchEvent('pointerdown',{pointerId:31,pointerType:'touch',clientX:rect.x+rect.width/2,clientY:rect.y+rect.height/2,bubbles:true});await surface.dispatchEvent('pointermove',{pointerId:31,pointerType:'touch',clientX:rect.x+rect.width/2+50,clientY:rect.y+rect.height/2-70,bubbles:true});await tick(page,2);expect((await diagnostics(page)).input.throttle).toBeGreaterThan(0);expect((await diagnostics(page)).input.steer).toBeGreaterThan(0);
+      26 |   const buttons=page.locator('.mode-toolbar button');for(const box of await buttons.evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return{w:r.width,h:r.height,b:r.bottom};}))){expect(box.w).toBeGreaterThanOrEqual(44);expect(box.h).toBeGreaterThanOrEqual(56);expect(box.b).toBeLessThanOrEqual(viewport.height);}
+    > 27 |   await surface.dispatchEvent('pointercancel',{pointerId:31,pointerType:'touch',bubbles:true});await tick(page);expect((await diagnostics(page)).input.throttle).toBe(0);if(mode==='simulation'){const note=await page.locator('[data-distance]').boundingBox(),tools=await page.locator('.mode-toolbar').boundingBox();expect(note.y+note.height).toBeLessThan(tools.y-4);}await info.attach(label+'-'+mode+'.png',{body:await page.screenshot(),contentType:'image/png'});await leave(page);
+         |                                                                                                                                                                                                                                                                                                                                                    ^
+      28 |  }
+      29 | });
+      30 |
+        at /workspace/hashirase-t05/tests/e2e/home-lifecycle.spec.mjs:27:340
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-landscape-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-landscape-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-landscape-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-home-lifecycle-real-modes-touch-layout-phone-landscape-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_touch-pc ──────
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 728
+    Received:   732
+
+      25 |   await surface.dispatchEvent('pointerdown',{pointerId:31,pointerType:'touch',clientX:rect.x+rect.width/2,clientY:rect.y+rect.height/2,bubbles:true});await surface.dispatchEvent('pointermove',{pointerId:31,pointerType:'touch',clientX:rect.x+rect.width/2+50,clientY:rect.y+rect.height/2-70,bubbles:true});await tick(page,2);expect((await diagnostics(page)).input.throttle).toBeGreaterThan(0);expect((await diagnostics(page)).input.steer).toBeGreaterThan(0);
+      26 |   const buttons=page.locator('.mode-toolbar button');for(const box of await buttons.evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return{w:r.width,h:r.height,b:r.bottom};}))){expect(box.w).toBeGreaterThanOrEqual(44);expect(box.h).toBeGreaterThanOrEqual(56);expect(box.b).toBeLessThanOrEqual(viewport.height);}
+    > 27 |   await surface.dispatchEvent('pointercancel',{pointerId:31,pointerType:'touch',bubbles:true});await tick(page);expect((await diagnostics(page)).input.throttle).toBe(0);if(mode==='simulation'){const note=await page.locator('[data-distance]').boundingBox(),tools=await page.locator('.mode-toolbar').boundingBox();expect(note.y+note.height).toBeLessThan(tools.y-4);}await info.attach(label+'-'+mode+'.png',{body:await page.screenshot(),contentType:'image/png'});await leave(page);
+         |                                                                                                                                                                                                                                                                                                                                                    ^
+      28 |  }
+      29 | });
+      30 |
+        at /workspace/hashirase-t05/tests/e2e/home-lifecycle.spec.mjs:27:340
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-home-lifecycle-real-modes-touch-layout-touch-pc-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-home-lifecycle-real-modes-touch-layout-touch-pc-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-home-lifecycle-real-modes-touch-layout-touch-pc-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-home-lifecycle-real-modes-touch-layout-touch-pc-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-portrait ─
+    [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-landscape 
+    [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_touch-pc ───────

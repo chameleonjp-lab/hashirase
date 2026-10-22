@@ -66,7 +66,9 @@ export function applyDrivingVisuals(view,carState,dt,effects) {
 
   updatePursuitHudUI();
   const kmh = Math.round(Math.hypot(carState.vx, carState.vz) * 3.6);
-  uiSpeed.textContent = kmh;
+  const unit=view.speedUnit==='mph'?'mph':'km/h';
+  uiSpeed.textContent = view.speedUnit==='mph'?Math.round(Math.hypot(carState.vx,carState.vz)*2.236936):kmh;
+  if(uiSpeed.nextElementSibling)uiSpeed.nextElementSibling.textContent=unit;
   uiAltFt.textContent = (carState.y * 3.28084).toFixed(1);
   const gasPct = Math.round((carState.airMassKg / COPV_MAX_KG) * 100);
   uiGasPct.textContent = `${gasPct}%`;
@@ -79,7 +81,7 @@ export function applyDrivingVisuals(view,carState,dt,effects) {
 
   if (carState.mode === 'RAMP') {
     const deg = Math.round((carState.pitch * 180) / Math.PI);
-    uiBadge.textContent = kmh === 0 ? `WALL HOLD 0km/h (${deg}°)` : `WALL ${deg}° (4.7t吸着)`;
+    uiBadge.textContent = kmh === 0 ? `WALL HOLD 0${unit} (${deg}°)` : `WALL ${deg}° (4.7t吸着)`;
     uiBadge.className = 'text-[9px] font-mono-tech font-bold px-1.5 py-0.5 rounded bg-purple-500/25 text-purple-200 border border-purple-400/50';
   } else if (carState.mode === 'AIR') {
     uiBadge.textContent = inputs.hover ? 'HOVER FLIGHT (3D推進・旋回)' : (fireRollPulse1 || fireRollPulse2 ? 'RCS PULSE' : (fireDownwardLift ? 'THRUSTER BURST' : 'INERTIA ARC'));

@@ -699,7 +699,9 @@ var drivingPorts = (() => {
     carRoot.rotation.z = carState.roll;
     updatePursuitHudUI();
     const kmh = Math.round(Math.hypot(carState.vx, carState.vz) * 3.6);
-    uiSpeed.textContent = kmh;
+    const unit = view.speedUnit === "mph" ? "mph" : "km/h";
+    uiSpeed.textContent = view.speedUnit === "mph" ? Math.round(Math.hypot(carState.vx, carState.vz) * 2.236936) : kmh;
+    if (uiSpeed.nextElementSibling) uiSpeed.nextElementSibling.textContent = unit;
     uiAltFt.textContent = (carState.y * 3.28084).toFixed(1);
     const gasPct = Math.round(carState.airMassKg / COPV_MAX_KG * 100);
     uiGasPct.textContent = `${gasPct}%`;
@@ -710,7 +712,7 @@ var drivingPorts = (() => {
     }
     if (carState.mode === "RAMP") {
       const deg = Math.round(carState.pitch * 180 / Math.PI);
-      uiBadge.textContent = kmh === 0 ? `WALL HOLD 0km/h (${deg}\xB0)` : `WALL ${deg}\xB0 (4.7t\u5438\u7740)`;
+      uiBadge.textContent = kmh === 0 ? `WALL HOLD 0${unit} (${deg}\xB0)` : `WALL ${deg}\xB0 (4.7t\u5438\u7740)`;
       uiBadge.className = "text-[9px] font-mono-tech font-bold px-1.5 py-0.5 rounded bg-purple-500/25 text-purple-200 border border-purple-400/50";
     } else if (carState.mode === "AIR") {
       uiBadge.textContent = inputs.hover ? "HOVER FLIGHT (3D\u63A8\u9032\u30FB\u65CB\u56DE)" : fireRollPulse1 || fireRollPulse2 ? "RCS PULSE" : fireDownwardLift ? "THRUSTER BURST" : "INERTIA ARC";
@@ -792,9 +794,10 @@ var drivingPorts = (() => {
     const baseFov = getAdaptiveFov();
     const spdRatio = Math.min(1, Math.hypot(carState.vx, carState.vz) / 95);
     const boostFovAdd = inputs.boost ? 5.5 : 0;
-    const targetFov = baseFov + spdRatio * 9.5 + boostFovAdd;
+    const targetFov = baseFov + (view.reducedMotion ? 0 : spdRatio * 9.5 + boostFovAdd);
     camera.fov += (targetFov - camera.fov) * Math.min(1, dt * 7.5);
     camera.updateProjectionMatrix();
+    if (view.reducedMotion && cameraEffectsState) cameraEffectsState.shakeIntensity = 0;
     if (cameraEffectsState && cameraEffectsState.shakeIntensity > 5e-3) {
       const s = cameraEffectsState.shakeIntensity;
       camera.position.x += (random() - 0.5) * s * 0.45;
@@ -5982,7 +5985,7 @@ applyCurrentDrivingVisuals(dt,effects);
 updateAudio(effects.fireDownwardLift,effects.anyRcs,effects.usingBoost);
 }
 function applyCurrentDrivingVisuals(dt,effects={}) {
-applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,random:Math.random},carState,dt,effects);
+applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,speedUnit:typeof __viewSettings!=='undefined'?__viewSettings.speedUnit:'kmh',random:Math.random},carState,dt,effects);
 }
 const smoothCamPos = new THREE.Vector3(0, 3.2, 45);
 const smoothLookAt = new THREE.Vector3(0, 1.0, 15);
@@ -6020,7 +6023,7 @@ isSwipingCanvas = false;
 swipePointerId = null;
 }
 });
-function updateCamera(dt) { ({camOrbitYawOffset,camOrbitPitchOffset}=updateGameCamera({camOrbitYawOffset,camOrbitPitchOffset,THREE,CAMERA_MODES,currentCamIndex,isSwipingCanvas,carState,carRoot,camera,RAMP,KICKFLIP_LANE,smoothCamPos,smoothLookAt,inputs,cameraEffectsState,getAdaptiveFov,random:Math.random,width:window.innerWidth,height:window.innerHeight},dt)); }
+function updateCamera(dt) { ({camOrbitYawOffset,camOrbitPitchOffset}=updateGameCamera({camOrbitYawOffset,camOrbitPitchOffset,THREE,CAMERA_MODES,currentCamIndex,isSwipingCanvas,carState,carRoot,camera,RAMP,KICKFLIP_LANE,smoothCamPos,smoothLookAt,inputs,cameraEffectsState,getAdaptiveFov,reducedMotion:typeof __viewSettings!=='undefined'&&__viewSettings.reducedMotion,random:Math.random,width:window.innerWidth,height:window.innerHeight},dt)); }
 function handleViewportResize() {
 const w = getViewportW();
 const h = getViewportH();

@@ -10,19 +10,19 @@ function numericalBackend(options) {
   const course=options.course||'PROVING_GROUND';
   const origin=course==='NYC'?{position:{x:0,y:0,z:0}}:{};
   const car=createCarState(options.initial??origin),pursuit=createPursuitState(),timeAttack=createTimeAttackState(),ramp=createRampProfile();
-  const rules=createDrivingRules(car,pursuit,timeAttack);let trim=DRIVING_TRIMS[options.trim||'ROCKET'],previousKick=false;
+  const rules=createDrivingRules(car,pursuit,timeAttack);let trim=DRIVING_TRIMS[options.trim||'ROCKET'],previousKick=false,rcsSpin=false;
   if(!trim)throw new TypeError('Unknown driving trim');
   if(!['PROVING_GROUND','NYC'].includes(course))throw new TypeError('Unknown driving course');
   return {
     step(dt,frame=createInputFrame(),environment={}) {
       if(pursuit.gameOver)return;
       if(frame.kickflip&&!previousKick)beginKickflip(car,ramp.point);previousKick=frame.kickflip;
-      const effects=stepVehicleState(car,dt,legacyInput(frame),{...environment,trim,course,rampPoint:ramp.point});
+      const effects=stepVehicleState(car,dt,{...legacyInput(frame),rcsSpin},{...environment,trim,course,rampPoint:ramp.point});
       if(effects.trim)trim=DRIVING_TRIMS[effects.trim];rules.step(dt,environment);
     },
     snapshot(metadata){return drivingSnapshot(car,pursuit,timeAttack,{...metadata,course,trim:trim.id,score:car.score});},
-    reset(initial=origin){resetCarState(car,initial);Object.assign(pursuit,createPursuitState());Object.assign(timeAttack,createTimeAttackState());rules.reset();previousKick=false;},
-    pause(){},dispose(){}
+    reset(initial=origin){resetCarState(car,initial);Object.assign(pursuit,createPursuitState());Object.assign(timeAttack,createTimeAttackState());rules.reset();previousKick=false;rcsSpin=false;},
+    action(name,active){if(name==='rcsSpin')rcsSpin=active;},pause(){rcsSpin=false;},dispose(){rcsSpin=false;}
   };
 }
 
@@ -65,6 +65,7 @@ export async function createMode(context,options={}) {
       resume(){live();if(status==='PAUSED'){status='RUNNING';pauseReason=null;renderer?.setEnabled?.(true);context.audio.resume?.();}},
       step(dt,input){live();finite(dt,'dt',Number.MIN_VALUE);if(input!==undefined)assertInputFrame(input);if(status!=='RUNNING')return;world.step(dt);backend.step(dt,input,world.query(snapshot().vehicle.position));},
       snapshot,
+      action(name,active){live();if(name!=='rcsSpin'||typeof active!=='boolean')throw new TypeError('Invalid driving action');backend.action?.(name,active);},
       reset(initial){live();if(initial?.position)for(const key of ['x','y','z'])finite(initial.position[key],'position.'+key);context.input.clear();backend.reset(initial);world.reset(options.seed??0x48415348);},
       dispose
     });

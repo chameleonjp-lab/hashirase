@@ -155,7 +155,7 @@ export async function assertBoundaries(options) {
 }
 
 /** Audit actual esbuild output inputs, including code hoisted into shared chunks. */
-export function checkBundleGraph(metafile) {
+export function checkBundleGraph(metafile,{entryPoints}={}) {
   const outputs = metafile.outputs || {}; const violations = [];
   const inputsOf = name => Object.keys(outputs[name]?.inputs || {});
   for (const [name] of Object.entries(outputs)) {
@@ -163,7 +163,7 @@ export function checkBundleGraph(metafile) {
     if (modes.size > 1) violations.push({ rule: 'bundle-mixed-modes', output: name });
   }
   for (const [name, output] of Object.entries(outputs)) {
-    if (!output.entryPoint || modeOf(output.entryPoint) || !isJS(name)) continue;
+    if (!output.entryPoint || modeOf(output.entryPoint) || !isJS(name) || (entryPoints && !entryPoints.includes(output.entryPoint))) continue;
     const pending = [name]; const seen = new Set();
     while (pending.length) {
       const file = pending.pop();

@@ -56,7 +56,7 @@ test('driving_fixed_tick_trace_matches_pre_extraction_game', async ({ page, cont
   await page.evaluate(async()=>{await window.harness.create();window.harness.start();});
   const reference=await context.newPage();
   await prepareBaseline(reference,{sourceBundle:oldBundle,sourceProbe});
-  await reference.goto('/');
+  await reference.goto('/legacy.html');
   await expect(reference.locator('#loading-screen')).toBeHidden();
   const neutral={accel:false,brake:false,left:false,right:false,boost:false,hover:false,rcsSpin:false};
   const observations=[];

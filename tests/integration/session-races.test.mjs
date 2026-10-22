@@ -7,7 +7,7 @@ function harness(overrides={}){
  const frames=new Map(),metrics={created:{driving:0,simulation:0},started:0,disposed:0,active:0,max:0,steps:0,renders:0,inputClears:0},changes=[];let id=0;
  const module=mode=>({async createMode(context){metrics.created[mode]++;let status='READY',disposed=false;return{
  start(){status='RUNNING';metrics.started++;metrics.active++;metrics.max=Math.max(metrics.max,metrics.active);},pause(){status='PAUSED';},resume(){status='RUNNING';},reset(){metrics.steps=0;},
- step(){if(overrides.stepError)throw Error('step failed');metrics.steps++;},snapshot(){return{mode,status,vehicle:{position:{x:0,y:0,z:0},rotation:{x:0,y:0,z:0,w:1},velocity:{x:0,y:0,z:0}}};},dispose(){if(disposed)return;disposed=true;metrics.disposed++;if(status!=='READY')metrics.active--;status='DISPOSED';}
+ step(){if(overrides.stepError)throw Error('step failed');metrics.steps++;},snapshot(){return{mode,status,pursuit:{gameOver:!!overrides.gameOver},vehicle:{position:{x:0,y:0,z:0},rotation:{x:0,y:0,z:0,w:1},velocity:{x:0,y:0,z:0}}};},dispose(){if(disposed)return;disposed=true;metrics.disposed++;if(status!=='READY')metrics.active--;status='DISPOSED';}
  };}});
  const prepare=async(_module,{abortSignal,sessionId})=>({sessionId,abortSignal,clock:createFixedClock(),events:createEventChannel(sessionId),settings:{read:()=>({fps:60}),write(){}},input:{sample:()=>createInputFrame(),clear(){metrics.inputClears++;},dispose(){}},world:{step(){},query:()=>({}),reset(){},dispose(){}},renderer:{render(){metrics.renders++;},resize(){},dispose(){}},audio:{pause(){},resume(){},dispose(){}}});
  const host=api(hostModule,'createSessionHost')({loadMode:overrides.loadMode??(async mode=>module(mode)),prepare:overrides.prepare??prepare,requestFrame:callback=>{frames.set(++id,callback);return id;},cancelFrame:frame=>frames.delete(frame),onChange:state=>changes.push(state)});
@@ -47,3 +47,8 @@ test('unknown_mode_is_rejected_without_fetch_or_destroying_current_session',asyn
  const h=harness();await h.host.selectMode('driving');await assert.rejects(()=>h.host.selectMode('https://invalid.test/code.js'),/mode/i);assert.equal(h.host.snapshot().mode,'driving');await h.host.leaveMode();
  await assert.rejects(()=>api(loaderModule,'loadMode')('https://invalid.test/code.js'),/mode/i);
 });
+test('overload_pause_explains_why_and_can_be_reset',async()=>{const h=harness();await h.host.selectMode('driving');h.flush(1000);h.flush(1300);assert.equal(h.host.snapshot().state,'PAUSED');assert.equal(h.host.snapshot().pauseReason,'overload');h.host.reset();h.host.resume();assert.equal(h.host.snapshot().state,'RUNNING');await h.host.leaveMode();});
+
+test('finished_rules_stop_in_RESULT_and_reset_allows_a_new_run',async()=>{const flags={gameOver:false};const h=harness(flags);await h.host.selectMode('driving');h.flush(1000);flags.gameOver=true;h.flush(1020);assert.equal(h.host.snapshot().state,'RESULT');assert.equal(h.frames.size,0);flags.gameOver=false;h.host.reset();assert.equal(h.host.snapshot().state,'PAUSED');h.host.resume();assert.equal(h.host.snapshot().state,'RUNNING');await h.host.leaveMode();});
+
+test('pause_requested_while_loading_is_kept_until_explicit_resume',async()=>{const ready=deferred(),h=harness({loadMode:()=>ready.promise});const opening=h.host.selectMode('simulation');h.host.pause('hidden');ready.resolve(h.module('simulation'));await opening;assert.equal(h.host.snapshot().state,'PAUSED');assert.equal(h.frames.size,0);h.host.resume();assert.equal(h.host.snapshot().state,'RUNNING');await h.host.leaveMode();});

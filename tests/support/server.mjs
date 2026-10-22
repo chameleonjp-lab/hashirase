@@ -7,7 +7,8 @@ const root = fileURLToPath(new URL('../../', import.meta.url));
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
 createServer(async (req, res) => {
   try {
-    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    if(pathname.startsWith('/hashirase/'))pathname=pathname.slice('/hashirase'.length);
     const path = resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
     if (!path.startsWith(root.endsWith(sep) ? root : root + sep)) {
       res.writeHead(403).end();

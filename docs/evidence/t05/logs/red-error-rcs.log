@@ -1,0 +1,93 @@
+[WebServer] (node:44197) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:44209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers (10.4s)
+(node:44343) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving (11.4s)
+
+
+  1) [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers 
+
+    Error: expect(locator).not.toContainText(expected) failed
+
+    Locator: locator('.state-panel')
+    Expected substring: not "http://"
+    Received string: "開始できませんでしたFailed to fetch dynamically imported module: http://127.0.0.1:4173/dist/chunks/simulation-NSPTS6XO.js再試行ホームへ"
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "not toContainText" locator('.state-panel') with timeout 10000ms
+      - waiting for locator('.state-panel')
+        24 × locator resolved to <section aria-live="polite" class="state-panel">…</section>
+           - unexpected value "開始できませんでしたFailed to fetch dynamically imported module: http://127.0.0.1:4173/dist/chunks/simulation-NSPTS6XO.js再試行ホームへ"
+
+
+      30 | });
+      31 | test('failed_module_can_retry_after_network_recovers',async({page},info)=>{
+    > 32 |  await prepare(page);const manifest=JSON.parse(await readFile(new URL('../../dist/build-manifest.json',import.meta.url),'utf8'));let fail=true;await page.route('**/'+manifest.entryPoints['src/modes/simulation/index.js'],route=>fail?route.abort('failed'):route.continue());await page.goto('/');await page.locator('[data-select-mode="simulation"]').click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','ERROR');expect((await diagnostics(page)).activeSession).toBe(0);await expect(page.locator('canvas')).toHaveCount(0);await expect(page.locator('.state-panel')).not.toContainText('http://');await info.attach('load-error.png',{body:await page.screenshot(),contentType:'image/png'});fail=false;await page.getByRole('button',{name:'再試行',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await home(page);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+      33 | });
+      34 | test('game_help_can_close_while_paused',async({page})=>{
+      35 |  await prepare(page);await page.goto('/');await select(page,'driving');await page.locator('#btn-help').click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','PAUSED');await expect(page.locator('#help-modal')).toBeVisible();await page.locator('#btn-close-help').click();await expect(page.locator('#help-modal')).not.toBeVisible();await home(page);
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:32:600
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('#btn-rcs-spin')
+    Expected: "true"
+    Received: "false"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('#btn-rcs-spin') with timeout 10000ms
+      - waiting for locator('#btn-rcs-spin')
+        24 × locator resolved to <button id="btn-rcs-spin" aria-pressed="false" data-touch-key="rcsSpin" class="btn-game glass-bar rounded-2xl px-3.5 py-2 text-xs sm:text-sm font-mono-tech font-extrabold text-cyan-300 border-cyan-400/60 cursor-pointer shadow-lg">↵💨 RCS旋回 (Q)↵</button>
+           - unexpected value "false"
+
+
+      37 |
+      38 | test('game_RCS_keyboard_holds_and_camera_return_to_driving',async({page})=>{
+    > 39 |  await prepare(page);await page.goto('/');await select(page,'driving');const rcs=page.locator('#btn-rcs-spin');await rcs.focus();await page.keyboard.down('Space');await expect(rcs).toHaveAttribute('aria-pressed','true');await page.keyboard.up('Space');await expect(rcs).toHaveAttribute('aria-pressed','false');await page.locator('[data-action="camera"]').click();await page.keyboard.down('KeyW');await tick(page,2);expect((await diagnostics(page)).input.throttle).toBe(1);await page.keyboard.up('KeyW');await home(page);
+         |                                                                                                                                                                                      ^
+      40 | });
+      41 |
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:39:182
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers 
+    [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving 

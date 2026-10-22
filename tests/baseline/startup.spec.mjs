@@ -4,7 +4,7 @@ import { prepareBaseline, attachDiagnostics } from '../support/baseline-browser.
 test('startup_nyc_has_no_unbound_radius', async ({ page }, testInfo) => {
   const diagnostics = await prepareBaseline(page);
   try {
-    await page.goto('/');
+    await page.goto('/legacy.html');
     await expect(page.locator('#loading-screen')).toBeHidden();
     await expect(page.locator('#canvas-container canvas')).toHaveCount(1);
     const initial = await page.evaluate(() => window.__baseline.snapshot());
@@ -39,7 +39,7 @@ for (const entry of ['timer', 'load']) {
   test(`startup_failure_shows_error (${entry})`, async ({ page }, testInfo) => {
     const diagnostics = await prepareBaseline(page, { fault: true, entry, observe: false });
     try {
-      await page.goto('/');
+      await page.goto('/legacy.html');
       await expect.poll(() => diagnostics.errors.length + diagnostics.console.filter(m => m.type === 'error').length).toBeGreaterThan(0);
       await expect(page.locator('#loading-screen')).toBeVisible();
       await expect(page.locator('#loading-phase-label')).toContainText('ERROR');
@@ -60,7 +60,7 @@ for (const entry of ['timer', 'load']) {
 test('vehicle_reset_restores_part_positions', async ({ page }, testInfo) => {
   const diagnostics = await prepareBaseline(page);
   try {
-    await page.goto('/');
+    await page.goto('/legacy.html');
     await expect(page.locator('#loading-screen')).toBeHidden();
     const initial = await page.evaluate(() => window.__baseline.snapshot().traffic);
     expect(initial).toHaveLength(85);

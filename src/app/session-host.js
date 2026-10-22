@@ -17,7 +17,7 @@ export function createSessionHost({loadMode,prepare,requestFrame=callback=>globa
  finite(loadTimeoutMs,'loadTimeoutMs',0);
  let generation=0,current=null,state='HOME',error=null,disposed=false,maxActiveSession=0,maxCanvas=0;
  const liveSessions=new Set(),frames=new Set(),initialized={driving:0,simulation:0},cleanupErrors=[];
- function snapshot(){maxCanvas=Math.max(maxCanvas,countCanvases());return readonlyCopy({state,mode:current?.mode??null,error,activeSession:liveSessions.size,activeRAF:frames.size,maxActiveSession,maxCanvas,initialized,cleanupErrors,generation});}
+ function snapshot(){maxCanvas=Math.max(maxCanvas,countCanvases());return readonlyCopy({state,mode:current?.mode??null,error,pauseReason:current?.context?.clock.snapshot().pauseReason??null,activeSession:liveSessions.size,activeRAF:frames.size,maxActiveSession,maxCanvas,initialized,cleanupErrors,generation});}
  function emit(){onChange(snapshot());}
  function cancelLoop(record){if(record?.frame!==null&&record?.frame!==undefined){cancelFrame(record.frame);frames.delete(record.frame);record.frame=null;}}
  function adopt(context,scope){for(const key of ['input','world','renderer','audio','events'])if(context[key]&&typeof context[key]!=='function'&&typeof context[key].dispose==='function')scope.own(context[key]);return context;}
@@ -36,13 +36,15 @@ export function createSessionHost({loadMode,prepare,requestFrame=callback=>globa
    finite(now,'frame time',0);const elapsed=record.lastTime===null?0:(now-record.lastTime)/1000;record.lastTime=now;
    const clock=record.context.clock.advance(elapsed,dt=>record.session.step(dt,record.context.input.sample({dt,longitudinalSpeed:signedSpeed(record.session.snapshot())})));
    if(!clock.valid){pause('overload');return;}
+   const view=record.session.snapshot(),finished=view.pursuit?.gameOver||view.timeAttack?.finished;
    const fps=record.context.settings.read?.()?.fps??60;
-   if(record.lastRender===null||now-record.lastRender>=1000/fps-0.01){record.context.renderer.render(record.session.snapshot(),clock.alpha);record.lastRender=now;}
+   if(finished||record.lastRender===null||now-record.lastRender>=1000/fps-0.01){record.context.renderer.render(view,clock.alpha);record.lastRender=now;}
+   if(finished){record.context.input.clear();record.context.input.setEnabled?.(false);record.context.clock.pause('result');record.session.pause('result');state='RESULT';emit();return;}
    maxCanvas=Math.max(maxCanvas,countCanvases());schedule(record);
   }catch(cause){void fail(record,cause);}
  }
  function pause(reason='manual'){
-  const record=current;if(!record?.session||state!=='RUNNING')return;
+  const record=current;if(record&&state==='LOADING'){record.pendingPause=reason;return;}if(!record?.session||state!=='RUNNING')return;
   cancelLoop(record);record.context.input.clear();record.context.input.setEnabled?.(false);record.context.clock.pause(reason);record.session.pause(reason);state='PAUSED';emit();
  }
  async function selectMode(mode){
@@ -59,13 +61,15 @@ export function createSessionHost({loadMode,prepare,requestFrame=callback=>globa
    const session=await abortable(sessionPromise,record.controller.signal);if(!valid(record))return;assertModeSession(session);record.session=session;
    clearTimeout(timer);state='READY';emit();if(!valid(record))return;
    record.scope.own(()=>liveSessions.delete(session));liveSessions.add(session);maxActiveSession=Math.max(maxActiveSession,liveSessions.size);
-   context.clock.reset();session.start();context.input.setEnabled?.(true);state='RUNNING';emit();schedule(record);
+   context.clock.reset();session.start();context.input.setEnabled?.(true);state='RUNNING';if(record.pendingPause)pause(record.pendingPause);else{emit();schedule(record);}
   }catch(cause){if(valid(record))await fail(record,cause);}
  }
  async function leaveMode(){const record=current,currentGeneration=++generation;current=null;state='DISPOSING';error=null;emit();await teardown(record);if(generation===currentGeneration){state='HOME';emit();}}
  return Object.freeze({selectMode,leaveMode,pause,
+  action(name,active){if(current?.session&&valid(current)&&(state==='RUNNING'||!active))current.session.action?.(name,active);},
+  reportError(cause){if(current)void fail(current,cause);},
   resume(){const record=current;if(!record?.session||state!=='PAUSED')return;try{record.context.clock.resume();record.session.resume();record.context.input.setEnabled?.(true);record.lastTime=record.lastRender=null;state='RUNNING';emit();schedule(record);}catch(cause){void fail(record,cause);}},
-  reset(){const record=current;if(!record?.session)return;record.context.input.clear();record.session.reset?.();record.context.clock.reset();record.lastTime=record.lastRender=null;if(state==='PAUSED')record.context.clock.pause('manual');record.context.renderer.render(record.session.snapshot(),0);},
+  reset(){const record=current;if(!record?.session)return;record.context.input.clear();record.session.reset?.();record.context.clock.reset();record.lastTime=record.lastRender=null;if(state==='RESULT')state='PAUSED';if(state==='PAUSED')record.context.clock.pause('manual');record.context.renderer.render(record.session.snapshot(),0);emit();},
   snapshot,async dispose(){if(disposed)return;await leaveMode();disposed=true;}
  });
 }

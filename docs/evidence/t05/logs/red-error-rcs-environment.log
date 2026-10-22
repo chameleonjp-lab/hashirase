@@ -1,0 +1,81 @@
+[WebServer] (node:43744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:43756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers (1.0m)
+(node:43901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving (1.0m)
+
+
+  1) [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('[data-select-mode="simulation"]')
+
+
+      30 | });
+      31 | test('failed_module_can_retry_after_network_recovers',async({page},info)=>{
+    > 32 |  await prepare(page);const manifest=JSON.parse(await readFile(new URL('../../dist/build-manifest.json',import.meta.url),'utf8'));let fail=true;await page.route('**/'+manifest.entryPoints['src/modes/simulation/index.js'],route=>fail?route.abort('failed'):route.continue());await page.goto('/');await page.locator('[data-select-mode="simulation"]').click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','ERROR');expect((await diagnostics(page)).activeSession).toBe(0);await expect(page.locator('canvas')).toHaveCount(0);await expect(page.locator('.state-panel')).not.toContainText('http://');await info.attach('load-error.png',{body:await page.screenshot(),contentType:'image/png'});fail=false;await page.getByRole('button',{name:'再試行',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await home(page);
+         |                                                                                                                                                                                                                                                                                                                                                            ^
+      33 | });
+      34 | test('game_help_can_close_while_paused',async({page})=>{
+      35 |  await prepare(page);await page.goto('/');await select(page,'driving');await page.locator('#btn-help').click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','PAUSED');await expect(page.locator('#help-modal')).toBeVisible();await page.locator('#btn-close-help').click();await expect(page.locator('#help-modal')).not.toBeVisible();await home(page);
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:32:348
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('[data-select-mode="driving"]')
+
+
+      1 | import {test,expect} from '@playwright/test';import {readFile} from 'node:fs/promises';
+      2 | import {prepareApp as prepare,tick,diagnostics} from '../support/app-browser.mjs';
+    > 3 | async function select(page,mode){await page.locator(`[data-select-mode="${mode}"]`).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await expect(page.locator('canvas')).toHaveCount(1);await tick(page);}
+        |                                                                                     ^
+      4 | async function home(page){await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','HOME');await expect(page.locator('canvas')).toHaveCount(0);}
+      5 | test('home_requests_no_3d',async({page},info)=>{
+      6 |  const d=await prepare(page);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();
+        at select (/workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:3:85)
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:39:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-game-RCS--086a8-nd-camera-return-to-driving-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/mode-loading.spec.mjs:31:1 › failed_module_can_retry_after_network_recovers 
+    [chromium] › tests/e2e/mode-loading.spec.mjs:38:1 › game_RCS_keyboard_holds_and_camera_return_to_driving 

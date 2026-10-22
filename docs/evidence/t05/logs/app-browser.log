@@ -1,0 +1,16 @@
+[WebServer] (node:41228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:41240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/mode-loading.spec.mjs:7:1 › home_requests_no_3d (412ms)
+  ✓  2 [chromium] › tests/e2e/mode-loading.spec.mjs:13:44 › driving_does_not_fetch_simulation (1.5s)
+  ✓  3 [chromium] › tests/e2e/mode-loading.spec.mjs:13:44 › simulation_does_not_fetch_driving (480ms)
+  ✓  4 [chromium] › tests/e2e/mode-loading.spec.mjs:21:1 › mode_round_trips_and_inputs_remain_owned (29.9s)
+  ✓  5 [chromium] › tests/e2e/mode-loading.spec.mjs:26:1 › real_settings_persist_per_mode_and_do_not_resume_held_input (1.6s)
+  ✓  6 [chromium] › tests/e2e/mode-loading.spec.mjs:33:1 › failed_module_can_retry_after_network_recovers (524ms)
+  ✓  7 [chromium] › tests/e2e/mode-loading.spec.mjs:36:1 › game_help_can_close_while_paused (1.4s)
+
+  7 passed (36.4s)

@@ -1,0 +1,39 @@
+✔ game_styles_are_local_and_scoped_away_from_home_and_settings (171.14139ms)
+✔ audio_volume_is_applied_to_the_real_owned_output_gain (0.688545ms)
+✔ repeat_audio_dispose_returns_the_same_pending_close (0.237347ms)
+✔ disposed_renderer_rejects_late_legacy_allocations (0.566813ms)
+✔ display_settings_and_camera_have_an_explicit_readonly_renderer_port (0.625551ms)
+✔ explicit_RCS_action_is_preserved_and_cleared_on_pause (11.532377ms)
+✔ bundle_audit_starts_at_requested_entries_and_follows_only_static_edges (4.50123ms)
+✖ paused_legacy_view_allows_semantic_dialog_close_but_blocks_driving_keys (0.824099ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 311.987639
+
+✖ failing tests:
+
+test at tests/unit/home-assets.test.mjs:26:1
+✖ paused_legacy_view_allows_semantic_dialog_close_but_blocks_driving_keys (0.824099ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:30:298)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

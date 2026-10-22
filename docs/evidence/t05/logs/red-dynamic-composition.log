@@ -1,0 +1,42 @@
+✔ game_styles_are_local_and_scoped_away_from_home_and_settings (178.30091ms)
+✔ audio_volume_is_applied_to_the_real_owned_output_gain (0.774031ms)
+✔ repeat_audio_dispose_returns_the_same_pending_close (0.209207ms)
+✔ disposed_renderer_rejects_late_legacy_allocations (0.498524ms)
+✔ display_settings_and_camera_have_an_explicit_readonly_renderer_port (0.605396ms)
+✔ explicit_RCS_action_is_preserved_and_cleared_on_pause (11.881363ms)
+✖ bundle_audit_starts_at_requested_entries_and_follows_only_static_edges (5.320729ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 323.826397
+
+✖ failing tests:
+
+test at tests/unit/home-assets.test.mjs:18:1
+✖ bundle_audit_starts_at_requested_entries_and_follows_only_static_edges (5.320729ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     input: 'node_modules/three/build/three.module.js',
+  +     output: 'dist/view.js',
+  +     rule: 'bundle-home-engine'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:21:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { rule: 'bundle-home-engine', output: 'dist/view.js', input: 'node_modules/three/build/three.module.js' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

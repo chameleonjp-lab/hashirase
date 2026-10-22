@@ -1,0 +1,112 @@
+
+> hashirase@0.1.0 check
+> npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm run check:boundaries && npm test
+
+
+> hashirase@0.1.0 build:check
+> node tools/build.mjs --check
+
+Bundle matches all 11 source parts.
+
+> hashirase@0.1.0 check:boundaries
+> node scripts/check-boundaries.mjs
+
+Boundary check: 40 ESM modules, 85 imports; 11 legacy fragments explicitly excluded.
+
+> hashirase@0.1.0 test
+> node tests/smoke.mjs && npm run test:unit && npm run test:integration && npm run test:physics
+
+Smoke test passed: 117 unique IDs and expected asset order.
+
+> hashirase@0.1.0 test:unit
+> node --test tests/baseline/original.test.mjs tests/unit/*.test.mjs
+
+✔ original_manifest_identifies_immutable_baseline_sources (52.162872ms)
+✔ original_screen_controls_and_asset_order_are_preserved (0.95062ms)
+✔ original_courses_trims_constants_and_core_features_are_preserved (0.72778ms)
+✔ clock_is_render_rate_independent (3.976393ms)
+✔ clock_remains_render_rate_independent_over_ten_minutes (24.169916ms)
+✔ clock_marks_overload_without_dropping_unprocessed_time (0.556379ms)
+✔ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.116147ms)
+✔ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.168928ms)
+✔ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.371777ms)
+✔ random_is_repeatable_and_visual_draws_do_not_change_physics (0.784587ms)
+✔ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.107864ms)
+✔ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (1.707223ms)
+✔ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.267558ms)
+✔ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (0.316142ms)
+✔ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (0.712597ms)
+✔ session_contract_preserves_named_ports_and_has_no_render_loop (0.313338ms)
+✔ events_reject_invalid_session (0.284043ms)
+✔ events_are_readonly_deduplicated_and_isolated_per_session (0.933764ms)
+✔ driving_import_has_no_side_effect (34.660523ms)
+✔ two_driving_sessions_do_not_share_state (6.148005ms)
+✔ driving_start_pause_resume_reset_and_dispose_are_independent (11.656104ms)
+✔ numeric_driving_session_uses_the_city_origin_when_NYC_is_selected (0.511951ms)
+✔ driving_dispose_is_idempotent_and_abort_releases_owned_services (0.789283ms)
+✔ driving_disposal_continues_when_one_owned_service_fails (0.609569ms)
+✔ driving_rejects_invalid_inputs_and_collision_events_are_not_scored_twice (1.077824ms)
+✔ driving_vehicle_model_is_numeric_and_keeps_hover_kickflip_and_coasting (1.18066ms)
+✔ driving_brake_does_not_become_reverse_drive (1.933798ms)
+✔ explicit_braking_opposes_reverse_motion_and_air_motion_without_propulsion (9.426655ms)
+✔ audio_import_and_silent_service_are_lazy_and_dispose_is_idempotent (0.394521ms)
+✔ driving_build_has_a_real_mode_entry_without_simulation_or_Three (316.071902ms)
+✔ legacy_smoke_rendering_does_not_consume_the_physics_random_stream (37.345517ms)
+✔ legacy_animation_uses_simulation_time_instead_of_sampling_wall_time (23.266589ms)
+✔ game_styles_are_local_and_scoped_away_from_home_and_settings (262.789979ms)
+✔ audio_volume_is_applied_to_the_real_owned_output_gain (0.733919ms)
+✔ repeat_audio_dispose_returns_the_same_pending_close (0.191743ms)
+✔ disposed_renderer_rejects_late_legacy_allocations (0.576339ms)
+✔ display_settings_and_camera_have_an_explicit_readonly_renderer_port (0.699226ms)
+✔ explicit_RCS_action_is_preserved_and_cleared_on_pause (12.600654ms)
+✔ bundle_audit_starts_at_requested_entries_and_follows_only_static_edges (5.040636ms)
+✔ paused_legacy_view_allows_semantic_dialog_close_but_blocks_driving_keys (0.34737ms)
+✔ touch_and_keyboard_do_not_overwrite (2.061924ms)
+✔ source_arbitration_brake_wins_and_simulation_specials_are_filtered (0.351296ms)
+✔ blur_clears_all_and_disabled_sources_do_not_restart (0.260196ms)
+✔ reverse_interlock_requires_continuous_stationary_time_and_resets_on_clear (0.699416ms)
+✔ settings_separate_by_profile_and_mode (8.204491ms)
+✔ corrupt_storage_uses_defaults (0.890368ms)
+✔ settings_validate_bounds_unknown_fields_key_conflicts_and_immutable_copies (1.177075ms)
+✔ storage_denial_uses_memory_and_reports_status (0.47211ms)
+✔ any_storage_read_exception_is_reported_as_unavailable (0.37374ms)
+✔ device_profile_uses_capabilities_and_allows_manual_override (0.395503ms)
+✔ reverse_release_between_ticks_discards_grace_without_clearing_other_holds (0.613786ms)
+✔ swipe_neutral_and_forward_transitions_between_ticks_discard_reverse_grace (0.164531ms)
+✔ simulation_has_no_game_rules (41.847943ms)
+✔ simulation_sessions_start_pause_reset_and_remain_independent (2.812459ms)
+✔ simulation_abort_disposes_without_global_or_timing_state (0.96374ms)
+✖ simulation_build_and_import_graph_contain_no_driving_code_or_engine (290.418965ms)
+✔ simulation_cancellation_releases_supplied_services_immediately_and_late_world_once (1.185337ms)
+✔ simulation_startup_errors_and_invalid_reset_cannot_leak_owned_services (1.107379ms)
+✔ touch_tap_is_zero (1.246291ms)
+✔ swipe_up_accelerates (0.354922ms)
+✔ swipe_down_brakes_then_reverses_only_after_stop (0.625624ms)
+✔ swipe_left_right_steers (0.128987ms)
+✔ diagonal_swipe_combines_axes (0.594997ms)
+✔ swipe_returns_to_origin_is_zero (0.104609ms)
+✔ pointer_cancel_clears (0.090207ms)
+✔ primary_pointer_is_not_stolen_or_automatically_promoted (0.073212ms)
+✔ second_finger_action_works (0.185303ms)
+✔ swipe_deadzone_linear_axes_clamping_and_edge_origin_are_stable (0.203321ms)
+✔ changing_swipe_settings_releases_the_origin_and_rejects_invalid_values (0.434283ms)
+ℹ tests 69
+ℹ suites 0
+ℹ pass 68
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 630.880188
+
+✖ failing tests:
+
+test at tests/unit/simulation-isolation.test.mjs:49:1
+✖ simulation_build_and_import_graph_contain_no_driving_code_or_engine (290.418965ms)
+  Error: missing-import: src/modes/simulation/presentation.js -> src/platform/style-resource.js 
+  missing-import: src/modes/simulation/presentation.js -> src/assets/simulation/screen.css 
+      at assertBoundaries (file:///workspace/hashirase-t05/scripts/check-boundaries.mjs:153:39)
+      at async buildProject (file:///workspace/hashirase-t05/scripts/build.mjs:60:3)
+      at async TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/simulation-isolation.test.mjs:58:20)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
