@@ -95,7 +95,7 @@ const splitFixture = {
   'src/contracts/shared.js': 'export const shared = 42;',
   'src/modes/driving/index.js': "import {shared} from '../../contracts/shared.js'; import style from './mode.css'; import image from './car.svg'; export const mode = () => [shared, style, image, 'driving'];",
   'src/modes/simulation/index.js': "import {shared} from '../../contracts/shared.js'; import style from './mode.css'; import image from './car.svg'; export const mode = () => [shared, style, image, 'simulation'];",
-  'src/modes/driving/mode.css': '.driving { color: red; }',
+  'src/modes/driving/mode.css': '/* url(ignored.svg) */ .driving { color: red; } .driving::after { content: "@import url(ignored.css)"; }',
   'src/modes/simulation/mode.css': '.simulation { color: blue; }',
   'src/modes/driving/car.svg': '<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1"/></svg>',
   'src/modes/simulation/car.svg': '<svg xmlns="http://www.w3.org/2000/svg"><circle r="1"/></svg>'
@@ -145,6 +145,24 @@ test('asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes', asy
   assert.match(imageURL, /^file:/);
   assert.equal(await readFile(new URL(cssURL), 'utf8'), splitFixture['src/modes/driving/mode.css']);
   assert.equal(await readFile(new URL(imageURL), 'utf8'), splitFixture['src/modes/driving/car.svg']);
+});
+
+test('build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets', async t => {
+  const build = required(builder, 'buildProject');
+  const rootDir = await fixture(t, splitFixture);
+  for (const css of ['.car { background: url(./car.svg); }', '.car { background: u\\72l(./car.svg); }']) {
+    await writeFile(join(rootDir, 'src/modes/driving/mode.css'), css);
+    await assert.rejects(() => build({ rootDir }), /CSS dependency.*src\/modes\/driving\/mode\.css.*url-token/s);
+  }
+});
+
+test('build_rejects_CSS_imports_including_cross_mode_dependencies', async t => {
+  const build = required(builder, 'buildProject');
+  const rootDir = await fixture(t, splitFixture);
+  for (const css of ["@import '../simulation/mode.css';", "@im\\70ort '../simulation/mode.css';"]) {
+    await writeFile(join(rootDir, 'src/modes/driving/mode.css'), css);
+    await assert.rejects(() => build({ rootDir }), /CSS dependency.*src\/modes\/driving\/mode\.css.*import-rule/s);
+  }
 });
 
 test('bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk', () => {

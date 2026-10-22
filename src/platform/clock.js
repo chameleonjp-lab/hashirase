@@ -12,7 +12,7 @@ export function createFixedClock({ step = 1 / 120, maxSteps = 8 } = {}) {
   integer(maxSteps, 'maxSteps', 1);
   const maxLag = 0.1; // Spec: invalidate when active clock exceeds simulation by >100ms.
   const epsilon = step * 1e-9;
-  let ticks = 0; let activeTime = 0;
+  let ticks = 0; let activeTime = 0; let timeCorrection = 0;
   let paused = false; let pauseReason = null; let valid = true; let advancing = false;
   const backlog = () => Math.max(0, activeTime - ticks * step);
   const snapshot = () => Object.freeze({
@@ -25,8 +25,13 @@ export function createFixedClock({ step = 1 / 120, maxSteps = 8 } = {}) {
       idle(); finite(elapsed, 'elapsed', 0);
       if (typeof onStep !== 'function') throw new TypeError('onStep must be a function');
       if (paused) return snapshot();
-      finite(activeTime + elapsed, 'elapsed total', 0);
-      activeTime += elapsed;
+      // Compensated summation keeps frame rounding from accumulating into a
+      // missing physics tick after minutes of otherwise identical elapsed time.
+      const correctedElapsed = elapsed - timeCorrection;
+      const nextTime = activeTime + correctedElapsed;
+      finite(nextTime, 'elapsed total', 0);
+      timeCorrection = (nextTime - activeTime) - correctedElapsed;
+      activeTime = nextTime;
       advancing = true;
       try {
         let steps = 0;
@@ -50,7 +55,7 @@ export function createFixedClock({ step = 1 / 120, maxSteps = 8 } = {}) {
       if (!valid) throw new Error('Invalid clock requires reset before resume');
       paused = false; pauseReason = null; return snapshot();
     },
-    reset() { idle(); ticks = 0; activeTime = 0; paused = false; pauseReason = null; valid = true; return snapshot(); },
+    reset() { idle(); ticks = 0; activeTime = 0; timeCorrection = 0; paused = false; pauseReason = null; valid = true; return snapshot(); },
     snapshot
   });
 }

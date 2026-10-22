@@ -30,7 +30,7 @@
     },
     {
       "path": "src/platform/clock.js",
-      "sha256": "ec3a326266aec843dfbd87b7e0f501d39fc2887d2585153746deb5eca4ff8ba3"
+      "sha256": "8e2fef5c7a5f4b4b4be343aca8885e52c7a4346783469ec0a6284328d80cd0cf"
     },
     {
       "path": "src/platform/random.js",
@@ -87,7 +87,7 @@
     },
     {
       "path": "dist/platform/clock.js",
-      "sha256": "91e3bf5dbfae7837025d817dbba98f4fd413177850c2f3085b02cabbd272c25f",
+      "sha256": "a7b1c4aa51ac2259a72606500ed0fd64964c7091b7595ddae59ef3bf19cfebde",
       "inputs": [
         "src/platform/clock.js"
       ],

@@ -52,6 +52,7 @@ const state = clock.snapshot();
 snapshotはstep/maxSteps/ticks/simTime/activeTime/backlog/alpha/paused/pauseReason/valid。
 1呼び出し最大8tick。100msを超えて滞留したらoverloadで中断しvalid=false、未処理時間はbacklogに残す。
 短い滞留は次のadvanceで追いつける。float比較の許容はstep×1e-9秒で、時間を上限へ丸めて捨てない。
+経過時間は補償加算で積算し、30/60/120fps相当の10分間でも同じ72,000tickを維持する。
 非表示・blur時はホストがpauseして入力を消し、復帰時は明示再開を求める。pause中の経過秒は加算しない。
 無効化した走行はresetまで再開できない。競争記録の無効通知はT05/T08のホスト・ルールへ接続する。
 同期stepの例外・Promise返却はstep-errorとして中断・無効化する。
@@ -74,6 +75,10 @@ src/app/main.jsがない現在は5つの基盤入口だけをビルドし、phas
 
 CSS・画像・音は明示的なURL importにする。bare CSS importを禁止し、共通CSSに両モードが結合されることを防ぐ。
 asset module内の `new URL(path, import.meta.url)` で絶対URLへ解決する。chunk移動や `/hashirase/` 配下でもページ位置に依存しない。
+現段階のCSSは自己完結したものだけを許可する。`url()`・`@import`（data/外部URL・エスケープ表記を含む）は
+esbuildのCSS解析で検出してビルドを失敗させる。file loaderで依存先を黙って欠落させないための制限である。
+画像や音はJavaScriptから明示importし、必要なら取得したURLを選択モードの要素へ設定する。
+CSS内依存を使う場合は、先に依存の解決・出力・URL書換え・境界検査を追加する必要がある。
 T05が選択したモードだけをマウントし、終了時に取り外す。
 T02のfixtureはJS/CSS/SVGを分割して検査するが、実際のネットワーク取得0件と終了処理の合格はT05で検査する。
 

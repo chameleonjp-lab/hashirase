@@ -39,7 +39,7 @@
       "format": "esm"
     },
     "src/platform/clock.js": {
-      "bytes": 2603,
+      "bytes": 2971,
       "imports": [
         {
           "path": "src/contracts/validation.js",
@@ -138,10 +138,10 @@
       "entryPoint": "src/platform/clock.js",
       "inputs": {
         "src/platform/clock.js": {
-          "bytesInOutput": 2280
+          "bytesInOutput": 2496
         }
       },
-      "bytes": 2418
+      "bytes": 2634
     },
     "dist/platform/random.js": {
       "imports": [

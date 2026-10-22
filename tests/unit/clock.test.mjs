@@ -33,6 +33,32 @@ test('clock_is_render_rate_independent', () => {
   }
 });
 
+test('clock_remains_render_rate_independent_over_ten_minutes', () => {
+  const create = required(clocks, 'createFixedClock');
+  const runs = [30, 60, 120].map(fps => {
+    const clock = create();
+    let velocity = 0; let position = 0;
+    const checkpoints = [];
+    for (let frame = 1; frame <= 600 * fps; frame++) {
+      clock.advance(1 / fps, (dt, tick) => {
+        const acceleration = tick < 36000 ? 1 : -0.25;
+        position += velocity * dt + acceleration * dt * dt / 2;
+        velocity += acceleration * dt;
+      });
+      if (frame % (300 * fps) === 0) {
+        const state = clock.snapshot();
+        assert.equal(state.ticks, frame / fps * 120, `${fps}fps at ${frame / fps}s`);
+        assert.equal(state.simTime, frame / fps);
+        assert.equal(state.valid, true);
+        assert(state.backlog < 1e-9);
+        checkpoints.push({ ticks: state.ticks, position, velocity });
+      }
+    }
+    return checkpoints;
+  });
+  for (const run of runs) assert.deepEqual(run, runs[0]);
+});
+
 test('clock_marks_overload_without_dropping_unprocessed_time', () => {
   const clock = required(clocks, 'createFixedClock')({ step: 1 / 120, maxSteps: 8 });
   let steps = 0;

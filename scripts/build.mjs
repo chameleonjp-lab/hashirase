@@ -13,6 +13,19 @@ const slash = path => path.replaceAll('\\', '/');
 const physicalInput = path => slash(path.replace(/^(?:asset-url|asset-file):/, ''));
 async function exists(path) { try { await access(path); return true; } catch { return false; } }
 
+// File-loader CSS cannot rewrite or audit nested dependencies. Parse it with
+// esbuild and fail before emitting any artifact instead of shipping broken URLs
+// or allowing an unaudited cross-mode @import. Comments/strings are not imports.
+async function assertSelfContainedCSS(contents, path) {
+  const parsed = await esbuild({
+    stdin: { contents: contents.toString(), loader: 'css', sourcefile: path },
+    bundle: false, metafile: true, write: false, logLevel: 'silent'
+  });
+  if (parsed.warnings.length) throw new Error(parsed.warnings.map(w => w.text).join('\n'));
+  const dependencies = Object.values(parsed.metafile.outputs).flatMap(out => out.imports);
+  if (dependencies.length) throw new Error(`CSS dependency is unsupported: ${path}: ${dependencies.map(dep => `${dep.kind} ${dep.path}`).join(', ')}. Import media URLs from JavaScript; CSS must be self-contained.`);
+}
+
 // Resolve asset URLs in their own emitted module. This remains correct when the
 // owning mode or shared asset module is moved to a chunk or repository subpath.
 function assetURLs(rootDir) {
@@ -27,9 +40,11 @@ function assetURLs(rootDir) {
         contents: `import path from ${JSON.stringify('hashirase-asset:' + args.path)}; export default new URL(path, import.meta.url).href;`,
         loader: 'js'
       }));
-      build.onLoad({ filter: /.*/, namespace: 'asset-file' }, async args => ({
-        contents: await readFile(resolve(rootDir, args.path)), loader: 'file'
-      }));
+      build.onLoad({ filter: /.*/, namespace: 'asset-file' }, async args => {
+        const contents = await readFile(resolve(rootDir, args.path));
+        if (args.path.endsWith('.css')) await assertSelfContainedCSS(contents, args.path);
+        return { contents, loader: 'file' };
+      });
     }
   };
 }
