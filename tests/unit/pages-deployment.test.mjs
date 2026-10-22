@@ -61,7 +61,7 @@ test('pages_packaging_rejects_stale_missing_escaping_or_non_application_builds',
 
 test('deployment_verification_requires_matching_commit_all_bytes_prefix_paths_and_real_404', async t => {
   const { stagePages, verifyDeployment } = await implementation(), f = await fixture(t);
-  await stagePages({ ...f, sourceSha: sha });
+  const expectedManifest = await stagePages({ ...f, sourceSha: sha });
   let fake404 = false;
   const server = createServer(async (req, res) => {
     try {
@@ -74,13 +74,34 @@ test('deployment_verification_requires_matching_commit_all_bytes_prefix_paths_an
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(() => new Promise(resolve => server.close(resolve)));
   const baseURL = `http://127.0.0.1:${server.address().port}/hashirase/`;
-  const result = await verifyDeployment({ baseURL, expectedSha: sha });
+  const result = await verifyDeployment({ baseURL, expectedSha: sha, expectedManifest });
   assert.equal(result.sourceSha, sha);
   assert(result.filesVerified >= 8);
-  await assert.rejects(verifyDeployment({ baseURL, expectedSha: 'a'.repeat(40) }), /commit|SHA/i);
+  await assert.rejects(verifyDeployment({ baseURL, expectedSha: 'a'.repeat(40), expectedManifest }), /commit|SHA/i);
   await writeFile(join(f.outDir, 'dist/chunks/driving.js'), 'broken deployed chunk');
-  await assert.rejects(verifyDeployment({ baseURL, expectedSha: sha }), /hash|sha256/i);
+  await assert.rejects(verifyDeployment({ baseURL, expectedSha: sha, expectedManifest }), /hash|sha256/i);
   await writeFile(join(f.outDir, 'dist/chunks/driving.js'), f.files['dist/chunks/driving.js']);
   fake404 = true;
-  await assert.rejects(verifyDeployment({ baseURL, expectedSha: sha }), /404/i);
+  await assert.rejects(verifyDeployment({ baseURL, expectedSha: sha, expectedManifest }), /404/i);
+  fake404 = false;
+  const coherentWrongSite = { ...expectedManifest, files: expectedManifest.files.filter(file => ['index.html', 'dist/app/main.js'].includes(file.path)) };
+  await writeFile(join(f.outDir, 'build-info.json'), JSON.stringify(coherentWrongSite));
+  await assert.rejects(verifyDeployment({ baseURL, expectedSha: sha, expectedManifest }), /manifest|artifact|file set/i);
+  await assert.rejects(verifyDeployment({ baseURL, expectedSha: sha }), /expected|manifest/i);
+});
+
+test('stale_reruns_are_rejected_before_entering_the_shared_deployment_queue', async () => {
+  await assert.doesNotReject(access(new URL('../../scripts/release-target.mjs', import.meta.url)), 'Reject stale releases before they can replace the pending latest-main deployment');
+  const { isCurrentRelease } = await import('../../scripts/release-target.mjs');
+  const current = 'b'.repeat(40), old = 'a'.repeat(40);
+  // GitHub replaces an existing pending job even with cancel-in-progress:false.
+  // B must survive the later old rerun O; the running deployment is independent.
+  const pending = [];
+  for (const sourceSha of [current, old]) if (isCurrentRelease({ sourceSha, mainSha: current })) pending.splice(0, pending.length, sourceSha);
+  assert.deepEqual(pending, [current]);
+  assert.throws(() => isCurrentRelease({ sourceSha: 'main', mainSha: current }), /SHA/i);
+  const workflow = await readFile(new URL('../../.github/workflows/verify.yml', import.meta.url), 'utf8');
+  assert(!/^concurrency:/m.test(workflow), 'old workflow reruns must not displace the latest main regression run');
+  assert.match(workflow, /needs: \[source-check, release-target\]/);
+  assert.match(workflow, /needs\.release-target\.outputs\.publish == 'true'/);
 });

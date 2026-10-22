@@ -18,6 +18,8 @@
 
 `images/published-home.png`、`published-driving.png`、`published-simulation.png` を実見し、2択、既存ゲーム画面、推定・実車未検証のSIM表示、ホーム操作を確認した。画像と全ログは `docs/evidence/pages/`。
 
+独立レビュー後に1回の修正パスを実施。古い再実行による待機取消と、偽manifestの自己照合をREDで再現後に修正した。最終 `npm run check` 110 Node（単体73・統合27・物理10）、Playwright 62/62、build、stage 25ファイル成功。詳細は `pages/review.md`。
+
 GitHub Actions・公開照合の最終結果は公開後に追記する。未実施の検査は完了扱いにしない。
 
 ## 判断

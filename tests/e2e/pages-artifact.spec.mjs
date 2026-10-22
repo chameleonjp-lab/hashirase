@@ -8,17 +8,17 @@ import { verifyDeployment } from '../../scripts/verify-deployment.mjs';
 import { servePages } from '../support/pages-server.mjs';
 import { prepareApp, tick, diagnostics } from '../support/app-browser.mjs';
 
-let site, sourceSha;
+let site, sourceSha, expectedManifest;
 test.beforeAll(async () => {
   await buildProject();
   sourceSha = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-  await stagePages({ sourceSha });
+  expectedManifest = await stagePages({ sourceSha });
   site = await servePages(resolve('.pages-site'));
 });
 test.afterAll(async () => { await site?.close(); });
 
 test('pages_artifact_matches_commit_without_access_to_source_checkout', async ({ page }, info) => {
-  const result = await verifyDeployment({ baseURL: site.baseURL, expectedSha: sourceSha });
+  const result = await verifyDeployment({ baseURL: site.baseURL, expectedSha: sourceSha, expectedManifest });
   expect(result.filesVerified).toBeGreaterThan(20);
   expect((await page.request.get(new URL('src/app/main.js', site.baseURL).href)).status()).toBe(404);
   expect((await page.request.get(new URL('node_modules/three/package.json', site.baseURL).href)).status()).toBe(404);
