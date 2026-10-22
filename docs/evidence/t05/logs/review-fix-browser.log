@@ -1,0 +1,16 @@
+[WebServer] (node:51952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:51964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_pointer (2.4s)
+  ✓  2 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_keyboard (2.4s)
+  ✓  3 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_retry (3.0s)
+  ✓  4 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_close-modal (2.4s)
+  ✓  5 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 (1.9s)
+  ✓  6 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 (1.9s)
+  ✓  7 [chromium] › tests/e2e/result-quality.spec.mjs:24:1 › review_repeated_home_waits_for_actual_AudioContext_close (1.5s)
+
+  7 passed (16.3s)

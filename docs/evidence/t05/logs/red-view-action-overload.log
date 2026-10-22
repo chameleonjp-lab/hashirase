@@ -1,0 +1,72 @@
+✖ overload_pause_explains_why_and_can_be_reset (2.669942ms)
+✖ display_settings_and_camera_have_an_explicit_readonly_renderer_port (1.628676ms)
+✖ explicit_RCS_action_is_preserved_and_cleared_on_pause (0.904409ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 144.267593
+
+✖ failing tests:
+
+test at tests/integration/session-races.test.mjs:50:1
+✖ overload_pause_explains_why_and_can_be_reset (2.669942ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'overload'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:50:198)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'overload',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/home-assets.test.mjs:15:1
+✖ display_settings_and_camera_have_an_explicit_readonly_renderer_port (1.628676ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:15:273)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/home-assets.test.mjs:16:1
+✖ explicit_RCS_action_is_preserved_and_cleared_on_pause (0.904409ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/unit/home-assets.test.mjs:16:448)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,215 @@
+✖ latest_selection_wins (1.092672ms)
+✖ leave_during_load_disposes_late_result (0.208169ms)
+✖ leave_during_prepare_disposes_late_context (0.147345ms)
+✖ host_owns_one_loop_and_pause_resume_excludes_hidden_time (0.142508ms)
+✖ startup_failure_and_retry_do_not_retain_session_or_loop (0.243122ms)
+✖ frame_failure_clears_input_and_releases_resources (0.155548ms)
+✖ resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners (0.167477ms)
+✖ unknown_mode_is_rejected_without_fetch_or_destroying_current_session (0.112513ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51.284088
+
+✖ failing tests:
+
+test at tests/integration/session-races.test.mjs:16:1
+✖ latest_selection_wins (1.092672ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:17:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:21:1
+✖ leave_during_load_disposes_late_result (0.208169ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:22:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:26:1
+✖ leave_during_prepare_disposes_late_context (0.147345ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:27:47)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:30:1
+✖ host_owns_one_loop_and_pause_resume_excludes_hidden_time (0.142508ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:31:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:35:1
+✖ startup_failure_and_retry_do_not_retain_session_or_loop (0.243122ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:36:24)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:39:1
+✖ frame_failure_clears_input_and_releases_resources (0.155548ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:40:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:42:1
+✖ resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners (0.167477ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createResourceScope
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:43:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:46:1
+✖ unknown_mode_is_rejected_without_fetch_or_destroying_current_session (0.112513ms)
+  AssertionError [ERR_ASSERTION]: T05 requires createSessionHost
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at api (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:4:28)
+      at harness (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:13:13)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:47:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

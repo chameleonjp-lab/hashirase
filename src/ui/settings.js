@@ -1,5 +1,5 @@
 import {settingsFields,KEY_LABELS,KEY_CODES} from '../platform/settings-store.js';import {listenerScope} from './listeners.js';
-export function mountSettings(container,{store,profile,mode,input,onApply=()=>{},onClose=()=>{},onOpen=()=>{},onProfileChange=()=>{}}){
+export function mountSettings(container,{store,profile,mode,input,hiddenSettings=[],onApply=()=>{},onClose=()=>{},onOpen=()=>{},onProfileChange=()=>{}}){
  const document=container.ownerDocument,dialog=document.createElement('dialog'),scope=listenerScope();dialog.className='settings-dialog';dialog.dataset.noDrive='';dialog.setAttribute('aria-label','操作と表示の設定');container.append(dialog);
  const form=document.createElement('form');form.method='dialog';dialog.append(form);let restoreFocus=null,disposed=false,opened=false;const controls=new Map();
  const title=document.createElement('h2');title.textContent='操作と表示の設定';form.append(title);
@@ -7,7 +7,7 @@ export function mountSettings(container,{store,profile,mode,input,onApply=()=>{}
  function select(options,value){const node=document.createElement('select');for(const [key,text]of options){const option=document.createElement('option');option.value=String(key);option.textContent=text;node.append(option);}node.value=String(value);return node;}
  function field(label,control){const wrapper=document.createElement('label');wrapper.className='settings-field';const text=document.createElement('span');text.textContent=label;wrapper.append(text,control);form.append(wrapper);return control;}
  const profileSelect=field('操作する端末',select([['touch','スマホ / タッチ'],['desktop','PC / キーボード・マウス'],['hybrid','タッチPC / 両方']],profile));
- const values=store.read(profile,mode),fields=settingsFields(profile,mode);
+ const values=store.read(profile,mode),fields=settingsFields(profile,mode).filter(field=>!hiddenSettings.includes(field.key));
  for(const spec of fields){let control;if(spec.type==='select')control=select(spec.options,values[spec.key]);else{control=document.createElement('input');control.type=spec.type==='checkbox'?'checkbox':'number';if(spec.type==='checkbox')control.checked=values[spec.key];else{control.min=spec.min;control.max=spec.max;control.step=spec.step;control.value=values[spec.key];}}field(spec.label,control);controls.set(spec.key,{control,spec});}
  const keyControls=new Map();if(profile!=='touch'){
   const note=document.createElement('p');note.textContent='キーは同時押しできます。制動が駆動に優先し、後退は停止確認後に始まります。';form.append(note);

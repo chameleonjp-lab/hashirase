@@ -22,7 +22,7 @@ applyCurrentDrivingVisuals(dt,effects);
 updateAudio(effects.fireDownwardLift,effects.anyRcs,effects.usingBoost);
 }
 function applyCurrentDrivingVisuals(dt,effects={}) {
-applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,random:Math.random},carState,dt,effects);
+applyDrivingVisuals({yokeGroup,activeWingGroup,thrusterPlumesGroup,hoverCones,boostCones,rollPulse1FL,rollPulse1RR,rollPulse2FR,rollPulse2RL,rcsLeftCone,rcsRightCone,nozDots,suctionGlowRing,wheels,carRoot,uiSpeed,uiAltFt,uiGasPct,uiBadge,hudHorizon,document,inputs,CAMERA_MODES,currentCamIndex,currentCourse,COPV_MAX_KG,spawnSmokePuff,spawnTireSkidPair,playTireScreechSound,updatePursuitHudUI,speedUnit:typeof __viewSettings!=='undefined'?__viewSettings.speedUnit:'kmh',random:Math.random},carState,dt,effects);
 }
 const smoothCamPos = new THREE.Vector3(0, 3.2, 45);
 const smoothLookAt = new THREE.Vector3(0, 1.0, 15);
@@ -60,7 +60,7 @@ isSwipingCanvas = false;
 swipePointerId = null;
 }
 });
-function updateCamera(dt) { ({camOrbitYawOffset,camOrbitPitchOffset}=updateGameCamera({camOrbitYawOffset,camOrbitPitchOffset,THREE,CAMERA_MODES,currentCamIndex,isSwipingCanvas,carState,carRoot,camera,RAMP,KICKFLIP_LANE,smoothCamPos,smoothLookAt,inputs,cameraEffectsState,getAdaptiveFov,random:Math.random,width:window.innerWidth,height:window.innerHeight},dt)); }
+function updateCamera(dt) { ({camOrbitYawOffset,camOrbitPitchOffset}=updateGameCamera({camOrbitYawOffset,camOrbitPitchOffset,THREE,CAMERA_MODES,currentCamIndex,isSwipingCanvas,carState,carRoot,camera,RAMP,KICKFLIP_LANE,smoothCamPos,smoothLookAt,inputs,cameraEffectsState,getAdaptiveFov,reducedMotion:typeof __viewSettings!=='undefined'&&__viewSettings.reducedMotion,random:Math.random,width:window.innerWidth,height:window.innerHeight},dt)); }
 function handleViewportResize() {
 const w = getViewportW();
 const h = getViewportH();

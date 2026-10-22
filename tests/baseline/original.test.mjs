@@ -6,7 +6,7 @@ import { execFileSync } from 'node:child_process';
 
 const root = new URL('../../', import.meta.url);
 const manifest = JSON.parse(await readFile(new URL('tests/fixtures/original-manifest.json', root)));
-const html = await readFile(new URL('index.html', root), 'utf8');
+const html = await readFile(new URL('legacy.html', root), 'utf8');
 const app = await readFile(new URL('assets/js/simulator.js', root), 'utf8');
 
 test('original_manifest_identifies_immutable_baseline_sources', () => {

@@ -1,0 +1,99 @@
+[WebServer] (node:40157) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:40169) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/mode-loading.spec.mjs:6:1 › home_requests_no_3d (382ms)
+  ✘  2 [chromium] › tests/e2e/mode-loading.spec.mjs:12:44 › driving_does_not_fetch_simulation (11.4s)
+(node:40345) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [chromium] › tests/e2e/mode-loading.spec.mjs:12:44 › simulation_does_not_fetch_driving (527ms)
+  ✘  4 [chromium] › tests/e2e/mode-loading.spec.mjs:20:1 › mode_round_trips_and_inputs_remain_owned (11.3s)
+
+
+  1) [chromium] › tests/e2e/mode-loading.spec.mjs:12:44 › driving_does_not_fetch_simulation ────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('canvas')
+    Expected: 1
+    Received: 2
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('canvas') with timeout 10000ms
+      - waiting for locator('canvas')
+        24 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      2 | async function prepare(page){const requests=[],errors=[];page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(String(e)));await page.route('https://**/*',r=>r.abort());return{requests,errors};}
+      3 | async function diagnostics(page){return page.evaluate(async()=>{const script=document.querySelector('script[type=module][src]');return(await import(script.src)).appDiagnostics();});}
+    > 4 | async function select(page,mode){await page.locator(`[data-select-mode="${mode}"]`).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await expect(page.locator('canvas')).toHaveCount(1);}
+        |                                                                                                                                                                                                                             ^
+      5 | async function home(page){await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','HOME');await expect(page.locator('canvas')).toHaveCount(0);}
+      6 | test('home_requests_no_3d',async({page},info)=>{
+      7 |  const d=await prepare(page);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();
+        at select (/workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:4:221)
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:15:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-driving-does-not-fetch-simulation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-driving-does-not-fetch-simulation-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-driving-does-not-fetch-simulation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-driving-does-not-fetch-simulation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/mode-loading.spec.mjs:20:1 › mode_round_trips_and_inputs_remain_owned ──
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('canvas')
+    Expected: 1
+    Received: 2
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('canvas') with timeout 10000ms
+      - waiting for locator('canvas')
+        24 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      2 | async function prepare(page){const requests=[],errors=[];page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(String(e)));await page.route('https://**/*',r=>r.abort());return{requests,errors};}
+      3 | async function diagnostics(page){return page.evaluate(async()=>{const script=document.querySelector('script[type=module][src]');return(await import(script.src)).appDiagnostics();});}
+    > 4 | async function select(page,mode){await page.locator(`[data-select-mode="${mode}"]`).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await expect(page.locator('canvas')).toHaveCount(1);}
+        |                                                                                                                                                                                                                             ^
+      5 | async function home(page){await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','HOME');await expect(page.locator('canvas')).toHaveCount(0);}
+      6 | test('home_requests_no_3d',async({page},info)=>{
+      7 |  const d=await prepare(page);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();
+        at select (/workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:4:221)
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:21:115
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-mode-round-trips-and-inputs-remain-owned-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-mode-round-trips-and-inputs-remain-owned-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-mode-round-trips-and-inputs-remain-owned-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-mode-round-trips-and-inputs-remain-owned-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/mode-loading.spec.mjs:12:44 › driving_does_not_fetch_simulation ─────────
+    [chromium] › tests/e2e/mode-loading.spec.mjs:20:1 › mode_round_trips_and_inputs_remain_owned ───
+  2 passed (24.8s)

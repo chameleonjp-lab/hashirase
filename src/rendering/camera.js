@@ -69,10 +69,11 @@ camera.lookAt(smoothLookAt);
 const baseFov = getAdaptiveFov();
 const spdRatio = Math.min(1.0, Math.hypot(carState.vx, carState.vz) / 95.0);
 const boostFovAdd = inputs.boost ? 5.5 : 0.0;
-const targetFov = baseFov + spdRatio * 9.5 + boostFovAdd;
+const targetFov = baseFov + (view.reducedMotion?0:spdRatio * 9.5 + boostFovAdd);
 camera.fov += (targetFov - camera.fov) * Math.min(1, dt * 7.5);
 camera.updateProjectionMatrix();
 
+if(view.reducedMotion&&cameraEffectsState)cameraEffectsState.shakeIntensity=0;
 if (cameraEffectsState && cameraEffectsState.shakeIntensity > 0.005) {
   const s = cameraEffectsState.shakeIntensity;
   camera.position.x += (random() - 0.5) * s * 0.45;

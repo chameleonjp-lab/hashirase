@@ -1,0 +1,140 @@
+[WebServer] (node:40621) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:40633) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/mode-loading.spec.mjs:26:1 › real_settings_persist_per_mode_and_do_not_resume_held_input (10.5s)
+(node:40764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/e2e/mode-loading.spec.mjs:33:1 › failed_module_can_retry_after_network_recovers (10.4s)
+(node:40926) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/e2e/mode-loading.spec.mjs:36:1 › game_help_can_close_while_paused (10.9s)
+
+
+  1) [chromium] › tests/e2e/mode-loading.spec.mjs:26:1 › real_settings_persist_per_mode_and_do_not_resume_held_input 
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  getByRole('dialog', { name: '操作と表示の設定' })
+    Expected: not visible
+    Received: visible
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "not toBeVisible" getByRole('dialog', { name: '操作と表示の設定' }) with timeout 10000ms
+      - waiting for getByRole('dialog', { name: '操作と表示の設定' })
+        24 × locator resolved to <dialog open="" data-no-drive="" aria-label="操作と表示の設定" class="settings-dialog">…</dialog>
+           - unexpected value "visible"
+
+
+      28 |  await page.getByRole('button',{name:'設定',exact:true}).click();const dialog=page.getByRole('dialog',{name:'操作と表示の設定'});await expect(dialog).toBeVisible();expect((await diagnostics(page)).input.throttle).toBe(0);
+      29 |  await expect(dialog.getByLabel('音量',{exact:true})).toHaveCount(0);await expect(dialog.getByLabel('視点',{exact:true})).toHaveCount(0);await expect(dialog.getByLabel('キー割当: ロケット')).toHaveCount(0);
+    > 30 |  await dialog.getByLabel('速度の単位').selectOption('mph');await dialog.getByRole('button',{name:'適用',exact:true}).click();await expect(dialog).not.toBeVisible();await page.keyboard.up('KeyW');await page.getByRole('button',{name:'再開',exact:true}).click();await tick(page,2);expect((await diagnostics(page)).input.throttle).toBe(0);await expect(page.locator('[data-speed]')).toContainText('mph');
+         |                                                                                                                                                ^
+      31 |  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('hashirase:settings:v1:desktop:simulation')).values.speedUnit)).toBe('mph');await home(page);await select(page,'driving');await page.getByRole('button',{name:'設定',exact:true}).click();await expect(page.getByRole('dialog').getByLabel('速度の単位')).toHaveValue('kmh');await info.attach('settings.png',{body:await page.screenshot(),contentType:'image/png'});
+      32 | });
+      33 | test('failed_module_can_retry_after_network_recovers',async({page},info)=>{
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:30:144
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-real-sett-f339f-nd-do-not-resume-held-input-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-real-sett-f339f-nd-do-not-resume-held-input-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-real-sett-f339f-nd-do-not-resume-held-input-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-real-sett-f339f-nd-do-not-resume-held-input-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/mode-loading.spec.mjs:33:1 › failed_module_can_retry_after_network_recovers 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('[data-app-state]')
+    Expected: "RUNNING"
+    Received: "ERROR"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('[data-app-state]') with timeout 10000ms
+      - waiting for locator('[data-app-state]')
+        - locator resolved to <div id="app" data-mode="simulation" data-app-state="LOADING">…</div>
+        - unexpected value "LOADING"
+        23 × locator resolved to <div id="app" data-app-state="ERROR" data-mode="simulation">…</div>
+           - unexpected value "ERROR"
+
+
+      32 | });
+      33 | test('failed_module_can_retry_after_network_recovers',async({page},info)=>{
+    > 34 |  await prepare(page);const manifest=JSON.parse(await readFile(new URL('../../dist/build-manifest.json',import.meta.url),'utf8'));let fail=true;await page.route('**/'+manifest.entryPoints['src/modes/simulation/index.js'],route=>fail?route.abort('failed'):route.continue());await page.goto('/');await page.locator('[data-select-mode="simulation"]').click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','ERROR');expect((await diagnostics(page)).activeSession).toBe(0);await expect(page.locator('canvas')).toHaveCount(0);await info.attach('load-error.png',{body:await page.screenshot(),contentType:'image/png'});fail=false;await page.getByRole('button',{name:'再試行',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await home(page);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+      35 | });
+      36 | test('game_help_can_close_while_paused',async({page})=>{
+      37 |  await prepare(page);await page.goto('/');await select(page,'driving');await page.locator('#btn-help').click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','PAUSED');await expect(page.locator('#help-modal')).toBeVisible();await page.locator('#btn-close-help').click();await expect(page.locator('#help-modal')).not.toBeVisible();await home(page);
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:34:765
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-failed-mo-883e8-etry-after-network-recovers-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/e2e/mode-loading.spec.mjs:36:1 › game_help_can_close_while_paused ──────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('canvas')
+    Expected: 1
+    Received: 2
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('canvas') with timeout 10000ms
+      - waiting for locator('canvas')
+        24 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      3 | async function tick(page,frames=1,dt=1000/60){for(let i=0;i<frames;i++)await page.evaluate(ms=>window.__appTick(ms),dt);}
+      4 | async function diagnostics(page){return page.evaluate(async()=>{const script=document.querySelector('script[type=module][src]');return(await import(script.src)).appDiagnostics();});}
+    > 5 | async function select(page,mode){await page.locator(`[data-select-mode="${mode}"]`).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','RUNNING');await expect(page.locator('canvas')).toHaveCount(1);await tick(page);}
+        |                                                                                                                                                                                                                             ^
+      6 | async function home(page){await page.getByRole('button',{name:'ホームへ',exact:true}).click();await expect(page.locator('[data-app-state]')).toHaveAttribute('data-app-state','HOME');await expect(page.locator('canvas')).toHaveCount(0);}
+      7 | test('home_requests_no_3d',async({page},info)=>{
+      8 |  const d=await prepare(page);await page.goto('/');await expect(page.getByRole('button',{name:'ゲームをはじめる',exact:true})).toBeVisible();
+        at select (/workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:5:221)
+        at /workspace/hashirase-t05/tests/e2e/mode-loading.spec.mjs:37:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-game-help-can-close-while-paused-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-mode-loading-game-help-can-close-while-paused-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-mode-loading-game-help-can-close-while-paused-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-mode-loading-game-help-can-close-while-paused-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/e2e/mode-loading.spec.mjs:26:1 › real_settings_persist_per_mode_and_do_not_resume_held_input 
+    [chromium] › tests/e2e/mode-loading.spec.mjs:33:1 › failed_module_can_retry_after_network_recovers 
+    [chromium] › tests/e2e/mode-loading.spec.mjs:36:1 › game_help_can_close_while_paused ───────────

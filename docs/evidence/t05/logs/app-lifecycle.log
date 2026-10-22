@@ -1,0 +1,17 @@
+[WebServer] (node:43010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:43022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/home-lifecycle.spec.mjs:6:1 › slow_import_change_cancel_and_browser_back_cannot_start_a_stale_mode (499ms)
+  ✓  2 [chromium] › tests/e2e/home-lifecycle.spec.mjs:9:1 › cancel_pending_assets_and_asset_404_leave_no_owned_surface (542ms)
+  ✓  3 [chromium] › tests/e2e/home-lifecycle.spec.mjs:12:1 › hidden_input_and_overload_are_paused_without_background_catchup (625ms)
+  ✓  4 [chromium] › tests/e2e/home-lifecycle.spec.mjs:15:1 › webgl_loss_releases_game_before_retry_and_invalid_URL_never_imports (2.0s)
+  ✓  5 [chromium] › tests/e2e/home-lifecycle.spec.mjs:18:1 › repository_subpath_keeps_all_emitted_asset_URLs_inside_prefix (1.4s)
+  ✓  6 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-portrait (1.8s)
+  ✓  7 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_phone-landscape (1.9s)
+  ✓  8 [chromium] › tests/e2e/home-lifecycle.spec.mjs:21:154 › real_modes_touch_layout_touch-pc (2.4s)
+
+  8 passed (11.9s)

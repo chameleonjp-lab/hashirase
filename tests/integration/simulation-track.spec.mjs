@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {buildProject} from '../../scripts/build.mjs';
-test.beforeAll(async()=>{await buildProject({entryPoints:['src/modes/simulation/index.js']});});
+test.beforeAll(async()=>{await buildProject();});
 test('simulation_minimum_track_uses_real_force_model_and_releases_its_canvas',async({page},testInfo)=>{
  const errors=[];page.on('pageerror',error=>errors.push(String(error)));
  await page.goto('/tests/fixtures/simulation-track.html');await expect.poll(()=>page.evaluate(()=>window.harness?.available)).toBe(true);

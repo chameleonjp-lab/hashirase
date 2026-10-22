@@ -1,3 +1,4 @@
+import {finite} from '../contracts/validation.js';
 /** Session-owned Web Audio. Constructing/importing is silent and lazy. */
 export function createAudioService({createContext,random=()=>0.5}={}) {
 let audioCtx = null;
@@ -9,6 +10,7 @@ let fanGain = null;
 let thrusterNoiseNode = null;
 let thrusterGain = null;
 let thrusterFilter = null;
+let outputGain=null,volume=1,closePromise=null;
 
 let carState;let disposed=false;const persistent=[],transients=new Set();let closedContexts=0;
 function trackTransient(oscillators,gain){const group={oscillators,gain};transients.add(group);let remaining=oscillators.length;for(const osc of oscillators)osc.onended=()=>{osc.disconnect();if(--remaining===0){gain.disconnect();transients.delete(group);}};}
@@ -17,6 +19,7 @@ function initAudio() {
 if (audioCtx) return;
 try {
 audioCtx = createContext();
+outputGain=audioCtx.createGain();outputGain.gain.value=volume;outputGain.connect(audioCtx.destination);persistent.push(outputGain);
 motorOsc = audioCtx.createOscillator();
 motorOsc.type = 'sawtooth';
 motorOsc.frequency.value = 110;
@@ -28,7 +31,7 @@ motorGain = audioCtx.createGain();
 motorGain.gain.value = 0.0;
 motorOsc.connect(motorFilter);
 motorFilter.connect(motorGain);
-motorGain.connect(audioCtx.destination);
+motorGain.connect(outputGain);
 motorOsc.start();
 fanOsc = audioCtx.createOscillator();
 fanOsc.type = 'triangle';
@@ -36,7 +39,7 @@ fanOsc.frequency.value = 185;
 fanGain = audioCtx.createGain();
 fanGain.gain.value = 0.0;
 fanOsc.connect(fanGain);
-fanGain.connect(audioCtx.destination);
+fanGain.connect(outputGain);
 fanOsc.start();
 const bufferSize = audioCtx.sampleRate * 2;
 const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
@@ -55,7 +58,7 @@ thrusterGain = audioCtx.createGain();
 thrusterGain.gain.value = 0.0;
 thrusterNoiseNode.connect(thrusterFilter);
 thrusterFilter.connect(thrusterGain);
-thrusterGain.connect(audioCtx.destination);
+thrusterGain.connect(outputGain);
 thrusterNoiseNode.start();
 persistent.push(motorOsc,motorFilter,motorGain,fanOsc,fanGain,thrusterNoiseNode,thrusterFilter,thrusterGain);
 } catch (e) {
@@ -90,7 +93,7 @@ osc.frequency.exponentialRampToValueAtTime(28, now + 0.32);
 gain.gain.setValueAtTime(Math.min(0.45, 0.18 * impactIntensity), now);
 gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
 osc.connect(gain);
-gain.connect(audioCtx.destination);
+gain.connect(outputGain);
 osc.start(now);
 osc.stop(now + 0.36); trackTransient([osc],gain);
 } catch (e) {}
@@ -109,7 +112,7 @@ function playTireScreechSound(intensity = 0.5, weatherState) {
     gain.gain.setValueAtTime(Math.min(0.08, 0.035 * intensity), now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
     osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    gain.connect(outputGain);
     osc.start(now);
     osc.stop(now + 0.17); trackTransient([osc],gain);
   } catch (e) {}
@@ -131,7 +134,7 @@ function playCarHornSound(pitchScale = 1.0, weatherState) {
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.34);
     osc1.connect(gain);
     osc2.connect(gain);
-    gain.connect(audioCtx.destination);
+    gain.connect(outputGain);
     osc1.start(now);
     osc2.start(now);
     osc1.stop(now + 0.35);
@@ -152,12 +155,13 @@ function playSirenBurstSound() {
     gain.gain.setValueAtTime(0.14, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.58);
     osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    gain.connect(outputGain);
     osc.start(now);
     osc.stop(now + 0.60); trackTransient([osc],gain);
   } catch (e) {}
 }
 return Object.freeze({
+  configure(settings){finite(settings.volume,'volume',0,1);volume=settings.volume;if(outputGain)outputGain.gain.value=volume;},
   init(){if(!disposed)initAudio();},
   toggle(){if(disposed)return false;initAudio();soundEnabled=!soundEnabled;if(!soundEnabled)silence();return soundEnabled;},
   update(state,lift,rcs,boost){if(disposed)return;carState=state;updateAudio(lift,rcs,boost);},
@@ -167,7 +171,7 @@ return Object.freeze({
   horn(pitch,weather){if(!disposed)playCarHornSound(pitch,weather);},
   pause(){silence();if(audioCtx?.state==='running')audioCtx.suspend().catch(()=>{});},
   resume(){if(soundEnabled&&audioCtx?.state==='suspended')audioCtx.resume().catch(()=>{});},
-  dispose(){if(disposed)return;disposed=true;soundEnabled=false;silence();for(const node of persistent){try{node.stop?.();}catch{}try{node.disconnect();}catch{}}persistent.length=0;for(const {oscillators,gain}of transients){for(const osc of oscillators){osc.onended=null;try{osc.stop();}catch{}osc.disconnect();}gain.disconnect();}transients.clear();if(audioCtx){closedContexts++;return audioCtx.close().catch(()=>{});}},
-  diagnostics(){return {disposed,contexts:audioCtx&&!disposed?1:0,closedContexts,nodes:persistent.length+transients.size};}
+  dispose(){if(disposed)return closePromise;disposed=true;soundEnabled=false;silence();for(const node of persistent){try{node.stop?.();}catch{}try{node.disconnect();}catch{}}persistent.length=0;for(const {oscillators,gain}of transients){for(const osc of oscillators){osc.onended=null;try{osc.stop();}catch{}try{osc.disconnect();}catch{}}try{gain.disconnect();}catch{}}transients.clear();if(audioCtx)closedContexts++;closePromise=audioCtx?audioCtx.close().catch(()=>{}):Promise.resolve();return closePromise;},
+  diagnostics(){return {disposed,contexts:audioCtx&&!disposed?1:0,closedContexts,nodes:persistent.length+transients.size,volume};}
 });
 }

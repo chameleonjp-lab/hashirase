@@ -1,0 +1,88 @@
+[WebServer] (node:50259) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:50271) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_pointer (2.1s)
+  ✓  2 [chromium] › tests/e2e/result-quality.spec.mjs:9:43 › review_game_result_retry_keyboard (2.1s)
+  ✓  3 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_retry (2.6s)
+  ✓  4 [chromium] › tests/e2e/result-quality.spec.mjs:13:45 › review_time_attack_result_close-modal (2.2s)
+  ✘  5 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 (1.0m)
+(node:50557) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 (1.0m)
+(node:50721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [chromium] › tests/e2e/result-quality.spec.mjs:24:1 › review_repeated_home_waits_for_actual_AudioContext_close (1.6s)
+
+
+  1) [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.selectOption: Test ended.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('画質', { exact: true })
+
+
+      18 |  async function quality(expected){await tick(page);const size=await page.locator('canvas').evaluate(c=>({backing:c.width,css:c.getBoundingClientRect().width}));expect(Math.abs(size.backing-Math.round(size.css*expected))).toBeLessThanOrEqual(1);}
+      19 |  for(const [name,ratio]of [['low',0.75],['balanced',1],['high',Math.min(dpr,2)]]){
+    > 20 |   await page.locator('[data-settings-mode="simulation"]').click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await open(page,'simulation');await quality(ratio);await page.setViewportSize({width:1200,height:800});await quality(ratio);
+         |                                                                                                                                ^
+      21 |   await page.getByRole('button',{name:'設定',exact:true}).click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await page.getByRole('button',{name:'再開',exact:true}).click();await quality(ratio);await home(page);await open(page,'simulation');await quality(ratio);await home(page);
+      22 |  }await context.close();
+      23 | });
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:20:128
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review--34a4f-ality-survives-resize-dpr-1-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.selectOption: Test ended.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('画質', { exact: true })
+
+
+      18 |  async function quality(expected){await tick(page);const size=await page.locator('canvas').evaluate(c=>({backing:c.width,css:c.getBoundingClientRect().width}));expect(Math.abs(size.backing-Math.round(size.css*expected))).toBeLessThanOrEqual(1);}
+      19 |  for(const [name,ratio]of [['low',0.75],['balanced',1],['high',Math.min(dpr,2)]]){
+    > 20 |   await page.locator('[data-settings-mode="simulation"]').click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await open(page,'simulation');await quality(ratio);await page.setViewportSize({width:1200,height:800});await quality(ratio);
+         |                                                                                                                                ^
+      21 |   await page.getByRole('button',{name:'設定',exact:true}).click();await page.getByRole('dialog').getByLabel('画質',{exact:true}).selectOption(name);await page.getByRole('dialog').getByRole('button',{name:'適用',exact:true}).click();await page.getByRole('button',{name:'再開',exact:true}).click();await quality(ratio);await home(page);await open(page,'simulation');await quality(ratio);await home(page);
+      22 |  }await context.close();
+      23 | });
+        at /workspace/hashirase-t05/tests/e2e/result-quality.spec.mjs:20:128
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-result-quality-review--a2e26-ality-survives-resize-dpr-2-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_1 
+    [chromium] › tests/e2e/result-quality.spec.mjs:16:24 › review_simulation_quality_survives_resize_dpr_2 
+  5 passed (2.2m)

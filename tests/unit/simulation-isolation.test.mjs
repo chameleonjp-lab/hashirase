@@ -55,6 +55,9 @@ test('simulation_build_and_import_graph_contain_no_driving_code_or_engine',async
   await mkdir(join(isolated,'src/modes'),{recursive:true});
   await cp(new URL('../../src/modes/simulation',import.meta.url),join(isolated,'src/modes/simulation'),{recursive:true});
   await cp(new URL('../../src/contracts',import.meta.url),join(isolated,'src/contracts'),{recursive:true});
+  await mkdir(join(isolated,'src/platform'),{recursive:true});
+  await cp(new URL('../../src/platform/style-resource.js',import.meta.url),join(isolated,'src/platform/style-resource.js'));
+  await cp(new URL('../../src/assets/simulation',import.meta.url),join(isolated,'src/assets/simulation'),{recursive:true});
   const {manifest}=await buildProject({rootDir:isolated,entryPoints:['src/modes/simulation/index.js']});
   const compiled=await import(pathToFileURL(join(isolated,manifest.entryPoints['src/modes/simulation/index.js'])).href);
   assert.equal(typeof compiled.createMode,'function');

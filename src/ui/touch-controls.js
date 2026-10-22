@@ -1,7 +1,7 @@
 import {createSwipeController} from '../platform/swipe-control.js';import {createSwipeGuide} from './swipe-guide.js';import {listenerScope} from './listeners.js';
 const excluded='button,a,form,input,select,textarea,label,dialog,[role="button"],[data-no-drive]';
 /** Bind only the supplied play surface; never the page, home, or settings. */
-export function mountTouchControls(surface,{input,profile,mode,settings,toolbar,onCamera=()=>{}}){
+export function mountTouchControls(surface,{input,profile,mode,settings,toolbar,cameraLabel='視点を切替',onCamera=()=>{}}){
  const document=surface.ownerDocument,win=document.defaultView,scope=listenerScope(),guide=createSwipeGuide(surface),swipe=createSwipeController(settings),buttons=[],held=new Map(),keyHolds=new Map(),toggles=new Map();let current=settings,disposed=false,buttonScope=listenerScope();
  function capture(node,id){try{node.setPointerCapture(id);}catch{/* Synthetic events and already-cancelled pointers have no active capture. */}}
  function release(node,id){try{if(node.hasPointerCapture(id))node.releasePointerCapture(id);}catch{/* The browser may have released it first. */}}
@@ -28,7 +28,7 @@ export function mountTouchControls(surface,{input,profile,mode,settings,toolbar,
   buttonScope.on(button,'keydown',event=>{if(!['Space','Enter'].includes(event.code)||!input.isEnabled())return;event.preventDefault();if(keyHolds.has(event.code))return;const key='button:key:'+event.code;keyHolds.set(event.code,{button,key});input.setSource(key,value);pressed(button);});
   buttonScope.on(button,'click',event=>{if(event.detail!==0||!input.isEnabled())return;const key='button:toggle:'+action;if(toggles.has(button)){toggles.delete(button);input.removeSource(key);}else{toggles.set(button,key);input.setSource(key,value);}pressed(button);});
  }
- function drawButtons(){buttonScope.dispose();buttonScope=listenerScope();for(const b of buttons.splice(0))b.remove();held.clear();if(profile!=='desktop'&&mode==='driving'){addButton('boost','ロケット');addButton('hover','浮上');addButton('kickflip','ジャンプ');}addButton('camera','視点を切替');if(profile!=='desktop'&&current.alternativeControls){addButton('throttle','前進',true);addButton('brake','制動',true);addButton('reverseThrottle','後退',true);addButton('left','左',true);addButton('right','右',true);}}
+ function drawButtons(){buttonScope.dispose();buttonScope=listenerScope();for(const b of buttons.splice(0))b.remove();held.clear();if(profile!=='desktop'&&mode==='driving'){addButton('boost','ロケット');addButton('hover','浮上');addButton('kickflip','ジャンプ');}addButton('camera',cameraLabel);if(profile!=='desktop'&&current.alternativeControls){addButton('throttle','前進',true);addButton('brake','制動',true);addButton('reverseThrottle','後退',true);addButton('left','左',true);addButton('right','右',true);}}
  drawButtons();
  return Object.freeze({configure(next){input.clear();current=next;swipe.configure(next);drawButtons();},dispose(){if(disposed)return;disposed=true;input.clear();offClear();scope.dispose();buttonScope.dispose();guide.dispose();for(const b of buttons)b.remove();buttons.length=0;}});
 }

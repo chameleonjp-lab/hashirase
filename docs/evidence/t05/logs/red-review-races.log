@@ -1,0 +1,57 @@
+✔ latest_selection_wins (4.068647ms)
+✔ leave_during_load_disposes_late_result (0.748217ms)
+✔ leave_during_prepare_disposes_late_context (0.481265ms)
+✔ host_owns_one_loop_and_pause_resume_excludes_hidden_time (0.756459ms)
+✔ startup_failure_and_retry_do_not_retain_session_or_loop (0.497689ms)
+✔ frame_failure_clears_input_and_releases_resources (0.600244ms)
+✔ resource_scope_is_idempotent_continues_cleanup_and_handles_late_owners (0.580424ms)
+✔ unknown_mode_is_rejected_without_fetch_or_destroying_current_session (0.653043ms)
+✔ overload_pause_explains_why_and_can_be_reset (3.65943ms)
+✔ finished_rules_stop_in_RESULT_and_reset_allows_a_new_run (0.452371ms)
+✔ pause_requested_while_loading_is_kept_until_explicit_resume (0.333302ms)
+✖ review_cleanup_barrier_select-select (1.850426ms)
+✖ review_cleanup_barrier_leave-leave-select (0.848548ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 11
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.665316
+
+✖ failing tests:
+
+test at tests/integration/session-races.test.mjs:56:58
+✖ review_cleanup_barrier_select-select (1.850426ms)
+  AssertionError [ERR_ASSERTION]: Replacement must not prepare/start before prior disposal
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:61:22)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/session-races.test.mjs:56:58
+✖ review_cleanup_barrier_leave-leave-select (0.848548ms)
+  AssertionError [ERR_ASSERTION]: Replacement must not prepare/start before prior disposal
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t05/tests/integration/session-races.test.mjs:61:22)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

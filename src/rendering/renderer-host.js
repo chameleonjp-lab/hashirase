@@ -5,10 +5,18 @@ import { updateGameCamera } from './camera.js';
 /** Owns DOM listeners, timers, WebGL objects and the temporary legacy surface. No RAF. */
 export function createRendererHost(container,quality={}) {
   const ownerDocument=container.ownerDocument,view=ownerDocument.defaultView;
-  let disposed=false,enabled=false,legacyControls=true,engine=null,disposedResources=0;
+  let disposed=false,enabled=false,legacyControls=true,engine=null,disposedResources=0,viewSettings=null;
   const resources=new Set(),listeners=new Set(),timers=new Set(),wrappedElements=new WeakMap(),constructors=new Map();
   if(quality.markup!==undefined)container.innerHTML=quality.markup;
+  // Keep the existing radar while exposing only one drawing canvas in the UI.
+  // Its small private bitmap has no loop or GPU context and is released here.
+  let radar=null;
+  if(quality.singleCanvas){
+    const canvas=container.querySelector('#ta-minimap-canvas');
+    if(canvas){const image=ownerDocument.createElement('img');for(const attribute of canvas.attributes)image.setAttribute(attribute.name,attribute.value);image.alt='タイムアタックの案内地図';canvas.replaceWith(image);radar={canvas,image};}
+  }
   function track(resource){
+    if(disposed){try{resource?.dispose?.();}catch{}throw new DOMException('Renderer disposed','AbortError');}
     if(typeof resource?.dispose!=='function')return resource;
     resources.add(resource);
     if(typeof resource.clone==='function'){
@@ -20,13 +28,13 @@ export function createRendererHost(container,quality={}) {
   const THREE=new Proxy(Three,{get(target,key){
     const value=target[key];
     if(typeof value!=='function'||!value.prototype)return value;
-    if(!constructors.has(key))constructors.set(key,new Proxy(value,{construct(type,args){return track(Reflect.construct(type,args));}}));
+    if(!constructors.has(key))constructors.set(key,new Proxy(value,{construct(type,args){if(disposed)throw new DOMException('Renderer disposed','AbortError');return track(Reflect.construct(type,args));}}));
     return constructors.get(key);
   }});
   function listen(target,type,callback,options){
     const oldInput=(target===view&&['keydown','keyup','pointermove','pointerup','pointercancel','contextmenu'].includes(type))||
       (target.id==='canvas-container'&&type==='pointerdown')||target.matches?.('[data-touch-key],#btn-auto-accel');
-    const wrapped=event=>{if(!disposed&&(!oldInput||legacyControls)&&(enabled||['resize','orientationchange'].includes(type)))callback.call(target,event);};
+    const wrapped=event=>{if(!disposed&&(!oldInput||legacyControls)&&(enabled||(!oldInput&&type==='click')||['resize','orientationchange'].includes(type)))callback.call(target,event);};
     target.addEventListener(type,wrapped,options);const entry={target,type,wrapped,options};listeners.add(entry);
     return ()=>{target.removeEventListener(type,wrapped,options);listeners.delete(entry);};
   }
@@ -39,7 +47,7 @@ export function createRendererHost(container,quality={}) {
     return wrappedElements.get(element);
   }
   const document={
-    getElementById:id=>wrap(container.querySelector(`[id="${id}"]`)),
+    getElementById:id=>wrap(id==='ta-minimap-canvas'&&radar?radar.canvas:container.querySelector(`[id="${id}"]`)),
     querySelector:selector=>wrap(container.querySelector(selector)),querySelectorAll:selector=>container.querySelectorAll(selector),
     createElement:tag=>ownerDocument.createElement(tag),documentElement:ownerDocument.documentElement,
     elementFromPoint:(x,y)=>ownerDocument.elementFromPoint(x,y),addEventListener:(...args)=>listen(ownerDocument,...args)
@@ -56,17 +64,20 @@ export function createRendererHost(container,quality={}) {
   const legacySurface={document,window:hostWindow,navigator:view.navigator,THREE,setTimeout:ownedTimeout,clearTimeout:clearOwnedTimeout,ports:{applyDrivingVisuals,updateGameCamera},setLegacyControls(value){legacyControls=Boolean(value);},detach};
   return Object.freeze({
     legacySurface,
-    attachLegacy(backend){if(disposed)throw new Error('Renderer disposed');engine=backend;},
+    attachLegacy(backend){if(disposed)throw new Error('Renderer disposed');engine=backend;if(viewSettings)engine.configureView?.(viewSettings);},
+    configure(settings){if(disposed)return;const ratio={low:0.75,balanced:Math.min(view.devicePixelRatio||1,1),high:Math.min(view.devicePixelRatio||1,2)}[settings.quality];quality.pixelRatio=ratio??1;viewSettings={...settings,pixelRatio:quality.pixelRatio};engine?.configureView?.(viewSettings);},
+    look(x,y){if(!disposed)engine?.look?.(x,y);},
+    cycleCamera(){if(!disposed)return engine?.cycleCamera?.();},
     setEnabled(value){enabled=Boolean(value);},
-    render(snapshot,alpha){if(disposed)return;if(!Number.isFinite(alpha)||alpha<0||alpha>1)throw new TypeError('alpha must be 0..1');engine?.render(snapshot,alpha);},
-    resize(){if(!disposed)view.dispatchEvent(new Event('resize'));},
+    render(snapshot,alpha){if(disposed)return;if(!Number.isFinite(alpha)||alpha<0||alpha>1)throw new TypeError('alpha must be 0..1');engine?.render(snapshot,alpha);if(radar?.image.getClientRects().length)radar.image.src=radar.canvas.toDataURL();},
+    resize(){if(!disposed)engine?.resize?.();},
     diagnostics(){return {disposed,listeners:listeners.size,timers:timers.size,liveResources:resources.size,disposedResources};},
     dispose(){
       if(disposed)return;disposed=true;enabled=false;engine=null;
       for(const {target,type,wrapped,options}of listeners)target.removeEventListener(type,wrapped,options);listeners.clear();
       for(const id of timers)view.clearTimeout(id);timers.clear();
       for(const resource of resources){try{resource.dispose();resource.forceContextLoss?.();disposedResources++;}catch{}}
-      resources.clear();constructors.clear();for(const key of Object.keys(hostWindow))delete hostWindow[key];container.replaceChildren();
+      resources.clear();constructors.clear();if(radar){radar.canvas.width=radar.canvas.height=0;radar=null;}for(const key of Object.keys(hostWindow))delete hostWindow[key];container.replaceChildren();
     }
   });
 }

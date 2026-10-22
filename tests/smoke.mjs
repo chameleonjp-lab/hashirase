@@ -4,7 +4,7 @@ import { dirname, resolve } from 'node:path';
 import assert from 'node:assert/strict';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const html = await readFile(resolve(root, 'index.html'), 'utf8');
+const html = await readFile(resolve(root, 'legacy.html'), 'utf8');
 const localAssets = [
   'assets/css/simulator.css',
   'assets/js/bootstrap/loading.js',
@@ -36,4 +36,7 @@ for (const marker of [
 ]) assert(app.includes(marker), 'Missing game function: ' + marker);
 assert(html.indexOf('three.min.js') < html.indexOf('software-fallback.js'),
   'Three.js loading order changed');
+const home = await readFile(resolve(root,'index.html'),'utf8');
+assert(home.includes('dist/app/main.js'),'Home must use the isolated application entry');
+assert(!/assets\/js\/|three\.min|tailwindcss\.com/.test(home),'Home must not load legacy or 3D programs');
 console.log('Smoke test passed: ' + ids.length + ' unique IDs and expected asset order.');
