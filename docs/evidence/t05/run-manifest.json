@@ -1,0 +1,381 @@
+{
+  "taskId": "T05",
+  "sourceCommit": "e2e5c8b2732a6f3f0edd863b6d290fd1122ece6c",
+  "baseMainCommit": "d351d143c3ac823705e3aaa949421c2d29062166",
+  "pr": "https://github.com/chameleonjp-lab/hashirase/pull/10",
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)",
+    "os": "Linux-6.18.55-x86_64-with-glibc2.41",
+    "physicalDevices": "NOT_RUN"
+  },
+  "clock": {
+    "dt": 0.008333333333333333,
+    "maxSteps": 8,
+    "maxLagSeconds": 0.1,
+    "browserTestRAF": "manually driven actual host callbacks; no real FPS/latency claim"
+  },
+  "commands": [
+    {
+      "command": "npm run check",
+      "nodeCounts": [
+        69,
+        27,
+        10
+      ],
+      "totalNodeTests": 106,
+      "result": "PASS"
+    },
+    {
+      "command": "npm run build",
+      "phase": "application",
+      "inputs": 45,
+      "outputs": 19,
+      "result": "PASS"
+    },
+    {
+      "command": "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npx playwright test",
+      "stats": {
+        "startTime": "2026-10-22T16:06:13.544Z",
+        "duration": 99124.01000000001,
+        "expected": 59,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "result": "PASS"
+    }
+  ],
+  "stage1": {
+    "roundTrips": 20,
+    "unselectedProgramAndAssetRequests": 0,
+    "unselectedInitializations": 0,
+    "maxActiveSession": 1,
+    "maxDOMCanvas": 1,
+    "homeActiveSession": 0,
+    "homeActiveRAF": 0
+  },
+  "buildInputHashes": [
+    {
+      "path": "assets/css/simulator.css",
+      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487"
+    },
+    {
+      "path": "node_modules/three/build/three.module.js",
+      "sha256": "af527c374b56b8688737a42d7fcea7cb8aaeb57a4e3c6da98b4dffd55bcc3514"
+    },
+    {
+      "path": "src/app/home.js",
+      "sha256": "35efc5f3feb1311fa4692ac7b8a619ff7803426064cadc6b0e23da9f745b86b3"
+    },
+    {
+      "path": "src/app/main.js",
+      "sha256": "2f8c189db4e515d9ed83af55aeb9e25741e2f7d2648a57384ebde753767dd0b8"
+    },
+    {
+      "path": "src/app/mode-loader.js",
+      "sha256": "59e43fe0f8337e3588637a60603a8822ffe7f15e04b4ee869e99d67c6362dedf"
+    },
+    {
+      "path": "src/app/session-host.js",
+      "sha256": "040844a8d669ff1dc71f716fc0728e041e9c708cf9b996bbbd384c2b9a011954"
+    },
+    {
+      "path": "src/assets/driving/screen.css",
+      "sha256": "8422c86321e09f7bc994876dd2766726cf0cc9e3897e3c6e9a5d3c50921ceb26"
+    },
+    {
+      "path": "src/assets/driving/screen.html",
+      "sha256": "927f0b8fb8fee46436586a26eb9227ac83197ef6fcf111c2e03d150ae5e8d63f"
+    },
+    {
+      "path": "src/assets/simulation/screen.css",
+      "sha256": "e03b7823699600aad7d3b433b5aad05d3da9d8ebfc0010c3905592078b7c1289"
+    },
+    {
+      "path": "src/contracts/events.js",
+      "sha256": "a2209be5d5e59591be07f0b5baa42affe00766a424c73da9e2340918549c8b32"
+    },
+    {
+      "path": "src/contracts/session.js",
+      "sha256": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148"
+    },
+    {
+      "path": "src/contracts/validation.js",
+      "sha256": "4c14145e22f916762e8e3805a67cedf5f7f85e42f8ba2c9a173e1b1731e39a76"
+    },
+    {
+      "path": "src/contracts/vehicle.js",
+      "sha256": "4c3009a5606a9075e5b35fda437a6b4ab34cdc6c5e1c46616ea9efb9bffc5d69"
+    },
+    {
+      "path": "src/modes/driving/index.js",
+      "sha256": "58b7e44d770b6b9cd8d9533ec7956ece208fc85cbaa86131b5508224117c277a"
+    },
+    {
+      "path": "src/modes/driving/legacy-adapter.js",
+      "sha256": "9c9c552616ee037c127bdb5898775e5f898dc10fd072a3b96db3e5d257543bdb"
+    },
+    {
+      "path": "src/modes/driving/physics.js",
+      "sha256": "170acbf9335f5764c263934abc29d3570b2a9e68d9e4f9ab539c34bf8d1a5c09"
+    },
+    {
+      "path": "src/modes/driving/presentation.js",
+      "sha256": "6f037710586160a7345a3791db354838d7e311c11af4e3e3bee3d8ba9b9fd916"
+    },
+    {
+      "path": "src/modes/driving/rules.js",
+      "sha256": "94626ff099cbc8af5acd85fda337c09d2584a5f9a7ae78316fe1b54a18cccdc7"
+    },
+    {
+      "path": "src/modes/driving/screen-assets.js",
+      "sha256": "670514ac7ee50b24236ce9d4ae8d8fa47256f4d0297a03444aa97af54fd92aed"
+    },
+    {
+      "path": "src/modes/driving/session.js",
+      "sha256": "3d379abefe026c81983ed11049c3d3a0a2173b30c26dcb354884430eb7ebda17"
+    },
+    {
+      "path": "src/modes/driving/state.js",
+      "sha256": "9c18201affc45235ff10f42b99d4ea1aaf7ea4dda263293950c280f03ca45f0a"
+    },
+    {
+      "path": "src/modes/simulation/config/demo-car.js",
+      "sha256": "d74001eb79605a73e385f50055ac3962ef7ba4c322f5132e666904ce3c727bcf"
+    },
+    {
+      "path": "src/modes/simulation/index.js",
+      "sha256": "4609949038f0238ab17b27c5b3085d5fb9e64a9ae5f315866724e64a600688f8"
+    },
+    {
+      "path": "src/modes/simulation/physics/forces.js",
+      "sha256": "9111eab020675254c1bcac27a6a37036b49a949f951acda62b47c41967d2dd48"
+    },
+    {
+      "path": "src/modes/simulation/physics/vehicle-model.js",
+      "sha256": "c61365e081e9a2fc551148ff4bf6bda8194c82775acf877245d31d63df1e5194"
+    },
+    {
+      "path": "src/modes/simulation/presentation.js",
+      "sha256": "9c2948079702bd440b702eaad79f68bb4e8c0a3eb34bec602ef8c155d47a39e5"
+    },
+    {
+      "path": "src/modes/simulation/renderer.js",
+      "sha256": "3dfd17b41b862c0d89a9d04b709bef5e7a1a6e049e2e374283d3927ed3af85a6"
+    },
+    {
+      "path": "src/modes/simulation/session.js",
+      "sha256": "ecbd793cac63d9ace4380f3d719e3c116843a12f23b2ba4ab50ce2e0c1067585"
+    },
+    {
+      "path": "src/platform/audio.js",
+      "sha256": "7aa3b7be415c2705b04c3005011e5a420e1d0cd0e61d731fedef47594d3af745"
+    },
+    {
+      "path": "src/platform/clock.js",
+      "sha256": "8e2fef5c7a5f4b4b4be343aca8885e52c7a4346783469ec0a6284328d80cd0cf"
+    },
+    {
+      "path": "src/platform/device-profile.js",
+      "sha256": "db758b63d3775ee226714d3a57f2c9ec1cf70f21bd4d32ff00cc41a5b35d1de2"
+    },
+    {
+      "path": "src/platform/input-service.js",
+      "sha256": "caa0d2c6e31c96dd35553acfb4e76dc13425af8c3b9d690df0fc3177e4bd22c6"
+    },
+    {
+      "path": "src/platform/random.js",
+      "sha256": "faf81b142c779ca6c6e992d84b8ddf38ba61ac99c5588b4e9e6ceebed1880a44"
+    },
+    {
+      "path": "src/platform/resource-scope.js",
+      "sha256": "ce0237c7ca2f3d27d1ef4ab23f5eb8d773c1a53d5394dd094ae3843d4c99139d"
+    },
+    {
+      "path": "src/platform/settings-store.js",
+      "sha256": "28ab669aa1e0de399c9641ddbfa11e355a9694339c7f390f379b01076dcc2039"
+    },
+    {
+      "path": "src/platform/style-resource.js",
+      "sha256": "aec4b407938c1887b15de99a9fb259d3589b1471dcdd19556dd1c664be94979f"
+    },
+    {
+      "path": "src/platform/swipe-control.js",
+      "sha256": "602a4f7f7e088d1e27f1bdbc4d5b782a6b5f151d037b2f9ad8acab335f499e74"
+    },
+    {
+      "path": "src/rendering/camera.js",
+      "sha256": "c4ba67f8a87a233e00083a7cfc584ba027532a6a990e5c6983673226d684e172"
+    },
+    {
+      "path": "src/rendering/renderer-host.js",
+      "sha256": "11fff49114b2106964a13a14ec37f0d77153883e1d84a9dc6b4f7a99a88c80e0"
+    },
+    {
+      "path": "src/rendering/vehicle-view.js",
+      "sha256": "2540e644b40c60945bde5e1df3f4dd768f52770db09e60ec63e27dbba18e6bda"
+    },
+    {
+      "path": "src/ui/keyboard-controls.js",
+      "sha256": "0bbd90980e447b2c1ae36600d7010ddbe114dc1b4115b620c4edf432def5b611"
+    },
+    {
+      "path": "src/ui/listeners.js",
+      "sha256": "13177092818f9f6e913a285276dc00680a31e59329fcfdf759dd06ff7151bc9d"
+    },
+    {
+      "path": "src/ui/settings.js",
+      "sha256": "58cab6665936306732c57f25977fb7f072560f7ebc6836cbb747d3f54cb285c8"
+    },
+    {
+      "path": "src/ui/swipe-guide.js",
+      "sha256": "f2980bea103149d0807b0d202909af08a04a586cb40ab71adf95127b78e06db4"
+    },
+    {
+      "path": "src/ui/touch-controls.js",
+      "sha256": "325fba51cf45ef25963550ea12f55a85ff7581c2257c6e1f7cc7616ebd8133f4"
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/evidence/t05/images/context-loss.png",
+      "sha256": "a8a5b6112e53710bc82e5a86fca9474435e62a7f66ee1dd49d5da253f1257b79",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/driving.png",
+      "sha256": "e881fcb27b31317986679f2c5c6ac5eca0fa77616ea676c389dc8c757fa52667",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/game-result-keyboard.png",
+      "sha256": "c627f88a83f38ab9639dad8c82d03646f0af97559edd866c3aadc0f38e400834",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/game-result-pointer.png",
+      "sha256": "4f9d9aee624a85c266ad39ef2ac86d17e0d51b67c31a4b8a40ee052482e24bcb",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/home.png",
+      "sha256": "ec81a4d9d93376436b5a95b04eb446bebbb1d92fe92a77f2f514da40592e95ed",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/load-error.png",
+      "sha256": "77a645d203f7876f6140a522840fed54c727176e1adab4dcd9336aee09d40a85",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/overload.png",
+      "sha256": "36ab1aba7cdd4b258adcb3eebc8bff5d7c1133a054eda2145d7d59217fd22c6a",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/phone-landscape-driving.png",
+      "sha256": "e304c3d936487f1edffceb8c9895ee55ebd9a06df5378225e08ead5df79ff1f1",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/phone-landscape-simulation.png",
+      "sha256": "d0f3a9be01af69cef71384370e2c638b89b647d06a92c86bd892a8c66b3ca9f8",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/phone-portrait-driving.png",
+      "sha256": "b17bc6841d766bb153d4d48a72367bf85a502d95a1ea864ecebfa3c50ebe430c",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/phone-portrait-simulation.png",
+      "sha256": "e963cc6caac3f19815710540767e882b6aa2c6fb71680e41c82053ceec7a7066",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/settings.png",
+      "sha256": "b491252812c83c3b3d030d506f46411802c4c157b994867e1de342837da018aa",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/simulation.png",
+      "sha256": "266f83088fca3b28b95a88ab205700d7328c07d40b174236c5b4af79a9397f55",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/time-attack-result-close-modal.png",
+      "sha256": "eed36029d3101778450841a9fab6712b5f7ce8fd1c4605f6e94e80cab90104bf",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/time-attack-result-retry.png",
+      "sha256": "eed36029d3101778450841a9fab6712b5f7ce8fd1c4605f6e94e80cab90104bf",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/touch-pc-driving.png",
+      "sha256": "24d8b0dc14144c437576f42f7e81046105e0d91b88162104df7291802cc26adc",
+      "viewedByRoot": true
+    },
+    {
+      "path": "docs/evidence/t05/images/touch-pc-simulation.png",
+      "sha256": "ca235eeecffd43ca145ea3cbc4d24cf7ad596a16e4e6261aec3550fa7153b5c3",
+      "viewedByRoot": true
+    }
+  ],
+  "unverified": [
+    "A01-A60 formal acceptance",
+    "real devices / Safari / VoiceOver",
+    "sustained FPS, input latency and memory convergence",
+    "full driving features T07+",
+    "real vehicle calibration / steering / four-wheel contact T10+",
+    "deployment"
+  ],
+  "review": {
+    "reviewedCommit": "010f24b4221d21873542187645c10ba780708368",
+    "critical": 0,
+    "important": 3,
+    "minor": 0,
+    "importantFixed": 3,
+    "newUnresolved": 0,
+    "passes": 1,
+    "reviewEvidence": "docs/evidence/t05/review.md"
+  },
+  "imageVerification": "13 original images viewed before review; git diff confirms unchanged hashes except overload (re-viewed), and four new result images viewed after final run.",
+  "githubActions": {
+    "sourceCommit": "e2e5c8b2732a6f3f0edd863b6d290fd1122ece6c",
+    "baseMainCommit": "d351d143c3ac823705e3aaa949421c2d29062166",
+    "pr": "https://github.com/chameleonjp-lab/hashirase/pull/10",
+    "runs": [
+      {
+        "id": 39811300434,
+        "name": "Verify T04 simulation",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 5,
+        "jobs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300434/jobs",
+        "logs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300434/logs",
+        "workflow_id": 392950755,
+        "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39811300434",
+        "job_id": 119937950165,
+        "localLog": "docs/evidence/t05/logs/github-actions-39811300434.log"
+      },
+      {
+        "id": 39811300442,
+        "name": "Verify source layout",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 25,
+        "jobs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300442/jobs",
+        "logs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300442/logs",
+        "workflow_id": 392715226,
+        "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39811300442",
+        "job_id": 119937950022,
+        "localLog": "docs/evidence/t05/logs/github-actions-39811300442.log"
+      }
+    ],
+    "observed": "Both API terminal conclusions success and full logs confirm exact source head, tests, build, artifact upload and cleanup.",
+    "finalMetadataHead": "See PR body for full SHA and same-source final-head CI links; this file intentionally records the tested source commit."
+  }
+}

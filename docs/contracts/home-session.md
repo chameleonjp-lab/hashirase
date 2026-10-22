@@ -17,3 +17,5 @@ T06のInputServiceを固定tickごとに1回だけsampleする。速度とdtを�
 ゲーム画面はローカル生成したCSSをモードrootへ限定して適用する。終了時にlinkとDOMを解放する。ゲームのミニマップは小さな私有bitmapからimgへ転写し、既存の地図を保ちながらDOM上のcanvasを1つにする。このbitmapと旧来のテクスチャ生成用canvasは画面の描画ループやGPU contextを持たず、所有者が破棄する。旧入口 `legacy.html` は原本保護/回帰検査に残す。
 
 `appDiagnostics()` はセッション/RAF/初期化/DOM canvas/入力/描画/音の診断を返す。製品画面には内部契約名や試験用操作を表示しない。ブラウザ自動検査のRAFは手動で進めるため、実機fps、入力遅延、長時間メモリ収束の証明には使わない。
+
+レビュー後の明確化：すべての遷移はhost全体の解放barrierを待ち、leaveを連打しても先にHOMEへ戻さない。activeSessionは所有資源の解放完了まで数える。ゲーム専用の`resultAction(retry|freeDrive)`は既存の結果理由/得点/タイムを保ち、入力・時計・mode内の再挑戦・描画・再開を1操作で協調させる。終了面を入力面より上へ出し、旧ボタンの独立resetによるRESULT残留を防ぐ。SIMの画質は起動・resize・再適用・再入場で同じ規則（low .75、balanced min(DPR,1)、high min(DPR,2)）を使う。

@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "e2e5c8b2732a6f3f0edd863b6d290fd1122ece6c",
+  "baseMainCommit": "d351d143c3ac823705e3aaa949421c2d29062166",
+  "pr": "https://github.com/chameleonjp-lab/hashirase/pull/10",
+  "runs": [
+    {
+      "id": 39811300434,
+      "name": "Verify T04 simulation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 5,
+      "jobs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300434/jobs",
+      "logs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300434/logs",
+      "workflow_id": 392950755,
+      "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39811300434",
+      "job_id": 119937950165,
+      "localLog": "docs/evidence/t05/logs/github-actions-39811300434.log"
+    },
+    {
+      "id": 39811300442,
+      "name": "Verify source layout",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 25,
+      "jobs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300442/jobs",
+      "logs_url": "https://api.github.com/repos/chameleonjp-lab/hashirase/actions/runs/39811300442/logs",
+      "workflow_id": 392715226,
+      "url": "https://github.com/chameleonjp-lab/hashirase/actions/runs/39811300442",
+      "job_id": 119937950022,
+      "localLog": "docs/evidence/t05/logs/github-actions-39811300442.log"
+    }
+  ],
+  "observed": "Both API terminal conclusions success and full logs confirm exact source head, tests, build, artifact upload and cleanup.",
+  "finalMetadataHead": "See PR body for full SHA and same-source final-head CI links; this file intentionally records the tested source commit."
+}
