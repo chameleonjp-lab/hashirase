@@ -1,0 +1,554 @@
+✖ imports_do_not_cross_modes (2.050858ms)
+✖ common_code_and_static_home_imports_cannot_pull_in_a_mode (0.294687ms)
+✖ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (0.210999ms)
+✖ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (0.159321ms)
+✖ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (0.151149ms)
+✖ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (0.216348ms)
+✖ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (0.172541ms)
+✖ build_fails_when_a_common_entry_statically_includes_a_mode (0.188035ms)
+✖ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.235928ms)
+✖ clock_is_render_rate_independent (0.954857ms)
+✖ clock_marks_overload_without_dropping_unprocessed_time (0.665047ms)
+✖ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.137408ms)
+✖ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.0923ms)
+✖ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.154915ms)
+✖ random_is_repeatable_and_visual_draws_do_not_change_physics (0.147814ms)
+✖ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (2.988659ms)
+✖ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.19808ms)
+✖ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (1.84802ms)
+✖ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (0.178611ms)
+✖ session_contract_preserves_named_ports_and_has_no_render_loop (0.156176ms)
+✖ events_reject_invalid_session (0.112971ms)
+✖ events_are_readonly_deduplicated_and_isolated_per_session (0.119952ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 0
+ℹ fail 22
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.818782
+
+✖ failing tests:
+
+test at tests/integration/import-boundaries.test.mjs:10:1
+✖ imports_do_not_cross_modes (2.050858ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBoundaries
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:11:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:20:1
+✖ common_code_and_static_home_imports_cannot_pull_in_a_mode (0.294687ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBoundaries
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:21:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:33:1
+✖ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (0.210999ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBoundaries
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:34:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:46:1
+✖ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (0.159321ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBoundaries
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:47:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:58:1
+✖ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (0.151149ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBoundaries
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:59:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:82:1
+✖ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (0.216348ms)
+  AssertionError [ERR_ASSERTION]: T02 requires buildProject
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:83:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:101:1
+✖ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (0.172541ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBoundaries
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:102:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:108:1
+✖ build_fails_when_a_common_entry_statically_includes_a_mode (0.188035ms)
+  AssertionError [ERR_ASSERTION]: T02 requires buildProject
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:109:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:115:1
+✖ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.235928ms)
+  AssertionError [ERR_ASSERTION]: T02 requires checkBundleGraph
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:116:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:8:1
+✖ clock_is_render_rate_independent (0.954857ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createFixedClock
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:9:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:28:1
+✖ clock_marks_overload_without_dropping_unprocessed_time (0.665047ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createFixedClock
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:29:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:42:1
+✖ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.137408ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createFixedClock
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:43:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:51:1
+✖ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.0923ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createFixedClock
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:52:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:61:1
+✖ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.154915ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createFixedClock
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:62:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:74:1
+✖ random_is_repeatable_and_visual_draws_do_not_change_physics (0.147814ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createRandom
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:75:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:9:1
+✖ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (2.988659ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createInputFrame
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:10:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:26:1
+✖ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.19808ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createInputFrame
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:27:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:38:1
+✖ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (1.84802ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createSwipeFrame
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:39:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:50:1
+✖ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (0.178611ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createVehicleSnapshot
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:51:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:73:1
+✖ session_contract_preserves_named_ports_and_has_no_render_loop (0.156176ms)
+  AssertionError [ERR_ASSERTION]: T02 requires assertModeSession
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:74:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:92:1
+✖ events_reject_invalid_session (0.112971ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createEventChannel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:93:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/contracts.test.mjs:105:1
+✖ events_are_readonly_deduplicated_and_isolated_per_session (0.119952ms)
+  AssertionError [ERR_ASSERTION]: T02 requires createEventChannel
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at required (file:///workspace/hashirase-t02/tests/support/foundation.mjs:15:10)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/contracts.test.mjs:106:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

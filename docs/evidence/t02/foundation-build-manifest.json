@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "phase": "foundation",
+  "format": "esm",
+  "splitting": true,
+  "esbuildVersion": "0.28.2",
+  "entryPoints": {
+    "src/contracts/session.js": "dist/contracts/session.js",
+    "src/contracts/vehicle.js": "dist/contracts/vehicle.js",
+    "src/contracts/events.js": "dist/contracts/events.js",
+    "src/platform/clock.js": "dist/platform/clock.js",
+    "src/platform/random.js": "dist/platform/random.js"
+  },
+  "inputFiles": [
+    {
+      "path": "src/contracts/events.js",
+      "sha256": "a2209be5d5e59591be07f0b5baa42affe00766a424c73da9e2340918549c8b32"
+    },
+    {
+      "path": "src/contracts/session.js",
+      "sha256": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148"
+    },
+    {
+      "path": "src/contracts/validation.js",
+      "sha256": "4c14145e22f916762e8e3805a67cedf5f7f85e42f8ba2c9a173e1b1731e39a76"
+    },
+    {
+      "path": "src/contracts/vehicle.js",
+      "sha256": "4c3009a5606a9075e5b35fda437a6b4ab34cdc6c5e1c46616ea9efb9bffc5d69"
+    },
+    {
+      "path": "src/platform/clock.js",
+      "sha256": "8e2fef5c7a5f4b4b4be343aca8885e52c7a4346783469ec0a6284328d80cd0cf"
+    },
+    {
+      "path": "src/platform/random.js",
+      "sha256": "faf81b142c779ca6c6e992d84b8ddf38ba61ac99c5588b4e9e6ceebed1880a44"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "dist/chunks/chunk-S6VTBFRY.js",
+      "sha256": "443756291d8a433fcd912bebf692457cb2fe1df661c4a72e67f2cd983b625c93",
+      "inputs": [
+        "src/contracts/validation.js"
+      ],
+      "imports": []
+    },
+    {
+      "path": "dist/contracts/events.js",
+      "sha256": "36ecbddd91748e31cada9a12010930eb1120736a3a80cc4140054d8425b9354e",
+      "inputs": [
+        "src/contracts/events.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/chunks/chunk-S6VTBFRY.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    {
+      "path": "dist/contracts/session.js",
+      "sha256": "a7d3721dd78204628a70f599fa8a656a2ebdf125597fb76707e53e2e1435f614",
+      "inputs": [
+        "src/contracts/session.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/chunks/chunk-S6VTBFRY.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    {
+      "path": "dist/contracts/vehicle.js",
+      "sha256": "d56437382028b2af75bfece93db5438b722aae58ace9f53e77b8fdc0bd864349",
+      "inputs": [
+        "src/contracts/vehicle.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/chunks/chunk-S6VTBFRY.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    {
+      "path": "dist/platform/clock.js",
+      "sha256": "a7b1c4aa51ac2259a72606500ed0fd64964c7091b7595ddae59ef3bf19cfebde",
+      "inputs": [
+        "src/platform/clock.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/chunks/chunk-S6VTBFRY.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    {
+      "path": "dist/platform/random.js",
+      "sha256": "77d2a0b0f51e59d09c281390ac9383e8a67120545c99ac27e7baec8a86dad151",
+      "inputs": [
+        "src/platform/random.js"
+      ],
+      "imports": [
+        {
+          "path": "dist/chunks/chunk-S6VTBFRY.js",
+          "kind": "import-statement"
+        }
+      ]
+    }
+  ]
+}

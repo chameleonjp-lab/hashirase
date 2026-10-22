@@ -1,0 +1,11 @@
+✔ build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets (35.470231ms)
+✔ build_rejects_CSS_imports_including_cross_mode_dependencies (19.874803ms)
+✔ clock_remains_render_rate_independent_over_ten_minutes (20.623998ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.31579

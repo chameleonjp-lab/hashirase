@@ -1,0 +1,61 @@
+✖ build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets (31.650924ms)
+✖ build_rejects_CSS_imports_including_cross_mode_dependencies (10.322852ms)
+✖ clock_remains_render_rate_independent_over_ten_minutes (14.327446ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77.53957
+
+✖ failing tests:
+
+test at tests/integration/import-boundaries.test.mjs:150:1
+✖ build_rejects_CSS_URL_dependencies_instead_of_silently_omitting_assets (31.650924ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:155:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /CSS dependency.*src\/modes\/driving\/mode\.css.*url-token/s,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:159:1
+✖ build_rejects_CSS_imports_including_cross_mode_dependencies (10.322852ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:164:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /CSS dependency.*src\/modes\/driving\/mode\.css.*import-rule/s,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:36:1
+✖ clock_remains_render_rate_independent_over_ten_minutes (14.327446ms)
+  AssertionError [ERR_ASSERTION]: 60fps at 600s
+  
+  71999 !== 72000
+  
+      at file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:50:16
+      at Array.map (<anonymous>)
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:38:30)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 71999,
+    expected: 72000,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

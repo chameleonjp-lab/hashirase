@@ -1,0 +1,80 @@
+✔ imports_do_not_cross_modes (10.989233ms)
+✔ common_code_and_static_home_imports_cannot_pull_in_a_mode (10.23719ms)
+✔ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (2.71655ms)
+✔ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (2.855128ms)
+✔ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (2.419943ms)
+✖ physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper (5.647261ms)
+✖ modes_cannot_hide_an_independent_render_loop_in_a_shared_helper (2.323698ms)
+✔ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (18.696806ms)
+✔ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (2.160212ms)
+✔ build_fails_when_a_common_entry_statically_includes_a_mode (9.662736ms)
+✔ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.183857ms)
+✔ clock_is_render_rate_independent (2.65697ms)
+✔ clock_marks_overload_without_dropping_unprocessed_time (0.334444ms)
+✔ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.108343ms)
+✔ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.580874ms)
+✔ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.282515ms)
+✔ random_is_repeatable_and_visual_draws_do_not_change_physics (0.658191ms)
+✖ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.415215ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 15
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.616117
+
+✖ failing tests:
+
+test at tests/integration/import-boundaries.test.mjs:71:1
+✖ physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper (5.647261ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(result.violations.some(v => v.rule === 'physics-global' && v.from === 'src/physics/shared/model.js'))
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:78:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/integration/import-boundaries.test.mjs:82:1
+✖ modes_cannot_hide_an_independent_render_loop_in_a_shared_helper (2.323698ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(result.violations.some(v => v.rule === 'mode-loop' && v.from === 'src/modes/driving/index.js'))
+  
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/integration/import-boundaries.test.mjs:89:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/unit/clock.test.mjs:92:1
+✖ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.415215ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/hashirase-t02/tests/unit/clock.test.mjs:94:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /synchronous/,
+    operator: 'throws',
+    diff: 'simple'
+  }
