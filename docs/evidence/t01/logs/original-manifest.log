@@ -1,0 +1,11 @@
+✔ original_manifest_identifies_immutable_baseline_sources (36.98843ms)
+✔ original_screen_controls_and_asset_order_are_preserved (3.863407ms)
+✔ original_courses_trims_constants_and_core_features_are_preserved (0.470398ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.358138

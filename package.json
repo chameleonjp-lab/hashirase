@@ -6,7 +6,13 @@
   "scripts": {
     "build": "node tools/build.mjs",
     "build:check": "node tools/build.mjs --check",
-    "test": "node tests/smoke.mjs",
+    "test": "node tests/smoke.mjs && node --test tests/baseline/original.test.mjs",
+    "test:baseline": "node --test tests/baseline/original.test.mjs && playwright test tests/baseline/startup.spec.mjs",
     "check": "npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "tailwindcss": "3.4.17",
+    "three": "0.128.0"
   }
 }

@@ -1,0 +1,19 @@
+
+> hashirase@0.1.0 check
+> npm run build:check && node --check assets/js/bootstrap/loading.js && node --check assets/js/bootstrap/three-loader.js && node --check assets/js/engine/software-fallback.js && node --check assets/js/simulator.js && npm test
+
+
+> hashirase@0.1.0 build:check
+> node tools/build.mjs --check
+
+Bundle matches all 11 source parts.
+
+> hashirase@0.1.0 test
+> node tests/smoke.mjs
+
+Smoke test passed: 117 unique IDs and expected asset order.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

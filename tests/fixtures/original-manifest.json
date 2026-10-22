@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "sourceRef": "bac1f30f8af5cea9c5f6dbbb19e3999f63618e53",
+  "splitPr": 2,
+  "splitPrHead": "40f0e28913c16f967ec0f9ee9daf46b9078431f9",
+  "originalHtml": {
+    "commit": "e889e511cc3f0122faf325a40bfd8fa2c2befb0c",
+    "gitBlob": "ff9858af40bad7ca5f891ad2626509698630ab1f",
+    "sha256": "b7a4778c23eb31c1bcdaad99b0268d4ff6760d4b63c4156b8d77e390a7eb0a14"
+  },
+  "sources": [
+    {
+      "path": "index.html",
+      "gitBlob": "98add3ea91684208f872deb2bddb1860f6617ef3",
+      "sha256": "633c3b9dfde57d560acaa4471288f7e089fac9246b4ef80b89315955c13362d6"
+    },
+    {
+      "path": "assets/css/simulator.css",
+      "gitBlob": "2dfdca67688f70bc56687b045b34b46335c60b5e",
+      "sha256": "66ea80b5b7aa2171cd05a31d7d3f19e52766bbd47be3f9715ca7a1fc5b71b487"
+    },
+    {
+      "path": "assets/js/bootstrap/loading.js",
+      "gitBlob": "eea123d9a0991b2014985dd41e50cd00d70402ad",
+      "sha256": "60efd7d7508165c7448e7a2f87cbf6e913cd284ed53ae2c7a91c3b09fab672e8"
+    },
+    {
+      "path": "assets/js/bootstrap/three-loader.js",
+      "gitBlob": "1b0744497793e6dd1b3f01effe4710e24ac8b83d",
+      "sha256": "c530b9f6f59ef38d30d889341e6ef313f09ab54ca56fe643e8e4a1aeac92a4d2"
+    },
+    {
+      "path": "assets/js/engine/software-fallback.js",
+      "gitBlob": "11c67c32a25d2eb736f63f845669d3f329cb3106",
+      "sha256": "a7d57137a3f639270561417623c2136b0cea48fc8dfc0b9187c258e7ca7e83f6"
+    },
+    {
+      "path": "assets/js/simulator.js",
+      "gitBlob": "153ebd32b461ee19d51b70cc09ff5b8869044274",
+      "sha256": "2b13961df002fefc51e2dab64aa19b8bcf7f3b9e343b004d631ade6c24886ea2"
+    },
+    {
+      "path": "src/runtime/00-boot-audio.part.js",
+      "gitBlob": "1cc19caba30f238e0ef47c34bd6f165bf0ea51bc",
+      "sha256": "df960413891a5dfc57b03a8172ac94b2e100077592dbce310c518d3c45930625"
+    },
+    {
+      "path": "src/runtime/10-renderer-track.part.js",
+      "gitBlob": "4859d9f8edba3e74a163d6762387b177d66ef16c",
+      "sha256": "d5c61982fac22f28f1c2f9326c5a439a89dd0ab024f50e2ee37e9c9e5632faa3"
+    },
+    {
+      "path": "src/runtime/20-nyc-traffic.part.js",
+      "gitBlob": "c49ed27dae69ba767c5f078e161cb86139b2e39b",
+      "sha256": "2ac88323f4e7e792dfd1209ffc60da40c07a1ae68814ee7f5088276e2f147be5"
+    },
+    {
+      "path": "src/runtime/30-utility-poles.part.js",
+      "gitBlob": "3edfbd043df611e42c723df84090d476fecc5359",
+      "sha256": "7c458dc2a5cada479c5a2625f5bf016fcb0bda15a6f18b442f0fab6b8c31f110"
+    },
+    {
+      "path": "src/runtime/40-time-attack.part.js",
+      "gitBlob": "2b0e9ca43797b2aa9d9f8e97ddcdb7b902766bb0",
+      "sha256": "939c1c02aba050c9cde2e23b4cd1f66cb5e75a1be175da4ba75bcfc4bf385c65"
+    },
+    {
+      "path": "src/runtime/50-police-scoring.part.js",
+      "gitBlob": "3d2453c85cae76a81225d5bb63a4fa17bb1af51b",
+      "sha256": "3473b3af8efa0851d67d83bd5dc208ce88f96bd10c6ad9b546bd46c1e07fd42d"
+    },
+    {
+      "path": "src/runtime/60-collisions-damage.part.js",
+      "gitBlob": "3081399567d69f7c8702a9a61bb95e206a2bff99",
+      "sha256": "a7b541497cdc75953060df7c76504c01b990850af2404d725f4c0f4ba23997df"
+    },
+    {
+      "path": "src/runtime/70-vehicle-model.part.js",
+      "gitBlob": "7861dcdf6064b0daf3b81e0704737d807f81a794",
+      "sha256": "f845a5b71728aadf083681986dbeeaf74ba8874d2780b85308a8fcd6be30f7d9"
+    },
+    {
+      "path": "src/runtime/80-interface-input.part.js",
+      "gitBlob": "9e2ca80367270b032f33bfb8c800b88a11bcac37",
+      "sha256": "d1cc8204053e9fe12bc5e7499f5d20afbacb2c86b30ebde96dfc41909c0b4eb0"
+    },
+    {
+      "path": "src/runtime/90-world-effects.part.js",
+      "gitBlob": "2a18ec48aa6d5d3f2a71b54bccd8b62b540fa877",
+      "sha256": "0bdc3dd75ff3c83bd5b0aa5ed436a13697de28e4ed40cfe1d68d7237b0402ead"
+    },
+    {
+      "path": "src/runtime/99-physics-loop.part.js",
+      "gitBlob": "abcc0313c5e96f4af2029476f236b4deaeec6eb3",
+      "sha256": "6eb691d42fdcb02f5690c6e9495fde7254a94ebeb738de08e54f4600bac5253c"
+    }
+  ],
+  "elementIds": [
+    "loading-screen",
+    "loading-title",
+    "loading-step-text",
+    "loading-phase-label",
+    "loading-pct-num",
+    "loading-bar-fill",
+    "loading-sub-hint",
+    "canvas-container",
+    "cockpit-hud",
+    "hud-horizon",
+    "windshield-crack-overlay",
+    "crack-group-minor",
+    "crack-group-severe",
+    "top-scroll-strip",
+    "btn-toggle-ui",
+    "ui-toggle-label",
+    "btn-toggle-course",
+    "course-label-text",
+    "btn-time-attack",
+    "time-attack-btn-label",
+    "btn-toggle-camera",
+    "camera-label-text",
+    "btn-auto-demo",
+    "btn-kickflip-demo",
+    "btn-sub-camera",
+    "btn-suction-toggle",
+    "btn-weather-toggle",
+    "btn-reset-car",
+    "trim-rocket",
+    "trim-thrust",
+    "trim-perf",
+    "btn-sound",
+    "btn-help",
+    "top-telemetry-pill",
+    "ind-suction-core",
+    "noz-fl",
+    "noz-fr",
+    "noz-ml",
+    "noz-mr",
+    "noz-rl",
+    "noz-rr",
+    "val-speed",
+    "val-alt-ft",
+    "flight-state-badge",
+    "val-gas-pct",
+    "nyc-hud-extras",
+    "val-signal-state",
+    "pursuit-hud-bar",
+    "hp-bar-fill",
+    "val-hp-text",
+    "val-damage-pct",
+    "val-live-score",
+    "val-prop-hits",
+    "val-car-hits",
+    "val-police-hits",
+    "pursuit-status-badge",
+    "pursuit-active-details",
+    "val-police-count",
+    "val-next-police-sec",
+    "val-subsystem-status",
+    "time-attack-hud",
+    "ta-timer-val",
+    "ta-compass-arrow",
+    "ta-dir-text",
+    "ta-dist-val",
+    "ta-dist-meters",
+    "ta-dest-name",
+    "btn-ta-reroll",
+    "btn-ta-quit",
+    "ta-minimap-card",
+    "ta-minimap-canvas",
+    "stunt-toast",
+    "bottom-controls-panel",
+    "btn-kickflip",
+    "btn-rcs-spin",
+    "steer-touch-zone",
+    "btn-steer-left",
+    "btn-steer-right",
+    "btn-auto-accel",
+    "pedal-touch-zone",
+    "btn-hover",
+    "btn-boost",
+    "btn-brake",
+    "btn-accel",
+    "val-060",
+    "val-alt",
+    "val-gload",
+    "val-wall-angle",
+    "copv-label",
+    "bar-gas",
+    "steer-indicator-dot",
+    "mission-status-text",
+    "ta-finish-modal",
+    "ta-finish-dest",
+    "ta-finish-time",
+    "ta-finish-score",
+    "ta-finish-best",
+    "ta-finish-dist",
+    "ta-finish-integrity",
+    "ta-finish-prop",
+    "ta-finish-van",
+    "ta-finish-obs",
+    "btn-ta-retry",
+    "btn-ta-close-modal",
+    "gameover-modal",
+    "go-reason-text",
+    "go-final-score",
+    "go-hp-val",
+    "go-prop-hits",
+    "go-car-hits",
+    "go-police-hits",
+    "go-police-count",
+    "go-chase-time",
+    "btn-gameover-retry",
+    "help-modal",
+    "btn-close-help",
+    "btn-close-help-bottom"
+  ],
+  "localAssets": [
+    "assets/css/simulator.css",
+    "assets/js/bootstrap/loading.js",
+    "assets/js/bootstrap/three-loader.js",
+    "assets/js/engine/software-fallback.js",
+    "assets/js/simulator.js"
+  ],
+  "externalAssets": [
+    "https://cdn.tailwindcss.com/3.4.17",
+    "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+  ],
+  "courses": [
+    "PROVING_GROUND",
+    "NYC"
+  ],
+  "trims": [
+    "ROCKET",
+    "THRUST",
+    "PERF"
+  ],
+  "constants": {
+    "COPV_MAX_KG": 375,
+    "NYC_RADIUS": 4200,
+    "ACTIVE_RENDER_RADIUS": 700,
+    "totalVehicles": 85
+  },
+  "functionMarkers": [
+    "buildProvingGroundAndRamp",
+    "buildNewYorkCityCourse",
+    "updatePolicePursuitSystem",
+    "stepPhysics",
+    "animate",
+    "resetVehicle",
+    "startNycTimeAttack",
+    "applyLocalizedInertiaCrashDamage",
+    "build40VehicleDamageCatalog"
+  ],
+  "featureInventory": [
+    {
+      "feature": "proving-ground/ramp",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "NYC/traffic/signals",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "ROCKET/THRUST/PERF",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "rocket/hover/suction/kickflip",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "time-attack/results/retry",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "police/roadblock/helicopter",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "HP/scoring/subsystem-damage",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "sedan/truck-40-damage-patterns",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "camera/cockpit/sub-camera",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "weather/rain/smoke/skidmarks",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "sound/haptics",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    },
+    {
+      "feature": "keyboard/touch/auto-accel/help",
+      "status": "PRESENT_NOT_FULLY_VERIFIED"
+    }
+  ]
+}

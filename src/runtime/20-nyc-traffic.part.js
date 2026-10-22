@@ -5,6 +5,9 @@ const nycBuildingColliders = []; // Solid AABB physical colliders for all city b
 const nycTrafficVehicles = [];   // 90 rigid-body vehicles with mass, collision, damage & rollover physics (Requirement ①)
 const nycTrafficSignals = [];    // Interactive Traffic Signal meshes at intersections (Requirement ④)
 const crashDebrisList = [];      // Flying sparks & crumpled debris on collision
+// Shared by city geometry, traffic, utility poles and urban props in this app.
+const ACTIVE_RENDER_RADIUS = 700.0;
+const ACTIVE_RENDER_RADIUS_SQ = ACTIVE_RENDER_RADIUS * ACTIVE_RENDER_RADIUS;
 let signalCycleTimer = 0;
 const sigMatRedOn = new THREE.MeshBasicMaterial({ color: 0xff1e27 });
 const sigMatYellowOn = new THREE.MeshBasicMaterial({ color: 0xfacc15 });
@@ -190,8 +193,6 @@ bldgBuckets.forEach((list, bIdx) => {
 });
 
 // Expose 700m radius culling updater for buildings & sidewalks so only objects within 700m of player are rendered!
-const ACTIVE_RENDER_RADIUS = 700.0;
-const ACTIVE_RENDER_RADIUS_SQ = ACTIVE_RENDER_RADIUS * ACTIVE_RENDER_RADIUS;
 let lastCullCenterX = -99999;
 let lastCullCenterZ = -99999;
 
@@ -305,15 +306,6 @@ function tagVehiclePart(mesh, partRole, zoneX, zoneZ) {
     partRole,
     zoneX,
     zoneZ,
-    origX: mesh.position.x,
-    origY: mesh.position.y,
-    origZ: mesh.position.z,
-    origRx: mesh.rotation.x,
-    origRy: mesh.rotation.y,
-    origRz: mesh.rotation.z,
-    origSx: mesh.scale.x,
-    origSy: mesh.scale.y,
-    origSz: mesh.scale.z,
     dmg: { dx: 0, dy: 0, dz: 0, rx: 0, ry: 0, rz: 0, sx: 1, sy: 1, sz: 1 }
   };
   return mesh;
@@ -399,7 +391,6 @@ for (let i = 0; i < totalVehicles; i++) {
       const w = tagVehiclePart(new THREE.Mesh(trafficWheelGeo, trafficWheelMat), role, wx, wz);
       w.rotation.z = Math.PI / 2;
       w.position.set(wx, 0.38, wz);
-      w.userData.origRz = Math.PI / 2;
       bodyPartsGroup.add(w);
     });
   } else {
@@ -468,7 +459,6 @@ for (let i = 0; i < totalVehicles; i++) {
       const w = tagVehiclePart(new THREE.Mesh(trafficWheelGeo, trafficWheelMat), role, wx, wz);
       w.rotation.z = Math.PI / 2;
       w.position.set(wx, 0.36, wz);
-      w.userData.origRz = Math.PI / 2;
       bodyPartsGroup.add(w);
     });
   }
@@ -489,6 +479,15 @@ for (let i = 0; i < totalVehicles; i++) {
   const tlR = tagVehiclePart(new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.09, 0.09), new THREE.MeshBasicMaterial({ color: 0xff1e27 })), 'tlR', 0.55, halfL);
   tlR.position.set(0.55, 0.62, halfL);
   bodyPartsGroup.add(tlR);
+
+  // Capture once, after every part has its final configured transform.
+  bodyPartsGroup.children.forEach((part) => {
+    Object.assign(part.userData, {
+      origX: part.position.x, origY: part.position.y, origZ: part.position.z,
+      origRx: part.rotation.x, origRy: part.rotation.y, origRz: part.rotation.z,
+      origSx: part.scale.x, origSy: part.scale.y, origSz: part.scale.z
+    });
+  });
 
   let xPos, zPos, vx = 0, vz = 0, yaw = 0, axis = 'NS', dir = 1, baseLaneCoord = 0;
   const coreAves = [0, 0, -300, 300, -600, 600];

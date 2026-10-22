@@ -5,7 +5,7 @@
   "baseline": {"mainCommit": "e889e511cc3f0122faf325a40bfd8fa2c2befb0c", "refactorPR": 2, "refactorCommit": "40f0e28913c16f967ec0f9ee9daf46b9078431f9", "refactorMergedAtInspection": false, "workflowRun": 39757827739, "workflowConclusion": "success", "runtimePartBlobsVerified": 11, "gameRuntimeTestedThisSession": false},
   "submission": {"branchProposed": "docs/hashirase-100point-plan-20261022", "base": "main", "pullRequestUrl": "https://github.com/chameleonjp-lab/hashirase/pull/3", "status": "MERGED", "reason": "Documentation PR #3 was merged before the swipe-control amendment. Feature implementation and acceptance tests remain unverified."},
   "currentStatusAtSwipeRevision": {"inspectedDate": "2026-10-22", "mainCommit": "bac1f30f8af5cea9c5f6dbbb19e3999f63618e53", "refactorPR2Merged": true, "planPR3Merged": true},
-  "planRevisions": [{"id": "2026-10-22-touch-swipe", "decision": "U09", "focus": ["T02","T05","T06","T08","T10","T13","T14","T16","T17"], "acceptance": ["A06","A31","A32","A34","A35","A36","A37","A38","A39","A40","A46"], "pullRequestUrl": "https://github.com/chameleonjp-lab/hashirase/pull/4", "status": "IN_REVIEW"}],
+  "planRevisions": [{"id": "2026-10-22-touch-swipe", "decision": "U09", "focus": ["T02","T05","T06","T08","T10","T13","T14","T16","T17"], "acceptance": ["A06","A31","A32","A34","A35","A36","A37","A38","A39","A40","A46"], "pullRequestUrl": "https://github.com/chameleonjp-lab/hashirase/pull/4", "status": "MERGED"}],
   "requirements": [
     {"id": "R01", "axis": "企画・機能", "description": "ホームから目的を理解して2モードを選べる", "tasks": ["T05", "T13"], "tests": ["A01", "A02"], "maxPoints": 20, "pointsAwarded": 0, "status": "NOT_VERIFIED"},
     {"id": "R02", "axis": "企画・機能", "description": "未選択モードを取得・実行・生成しない", "tasks": ["T02", "T05", "T15"], "tests": ["A03", "A04"], "maxPoints": 20, "pointsAwarded": 0, "status": "NOT_VERIFIED"},
@@ -39,7 +39,7 @@
     {"id": "R30", "axis": "安定性・保守性", "description": "実機・公開版と採点の証拠を同じ候補に揃える", "tasks": ["T16", "T17", "T18"], "tests": ["A59", "A60"], "maxPoints": 20, "pointsAwarded": 0, "status": "NOT_VERIFIED"}
   ],
   "tasks": [
-    {"id": "T01", "stage": 1, "title": "現状を検査で固定し、起動を妨げる問題を分離する", "dependencies": [], "status": "NOT_STARTED", "pr": null, "commit": null, "evidence": []},
+    {"id": "T01", "stage": 1, "title": "現状を検査で固定し、起動を妨げる問題を分離する", "dependencies": [], "status": "IN_REVIEW", "pr": "https://github.com/chameleonjp-lab/hashirase/pull/5", "commit": "5bdb72d9c74697eb637b4c33d4ade1d71d288631", "evidence": ["docs/evidence/baseline.md", "docs/evidence/t01/run-manifest.json", "docs/evidence/t01/logs/red-browser.log", "docs/evidence/t01/logs/final-target.log", "docs/evidence/t01/logs/post-merge-check.log", "docs/evidence/t01/logs/github-actions-39767317249.log", "docs/evidence/t01/review.md"]},
     {"id": "T02", "stage": 1, "title": "部品の契約・固定時計・分割ビルドを作る", "dependencies": ["T01"], "status": "NOT_STARTED", "pr": null, "commit": null, "evidence": []},
     {"id": "T03", "stage": 1, "title": "既存ゲームを所有状態のある実行単位にする", "dependencies": ["T02"], "status": "NOT_STARTED", "pr": null, "commit": null, "evidence": []},
     {"id": "T04", "stage": 1, "title": "現実寄りの最小車両モデルを独立して作る", "dependencies": ["T02"], "status": "NOT_STARTED", "pr": null, "commit": null, "evidence": []},

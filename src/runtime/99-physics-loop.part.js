@@ -681,6 +681,18 @@ requestAnimationFrame(animate);
 }
 (function bootstrapWhenThreeReady() {
 let attempts = 0;
+function reportStartupFailure(err) {
+console.error("Simulator init error:", err);
+if (window.__setLoadingGauge) {
+window.__setLoadingGauge(0, "起動に失敗しました。ページを再読み込みして再試行してください。", "ERROR");
+}
+const title = document.getElementById('loading-title');
+if (title) title.textContent = '起動に失敗しました';
+const hint = document.getElementById('loading-sub-hint');
+if (hint) hint.textContent = '再読み込みしても続く場合は、ブラウザのエラー情報を確認してください。';
+const screen = document.getElementById('loading-screen');
+if (screen) screen.setAttribute('role', 'alert');
+}
 const timer = setInterval(function () {
 attempts++;
 if (!window.THREE && attempts >= 45 && window.__installSoftwareThreeShim) {
@@ -688,13 +700,7 @@ window.THREE = window.__installSoftwareThreeShim();
 }
 if (window.THREE) {
 clearInterval(timer);
-initSimulatorApp().catch(function (err) {
-console.error("Simulator init error:", err);
-if (window.__setLoadingGauge) {
-window.__setLoadingGauge(100, "起動完了", "READY");
-}
-if (window.__hideLoadingScreen) window.__hideLoadingScreen();
-});
+initSimulatorApp().catch(reportStartupFailure);
 }
 }, 35);
 window.addEventListener("load", function () {
@@ -703,7 +709,7 @@ window.THREE = window.__installSoftwareThreeShim();
 }
 if (window.THREE && !__simStarted) {
 clearInterval(timer);
-initSimulatorApp();
+initSimulatorApp().catch(reportStartupFailure);
 }
 });
 })();
