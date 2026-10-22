@@ -1,9 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { optionalModule, required } from '../support/foundation.mjs';
+import { optionalModule, required, vehicleState } from '../support/foundation.mjs';
 
 const clocks = await optionalModule('src/platform/clock.js');
 const random = await optionalModule('src/platform/random.js');
+const vehicles = await optionalModule('src/contracts/vehicle.js');
 
 test('clock_is_render_rate_independent', () => {
   const create = required(clocks, 'createFixedClock');
@@ -20,9 +21,16 @@ test('clock_is_render_rate_independent', () => {
     const state = clock.snapshot();
     assert.equal(state.ticks, 1200); assert.equal(state.simTime, 10); assert.equal(state.valid, true);
     assert(state.backlog < 1e-9);
-    return [velocity, position];
+    const physical = vehicleState();
+    physical.position.x = position;
+    physical.velocity.x = velocity;
+    return required(vehicles, 'createVehicleSnapshot')(physical);
   });
-  for (const state of snapshots) for (let i = 0; i < state.length; i++) assert(Math.abs(state[i] - snapshots[0][i]) <= 1e-6);
+  for (const state of snapshots) {
+    assert(Math.abs(state.position.x - snapshots[0].position.x) <= 1e-6);
+    assert(Math.abs(state.velocity.x - snapshots[0].velocity.x) <= 1e-6);
+    assert.deepEqual(state, snapshots[0]);
+  }
 });
 
 test('clock_marks_overload_without_dropping_unprocessed_time', () => {
@@ -75,6 +83,7 @@ test('random_is_repeatable_and_visual_draws_do_not_change_physics', () => {
   const create = required(random, 'createRandom');
   const samples = () => { const rng = create(12345); return Array.from({ length: 100 }, () => rng.next()); };
   const expected = samples();
+  assert.deepEqual(expected.slice(0, 5), [0.9797282677609473, 0.3067522644996643, 0.484205421525985, 0.817934412509203, 0.5094283693470061]);
   for (let n = 0; n < 5; n++) assert.deepEqual(samples(), expected);
   assert(expected.every(n => n >= 0 && n < 1));
   const root = create(42); const physics = root.fork('physics'); const visual = root.fork('visual');
@@ -86,4 +95,11 @@ test('random_is_repeatable_and_visual_draws_do_not_change_physics', () => {
   assert.notDeepEqual(create(42).fork('physics').snapshot(), create(42).fork('visual').snapshot());
   const rng = create(12345); rng.next(); rng.reset(); assert.equal(rng.next(), expected[0]);
   for (const bad of [-1, 2 ** 32, NaN, Infinity, 'seed', null]) assert.throws(() => create(bad), /seed/);
+});
+
+test('clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes', () => {
+  const clock = required(clocks, 'createFixedClock')();
+  assert.throws(() => clock.advance(1 / 120, () => Promise.resolve()), /synchronous/);
+  assert.equal(clock.snapshot().valid, false);
+  assert.equal(clock.snapshot().ticks, 0);
 });

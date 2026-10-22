@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { optionalModule, required, fixture } from '../support/foundation.mjs';
 
 const boundaries = await optionalModule('scripts/check-boundaries.mjs');
@@ -68,6 +69,27 @@ test('literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_exclud
   assert(result.imports.some(e => e.kind === 'dynamic-import'));
 });
 
+test('physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper', async t => {
+  const check = required(boundaries, 'checkBoundaries');
+  const rootDir = await fixture(t, {
+    'src/physics/shared/model.js': "import '../../platform/helper.js';",
+    'src/platform/helper.js': 'export const sample = () => [document.title, Math.random()];'
+  });
+  const result = await check({ rootDir });
+  assert(result.violations.some(v => v.rule === 'physics-global' && v.from === 'src/physics/shared/model.js'));
+  assert(result.violations.some(v => v.rule === 'physics-random'));
+});
+
+test('modes_cannot_hide_an_independent_render_loop_in_a_shared_helper', async t => {
+  const check = required(boundaries, 'checkBoundaries');
+  const rootDir = await fixture(t, {
+    'src/modes/driving/index.js': "import '../../platform/helper.js';",
+    'src/platform/helper.js': 'export const animate = f => window.requestAnimationFrame(f);'
+  });
+  const result = await check({ rootDir });
+  assert(result.violations.some(v => v.rule === 'mode-loop' && v.from === 'src/modes/driving/index.js'));
+});
+
 const splitFixture = {
   'src/app/main.js': "export const load = id => id === 'driving' ? import('../modes/driving/index.js') : import('../modes/simulation/index.js');",
   'src/contracts/shared.js': 'export const shared = 42;',
@@ -110,6 +132,19 @@ test('build_fails_when_a_common_entry_statically_includes_a_mode', async t => {
   const rootDir = await fixture(t, splitFixture);
   await writeFile(join(rootDir, 'src/app/main.js'), "import '../modes/driving/index.js'; export const home = true;");
   await assert.rejects(() => build({ rootDir, entryPoints: ['src/app/main.js'] }), /home-static-mode/);
+});
+
+test('asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes', async t => {
+  const build = required(builder, 'buildProject');
+  const rootDir = await fixture(t, splitFixture);
+  await build({ rootDir, entryPoints: ['src/app/main.js'] });
+  const app = await import(pathToFileURL(join(rootDir, 'dist/app/main.js')));
+  const driving = await app.load('driving');
+  const [, cssURL, imageURL] = driving.mode();
+  assert.match(cssURL, /^file:/);
+  assert.match(imageURL, /^file:/);
+  assert.equal(await readFile(new URL(cssURL), 'utf8'), splitFixture['src/modes/driving/mode.css']);
+  assert.equal(await readFile(new URL(imageURL), 'utf8'), splitFixture['src/modes/driving/car.svg']);
 });
 
 test('bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk', () => {

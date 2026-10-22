@@ -1,0 +1,40 @@
+✔ imports_do_not_cross_modes (11.22203ms)
+✔ common_code_and_static_home_imports_cannot_pull_in_a_mode (5.754348ms)
+✔ cycles_and_computed_imports_fail_and_comment_strings_are_not_imports (3.389162ms)
+✔ physics_cannot_use_rendering_DOM_audio_storage_or_global_state (3.021273ms)
+✔ literal_dynamic_imports_are_checked_and_legacy_parts_are_explicitly_excluded (2.983916ms)
+✔ physics_cannot_hide_DOM_or_unseeded_random_behind_a_shared_helper (3.384596ms)
+✔ modes_cannot_hide_an_independent_render_loop_in_a_shared_helper (2.220205ms)
+✔ split_build_lists_inputs_and_keeps_unselected_mode_out_of_static_JS_graph (23.090592ms)
+✔ bare_CSS_imports_fail_instead_of_combining_both_modes_into_home_CSS (1.706184ms)
+✔ build_fails_when_a_common_entry_statically_includes_a_mode (4.116959ms)
+✔ asset_URLs_resolve_from_lazy_chunks_and_preserve_repository_prefixes (13.583059ms)
+✔ bundle_audit_rejects_mode_code_hidden_in_a_shared_chunk (0.202779ms)
+✔ clock_is_render_rate_independent (3.840178ms)
+✔ clock_marks_overload_without_dropping_unprocessed_time (0.404776ms)
+✔ clock_bounds_each_advance_and_can_drain_a_short_backlog (0.100763ms)
+✔ clock_pause_excludes_hidden_time_and_resume_does_not_catch_up (0.116177ms)
+✔ clock_rejects_bad_values_and_does_not_replay_a_failed_step (0.257752ms)
+✔ random_is_repeatable_and_visual_draws_do_not_change_physics (0.716029ms)
+✔ clock_rejects_async_steps_instead_of_advancing_before_the_model_finishes (0.120824ms)
+✔ input_frame_rejects_invalid_values_and_defaults_reverse_throttle (1.467351ms)
+✔ input_frame_resolves_drive_conflicts_without_reverse_force_during_braking (0.207055ms)
+✔ swipe_frame_has_right_positive_up_positive_axes_and_pointer_ownership (0.36834ms)
+✔ vehicle_snapshot_is_a_detached_readonly_SI_value_with_four_wheel_slots (0.738092ms)
+✔ session_contract_preserves_named_ports_and_has_no_render_loop (0.30903ms)
+✔ events_reject_invalid_session (0.337763ms)
+✔ events_are_readonly_deduplicated_and_isolated_per_session (0.965988ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.855885
+
+> hashirase@0.1.0 build
+> node scripts/build.mjs
+
+Regenerated assets/js/simulator.js.
+ESM foundation build: 6 inputs, 6 outputs; dist/build-manifest.json.

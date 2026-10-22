@@ -1,0 +1,49 @@
+{
+  "node": {
+    "selected": "22",
+    "supportPhaseAt20261022": "maintenance",
+    "supportEnds": "2027-04-30",
+    "source": "https://github.com/nodejs/Release/blob/main/schedule.json"
+  },
+  "tools": {
+    "esbuild": {
+      "version": "0.28.2",
+      "engines": {
+        "node": ">=18"
+      },
+      "developmentOnly": true
+    },
+    "acorn": {
+      "version": "8.19.0",
+      "engines": {
+        "node": ">=0.4.0"
+      },
+      "developmentOnly": true
+    }
+  },
+  "audit": {
+    "metadata": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 5,
+      "critical": 0,
+      "total": 7
+    },
+    "newDirectToolsHaveNoReportedAdvisory": true,
+    "unchangedAffectedVersions": {
+      "node_modules/braces": true,
+      "node_modules/chokidar": true,
+      "node_modules/fast-glob": true,
+      "node_modules/micromatch": true,
+      "node_modules/postcss-nested": true,
+      "node_modules/postcss-selector-parser": true,
+      "node_modules/tailwindcss": true
+    },
+    "scope": "existing test-only Tailwind dependency tree; no runtime package upgrade",
+    "deferredTo": [
+      "T14",
+      "T15"
+    ]
+  }
+}

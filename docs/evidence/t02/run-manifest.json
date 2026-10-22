@@ -1,0 +1,78 @@
+{
+  "taskId": "T02",
+  "baseCommit": "24cc8d11842b4dd36a70b30eb41339fc3604f75c",
+  "prerequisite": {
+    "T01": "DONE",
+    "pr": 5,
+    "mergedAt": "2026-10-22T11:19:25Z"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)",
+    "os": "Linux 6.18.55 x86_64",
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "dpr": 1
+    },
+    "physicalDevices": "NOT_RUN"
+  },
+  "settings": {
+    "clockStep": 0.008333333333333333,
+    "maxSteps": 8,
+    "maxLagSeconds": 0.1,
+    "fixtureTickCount": 1200,
+    "renderSchedules": [
+      30,
+      60,
+      120
+    ],
+    "randomAlgorithm": "Mulberry32 v1",
+    "physicsSeed": 42,
+    "browserSeed": "0x48415348"
+  },
+  "commands": [
+    {
+      "command": "npm ci",
+      "result": "PASS"
+    },
+    {
+      "command": "node --test tests/unit/contracts.test.mjs tests/unit/clock.test.mjs tests/integration/import-boundaries.test.mjs && npm run build",
+      "result": "PASS 26/26 and 6-input / 6-output foundation ESM build"
+    },
+    {
+      "command": "npm run check",
+      "result": "PASS 29 Node tests plus 117 IDs and 11 legacy parts"
+    },
+    {
+      "command": "npx playwright test tests/baseline/startup.spec.mjs",
+      "result": "PASS 4/4"
+    },
+    {
+      "command": "npm audit --json",
+      "result": "7 existing test-tool findings (5 high, 2 moderate); not reported as clean"
+    }
+  ],
+  "browserStartedAt": "2026-10-22T11:51:30.353Z",
+  "browserDurationMs": 10398.001,
+  "sourceSha256": {
+    "scripts/build.mjs": "eb237337fb702b7048befd0367ba1baece983cb1425259b45c2ce491f84fd137",
+    "scripts/check-boundaries.mjs": "1a1a410167c2df7dac084d86403c69bf33ea5e36ac4ca122395ce1048828303d",
+    "src/contracts/events.js": "a2209be5d5e59591be07f0b5baa42affe00766a424c73da9e2340918549c8b32",
+    "src/contracts/session.js": "b55a446d57a01f4c6baa552994ac93f44ae79359f86d5097d73a6606f8584148",
+    "src/contracts/validation.js": "4c14145e22f916762e8e3805a67cedf5f7f85e42f8ba2c9a173e1b1731e39a76",
+    "src/contracts/vehicle.js": "4c3009a5606a9075e5b35fda437a6b4ab34cdc6c5e1c46616ea9efb9bffc5d69",
+    "src/platform/clock.js": "ec3a326266aec843dfbd87b7e0f501d39fc2887d2585153746deb5eca4ff8ba3",
+    "src/platform/random.js": "faf81b142c779ca6c6e992d84b8ddf38ba61ac99c5588b4e9e6ceebed1880a44"
+  },
+  "legacyDifferenceFromMain": [],
+  "evidence": [
+    "docs/evidence/t02.md",
+    "docs/evidence/t02/logs/target.log",
+    "docs/evidence/t02/logs/regression.log",
+    "docs/evidence/t02/logs/browser-regression.log",
+    "docs/evidence/t02/images/",
+    "docs/evidence/t02/dependency-review.json"
+  ],
+  "acceptance": "A01–A60 remain NOT_RUN; no full mode/home/network/device claim"
+}

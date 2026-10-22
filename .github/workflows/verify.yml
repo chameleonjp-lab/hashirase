@@ -22,6 +22,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Validate generated code, JavaScript syntax, and HTML references
         run: npm run check
+      - name: Build isolated ESM foundation and audit split output
+        run: npm run build
       - name: Exercise original startup, course switching, faults, and reset
         run: npx playwright test tests/baseline/startup.spec.mjs
       - name: Save browser diagnostics, screenshots, and failure traces
@@ -30,4 +32,11 @@ jobs:
         with:
           name: baseline-browser-${{ github.sha }}
           path: test-results/
+          retention-days: 14
+      - name: Save ESM build and input graph
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation-build-${{ github.sha }}
+          path: dist/
           retention-days: 14
